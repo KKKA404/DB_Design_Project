@@ -168,15 +168,11 @@ export default {
     };
   },
   computed: {
-    searchData: () => {
-      let idInput = this.idInput;
-      let nameInput = this.nameInput;
-      if (idInput == "" && nameInput == "") return this.donateData;
-
+    searchData: function () {
       let SearchResult = this.donateData.filter(
         (item) =>
-          String(item.donateID).indexOf(String(idInput)) > -1 &&
-          item.donateName.indexOf(nameInput) > -1
+          String(item.donateID).indexOf(String(this.idInput)) > -1 &&
+          item.donateName.indexOf(this.nameInput) > -1
       );
 
       return SearchResult;
