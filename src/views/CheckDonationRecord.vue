@@ -1,8 +1,8 @@
 <template>
   <el-container>
-    <el-aside width="200px">Aside</el-aside>
+    <el-aside width="200px"><SideBar></SideBar></el-aside>
     <el-container>
-      <el-header>Header</el-header>
+      <el-header><NavBar></NavBar></el-header>
       <el-main>
         <el-input placeholder="请输入捐赠方ID" v-model="idInput" clearable>
         </el-input>
@@ -40,14 +40,23 @@
           </el-table-column>
         </el-table>
       </el-main>
-      <el-footer>Footer</el-footer>
+      <el-footer><BottomFooter></BottomFooter></el-footer>
     </el-container>
   </el-container>
 </template>
 
 <script>
+import SideBar from "../components/SideBar.vue";
+import BottomFooter from "../components/BottomFooter.vue";
+import NavBar from "../components/NavBar.vue";
+
 export default {
   name: "CheckDonationRecord",
+  components: {
+    SideBar,
+    BottomFooter,
+    NavBar,
+  },
   data() {
     return {
       idInput: "",
