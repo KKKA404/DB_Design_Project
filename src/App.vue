@@ -1,20 +1,23 @@
 <template>
   <div id="app">
-    <CheckDonationRecord />
+    <el-container>
+      <el-aside width="200px"><SideBar></SideBar></el-aside>
+      <el-container>
+        <el-header><NavBar></NavBar></el-header>
+        <router-view />
+        <el-footer><BottomFooter></BottomFooter></el-footer>
+      </el-container>
+    </el-container>
   </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
-import CheckDonationRecord from './views/CheckDonationRecord.vue'
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    // HelloWorld,
-    CheckDonationRecord,
-}
-}
+  },
+};
 </script>
 
 <style>

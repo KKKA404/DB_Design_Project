@@ -1,8 +1,5 @@
 <template>
-  <el-container>
-    <el-aside width="200px"><SideBar></SideBar></el-aside>
-    <el-container>
-      <el-header><NavBar></NavBar></el-header>
+
       <el-main>
         <el-input placeholder="请输入捐赠方ID" v-model="idInput" clearable>
         </el-input>
@@ -40,9 +37,7 @@
           </el-table-column>
         </el-table>
       </el-main>
-      <el-footer><BottomFooter></BottomFooter></el-footer>
-    </el-container>
-  </el-container>
+      
 </template>
 
 <script>
