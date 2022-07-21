@@ -33,7 +33,12 @@ export default new VueRouter({
           path:"/RecordManage",
           name:"个人需求表单查询",
           component: () => import("../views/RecordManage.vue"),
-        }
+        },
+        {
+          path:"/MaterialManage",
+          name:"现有物资查询",
+          component: () => import("../views/MaterialManage.vue"),
+        },
       ],
     },
   ],
