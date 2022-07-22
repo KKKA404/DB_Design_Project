@@ -24,6 +24,16 @@ export default new VueRouter({
           name: "查询捐赠记录",
           component: () => import("../views/CheckDonationRecord.vue"),
         },
+        {
+          path: "/CheckNeedRecord",
+          name: "查询需求记录",
+          component: () => import("../views/CheckNeedRecord.vue"),
+        },
+        {
+          path: "/CheckPurchRecord",
+          name: "查询采购记录",
+          component: () => import("../views/CheckPurchRecord.vue"),
+        },
       ],
     },
   ],
