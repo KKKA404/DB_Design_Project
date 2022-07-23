@@ -58,7 +58,7 @@ export default {
       nameInput: "",
       donateData: [
         {
-          donateName: "bc",
+          donateName: "aabc",
           donateID: 2,
           donateTime: "2022.7.20",
           donatedOrganization: "Huangduligong",
