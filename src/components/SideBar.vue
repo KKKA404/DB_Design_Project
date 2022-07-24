@@ -15,6 +15,9 @@
           <el-menu-item index="CheckDonationRecord"
             >物资捐赠记录查询</el-menu-item
           >
+          <el-menu-item index="MakeDonation"
+            >捐赠物资</el-menu-item
+          >
           <el-menu-item index="2">选项2</el-menu-item>
         </el-menu-item-group>
       </el-submenu>

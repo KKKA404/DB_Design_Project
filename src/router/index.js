@@ -24,6 +24,11 @@ export default new VueRouter({
           name: "查询捐赠记录",
           component: () => import("../views/CheckDonationRecord.vue"),
         },
+        {
+          path: "/MakeDonation",
+          name: "捐赠物资",
+          component: () => import("../views/MakeDonation.vue"),
+        },
       ],
     },
   ],
