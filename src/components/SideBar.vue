@@ -6,7 +6,7 @@
       class="el-menu-vertical-demo"
       router="true"
     >
-      <el-submenu route>
+      <el-submenu index="null">
         <template slot="title">
           <i class="el-icon-location"></i>
           <span>物资</span>
