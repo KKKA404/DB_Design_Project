@@ -21,6 +21,30 @@
           <el-menu-item index="2">选项2</el-menu-item>
         </el-menu-item-group>
       </el-submenu>
+
+      <el-submenu index="null">
+        <template slot="title">
+          <i class="el-icon-location"></i>
+          <span>个人需求表单</span>
+        </template>
+        <el-menu-item-group>
+          <el-menu-item index="AddRecord"
+            >个人需求表单填写</el-menu-item>
+          <el-menu-item index="RecordManage">个人需求表单查询</el-menu-item>
+        </el-menu-item-group>
+      </el-submenu>
+
+      <el-submenu index="null">
+        <template slot="title">
+          <i class="el-icon-location"></i>
+          <span>现有物资</span>
+        </template>
+        <el-menu-item-group>
+          <el-menu-item index="MaterialManage"
+            >现有物资查询</el-menu-item>
+          <el-menu-item index="2">选项2</el-menu-item>
+        </el-menu-item-group>
+      </el-submenu>
     </el-menu>
   </el-col>
 </template>
