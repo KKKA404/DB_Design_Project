@@ -25,6 +25,11 @@ export default new VueRouter({
           component: () => import("../views/CheckDonationRecord.vue"),
         },
         {
+          path: "/MakeDonation",
+          name: "捐赠物资",
+          component: () => import("../views/MakeDonation.vue"),
+        },
+        {
           path:"/AddRecord",
           name:"个人需求表单填写",
           component: () => import("../views/AddRecord.vue"),
