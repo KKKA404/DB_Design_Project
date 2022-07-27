@@ -25,6 +25,11 @@ export default new VueRouter({
           component: () => import("../views/CheckDonationRecord.vue"),
         },
         {
+          path: "/MakeDonation",
+          name: "捐赠物资",
+          component: () => import("../views/MakeDonation.vue"),
+        },
+        {
           path: "/CheckNeedRecord",
           name: "查询需求记录",
           component: () => import("../views/CheckNeedRecord.vue"),
@@ -33,6 +38,21 @@ export default new VueRouter({
           path: "/CheckPurchRecord",
           name: "查询采购记录",
           component: () => import("../views/CheckPurchRecord.vue"),
+        },
+        {
+          path: "/AddRecord",
+          name: "个人需求表单填写",
+          component: () => import("../views/AddRecord.vue"),
+        },
+        {
+          path: "/RecordManage",
+          name: "个人需求表单查询",
+          component: () => import("../views/RecordManage.vue"),
+        },
+        {
+          path: "/MaterialManage",
+          name: "现有物资查询",
+          component: () => import("../views/MaterialManage.vue"),
         },
       ],
     },

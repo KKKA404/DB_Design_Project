@@ -6,7 +6,7 @@
       class="el-menu-vertical-demo"
       router="true"
     >
-      <el-submenu route>
+      <el-submenu index="null">
         <template slot="title">
           <i class="el-icon-location"></i>
           <span>物资</span>
@@ -15,6 +15,41 @@
           <el-menu-item index="CheckDonationRecord"
             >物资捐赠记录查询</el-menu-item
           >
+          <el-menu-item index="MakeDonation">捐赠物资</el-menu-item>
+          <el-menu-item index="2">选项2</el-menu-item>
+        </el-menu-item-group>
+      </el-submenu>
+
+      <el-submenu index="null">
+        <template slot="title">
+          <i class="el-icon-location"></i>
+          <span>个人需求表单</span>
+        </template>
+        <el-menu-item-group>
+          <el-menu-item index="AddRecord">个人需求表单填写</el-menu-item>
+          <el-menu-item index="RecordManage">个人需求表单查询</el-menu-item>
+        </el-menu-item-group>
+      </el-submenu>
+
+      <el-submenu index="null">
+        <template slot="title">
+          <i class="el-icon-location"></i>
+          <span>现有物资</span>
+        </template>
+        <el-menu-item-group>
+          <el-menu-item index="MaterialManage">现有物资查询</el-menu-item>
+          <el-menu-item index="2">选项2</el-menu-item>
+        </el-menu-item-group>
+      </el-submenu>
+
+      <el-submenu index="null">
+        <template slot="title">
+          <i class="el-icon-location"></i>
+          <span>物资购买</span>
+        </template>
+        <el-menu-item-group>
+          <el-menu-item index="CheckNeedRecord">物资需求查询</el-menu-item>
+          <el-menu-item index="CheckPurchRecord">物资购买查询</el-menu-item>
           <el-menu-item index="2">选项2</el-menu-item>
         </el-menu-item-group>
       </el-submenu>
@@ -27,5 +62,4 @@ export default {
   name: "SideBar",
 };
 </script>
-<style>
-</style>
+<style></style>
