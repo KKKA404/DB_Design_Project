@@ -54,6 +54,11 @@ export default new VueRouter({
           name: "现有物资查询",
           component: () => import("../views/MaterialManage.vue"),
         },
+        {
+          path: "/VolunteerApplication",
+          name: "志愿申请信息",
+          component: () => import("../views/VolunteerApplication.vue"),
+        },
       ],
     },
   ],

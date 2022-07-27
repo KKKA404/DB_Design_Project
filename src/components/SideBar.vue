@@ -53,6 +53,17 @@
           <el-menu-item index="2">选项2</el-menu-item>
         </el-menu-item-group>
       </el-submenu>
+
+      <el-submenu index="null">
+        <template slot="title">
+          <i class="el-icon-location"></i>
+          <span>信息统计</span>
+        </template>
+        <el-menu-item-group>
+          <el-menu-item index="VolunteerApplication">志愿申请信息统计</el-menu-item>
+          <el-menu-item index="CheckPurchRecord">病历记录功能</el-menu-item>
+        </el-menu-item-group>
+      </el-submenu>
     </el-menu>
   </el-col>
 </template>
