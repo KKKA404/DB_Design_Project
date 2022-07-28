@@ -59,6 +59,11 @@ export default new VueRouter({
           name: "志愿申请信息",
           component: () => import("../views/VolunteerApplication.vue"),
         },
+        {
+          path: "/RecordPatient",
+          name: "病历记录",
+          component: () => import("../views/RecordPatient.vue"),
+        },
       ],
     },
   ],

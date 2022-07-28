@@ -38,7 +38,6 @@
         </template>
         <el-menu-item-group>
           <el-menu-item index="MaterialManage">现有物资查询</el-menu-item>
-          <el-menu-item index="2">选项2</el-menu-item>
         </el-menu-item-group>
       </el-submenu>
 
@@ -50,7 +49,6 @@
         <el-menu-item-group>
           <el-menu-item index="CheckNeedRecord">物资需求查询</el-menu-item>
           <el-menu-item index="CheckPurchRecord">物资购买查询</el-menu-item>
-          <el-menu-item index="2">选项2</el-menu-item>
         </el-menu-item-group>
       </el-submenu>
 
@@ -61,7 +59,7 @@
         </template>
         <el-menu-item-group>
           <el-menu-item index="VolunteerApplication">志愿申请信息统计</el-menu-item>
-          <el-menu-item index="CheckPurchRecord">病历记录功能</el-menu-item>
+          <el-menu-item index="RecordPatient">病历记录</el-menu-item>
         </el-menu-item-group>
       </el-submenu>
     </el-menu>
