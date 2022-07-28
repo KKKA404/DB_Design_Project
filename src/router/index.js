@@ -112,5 +112,18 @@ export default new VueRouter({
         },
       ],
     },
+    {
+      path: "/Index",
+      name: "可视化",
+      component: () => import("../views/SystemIndex.vue"),
+      meta: true,
+      children: [
+        {
+          path: "/EchartsTest",
+          name: "可视化测试",
+          component: () => import("../views/EchartsTest.vue"),
+        },
+      ],
+    },
   ],
 });
