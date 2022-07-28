@@ -82,13 +82,13 @@ export default new VueRouter({
     },
     {
       path: "/Index",
-      name: "核酸管理",
+      name: "核酸信息管理",
       component: () => import("../views/SystemIndex.vue"),
       meta: true,
       children: [
         {
           path: "/DNAManage",
-          name: "核酸信息管理",
+          name: "核酸结果管理",
           component: () => import("../views/DNAManage.vue"),
         },
 
