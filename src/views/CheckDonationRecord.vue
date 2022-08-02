@@ -69,6 +69,9 @@ export default {
     },
   },
   created() {
+    // just test
+    service.post('/donateData',{abc:123});
+    
     service.get('/donateData').then(res => {
       this.donateData = res.data.donateData;
     })
