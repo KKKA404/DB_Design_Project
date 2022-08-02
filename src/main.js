@@ -5,6 +5,13 @@ import "element-ui/lib/theme-chalk/index.css";
 
 import VueRouter from "./router";
 
+// axios
+import service from "./plugins/axios";
+Vue.prototype.$axios = service;
+
+// mockjs
+import "../mock/index";
+
 // import SideBar from "./components/SideBar.vue";
 import BottomFooter from "./components/BottomFooter.vue";
 import NavBar from "./components/NavBar.vue";
