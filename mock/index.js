@@ -8,7 +8,9 @@ Mock.setup({
   timeout: 20,
 });
 
-Mock.mock("/donateData", {
+// 这里暂时采用process.env.VUE_APP_BASE_URL + "/donateData"的简单方式封装...
+// 后续考虑参考vue-admin对此封装
+Mock.mock(process.env.VUE_APP_BASE_URL + "/donateData", {
   // 当post或get请求到/donateData时
   // Mock会拦截请求
   // 并返回数据
