@@ -40,11 +40,13 @@ export default new VueRouter({
         {
           path: "/AddRecord",
           name: "个人需求表单填写",
+
           component: () => import("../views/AddRecord.vue"),
         },
         {
           path: "/RecordManage",
           name: "个人需求表单查询",
+
           component: () => import("../views/RecordManage.vue"),
         },
       ],

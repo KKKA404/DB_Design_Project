@@ -122,3 +122,20 @@ Mock.mock(process.env.VUE_APP_BASE_URL + "/donateData", "post", (req, res) => {
   console.log(req);
   return { ...data, ...req };
 });
+
+Mock.mock(process.env.VUE_APP_BASE_URL + "/user/login", "post", (config) => {
+  // 传递过来的是JSON 必须要先解析！之后考虑封装吧 现在还只是测试
+  config.body = JSON.parse(config.body);
+
+  if (config.body.userName != "admin" || config.body.passWord != "12345678") {
+    console.log("Account and password are incorrect.");
+    return {
+      code: 60204,
+    };
+  } else {
+    console.log("login successfully");
+    return {
+      code: 20000,
+    };
+  }
+});
