@@ -73,6 +73,7 @@ export default new VueRouter({
     },
     {
       path: "/MaterialPurchase",
+      redirect: "/Index",
       name: "物资购买",
       meta: { icon: "MaterialPurchase" },
       component: () => import("../views/SystemIndex.vue"),
@@ -126,6 +127,7 @@ export default new VueRouter({
     // 404 必须放在最后
     {
       path: "/404",
+      name: "404",
       component: () => import("../views/404.vue"),
       hidden: true,
     },
