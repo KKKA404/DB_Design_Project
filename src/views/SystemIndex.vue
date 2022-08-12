@@ -24,7 +24,7 @@ export default {
         <el-menu router :default-active="$route.path">
           <el-submenu
             v-for="(item, index) in router"
-            :index="index + ''"
+            :index="index"
             :key="index"
           >
             <template slot="title"

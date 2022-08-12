@@ -14,7 +14,8 @@ export default new VueRouter({
       component: () => import("../views/SystemLogin.vue"),
     },
     {
-      path: "/Index",
+      path: "/Materials",
+      redirect: '/Index',
       name: "物资",
       component: () => import("../views/SystemIndex.vue"),
       meta: true,
@@ -32,7 +33,8 @@ export default new VueRouter({
       ],
     },
     {
-      path: "/Index",
+      path: "/PersonalRequest",
+      redirect: '/Index',
       name: "个人需求表单",
       component: () => import("../views/SystemIndex.vue"),
       meta: true,
@@ -52,7 +54,8 @@ export default new VueRouter({
       ],
     },
     {
-      path: "/Index",
+      path: "/ExistingMaterials",
+      redirect: '/Index',
       name: "现有物资",
       component: () => import("../views/SystemIndex.vue"),
       meta: true,
@@ -83,7 +86,8 @@ export default new VueRouter({
       ],
     },
     {
-      path: "/Index",
+      path: "/InspectionInformation",
+      redirect: '/Index',
       name: "核酸信息管理",
       component: () => import("../views/SystemIndex.vue"),
       meta: true,
@@ -102,7 +106,8 @@ export default new VueRouter({
       ],
     },
     {
-      path: "/Index",
+      path: "/Volunteer",
+      redirect: '/Index',
       name: "志愿管理",
       component: () => import("../views/SystemIndex.vue"),
       meta: true,
