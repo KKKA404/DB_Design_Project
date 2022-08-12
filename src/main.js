@@ -10,6 +10,9 @@ import VueRouter from "./router";
 import service from "./plugins/axios";
 Vue.prototype.$axios = service;
 
+// global css
+import './styles/index.scss';
+
 // mockjs
 import "../mock/index";
 

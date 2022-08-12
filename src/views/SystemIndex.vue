@@ -9,7 +9,10 @@
             :key="index"
           >
             <template slot="title">
-              <svg-icon :icon-class="item.meta && item.meta.icon"></svg-icon>
+              <svg-icon
+                v-if="item.meta && item.meta.icon"
+                :icon-class="item.meta && item.meta.icon"
+              ></svg-icon>
               {{ item.name }}</template
             >
             <el-menu-item
@@ -17,7 +20,10 @@
               :index="item2.path"
               :key="index2"
             >
-              <svg-icon :icon-class="item2.meta && item2.meta.icon"></svg-icon>
+              <svg-icon
+                v-if="item2.meta && item2.meta.icon"
+                :icon-class="item2.meta && item2.meta.icon"
+              ></svg-icon>
               {{ item2.name }}
             </el-menu-item>
           </el-submenu>
@@ -28,7 +34,9 @@
         <el-header>
           <NavBar></NavBar>
         </el-header>
-        <router-view />
+        <transition name="fade-transform" mode="out-in">
+          <router-view />
+        </transition>
         <el-footer>
           <BottomFooter></BottomFooter>
         </el-footer>
