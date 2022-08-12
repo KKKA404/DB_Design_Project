@@ -8,6 +8,8 @@ function resolve(dir) {
 
 module.exports = defineConfig({
   transpileDependencies: true,
+  // unset multiword check
+  lintOnSave:false,
   // svg
   chainWebpack(config) {
     config.module.rule("svg").exclude.add(resolve("src/icons")).end();

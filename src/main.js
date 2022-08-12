@@ -16,15 +16,13 @@ import './styles/index.scss';
 // mockjs
 import "../mock/index";
 
-// import SideBar from "./components/SideBar.vue";
 import BottomFooter from "./components/BottomFooter.vue";
 import NavBar from "./components/NavBar.vue";
-// Vue.component("SideBar",SideBar);
 
 Vue.component("BottomFooter",BottomFooter);
 Vue.component("NavBar", NavBar);
 
-Vue.config.productionTip = false;
+Vue.config.productionTip = false
 
 Vue.use(ElementUI);
 new Vue({

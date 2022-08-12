@@ -15,17 +15,16 @@ export default new VueRouter({
     },
     {
       path: "/Index", // forget to add Index !!!!!!
-      name: "物资",
+      name: "主页",
       meta: false,
       component: () => import("../views/SystemIndex.vue"),
-
     },
     {
       path: "/Materials",
       redirect: "/Index",
       name: "物资",
       component: () => import("../views/SystemIndex.vue"),
-      meta: { icon: "Material", },
+      meta: { icon: "Material" },
       children: [
         {
           path: "/CheckDonationRecord",
@@ -44,7 +43,7 @@ export default new VueRouter({
       redirect: "/Index",
       name: "个人需求表单",
       component: () => import("../views/SystemIndex.vue"),
-      meta: { icon: "PersonalRequest", },
+      meta: { icon: "PersonalRequest" },
       children: [
         {
           path: "/AddRecord",
@@ -123,6 +122,17 @@ export default new VueRouter({
           component: () => import("../views/VolunteerApplication.vue"),
         },
       ],
+    },
+    // 404 必须放在最后
+    {
+      path: "/404",
+      component: () => import("../views/404.vue"),
+      hidden: true,
+    },
+    {
+      path: "*",
+      redirect: "/404",
+      hidden: true,
     },
   ],
 });
