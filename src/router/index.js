@@ -14,11 +14,18 @@ export default new VueRouter({
       component: () => import("../views/SystemLogin.vue"),
     },
     {
+      path: "/Index", // forget to add Index !!!!!!
+      name: "物资",
+      meta: false,
+      component: () => import("../views/SystemIndex.vue"),
+
+    },
+    {
       path: "/Materials",
-      redirect: '/Index',
+      redirect: "/Index",
       name: "物资",
       component: () => import("../views/SystemIndex.vue"),
-      meta: true,
+      meta: { icon: "Material", },
       children: [
         {
           path: "/CheckDonationRecord",
@@ -34,31 +41,29 @@ export default new VueRouter({
     },
     {
       path: "/PersonalRequest",
-      redirect: '/Index',
+      redirect: "/Index",
       name: "个人需求表单",
       component: () => import("../views/SystemIndex.vue"),
-      meta: true,
+      meta: { icon: "PersonalRequest", },
       children: [
         {
           path: "/AddRecord",
           name: "个人需求表单填写",
-
           component: () => import("../views/AddRecord.vue"),
         },
         {
           path: "/RecordManage",
           name: "个人需求表单查询",
-
           component: () => import("../views/RecordManage.vue"),
         },
       ],
     },
     {
       path: "/ExistingMaterials",
-      redirect: '/Index',
+      redirect: "/Index",
       name: "现有物资",
+      meta: { icon: "ExistingMaterials" },
       component: () => import("../views/SystemIndex.vue"),
-      meta: true,
       children: [
         {
           path: "/MaterialManage",
@@ -68,10 +73,10 @@ export default new VueRouter({
       ],
     },
     {
-      path: "/Index",
+      path: "/MaterialPurchase",
       name: "物资购买",
+      meta: { icon: "MaterialPurchase" },
       component: () => import("../views/SystemIndex.vue"),
-      meta: true,
       children: [
         {
           path: "/CheckNeedRecord",
@@ -87,10 +92,10 @@ export default new VueRouter({
     },
     {
       path: "/InspectionInformation",
-      redirect: '/Index',
       name: "核酸信息管理",
+      redirect: "/Index",
+      meta: { icon: "InspectionInformation" },
       component: () => import("../views/SystemIndex.vue"),
-      meta: true,
       children: [
         {
           path: "/DNAManage",
@@ -107,10 +112,10 @@ export default new VueRouter({
     },
     {
       path: "/Volunteer",
-      redirect: '/Index',
+      redirect: "/Index",
       name: "志愿管理",
+      meta: { icon: "Volunteer" },
       component: () => import("../views/SystemIndex.vue"),
-      meta: true,
       children: [
         {
           path: "/VolunteerApplication",
