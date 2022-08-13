@@ -152,7 +152,7 @@ export default {
 </script>
 
 <style>
-.el-row {
+/* .el-row {
     margin-bottom: 20px;
 }
 
@@ -214,5 +214,5 @@ body>.el-container {
 
 .el-container:nth-child(7) .el-aside {
     line-height: 320px;
-}
+} */
 </style>

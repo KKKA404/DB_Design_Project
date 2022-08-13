@@ -48,7 +48,7 @@ export default {
 
 .breadcrumb-container {
   float: left;
-      height: 100%;
+  height: 100%;
   line-height: 50px;
   transition: background 0.3s;
   -webkit-tap-highlight-color: transparent;

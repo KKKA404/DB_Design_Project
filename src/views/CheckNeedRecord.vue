@@ -156,7 +156,7 @@ export default {
 </script>
 
 <style>
-.el-header,
+/* .el-header,
 .el-footer {
   background-color: #b3c0d1;
   color: #333;
@@ -189,5 +189,5 @@ body > .el-container {
 
 .el-container:nth-child(7) .el-aside {
   line-height: 320px;
-}
+} */
 </style>
