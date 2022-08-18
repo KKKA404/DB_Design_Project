@@ -152,7 +152,7 @@ router.beforeEach(async (to, from, next) => {
   NProgress.start();
 
   // set page title
-  document.title = `${to.name} - "疫情防控系统"`;
+  document.title = `${to.name} - 疫情防控系统`;
 
   // determine whether the user has logged in
   const hasToken = getToken();
