@@ -42,7 +42,7 @@
 // import NavBar from "../components/NavBar.vue";
 //
 
-import service from '@/plugins/axios';
+import service from "@/plugins/axios";
 export default {
   name: "CheckDonationRecord",
   components: {
@@ -70,12 +70,11 @@ export default {
   },
   created() {
     // just test
-    service.post('/donateData',{abc:123});
-    
-    service.get('/donateData').then(res => {
-      this.donateData = res.data.donateData;
-    })
-    
+    this.$axios.post("/donateData", { abc: 123 });
+
+    this.$axios.get("/donateData").then((res) => {
+      this.donateData = res.donateData;
+    });
   },
 };
 </script>

@@ -4,7 +4,7 @@ import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 import "./icons";
 
-import VueRouter from "./router";
+import router from "./router";
 
 // axios
 import service from "./plugins/axios";
@@ -16,6 +16,9 @@ import './styles/index.scss';
 // mockjs
 import "../mock/index";
 
+// store
+import store from './store';
+
 import BottomFooter from "./components/BottomFooter.vue";
 import NavBar from "./components/NavBar.vue";
 
@@ -25,7 +28,10 @@ Vue.component("NavBar", NavBar);
 Vue.config.productionTip = false
 
 Vue.use(ElementUI);
+
 new Vue({
-  router: VueRouter,
+  el: '#app',
+  router,
+  store,
   render: (h) => h(App),
-}).$mount("#app");
+})
