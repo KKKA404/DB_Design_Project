@@ -1,5 +1,7 @@
 <template>
-  <el-main>
+  <div class="login-wrap">
+    <h2>疫知通--防疫信息管理系统</h2>
+    <h1>登录</h1>
     <el-input
       placeholder="请输入用户名"
       v-model="loginForm.userName"
@@ -7,11 +9,13 @@
     ></el-input>
     <el-input placeholder="请输入密码" v-model="loginForm.passWord" clearable>
     </el-input>
-    <router-link to="/Index">前往首页</router-link>
+    <br />
+    <router-link to="/Index"><h2>首页</h2></router-link>
+    <br />
     <el-button type="primary" @click.native.prevent="handleLogin"
       >Login</el-button
     >
-  </el-main>
+  </div>
 </template>
 
 <script>
@@ -50,3 +54,13 @@ export default {
   },
 };
 </script>
+
+<style>
+.login-wrap {
+  width: 400px;
+  height: 300px;
+  margin: auto;
+  padding-top: 10px;
+  line-height: 40px;
+}
+</style>
