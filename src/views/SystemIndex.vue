@@ -1,22 +1,3 @@
-
-<!-- <template>
-<template>
-  <el-container>
-    <el-aside width="200px"><SideBar></SideBar></el-aside>
-    <el-container>
-      <el-header><NavBar></NavBar></el-header>
-      <router-view />
-      <el-footer><BottomFooter></BottomFooter></el-footer>
-    </el-container>
-  </el-container>
-</template>
-
-<script>
-export default {
-  name: "SystemIndex",
-  components: {},
-};
-</script> -->
 <template>
   <div class="index">
     <el-container style="height: 100%; border: 1px solid #eee">
@@ -27,14 +8,23 @@ export default {
             :index="index + ''"
             :key="index"
           >
-            <template slot="title"
-              ><i class="el-icon-setting"></i>{{ item.name }}</template
+            <template slot="title">
+              <svg-icon
+                v-if="item.meta && item.meta.icon"
+                :icon-class="item.meta && item.meta.icon"
+              ></svg-icon>
+              {{ item.name }}</template
             >
             <el-menu-item
               v-for="(item2, index2) in item.children"
               :index="item2.path"
               :key="index2"
-              >{{ item2.name }}
+            >
+              <svg-icon
+                v-if="item2.meta && item2.meta.icon"
+                :icon-class="item2.meta && item2.meta.icon"
+              ></svg-icon>
+              {{ item2.name }}
             </el-menu-item>
           </el-submenu>
         </el-menu>
@@ -44,7 +34,9 @@ export default {
         <el-header>
           <NavBar></NavBar>
         </el-header>
-        <router-view />
+        <transition name="fade-transform" mode="out-in">
+          <router-view />
+        </transition>
         <el-footer>
           <BottomFooter></BottomFooter>
         </el-footer>
@@ -61,6 +53,7 @@ export default {
     };
   },
   created() {
+    console.log(this.$router);
     this.router = this.$router.options.routes.filter((i) => {
       return i.meta;
     });

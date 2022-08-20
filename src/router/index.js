@@ -14,10 +14,17 @@ export default new VueRouter({
       component: () => import("../views/SystemLogin.vue"),
     },
     {
-      path: "/Index",
+      path: "/Index", // forget to add Index !!!!!!
+      name: "主页",
+      meta: false,
+      component: () => import("../views/SystemIndex.vue"),
+    },
+    {
+      path: "/Materials",
+      redirect: "/Index",
       name: "物资",
       component: () => import("../views/SystemIndex.vue"),
-      meta: true,
+      meta: { icon: "Material" },
       children: [
         {
           path: "/CheckDonationRecord",
@@ -32,10 +39,11 @@ export default new VueRouter({
       ],
     },
     {
-      path: "/Index",
+      path: "/PersonalRequest",
+      redirect: "/Index",
       name: "个人需求表单",
       component: () => import("../views/SystemIndex.vue"),
-      meta: true,
+      meta: { icon: "PersonalRequest" },
       children: [
         {
           path: "/AddRecord",
@@ -50,10 +58,11 @@ export default new VueRouter({
       ],
     },
     {
-      path: "/Index",
+      path: "/ExistingMaterials",
+      redirect: "/Index",
       name: "现有物资",
+      meta: { icon: "ExistingMaterials" },
       component: () => import("../views/SystemIndex.vue"),
-      meta: true,
       children: [
         {
           path: "/MaterialManage",
@@ -63,10 +72,11 @@ export default new VueRouter({
       ],
     },
     {
-      path: "/Index",
+      path: "/MaterialPurchase",
+      redirect: "/Index",
       name: "物资购买",
+      meta: { icon: "MaterialPurchase" },
       component: () => import("../views/SystemIndex.vue"),
-      meta: true,
       children: [
         {
           path: "/CheckNeedRecord",
@@ -81,10 +91,11 @@ export default new VueRouter({
       ],
     },
     {
-      path: "/Index",
+      path: "/InspectionInformation",
       name: "核酸信息管理",
+      redirect: "/Index",
+      meta: { icon: "InspectionInformation" },
       component: () => import("../views/SystemIndex.vue"),
-      meta: true,
       children: [
         {
           path: "/DNAManage",
@@ -100,10 +111,11 @@ export default new VueRouter({
       ],
     },
     {
-      path: "/Index",
+      path: "/Volunteer",
+      redirect: "/Index",
       name: "志愿管理",
+      meta: { icon: "Volunteer" },
       component: () => import("../views/SystemIndex.vue"),
-      meta: true,
       children: [
         {
           path: "/VolunteerApplication",
@@ -124,6 +136,18 @@ export default new VueRouter({
           component: () => import("../views/EchartsTest.vue"),
         },
       ],
+    },
+    // 404 必须放在最后
+    {
+      path: "/404",
+      name: "404",
+      component: () => import("../views/404.vue"),
+      hidden: true,
+    },
+    {
+      path: "*",
+      redirect: "/404",
+      hidden: true,
     },
   ],
 });
