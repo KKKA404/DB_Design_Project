@@ -5,11 +5,16 @@ import * as echarts from 'echarts';
 import "element-ui/lib/theme-chalk/index.css";
 import "./icons";
 
+
 import VueRouter from "./router";
 
+
+
 // axios
+
 import service from "./plugins/axios";
 Vue.prototype.$axios = service;
+
 
 // global css
 import './styles/index.scss';

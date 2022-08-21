@@ -135,8 +135,14 @@ export default new VueRouter({
           name: "可视化测试",
           component: () => import("../views/EchartsTest.vue"),
         },
-      ],
+        {
+          path: "/MapTest",
+          name: "地图测试",
+          component: () => import("../views/Map.vue"),
+        },
+      ]
     },
+
     // 404 必须放在最后
     {
       path: "/404",
