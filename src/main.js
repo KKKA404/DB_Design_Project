@@ -4,6 +4,9 @@ import ElementUI from "element-ui";
 import * as echarts from 'echarts';
 import "element-ui/lib/theme-chalk/index.css";
 import "./icons";
+import api from "./api/index"
+Vue.prototype.$api=api;
+
 
 
 import VueRouter from "./router";
@@ -14,6 +17,7 @@ import VueRouter from "./router";
 
 import service from "./plugins/axios";
 Vue.prototype.$axios = service;
+
 
 
 // global css

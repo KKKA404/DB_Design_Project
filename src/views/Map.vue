@@ -18,7 +18,7 @@ const option = {
     sublink: 'https://baidu.com'
   },
   series: [{
-    name: '确诊人数',
+    name: '现有确诊人数',
     type: 'map',
     // 告诉echarts渲染一个地图
     map: 'china',
@@ -56,12 +56,11 @@ const option = {
     show: true,
     // splitNumber: 4
     pieces: [
-      {min: 100000},
-      {min: 10000, max: 99999},
-      {min: 1000, max: 9999},
-      {min: 100, max: 999},
-      {min: 10, max: 99},
-      {min: 1, max: 9},
+      {min: 1000},
+      {min: 500, max: 999},
+      {min: 100, max: 499},
+      {min: 11, max: 99},
+      {min: 1, max: 10},
       {max: 0}
     ],
     inRange: {
@@ -98,10 +97,10 @@ export default {
   },
   methods: {
     getData () {
-      jsonp('https://interface.sina.cn/news/wap/fymap2020_data.d.json?_=1580892522427', {}, (err, data) => {
+      jsonp('https://interface.sina.cn/news/wap/fymap2020_data.d.json', {}, (err, data) => {
         if (!err) {
           console.log(data)
-          let list = data.data.list.map(item => ({name: item.name, value: item.value}))
+          let list = data.data.list.map(item => ({name: item.name, value: item.econNum}))
           option.series[0].data = list
           this.mycharts.setOption(option)
           // echarts初始化的前提是dom渲染完成

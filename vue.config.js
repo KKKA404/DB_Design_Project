@@ -11,11 +11,6 @@ module.exports = defineConfig({
   // unset multiword check
   lintOnSave:false,
   // svg
-  // devServer: {
-  //   port: 8080,//它是用来修改你打开后的端口号的
-  //   proxy: 'http://localhost:8080'
-        
-  // },
   chainWebpack(config) {
     config.module.rule("svg").exclude.add(resolve("src/icons")).end();
     config.module

@@ -140,6 +140,11 @@ export default new VueRouter({
           name: "地图测试",
           component: () => import("../views/Map.vue"),
         },
+        {
+          path: "/ConvidTest",
+          name: "信息测试",
+          component: () => import("../views/Home.vue"),
+        },
       ]
     },
 
