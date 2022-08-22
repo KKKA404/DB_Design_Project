@@ -1,16 +1,22 @@
 import Vue from "vue";
-import VueRouter from "vue-router";
+import Router from "vue-router";
+import { getToken } from "@/utils/auth"; // get token from cookie
 
-Vue.use(VueRouter);
+import NProgress from "nprogress"; // progress bar
+import "nprogress/nprogress.css"; // progress bar style
+NProgress.configure({ showSpinner: false }); // NProgress Configuration
+
+import { Message } from 'element-ui'
+
+Vue.use(Router);
 
 // 创建新页面后，在本文件下进行引入即可
-export default new VueRouter({
+const router = new Router({
   mode: "history",
   routes: [
     {
       path: "/",
       name: "登录",
-      meta: false,
       component: () => import("../views/SystemLogin.vue"),
     },
     {
@@ -162,3 +168,45 @@ export default new VueRouter({
     },
   ],
 });
+
+const whiteList = ["/"]; // no redirect whitelist
+
+router.beforeEach(async (to, from, next) => {
+  // start progress bar
+  NProgress.start();
+
+  // set page title
+  document.title = `${to.name} - 疫情防控系统`;
+
+  // determine whether the user has logged in
+  const hasToken = getToken();
+
+  if (hasToken) {
+    if (to.path == "/") {
+      next("/Index");
+      NProgress.done();
+    } else{
+      next();
+    }
+  } else {
+    if (whiteList.indexOf(to.path) !== -1) {
+      // in the free login whitelist, go directly
+      next();
+    } else {
+      // other pages that do not have permission to access are redirected to the login page.
+      Message({
+        message: "请先登录！",
+        type: 'warning',
+      })
+      next(`/?redirect=${to.path}`);
+      NProgress.done();
+    }
+  }
+});
+
+router.afterEach(() => {
+  // finish progress bar
+  NProgress.done();
+});
+
+export default router;

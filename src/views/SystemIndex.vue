@@ -53,7 +53,6 @@ export default {
     };
   },
   created() {
-    console.log(this.$router);
     this.router = this.$router.options.routes.filter((i) => {
       return i.meta;
     });

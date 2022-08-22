@@ -17,7 +17,7 @@ Mock.mock(process.env.VUE_APP_BASE_URL + "/donateData", "get", {
   // 当post或get请求到/donateData时
   // Mock会拦截请求
   // 并返回数据
-  code: 200,
+  code: 20000,
   donateData: [
     {
       donateName: "bc",
@@ -118,9 +118,7 @@ Mock.mock(process.env.VUE_APP_BASE_URL + "/donateData", "post", (req, res) => {
     username: "baokker",
     email: Random.email(),
   };
-  console.log(data);
-  console.log(req);
-  return { ...data, ...req };
+  return { ...data, ...req, code: 20000 };
 });
 
 Mock.mock(process.env.VUE_APP_BASE_URL + "/user/login", "post", (config) => {
@@ -131,11 +129,18 @@ Mock.mock(process.env.VUE_APP_BASE_URL + "/user/login", "post", (config) => {
     console.log("Account and password are incorrect.");
     return {
       code: 60204,
+      message: "账号或密码错误！",
     };
   } else {
     console.log("login successfully");
     return {
       code: 20000,
+      token: "just a token",
     };
   }
+});
+
+Mock.mock(process.env.VUE_APP_BASE_URL + "/user/logout", "post", {
+  code: 20000,
+  data: "success",
 });
