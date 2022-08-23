@@ -144,3 +144,8 @@ Mock.mock(process.env.VUE_APP_BASE_URL + "/user/logout", "post", {
   code: 20000,
   data: "success",
 });
+
+Mock.mock(process.env.VUE_APP_BASE_URL + "/user/register", "post", {
+  code: 20000,
+  data: "success",
+});

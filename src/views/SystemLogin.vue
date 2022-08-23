@@ -5,13 +5,13 @@
     </div>
     <div>
       <div class="login-container">
-        <h2>疫知通--防疫信息管理系统</h2>
+        <el-link href="/"><h2>疫知通--防疫信息管理系统</h2></el-link>
         <h1>登录</h1>
         <el-form ref="loginForm" class="login-form" auto-complete="on">
           <el-form-item>
             <el-input
               prefix-icon="el-icon-user-solid"
-              v-model="loginForm.Username"
+              v-model="loginForm.userName"
               placeholder="请输入用户名"
               type="text"
               tabindex="1"
@@ -31,7 +31,7 @@
             />
           </el-form-item>
         </el-form>
-        <el-button type="primary" @click.native.prevent="">注册</el-button>
+        <el-button type="primary" @click.native.prevent="goRegister">注册</el-button>
         <el-button
           :loading="loading"
           type="primary"
@@ -76,6 +76,9 @@ export default {
         .catch(() => {
           this.loading = false;
         });
+    },
+    goRegister() {
+      this.$router.push("/Register");
     },
   },
 };

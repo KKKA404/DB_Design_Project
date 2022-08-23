@@ -20,6 +20,11 @@ const router = new Router({
       component: () => import("../views/SystemLogin.vue"),
     },
     {
+      path: "/Register",
+      name: "注册",
+      component: () => import("../views/SystemRegister.vue"),
+    },
+    {
       path: "/Index", // forget to add Index !!!!!!
       name: "主页",
       meta: false,
@@ -145,7 +150,7 @@ const router = new Router({
   ],
 });
 
-const whiteList = ["/"]; // no redirect whitelist
+const whiteList = ["/","/Register"]; // no redirect whitelist
 
 router.beforeEach(async (to, from, next) => {
   // start progress bar
