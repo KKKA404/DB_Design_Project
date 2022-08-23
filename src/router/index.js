@@ -94,6 +94,11 @@ const router = new Router({
           name: "物资购买查询",
           component: () => import("../views/CheckPurchRecord.vue"),
         },
+        {
+          path: "/MaterialTransport.vue",
+          name: "物流信息",
+          component: () => import("../views/MaterialTransport.vue"),
+        },
       ],
     },
     {
@@ -127,6 +132,20 @@ const router = new Router({
           path: "/VolunteerApplication",
           name: "志愿申请信息",
           component: () => import("../views/VolunteerApplication.vue"),
+        },
+      ],
+    },
+    {
+      path: "/isolationAllocate",
+      redirect: "/Index",
+      name: "医疗资源分配",
+      meta: { icon: "isolationAllocate" },
+      component: () => import("../views/SystemIndex.vue"),
+      children: [
+        {
+          path: "/isolationAllocate",
+          name: "隔离点分配",
+          component: () => import("../views/isolationAllocate.vue"),
         },
       ],
     },
