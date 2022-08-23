@@ -1,20 +1,45 @@
 <template>
-  <div class="login-wrap">
-    <h2>疫知通--防疫信息管理系统</h2>
-    <h1>登录</h1>
-    <el-input
-      placeholder="请输入用户名"
-      v-model="loginForm.userName"
-      clearable
-    ></el-input>
-    <el-input placeholder="请输入密码" v-model="loginForm.passWord" clearable>
-    </el-input>
-    <br />
-    <router-link to="/Index"><h2>首页</h2></router-link>
-    <br />
-    <el-button type="primary" @click.native.prevent="handleLogin"
-      >Login</el-button
-    >
+  <div style="margin: auto auto; display: flex; justify-content: center">
+    <div>
+      <img src="../assets/covid.png" style="width: 400px; height: 400px" />
+    </div>
+    <div>
+      <div class="login-container">
+        <h2>疫知通--防疫信息管理系统</h2>
+        <h1>登录</h1>
+        <el-form ref="loginForm" class="login-form" auto-complete="on">
+          <el-form-item>
+            <el-input
+              prefix-icon="el-icon-user-solid"
+              v-model="loginForm.Username"
+              placeholder="请输入用户名"
+              type="text"
+              tabindex="1"
+              auto-complete="on"
+            />
+          </el-form-item>
+
+          <el-form-item>
+            <el-input
+              show-password
+              prefix-icon="el-icon-s-goods"
+              v-model="loginForm.passWord"
+              placeholder="请输入密码"
+              tabindex="2"
+              auto-complete="on"
+              @keyup.enter.native="handleLogin"
+            />
+          </el-form-item>
+        </el-form>
+        <el-button type="primary" @click.native.prevent="">注册</el-button>
+        <el-button
+          :loading="loading"
+          type="primary"
+          @click.native.prevent="handleLogin"
+          >登录</el-button
+        >
+      </div>
+    </div>
   </div>
 </template>
 
@@ -27,6 +52,7 @@ export default {
         userName: "admin",
         passWord: "12345678",
       },
+      loading: false,
       redirect: undefined,
     };
   },
@@ -40,27 +66,29 @@ export default {
   },
   methods: {
     handleLogin() {
-      // this.loading = true;
+      this.loading = true;
       this.$store
         .dispatch("user/login", this.loginForm)
         .then(() => {
           this.$router.push({ path: this.redirect || "/Index" });
-          // this.loading = false;
+          this.loading = false;
         })
         .catch(() => {
-          // this.loading = false;
+          this.loading = false;
         });
     },
   },
 };
 </script>
 
-<style>
-.login-wrap {
-  width: 400px;
-  height: 300px;
-  margin: auto;
-  padding-top: 10px;
-  line-height: 40px;
+<style lang="scss" >
+.login-container {
+  overflow: auto;
+  .login-form {
+    position: relative;
+    width: 300px;
+    padding: 30px 30px 0;
+    overflow: hidden;
+  }
 }
 </style>
