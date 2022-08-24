@@ -149,3 +149,19 @@ Mock.mock(process.env.VUE_APP_BASE_URL + "/user/register", "post", {
   code: 20000,
   data: "success",
 });
+
+Mock.mock(process.env.VUE_APP_BASE_URL + "/user/password", "post", (config) => {
+  // 传递过来的是JSON 必须要先解析！之后考虑封装吧 现在还只是测试
+  config.body = JSON.parse(config.body);
+  if (config.body.oldPassWord != "12345678") {
+    return {
+      code: 40001,
+      message: "旧密码输入错误！",
+    };
+  } else {
+    return {
+      code: 20000,
+      data: "success",
+    };
+  }
+});
