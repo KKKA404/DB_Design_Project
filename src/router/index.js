@@ -149,6 +149,29 @@ const router = new Router({
         },
       ],
     },
+    {
+      path: "/Index",
+      name: "可视化",
+      component: () => import("../views/SystemIndex.vue"),
+      meta: true,
+      children: [
+        {
+          path: "/EchartsTest",
+          name: "可视化测试",
+          component: () => import("../views/EchartsTest.vue"),
+        },
+        {
+          path: "/MapTest",
+          name: "地图测试",
+          component: () => import("../views/Map.vue"),
+        },
+        {
+          path: "/ConvidTest",
+          name: "信息测试",
+          component: () => import("../views/Home.vue"),
+        },
+      ]
+    },
     // 404 必须放在最后
     {
       path: "/404",
