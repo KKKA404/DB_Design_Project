@@ -32,7 +32,7 @@
               show-password
               prefix-icon="el-icon-s-goods"
               v-model="registerForm.passWord"
-              placeholder="请输入密码"
+              placeholder="请输入密码（长度大于8位）"
               tabindex="2"
               auto-complete="on"
             />
@@ -56,17 +56,44 @@
         <el-button
           :loading="loading"
           type="primary"
-          @click.native.prevent="handleRegister"
+          @click.native.prevent="validateRegister"
           >注册</el-button
         >
+        <el-popover
+          ref="popover"
+          trigger="manual"
+          v-model="visible"
+          placement="top-start"
+        >
+          <div class="sliding-pictures">
+            <Verify ref="verifyImg" @closePupUp="closePupUp" @register="handleRegister" />
+            <div class="operation">
+              <span
+                title="关闭验证码"
+                @click="closePupUp"
+                class="el-icon-circle-close"
+              ></span>
+              <span
+                title="刷新验证码"
+                @click="canvasInit"
+                class="el-icon-refresh-left"
+              ></span>
+            </div>
+          </div>
+        </el-popover>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import Verify from "@/components/Verify.vue";
+
 export default {
   name: "SystemRegister",
+  components: {
+    Verify,
+  },
   data() {
     const validateUserName = (rule, value, callback) => {
       if (value === "") {
@@ -101,48 +128,67 @@ export default {
         ],
       },
       loading: false,
+      visible: false,
+      puzzle: false,
     };
   },
-
+  watch: {
+    visible(e) {
+      if (e) {
+        this.$refs.verifyImg.eventInitImg();
+        this.puzzle = false;
+      }
+    },
+  },
   methods: {
-    handleRegister() {
+    validateRegister() {
       this.$refs.registerForm.validate((valid) => {
         if (valid) {
-          this.loading = true;
-          this.$axios
-            .post("/user/register", this.registerForm)
-            .then((res) => {
-              if (res.code == 20000) {
-                // success
-                this.$confirm("注册完成, 是否前往登录页面?", "提示", {
-                  confirmButtonText: "确定",
-                  cancelButtonText: "取消",
-                  type: "warning",
-                })
-                  .then(() => {
-                    this.$message({
-                      type: "success",
-                      message: "进入登录页面!",
-                    });
-                    this.$router.push("/");
-                  })
-                  .catch(() => {
-                    this.$message({
-                      type: "info",
-                      message: "取消进入登录！",
-                    });
-                  });
-              }
-              this.loading = false;
-            })
-            .catch(() => {
-              this.loading = false;
-            });
+          this.visible = true;
+          this.puzzle = false;
         }
       });
     },
+    handleRegister() {
+      this.loading = true;
+      this.$axios
+        .post("/user/register", this.registerForm)
+        .then((res) => {
+          if (res.code == 20000) {
+            // success
+            this.$confirm("注册完成, 是否前往登录页面?", "提示", {
+              confirmButtonText: "确定",
+              cancelButtonText: "取消",
+              type: "warning",
+            })
+              .then(() => {
+                this.$message({
+                  type: "success",
+                  message: "进入登录页面!",
+                });
+                this.$router.push("/");
+              })
+              .catch(() => {
+                this.$message({
+                  type: "info",
+                  message: "取消进入登录！",
+                });
+              });
+          }
+          this.loading = false;
+        })
+        .catch(() => {
+          this.loading = false;
+        });
+    },
     goLogin() {
       this.$router.push("/");
+    },
+    canvasInit() {
+      this.$refs.verifyImg.eventResetImg();
+    },
+    closePupUp() {
+      this.visible = false;
     },
   },
 };
@@ -156,6 +202,25 @@ export default {
     width: 300px;
     padding: 30px 30px 0;
     overflow: hidden;
+  }
+}
+
+.sliding-pictures {
+  width: 100%;
+  .operation {
+    width: 100%;
+    height: 40px;
+    > span {
+      color: #9fa3ac;
+      display: inline-block;
+      width: 40px;
+      font-size: 25px;
+      line-height: 40px;
+      text-align: center;
+      &:hover {
+        background: #e2e8f5;
+      }
+    }
   }
 }
 </style>

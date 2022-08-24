@@ -81,7 +81,6 @@ const actions = {
       service
         .post("/user/logout", state.token)
         .then((res) => {
-          console.log(res);
           removeToken(); // must remove token first
           // resetRouter();
           commit("RESET_STATE");
