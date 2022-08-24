@@ -14,7 +14,7 @@
         color: #fff;
         font-size: 0.28rem;
         text-align: center;
-        background: url("../assets/1.png") no-repeat;
+        background: url("../assets/111.jpg") no-repeat;
         background-size: cover;
     }
 </style>

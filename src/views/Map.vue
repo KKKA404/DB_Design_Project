@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <div ref="mapbox" style="width:800px;height:600px;margin:0 auto"></div>
+    <div ref="mapbox" style="width:1000px;height:750px;margin:0 auto"></div>
     <!-- 初始化echarts需要有个宽高的盒子 -->
   </div>
 </template>
@@ -59,8 +59,8 @@ const option = {
       {min: 1000},
       {min: 500, max: 999},
       {min: 100, max: 499},
-      {min: 11, max: 99},
-      {min: 1, max: 10},
+      {min: 10, max: 99},
+      {min: 1, max: 9},
       {max: 0}
     ],
     inRange: {

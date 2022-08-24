@@ -7,6 +7,10 @@ import "./icons";
 import api from "./api/index"
 Vue.prototype.$api=api;
 
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+import 'swiper/swiper-bundle.css'
+Vue.use(VueAwesomeSwiper)
+
 
 
 import router from "./router";
@@ -36,8 +40,6 @@ import NavBar from "./components/NavBar.vue";
 
 Vue.component("BottomFooter", BottomFooter);
 Vue.component("NavBar", NavBar);
-
-
 
 Vue.config.productionTip = false;
 Vue.prototype.$echarts = echarts

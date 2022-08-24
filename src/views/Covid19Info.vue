@@ -28,30 +28,6 @@ export default {
             }
         }
     },
-    // data () {
-    //     return {
-    //         covid19Info:{}
-    //     }
-    // },
-    // mounted () {
-    //     api.getDataInfo({
-    //         key:"e187c82474d5c0b5c338824d54729d59"
-    //     }).then(res=>{
-    //         // console.log(res.data);
-    //         if(res.status === 200){
-    //             this.covid19Info = {
-    //                 note1:res.data.newslist[0].desc.note1,
-    //                 note2:res.data.newslist[0].desc.note2,
-    //                 note3:res.data.newslist[0].desc.note3,
-    //                 remark1:res.data.newslist[0].desc.remark1,
-    //                 remark2:res.data.newslist[0].desc.remark2,
-    //                 remark3:res.data.newslist[0].desc.remark3
-    //             }
-    //         }return;
-    //     }).catch(error=>{
-    //         console.log(error);
-    //     })
-    // }
 }
 </script>
  
@@ -66,6 +42,7 @@ export default {
 .title{
     text-align: left;
     font-size: 1.5rem;
+    font-weight: 600;
 }
  
 .title i{
@@ -82,7 +59,7 @@ export default {
 }
  
 .content p{
-    font-size: 13px;
+    font-size: 18px;
     margin: 5px 0;
 }
  

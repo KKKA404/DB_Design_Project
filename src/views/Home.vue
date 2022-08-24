@@ -4,6 +4,8 @@
     <covid19Info :Covid19InfoData="Covid19InfoData" />
     <CaseNum :CaseNumData="CaseNumData"/>
     <Map />
+    <Covid19Chart />
+    <News :NewsData="NewsData" />
   </div>
 </template>
  
@@ -12,13 +14,16 @@ import Header from "../views/Header.vue"
 import Covid19Info from "../views/Covid19Info.vue"
 import CaseNum from "../views/CaseNum.vue"
 import Map from "../views/Map.vue"
+//import Covid19Chart from "../views/Covid19Chart"
+import News from "../views/News.vue"
  
 export default {
   name: 'Home',
   data(){
     return{
         Covid19InfoData:{},
-        CaseNumData:{}
+        CaseNumData:{},
+        NewsData:{},
     }
   },
   created(){
@@ -33,6 +38,7 @@ export default {
         key:"e187c82474d5c0b5c338824d54729d59"
     }).then(res=>{
       console.log(res);
+      this.NewsData=res.newslist[0].news;
          this.CaseNumData = {
                 // 更新时间戳
               modifyTime:res.newslist[0].desc.modifyTime,
@@ -68,6 +74,8 @@ export default {
     Covid19Info,
     CaseNum,
     Map,
+    //Covid19Chart,
+    News,
 }
 }
 </script>
