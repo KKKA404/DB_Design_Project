@@ -4,10 +4,6 @@ import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 import "./icons";
 
-// validate
-import SlideVerify from 'vue-monoplasty-slide-verify';
-Vue.use(SlideVerify);
-
 import router from "./router";
 
 // axios
