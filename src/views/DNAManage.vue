@@ -27,7 +27,7 @@
       ></el-button>
     </el-input>
 
-    <el-table :data="fake_test_data" border style="width: 100%">
+    <el-table :data="fake_DNA_data" border style="width: 100%">
       <el-table-column fixed prop="name" label="姓名" width="100">
       </el-table-column>
       <el-table-column prop="id" label="编号" width="50"> </el-table-column>
@@ -191,6 +191,11 @@
 
 <script>
 export default {
+  created() {
+    this.$axios.get("/fake_DNA_data").then((res) => {
+      this.fake_DNA_data = res.fake_DNA_data;
+    });
+  },
   // methods: {
   //   search() {
   //     if (!this.stext) {
@@ -306,68 +311,7 @@ export default {
 
   data() {
     return {
-      fake_test_data: [
-        {
-          name: "孟星羽",
-          id: "2053853",
-          sex: "男",
-          idcard: "22223423345245634",
-          sampleTime: "2022.6.6-22:02",
-          place: "延吉市人民医院",
-          testResult: "阴性",
-          phonenum: "25352435",
-          testResultTime:"2022.6.6-23:56",
-        },{
-          name: "孟士大夫星羽",
-          id: "203453",
-          sex: "女",
-          idcard: "22223223445245634",
-          sampleTime: "2022.12.6-22:02",
-          place: "延吉市撒旦发射点人民医院",
-          testResult: "阴性",
-          phonenum: "253578435",
-          testResultTime:"2022.12.12-23:56",
-        },{
-          name: "孟水电费星羽",
-          id: "2053453",
-          sex: "男",
-          idcard: "222234523345245634",
-          sampleTime: "2022.6.14-22:02",
-          place: "延吉市人民医院",
-          testResult: "阴性",
-          phonenum: "25352535",
-          testResultTime:"2022.6.14-23:56",
-        },{
-          name: "朱洵缘",
-          id: "2053872",
-          sex: "男",
-          idcard: "2222342322545634",
-          sampleTime: "2022.7.6-22:02",
-          place: "延吉市人民医院",
-          testResult: "阴性",
-          phonenum: "25352435",
-          testResultTime:"2022.7.6-23:56",
-        },{
-          name: "朱水电费洵缘",
-          id: "2053853",
-          sex: "男",
-          idcard: "22223423345245634",
-          sampleTime: "2022.6.6-22:02",
-          place: "延吉市人地方官民医院",
-          testResult: "阴性",
-          phonenum: "25352435",
-          testResultTime:"2022.6.6-23:56",
-        },
-        ],
-      options2: [
-        {
-          value: "阴性",
-          label: "阴性",
-        },{
-          value: "阳性",
-          label: "阳性",
-        },
-      ],
+      fake_DNA_data: [],
       value: "",
       cname: "",
       stext: "",

@@ -162,6 +162,9 @@ export default {
     //     }
   },
   created() {
+    this.$axios.get("/fake_Material_data").then((res) => {
+      this.fake_Material_data = res.fake_Material_data;
+    });
     // axios.get('http://localhost:8080/Material/findAll/1/6').then((resp)=>{
     //   console.log(resp)
     //   this.tableData=resp.data.records
@@ -171,62 +174,7 @@ export default {
 
   data() {
     return {
-      fake_Material_data: [
-        {
-          id: "000001",
-          material_types: "食品",
-          name: "趣多多",
-          count: "2",
-          type: "箱",
-          isImp: "一般",
-          units: "杨浦区疫情防控单位",
-          units_phone: "23423234",
-        }, {
-          id: "000003",
-          material_types: "药品",
-          name: "感康",
-          count: "2",
-          type: "盒",
-          isImp: "重要",
-          units: "嘉定区疫情防控单位",
-          units_phone: "23421323234",
-        }, {
-          id: "000011",
-          material_types: "防护用品",
-          name: "免洗消毒液",
-          count: "66",
-          type: "个",
-          isImp: "重要",
-          units: "嘉定区疫情防控单位",
-          units_phone: "23143325423234",
-        }, {
-          id: "000023",
-          material_types: "食品",
-          name: "趣多多",
-          count: "2",
-          type: "箱",
-          isImp: "一般",
-          units: "杨浦区疫情防控单位",
-          units_phone: "23423234",
-        }, {
-          id: "000101",
-          material_types: "食品",
-          name: "趣多对是非多",
-          count: "223",
-          type: "箱",
-          isImp: "一般",
-          units: "杨撒旦发射点区疫情防控单位",
-          units_phone: "234232134234",
-        }, {
-          id: "001201",
-          material_types: "食品",
-          name: "第三范式趣多多",
-          count: "2",
-          type: "盆",
-          isImp: "一般",
-          units: "杨浦区疫情防控单位",
-          units_phone: "23423234",
-        }],
+      fake_Material_data: [],
       cname: '',
       materialInput: '',
       nameInput:'',

@@ -4,7 +4,7 @@
     <covid19Info :Covid19InfoData="Covid19InfoData" />
     <CaseNum :CaseNumData="CaseNumData"/>
     <Map />
-    <Covid19Chart />
+    <!-- <Covid19Chart /> -->
     <News :NewsData="NewsData" />
   </div>
 </template>

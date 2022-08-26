@@ -24,7 +24,7 @@ export default {
         NewsData:{
             type:Array,
             default:function(){
-                return []
+                return {}
             }
         }
     }

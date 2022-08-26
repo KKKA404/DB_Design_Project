@@ -74,7 +74,7 @@ export default {
         }],
       options2: [{
         value: '正常',
-        label: '无下列情况，身体健康'
+        label: '正常'
       }, {
         value: '咳嗽',
         label: '咳嗽'

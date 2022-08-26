@@ -90,51 +90,17 @@ export default {
       });
     },
   },
-  created() {},
-
+  created() {
+    this.$axios.get("/fake_data").then((res) => {
+      this.fake_patients_data = res.fake_patients_data;
+      this.fake_isolations_data = res.fake_isolations_data;
+    });
+  },
   data() {
     return {
-      fake_patients_data: [
-        {
-          id: "000001",
-          name: "大贤三赛",
-          sex: "男",
-          urgency: "紧急",
-          phonenum: "18743379266",
-          IDcard: "222543345352383946",
-          location: "同济大学四平路校区",
-          health: "重症",
-          content: "请优先处理",
-        },
-        {
-          id: "000006",
-          name: "大贤老师",
-          sex: "男",
-          urgency: "一般",
-          phonenum: "18723379266",
-          IDcard: "222457345352383946",
-          location: "同济大学嘉定校区",
-          health: "无症状",
-          content: "无",
-        },
-      ],
+      fake_patients_data: [],
 
-      fake_isolations_data: [
-        {
-          is_id: "000001",
-          is_phonenum: "18743379266",
-          is_location: "同济大学四平路校区",
-          is_capacity: "100",
-          is_allowance: "50",
-        },
-        {
-          is_id: "000002",
-          is_phonenum: "18723379266",
-          is_location: "同济大学嘉定校区",
-          is_capacity: "200",
-          is_allowance: "20",
-        },
-      ],
+      fake_isolations_data: [],
 
       value: "",
       cname: "",

@@ -141,8 +141,8 @@
      <el-form-item label="备注" :label-width="formLabelWidth">
       <el-input v-model="Emp.content" autocomplete="off"></el-input>
     </el-form-item>
-
   </el-form>
+
   <div slot="footer" class="dialog-footer">
     <el-button @click="dialogFormVisible = false">取 消</el-button>
     <el-button type="primary" @click="dialogFormVisible = false,update()">确 定</el-button>
@@ -155,6 +155,7 @@
 </template>
 
 <script>
+  import service from "@/plugins/axios";
   export default {
     methods: {
   //   search(){
@@ -231,6 +232,9 @@
   //     }
     },
     created(){
+      this.$axios.get("/fake_supplies_data").then((res) => {
+      this.fake_supplies_data = res.fake_supplies_data;
+    });
     //   axios.get('http://localhost:8080/emp/findAll/1/6').then((resp)=>{
     //     console.log(resp)
     //     this.tableData=resp.data.records
@@ -245,110 +249,7 @@
     data() {
 
       return {
-        fake_supplies_data: [
-        {
-          id: "000001",
-          name: "孟星羽",
-          sex: "男",
-          urgency: "紧急",
-          phonenum: "18743379266",
-          IDcard: "222543345352383946",
-          health: "正常",
-          required_supplies_types: "食品",
-          required_supplies: "趣多多",
-          required_supplies_num: 2,
-          content: "带瓶老干妈",
-        },{
-          id: "000006",
-          name: "孟星羽阿松大",
-          sex: "男",
-          urgency: "一般",
-          phonenum: "18723379266",
-          IDcard: "222457345352383946",
-          health: "正常",
-          required_supplies_types: "食品",
-          required_supplies: "趣多多",
-          required_supplies_num: 4,
-          content: "带瓶老干妈",
-        },
-        {
-          id: "000012",
-          name: "朱洵缘",
-          sex: "男",
-          urgency: "一般",
-          phonenum: "18723335266",
-          IDcard: "222457312792383946",
-          health: "乏力",
-          required_supplies_types: "药品",
-          required_supplies: "莲花清瘟胶囊",
-          required_supplies_num: 25,
-          content: "多喝热水",
-        }
-        ,{
-          id: "000021",
-          name: "朱洵缘撒打算",
-          sex: "女",
-          urgency: "紧急",
-          phonenum: "17923335266",
-          IDcard: "223457312792383946",
-          health: "乏力",
-          required_supplies_types: "防护物资",
-          required_supplies: "N95口罩",
-          required_supplies_num: 20,
-          content: "",
-        },
-        {
-          id: "003201",
-          name: "孟星羽",
-          sex: "女",
-          urgency: "紧急",
-          phonenum: "18743379266",
-          IDcard: "222543345352383946",
-          health: "正常",
-          required_supplies_types: "食品",
-          required_supplies: "趣多多",
-          required_supplies_num: 2,
-          content: "带瓶老干妈",
-        },{
-          id: "000206",
-          name: "孟大富大贵松大",
-          sex: "男",
-          urgency: "一般",
-          phonenum: "18723379266",
-          IDcard: "222457345352383946",
-          health: "正常",
-          required_supplies_types: "食品",
-          required_supplies: "趣多多",
-          required_supplies_num: 4,
-          content: "带瓶老干妈",
-        }
-        ,{
-          id: "000212",
-          name: "朱胜多负少缘",
-          sex: "男",
-          urgency: "一般",
-          phonenum: "27323335266",
-          IDcard: "222457312792383946",
-          health: "乏力",
-          required_supplies_types: "药品",
-          required_supplies: "莲花清瘟胶囊",
-          required_supplies_num: 25,
-          content: "多喝热水",
-        }
-        ,{
-          id: "000011",
-          name: "朱洵都会感到缘撒打算",
-          sex: "女",
-          urgency: "紧急",
-          phonenum: "17923335266",
-          IDcard: "223457312792383946",
-          health: "乏力",
-          required_supplies_types: "防护物资",
-          required_supplies: "N95口罩",
-          required_supplies_num: 20,
-          content: "",
-        }
-        ],
+        fake_supplies_data: [],
         options3:[
         {
           value: "食品",
@@ -391,8 +292,8 @@
         total:null,
         dialogTableVisible: false,
         dialogFormVisible: false,
-         formLabelWidth: '120px',
-         LabelWidth: '180px',
+        formLabelWidth: '120px',
+        LabelWidth: '180px',
 
           Emp: {
             id:"",
