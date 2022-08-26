@@ -4,7 +4,7 @@ const getDefaultState = () => {
   return {
     token: getToken(),
     name: "",
-    // roles: []
+    roles: []
   };
 };
 
@@ -20,9 +20,9 @@ const mutations = {
   SET_NAME: (state, name) => {
     state.name = name;
   },
-  // SET_ROLES: (state, roles) => {
-  //   state.roles = roles
-  // }
+  SET_ROLES: (state, roles) => {
+    state.roles = roles
+  },
 };
 
 const actions = {
@@ -46,34 +46,40 @@ const actions = {
     });
   },
 
-  // // get user info
-  // getInfo({ commit, state }) {
-  //   return new Promise((resolve, reject) => {
-  //     getInfo(state.token)
-  //       .then((response) => {
-  //         const { data } = response;
+  // get user info
+  getInfo({ commit, state }) {
+    return new Promise((resolve, reject) => {
+      service
+        .get("/user/getInfo")
+        .then((res) => {
+          const { data } = res;
 
-  //         if (!data) {
-  //           reject("Verification failed, please Login again.");
-  //         }
+          console.log("getInfoRes",data);
 
-  //         const { roles, name, avatar } = data;
+          if (!data) {
 
-  //         // roles must be a non-empty array
-  //         if (!roles || roles.length <= 0) {
-  //           reject("getInfo: roles must be a non-null array!");
-  //         }
+            reject("Verification failed, please Login again.");
+          }
+          console.log("data.roles",data.roles);
 
-  //         commit("SET_ROLES", roles);
-  //         commit("SET_NAME", name);
-  //         commit("SET_AVATAR", avatar);
-  //         resolve(data);
-  //       })
-  //       .catch((error) => {
-  //         reject(error);
-  //       });
-  //   });
-  // },
+          const { roles, name } = data;
+          // roles must be a non-empty array
+          if (!roles || roles.length <= 0) {
+            console.log("roles must be a non-empty array",roles);
+            console.log("!roles");
+
+            reject("getInfo: roles must be a non-null array!");
+          }
+
+          commit("SET_ROLES", roles);
+          commit("SET_NAME", name);
+          resolve(data);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  },
 
   // user logout
   logout({ commit, state }) {
@@ -101,6 +107,7 @@ const actions = {
       resolve();
     });
   },
+
 };
 
 export default {
