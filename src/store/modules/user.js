@@ -7,6 +7,9 @@ const getDefaultState = () => {
     token: getToken(),
     name: "",
     roles: [],
+    gender: 1, // 1 = male, 0 = female
+    phoneNumber: "",
+    age: 0,
   };
 };
 
@@ -14,6 +17,9 @@ const state = {
   token: getToken(),
   name: "",
   roles: [],
+  gender: 1, // 1 = male, 0 = female
+  phoneNumber: "",
+  age: 0,
 };
 
 const mutations = {
@@ -28,6 +34,15 @@ const mutations = {
   },
   SET_ROLES: (state, roles) => {
     state.roles = roles;
+  },
+  SET_GENDER: (state, gender) => {
+    state.gender = gender;
+  },
+  SET_AGE: (state, age) => {
+    state.age = age;
+  },
+  SET_PHONE_NUMBER: (state, phoneNumber) => {
+    state.phoneNumber = phoneNumber;
   },
 };
 
@@ -58,17 +73,14 @@ const actions = {
       service
         .get("/user/info", { params: { token: state.token } })
         .then((res) => {
-          console.log("aaa");
           const { data } = res;
-
-          console.log("getInfoRes", data);
 
           if (!data) {
             reject("Verification failed, please Login again.");
           }
           console.log("data.roles", data.roles);
 
-          const { roles, name } = data;
+          const { roles, name , gender,phoneNumber,age} = data;
           // roles must be a non-empty array
           if (!roles || roles.length <= 0) {
             reject("getInfo: roles must be a non-null array!");
@@ -76,6 +88,10 @@ const actions = {
 
           commit("SET_ROLES", roles);
           commit("SET_NAME", name);
+          commit("SET_GENDER", gender);
+          commit("SET_PHONE_NUMBER", phoneNumber);
+          commit("SET_AGE", age);
+
           resolve(data);
         })
         .catch((error) => {

@@ -21,14 +21,53 @@
       <el-menu mode="horizontal">
         <el-submenu index="">
           <template slot="title"><i class="el-icon-user"></i>账户</template>
-          <el-menu-item @click="changeVisibility" index=""
+          <el-menu-item @click="changeShowUserInfoFormVisible" index=""
+            >用户信息</el-menu-item
+          >
+          <el-menu-item @click="changeEditUserInfoFormVisible" index=""
+            >更改用户信息</el-menu-item
+          >
+          <el-menu-item @click="changeResetPassWordFormVisible" index=""
             >更改密码</el-menu-item
           >
           <el-menu-item @click="logout" index="">登出</el-menu-item>
         </el-submenu>
       </el-menu>
     </div>
-    <el-dialog title="修改密码" :visible.sync="dialogFormVisible">
+    <el-dialog title="用户信息" :visible.sync="showUserInfoFormVisible">
+      <template>
+        <p>用户名：{{ this.$store.getters.name }}</p>
+        <p>性别：{{ this.$store.getters.gender }}</p>
+        <p>联系方式：{{ this.$store.getters.phoneNumber }}</p>
+        <p>年龄：{{ this.$store.getters.age }}</p>
+      </template>
+    </el-dialog>
+    <el-dialog title="修改用户信息" :visible.sync="editUserInfoFormVisible">
+      <el-form :model="userInfoForm">
+        <el-form-item label="用户名" :label-width="formLabelWidth">
+          <el-input v-model="userInfoForm.userName"></el-input>
+        </el-form-item>
+        <el-form-item label="性别" :label-width="formLabelWidth">
+          <el-radio-group v-model="userInfoForm.gender">
+            <el-radio label="1">男</el-radio>
+            <el-radio label="0">女</el-radio>
+          </el-radio-group>
+        </el-form-item>
+        <el-form-item label="联系方式" :label-width="formLabelWidth">
+          <el-input v-model="userInfoForm.phoneNumber"></el-input>
+        </el-form-item>
+        <el-form-item label="年龄" :label-width="formLabelWidth">
+          <el-input v-model.number="userInfoForm.age"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click.native.prevent="changeEditUserInfoFormVisible"
+          >取消</el-button
+        >
+        <el-button @click.native.prevent="editUserInfo">确定</el-button>
+      </div>
+    </el-dialog>
+    <el-dialog title="修改密码" :visible.sync="resetPassWordFormVisible">
       <el-form :model="newPassWordForm">
         <el-form-item label="旧密码" :label-width="formLabelWidth">
           <el-input
@@ -50,7 +89,9 @@
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click.native.prevent="changeVisibility">取消</el-button>
+        <el-button @click.native.prevent="changeResetPassWordFormVisible"
+          >取消</el-button
+        >
         <el-button @click.native.prevent="changePassWord">确定</el-button>
       </div>
     </el-dialog>
@@ -68,7 +109,15 @@ export default {
         newPassWord: "",
         repeatPassWord: "",
       },
-      dialogFormVisible: false,
+      userInfoForm: {
+        userName: this.$store.getters.name,
+        gender: this.$store.getters.gender == "男" ? "1" : "0",
+        phoneNumber: this.$store.getters.phoneNumber,
+        age: this.$store.getters.age,
+      },
+      resetPassWordFormVisible: false,
+      showUserInfoFormVisible: false,
+      editUserInfoFormVisible: false,
       formLabelWidth: "120px",
     };
   },
@@ -114,8 +163,36 @@ export default {
           .catch((err) => {});
       }
     },
-    changeVisibility() {
-      this.dialogFormVisible = !this.dialogFormVisible;
+    editUserInfo() {
+      this.$axios
+        .post("/user/editInfo", this.userInfoForm)
+        .then((res) => {
+          if (res.code == 20000) {
+            // success
+            this.$message({
+              type: "success",
+              message: "修改用户信息完成！",
+            });
+            this.$store.commit("user/SET_NAME", this.userInfoForm.userName);
+            this.$store.commit("user/SET_GENDER", this.userInfoForm.gender);
+            this.$store.commit("user/SET_PHONE_NUMBER", this.userInfoForm.phoneNumber);
+            this.$store.commit("user/SET_AGE", this.userInfoForm.age);
+            console.log(this.$store.getters.phoneNumber);
+          }
+          this.loading = false;
+        })
+        .catch(() => {
+          this.loading = false;
+        });
+    },
+    changeResetPassWordFormVisible() {
+      this.resetPassWordFormVisible = !this.resetPassWordFormVisible;
+    },
+    changeShowUserInfoFormVisible() {
+      this.showUserInfoFormVisible = !this.showUserInfoFormVisible;
+    },
+    changeEditUserInfoFormVisible() {
+      this.editUserInfoFormVisible = !this.editUserInfoFormVisible;
     },
   },
 };

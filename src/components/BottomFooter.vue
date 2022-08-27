@@ -1,6 +1,5 @@
 <template>
   <el-footer>
-    <!-- <el-divider></el-divider> -->
     <el-tooltip
       effect="dark"
       content="疫知通——防疫信息管理系统系统 同济大学2022年暑期数据库课程设计项目"

@@ -157,7 +157,8 @@ Mock.mock(baseURL + "/fake_supplies_data", "get", {
       required_supplies: "趣多多",
       required_supplies_num: 2,
       content: "带瓶老干妈",
-    },{
+    },
+    {
       id: "000006",
       name: "孟星羽阿松大",
       sex: "男",
@@ -182,8 +183,8 @@ Mock.mock(baseURL + "/fake_supplies_data", "get", {
       required_supplies: "莲花清瘟胶囊",
       required_supplies_num: 25,
       content: "多喝热水",
-    }
-    ,{
+    },
+    {
       id: "000021",
       name: "朱洵缘撒打算",
       sex: "女",
@@ -208,7 +209,8 @@ Mock.mock(baseURL + "/fake_supplies_data", "get", {
       required_supplies: "趣多多",
       required_supplies_num: 2,
       content: "带瓶老干妈",
-    },{
+    },
+    {
       id: "000206",
       name: "孟大富大贵松大",
       sex: "男",
@@ -220,8 +222,8 @@ Mock.mock(baseURL + "/fake_supplies_data", "get", {
       required_supplies: "趣多多",
       required_supplies_num: 4,
       content: "带瓶老干妈",
-    }
-    ,{
+    },
+    {
       id: "000212",
       name: "朱胜多负少缘",
       sex: "男",
@@ -233,8 +235,8 @@ Mock.mock(baseURL + "/fake_supplies_data", "get", {
       required_supplies: "莲花清瘟胶囊",
       required_supplies_num: 25,
       content: "多喝热水",
-    }
-    ,{
+    },
+    {
       id: "000011",
       name: "朱洵都会感到缘撒打算",
       sex: "女",
@@ -263,7 +265,8 @@ Mock.mock(baseURL + "/fake_Material_data", "get", {
       isImp: "一般",
       units: "杨浦区疫情防控单位",
       units_phone: "23423234",
-    }, {
+    },
+    {
       id: "000003",
       material_types: "药品",
       name: "感康",
@@ -272,7 +275,8 @@ Mock.mock(baseURL + "/fake_Material_data", "get", {
       isImp: "重要",
       units: "嘉定区疫情防控单位",
       units_phone: "23421323234",
-    }, {
+    },
+    {
       id: "000011",
       material_types: "防护用品",
       name: "免洗消毒液",
@@ -281,7 +285,8 @@ Mock.mock(baseURL + "/fake_Material_data", "get", {
       isImp: "重要",
       units: "嘉定区疫情防控单位",
       units_phone: "23143325423234",
-    }, {
+    },
+    {
       id: "000023",
       material_types: "食品",
       name: "趣多多",
@@ -290,7 +295,8 @@ Mock.mock(baseURL + "/fake_Material_data", "get", {
       isImp: "一般",
       units: "杨浦区疫情防控单位",
       units_phone: "23423234",
-    }, {
+    },
+    {
       id: "000101",
       material_types: "食品",
       name: "趣多对是非多",
@@ -299,7 +305,8 @@ Mock.mock(baseURL + "/fake_Material_data", "get", {
       isImp: "一般",
       units: "杨撒旦发射点区疫情防控单位",
       units_phone: "234232134234",
-    }, {
+    },
+    {
       id: "001201",
       material_types: "食品",
       name: "第三范式趣多多",
@@ -325,8 +332,9 @@ Mock.mock(baseURL + "/fake_DNA_data", "get", {
       place: "延吉市人民医院",
       testResult: "阴性",
       phonenum: "25352435",
-      testResultTime:"2022.6.6-23:56",
-    },{
+      testResultTime: "2022.6.6-23:56",
+    },
+    {
       name: "孟士大夫星羽",
       id: "203453",
       sex: "女",
@@ -335,8 +343,9 @@ Mock.mock(baseURL + "/fake_DNA_data", "get", {
       place: "延吉市撒旦发射点人民医院",
       testResult: "阴性",
       phonenum: "253578435",
-      testResultTime:"2022.12.12-23:56",
-    },{
+      testResultTime: "2022.12.12-23:56",
+    },
+    {
       name: "孟水电费星羽",
       id: "2053453",
       sex: "男",
@@ -345,8 +354,9 @@ Mock.mock(baseURL + "/fake_DNA_data", "get", {
       place: "延吉市人民医院",
       testResult: "阴性",
       phonenum: "25352535",
-      testResultTime:"2022.6.14-23:56",
-    },{
+      testResultTime: "2022.6.14-23:56",
+    },
+    {
       name: "朱洵缘",
       id: "2053872",
       sex: "男",
@@ -355,8 +365,9 @@ Mock.mock(baseURL + "/fake_DNA_data", "get", {
       place: "延吉市人民医院",
       testResult: "阴性",
       phonenum: "25352435",
-      testResultTime:"2022.7.6-23:56",
-    },{
+      testResultTime: "2022.7.6-23:56",
+    },
+    {
       name: "朱水电费洵缘",
       id: "2053853",
       sex: "男",
@@ -365,14 +376,15 @@ Mock.mock(baseURL + "/fake_DNA_data", "get", {
       place: "延吉市人地方官民医院",
       testResult: "阴性",
       phonenum: "25352435",
-      testResultTime:"2022.6.6-23:56",
+      testResultTime: "2022.6.6-23:56",
     },
-    ],
+  ],
   options2: [
     {
       value: "阴性",
       label: "阴性",
-    },{
+    },
+    {
       value: "阳性",
       label: "阳性",
     },
@@ -406,7 +418,7 @@ Mock.mock(baseURL + "/fake_data", "get", {
       content: "无",
     },
   ],
-  fake_isolations_data:[
+  fake_isolations_data: [
     {
       is_id: "000001",
       is_phonenum: "18743379266",
@@ -421,9 +433,8 @@ Mock.mock(baseURL + "/fake_data", "get", {
       is_capacity: "200",
       is_allowance: "20",
     },
-  ]
+  ],
 });
-
 
 Mock.mock(baseURL + "/user/login", "post", (config) => {
   // 传递过来的是JSON 必须要先解析！之后考虑封装吧 现在还只是测试
@@ -450,8 +461,7 @@ Mock.mock(baseURL + "/user/login", "post", (config) => {
 Mock.mock(baseURL + "/user/logout", "post", {
   code: 20000,
   data: "success",
-},
-);
+});
 
 Mock.mock(RegExp(baseURL + "/user/info.*"), "get", (config) => {
   if (param2Obj(config.url).token.includes("admin")) {
@@ -460,6 +470,9 @@ Mock.mock(RegExp(baseURL + "/user/info.*"), "get", (config) => {
       data: {
         roles: ["admin"],
         name: "admin",
+        gender: 1,
+        phoneNumber: "",
+        age: 0,
       },
     };
   } else {
@@ -468,7 +481,15 @@ Mock.mock(RegExp(baseURL + "/user/info.*"), "get", (config) => {
       data: {
         roles: ["user"],
         name: "user",
+        gender: 0,
+        phoneNumber: "12345678",
+        age: 20,
       },
     };
   }
 });
+
+Mock.mock(baseURL + "/user/editInfo", "post", {
+  code: 20000,
+  data: "success",
+})
