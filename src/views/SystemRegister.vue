@@ -26,6 +26,20 @@
             />
           </el-form-item>
 
+          <el-form-item>
+            <el-input
+              v-model.number="registerForm.age"
+              placeholder="请输入年龄"
+              tabindex="2"
+            />
+          </el-form-item>
+
+          <el-form-item label="性别">
+            <el-radio-group v-model="registerForm.gender">
+              <el-radio label="1">男</el-radio>
+              <el-radio label="0">女</el-radio>
+            </el-radio-group>
+          </el-form-item>
           <el-form-item prop="passWord">
             <el-input
               ref="passWord"
@@ -66,7 +80,11 @@
           placement="top-start"
         >
           <div class="sliding-pictures">
-            <Verify ref="verifyImg" @closePupUp="closePupUp" @register="handleRegister" />
+            <Verify
+              ref="verifyImg"
+              @closePupUp="closePupUp"
+              @register="handleRegister"
+            />
             <div class="operation">
               <span
                 title="关闭验证码"
@@ -118,6 +136,9 @@ export default {
       registerForm: {
         userName: "",
         passWord: "",
+        gender: -1,
+        phoneNumber: "",
+        age: "",
       },
       registerRules: {
         userName: [
