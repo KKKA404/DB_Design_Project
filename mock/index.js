@@ -1,5 +1,6 @@
 const Mock = require("mockjs");
-// const baseURL=process.env.BASE_URL
+
+const baseURL = process.env.VUE_APP_BASE_URL;
 
 // process.env是node环境变量
 // development环境下本地开发环境下自己配的
@@ -8,12 +9,31 @@ Mock.setup({
   timeout: 20,
 });
 
+// get 带参数，将后面的参数转为对象
+function param2Obj(url) {
+  const search = decodeURIComponent(url.split("?")[1]).replace(/\+/g, " ");
+  if (!search) {
+    return {};
+  }
+  const obj = {};
+  const searchArr = search.split("&");
+  searchArr.forEach((v) => {
+    const index = v.indexOf("=");
+    if (index !== -1) {
+      const name = v.substring(0, index);
+      const val = v.substring(index + 1, v.length);
+      obj[name] = val;
+    }
+  });
+  return obj;
+}
+
 // Random
 const Random = Mock.Random;
 
-// 这里暂时采用process.env.VUE_APP_BASE_URL + "/donateData"的简单方式封装...
+// 这里暂时采用baseURL + "/donateData"的简单方式封装...
 // 后续考虑参考vue-admin对此封装
-Mock.mock(process.env.VUE_APP_BASE_URL + "/donateData", "get", {
+Mock.mock(baseURL + "/donateData", "get", {
   // 当post或get请求到/donateData时
   // Mock会拦截请求
   // 并返回数据
@@ -113,7 +133,7 @@ Mock.mock(process.env.VUE_APP_BASE_URL + "/donateData", "get", {
   ],
 });
 
-Mock.mock(process.env.VUE_APP_BASE_URL + "/donateData", "post", (req, res) => {
+Mock.mock(baseURL + "/donateData", "post", (req, res) => {
   let data = {
     username: "baokker",
     email: Random.email(),
@@ -122,7 +142,7 @@ Mock.mock(process.env.VUE_APP_BASE_URL + "/donateData", "post", (req, res) => {
 });
 
 //个人需求表单
-Mock.mock(process.env.VUE_APP_BASE_URL + "/fake_supplies_data", "get", {
+Mock.mock(baseURL + "/fake_supplies_data", "get", {
   code: 20000,
   fake_supplies_data: [
     {
@@ -231,7 +251,7 @@ Mock.mock(process.env.VUE_APP_BASE_URL + "/fake_supplies_data", "get", {
 });
 
 //现有物资
-Mock.mock(process.env.VUE_APP_BASE_URL + "/fake_Material_data", "get", {
+Mock.mock(baseURL + "/fake_Material_data", "get", {
   code: 20000,
   fake_Material_data: [
     {
@@ -293,7 +313,7 @@ Mock.mock(process.env.VUE_APP_BASE_URL + "/fake_Material_data", "get", {
 });
 
 //核酸结果管理
-Mock.mock(process.env.VUE_APP_BASE_URL + "/fake_DNA_data", "get", {
+Mock.mock(baseURL + "/fake_DNA_data", "get", {
   code: 20000,
   fake_DNA_data: [
     {
@@ -360,7 +380,7 @@ Mock.mock(process.env.VUE_APP_BASE_URL + "/fake_DNA_data", "get", {
 });
 
 //隔离点分配fake_patients_data
-Mock.mock(process.env.VUE_APP_BASE_URL + "/fake_data", "get", {
+Mock.mock(baseURL + "/fake_data", "get", {
   code: 20000,
   fake_patients_data: [
     {
@@ -404,11 +424,15 @@ Mock.mock(process.env.VUE_APP_BASE_URL + "/fake_data", "get", {
   ]
 });
 
-Mock.mock(process.env.VUE_APP_BASE_URL + "/user/login", "post", (config) => {
+
+Mock.mock(baseURL + "/user/login", "post", (config) => {
   // 传递过来的是JSON 必须要先解析！之后考虑封装吧 现在还只是测试
   config.body = JSON.parse(config.body);
 
-  if (config.body.userName != "admin" || config.body.passWord != "12345678") {
+  if (
+    (config.body.userName != "admin" && config.body.userName != "user") ||
+    config.body.passWord != "12345678"
+  ) {
     console.log("Account and password are incorrect.");
     return {
       code: 60204,
@@ -418,12 +442,33 @@ Mock.mock(process.env.VUE_APP_BASE_URL + "/user/login", "post", (config) => {
     console.log("login successfully");
     return {
       code: 20000,
-      token: "just a token",
+      token: config.body.userName + "-token",
     };
   }
 });
 
-Mock.mock(process.env.VUE_APP_BASE_URL + "/user/logout", "post", {
+Mock.mock(baseURL + "/user/logout", "post", {
   code: 20000,
   data: "success",
+},
+);
+
+Mock.mock(RegExp(baseURL + "/user/info.*"), "get", (config) => {
+  if (param2Obj(config.url).token.includes("admin")) {
+    return {
+      code: 20000,
+      data: {
+        roles: ["admin"],
+        name: "admin",
+      },
+    };
+  } else {
+    return {
+      code: 20000,
+      data: {
+        roles: ["user"],
+        name: "user",
+      },
+    };
+  }
 });
