@@ -14,7 +14,7 @@
         color: #fff;
         font-size: 0.28rem;
         text-align: center;
-        background: url("../assets/111.jpg") no-repeat;
+        background: url("../assets/新型冠状病毒肺炎.png") no-repeat;
         background-size: cover;
     }
 </style>

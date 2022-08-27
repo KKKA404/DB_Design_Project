@@ -63,7 +63,7 @@ export default {
     margin-top: 0.2rem;
     padding: 0 0.4rem;
     border-radius: 0.2rem;
-    background-color: #f74c31;
+    background-color: #00BFFF;
     color: #fff;
     font-weight: 700;
     font-size: 1.2rem;
@@ -76,7 +76,7 @@ export default {
     margin-top: 0.2rem;
     padding: 0 0.4rem;
     border-radius: 0.2rem;
-    background-color: #f74c31;
+    background-color: #00BFFF;
     color: #fff;
     font-weight: 700;
     font-size: 1.5rem;
