@@ -8,7 +8,7 @@ import NProgress from "nprogress"; // progress bar
 import "nprogress/nprogress.css"; // progress bar style
 NProgress.configure({ showSpinner: false }); // NProgress Configuration
 
-import { Message } from 'element-ui'
+import { Message } from "element-ui";
 
 Vue.use(Router);
 
@@ -28,6 +28,12 @@ export const constantRoutes = [
     name: "主页",
     meta: false,
     component: () => import("../views/SystemIndex.vue"),
+  },
+  {
+    path: "/404",
+    name: "404",
+    component: () => import("../views/404.vue"),
+    hidden: true,
   },
   {
     path: "/Materials",
@@ -120,27 +126,30 @@ export const constantRoutes = [
       },
     ],
   },
+];
+
+/**
+ * asyncRoutes
+ * the routes that need to be dynamically loaded based on user roles
+ */
+export const asyncRoutes = [
   {
     path: "/Volunteer",
     redirect: "/Index",
     name: "志愿管理",
-    meta: { icon: "Volunteer" },
+    meta: { icon: "Volunteer", roles: ["admin"] },
     component: () => import("../views/SystemIndex.vue"),
     children: [
       {
         path: "/VolunteerApplication",
         name: "志愿申请信息",
+        meta: { roles: ["admin"] },
         component: () => import("../views/VolunteerApplication.vue"),
       },
     ],
   },
-  // 404 必须放在最后
-  {
-    path: "/404",
-    name: "404",
-    component: () => import("../views/404.vue"),
-    hidden: true,
-  },
+
+  // 404 page must be placed at the end !!!
   {
     path: "*",
     redirect: "/404",
@@ -148,49 +157,20 @@ export const constantRoutes = [
   },
 ];
 
-/**
- * asyncRoutes
- * the routes that need to be dynamically loaded based on user roles
- */
- export const asyncRoutes = [
-  {
-    path: "/Materials/test",
-    redirect: "/Index",
-    name: "测试",
-    component: () => import("../views/SystemIndex.vue"),
-    meta: { icon: "Material" },
-    // children: [
-    //   {
-    //     path: "/CheckDonationRecord",
-    //     name: "物资捐赠记录查询测试",
-    //     component: () => import("../views/CheckDonationRecord.vue"),
-    //   },
-    //   {
-    //     path: "/MakeDonation",
-    //     name: "捐赠物资测试",
-    //     component: () => import("../views/MakeDonation.vue"),
-    //   },
-    // ],
-  },
+const createRouter = () =>
+  new Router({
+    mode: "history", // require service support
+    scrollBehavior: () => ({ y: 0 }),
+    routes: constantRoutes,
+  });
 
-  // 404 page must be placed at the end !!!
-]
-
-const createRouter = () => new Router({
-
-  mode: 'history', // require service support
-  scrollBehavior: () => ({ y: 0 }),
-  routes: constantRoutes
-})
-
-const router = createRouter()
+const router = createRouter();
 
 // Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
 export function resetRouter() {
-  const newRouter = createRouter()
-  router.matcher = newRouter.matcher // reset router
+  const newRouter = createRouter();
+  router.matcher = newRouter.matcher; // reset router
 }
-
 
 const whiteList = ["/"]; // no redirect whitelist
 
@@ -205,62 +185,60 @@ router.beforeEach(async (to, from, next) => {
   // determine whether the user has logged in
   const hasToken = getToken();
 
-  console.log("hasToken: " + hasToken);
-
   if (hasToken) {
     if (to.path == "/") {
       next("/Index");
       NProgress.done();
-    } else{
+    } else {
       // determine whether the user has obtained his permission roles through getInfo
-      const hasRoles = store.getters.roles && store.getters.roles.length > 0
+      const hasRoles = store.getters.roles && store.getters.roles.length > 0;
 
       if (hasRoles) {
-        next()
+        next();
       } else {
         try {
           // get user info
           // note: roles must be a object array! such as: ['admin'] or ,['developer','editor']
-          const { roles } = await store.dispatch('user/getInfo')
-console.log("roles:", roles)
+          const { roles } = await store.dispatch("user/getInfo");
+
           // generate accessible routes map based on roles
-          const accessRoutes = await store.dispatch('permission/generateRoutes', roles)
-console.log("accessRoutes:", accessRoutes)
+          const accessRoutes = await store.dispatch(
+            "permission/generateRoutes",
+            roles
+          );
 
-          for(let i=0,length=accessRoutes.length; i<length; i++) {
-            const element = accessRoutes[i];
-            console.log("element: ", element);
+          accessRoutes.forEach((singleRoute, index) => {
+            router.addRoute(singleRoute);
+          });
 
-            router.addRoute(element);
-            console.log("router: ", router);
+          // 由于Index里通过router.options.routes渲染侧边栏
+          // 加之其无法通过addRoutes动态渲染
+          // 故此处需手动添加，慎之慎之！
+          router.options.routes = store.getters.permission_routes;
 
-          }
           // dynamically add accessible routes
-          console.log("router: ", router);
           // hack method to ensure that addRoutes is complete
           // set the replace: true, so the navigation will not leave a history record
-          next({ ...to, replace: true })
+          next({ ...to, replace: true });
         } catch (error) {
           // remove token and go to login page to re-login
-          await store.dispatch('user/resetToken')
-          Message.error(error || 'Has Error')
-          next(`/login?redirect=${to.path}`)
-          NProgress.done()
+          await store.dispatch("user/resetToken");
+          Message.error(error || "Has Error");
+          next(`/login?redirect=${to.path}`);
+          NProgress.done();
         }
       }
     }
   } else {
     if (whiteList.indexOf(to.path) !== -1) {
-      console.log("whitelist")
       // in the free login whitelist, go directly
       next();
     } else {
-
       // other pages that do not have permission to access are redirected to the login page.
-      // Message({
-      //   message: "请先登录！",
-      //   type: 'warning',
-      // })
+      Message({
+        message: "请先登录！",
+        type: "warning",
+      });
       next(`/?redirect=${to.path}`);
       NProgress.done();
     }

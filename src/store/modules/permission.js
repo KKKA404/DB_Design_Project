@@ -1,6 +1,4 @@
 import { asyncRoutes, constantRoutes } from '@/router'
-import { getToken, setToken, removeToken } from "@/utils/auth";
-import service from "@/plugins/axios";
 
 
 /**

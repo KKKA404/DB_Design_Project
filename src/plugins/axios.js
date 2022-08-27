@@ -3,10 +3,6 @@ import store from "@/store";
 import { Message } from "element-ui";
 import { getToken } from "@/utils/auth";
 
-axios.defaults.baseURL = "";
-axios.defaults.headers.post["Content-Type"] =
-  "application/x-www-form-urlencoded";
-
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_URL,
   timeout: 5000,
@@ -29,9 +25,7 @@ service.interceptors.request.use(
 
 service.interceptors.response.use(
   (response) => {
-    console.log(response)
     const res = response.data;
-    console.log("axios",res)
 
     // if the custom code is not 20000, it is judged as an error.
     if (res.code !== 20000) {
