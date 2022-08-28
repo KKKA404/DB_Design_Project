@@ -390,6 +390,68 @@ Mock.mock(baseURL + "/fake_DNA_data", "get", {
     },
   ],
 });
+//物资运输 -- MaterialTransport
+Mock.mock(baseURL + "/fake_supplies_data","get",{
+  code:20000,
+  fake_supplies_data: [
+  {
+    transport_id: "000001",
+    material_name: "奥利奥",
+    required_supplies_types: "食品",
+    order_time:"2022-8-22",
+    state: "等待揽收",
+    required_supplies_num: 2,
+    courier_name: "大泽森赛",
+    courier_id:"007",
+    courier_phone:"123456",
+    departure:"上海",
+    destination:"济南",
+    current_location:"蚌埠",
+  },
+  {
+    transport_id: "000002",
+    material_name: "奥利给",
+    required_supplies_types: "食品",
+    order_time:"2022-8-22",
+    state: "运输中",
+    required_supplies_num: 999,
+    courier_name: "大贤森赛",
+    courier_id:"007",
+    courier_phone:"123456",
+    departure:"上海",
+    destination:"济南",
+    current_location:"蚌埠",
+  },
+  {
+    transport_id: "000003",
+    material_name: "奥利澳",
+    required_supplies_types: "生活用品",
+    order_time:"2022-8-22",
+    state: "已签收",
+    required_supplies_num: 999,
+    courier_name: "刘某",
+    courier_id:"007",
+    courier_phone:"123456",
+    departure:"上海",
+    destination:"济南",
+    current_location:"蚌埠",
+  },
+  {
+    transport_id: "000099",
+    material_name: "奥力奥",
+    required_supplies_types: "其它",
+    order_time:"2022-8-22",
+    state: "已送达",
+    required_supplies_num: 999,
+    courier_name: "刘谋",
+    courier_id:"007",
+    courier_phone:"123456",
+    departure:"上海",
+    destination:"济南",
+    current_location:"蚌埠",
+  }
+  ],
+});
 
 //隔离点分配fake_patients_data
 Mock.mock(baseURL + "/fake_data", "get", {

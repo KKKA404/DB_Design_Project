@@ -185,90 +185,12 @@
       this.fake_supplies_detaildata.required_supplies_types=row.required_supplies_types
       this.fake_supplies_detaildata.state=row.state
       this.fake_supplies_detaildata.transport_id=row.transport_id
-    }
-  //   search(){
-  //     if(!this.stext){
-        
-  //     axios.get('http://localhost:8080/emp/findAll/1/6').then((resp)=>{
-  //       console.log(resp)
-  //       this.tableData=resp.data.records
-  //       this.total=resp.data.total
-  //       this.cname=""
-  //     })
-  //     }else{
-  //     axios.get('http://localhost:8080/emp/search/'+this.searchKey+"/"+this.stext).then((resp)=>{
-  //             this.tableData=resp.data
-  //             this.total=resp.data.total
-  //           })}
-  //   },
-  //   getKey(e){
-  //     this.searchKey = e
-  //   },
-
-  //  deleteRecord(row){
-  //       this.$confirm('是否确定要删除'+row.material_name+'的打卡记录?','删除数据',{
-  //         confirmButtonText:'确定',
-  //         cancelButtonText:'取消',
-  //         type:'warning'
-  //       }).then(()=>{axios.delete('http://localhost:8080/emp/deleteById/'+row.transport_id).then((resp)=>{
-  //         this.$alert(row.material_name+'的打卡记录删除成功！',"消息",{
-  //                confirmButtonText:"确定",
-  //                callback:action=>{
-  //                  window.location.reload()
-  //                }
-  //              })
-  //       })})
-  //     },
-
-  //     update(){
-  //           axios.put('http://localhost:8080/emp/update',this.Emp).then((resp)=>{
-  //             console.log(resp)
-  //             if(resp.data=='success'){
-  //              this.$alert(this.Emp.material_name+'的打卡记录修改成功！',"消息",{
-  //                confirmButtonText:"确定",
-  //                callback:action=>{
-  //                  window.location.reload()
-  //                }
-  //              })
-  //             }
-  //           })
-  //       },
-  //     edit(row) {
-  //        axios.get('http://localhost:8080/emp/findById/'+row.transport_id).then((resp)=>{
-  //       this.Emp=resp.data;
-  //     })
-  //     },
-  //     handleCurrentChange(currentPage){
-  //       axios.get('http://localhost:8080/emp/findAll/'+currentPage+'/6').then((resp)=>{
-  //       this.tableData=resp.data.records
-  //       this.total=resp.data.total
-  //     })
-  //     },
-  //     remoteMethod(query) {
-  //       if (query !== '') {
-  //         this.loading = true;
-  //         setTimeout(() => {
-  //           this.loading = false;
-  //           this.options = this.list.filter(item => {
-  //             return item.label.toLowerCase()
-  //               .indexOf(query.toLowerCase()) > -1;
-  //           });
-  //         }, 200);
-  //       } else {
-  //         this.options = [];
-  //       }
-  //     }
+      }
     },
-    created(){
-    //   axios.get('http://localhost:8080/emp/findAll/1/6').then((resp)=>{
-    //     console.log(resp)
-    //     this.tableData=resp.data.records
-    //     this.total=resp.data.total
-    //   });
-    //       axios.get("http://localhost:8080/depart/findAll").then((resp) => {
-    //   console.log(resp.data);
-    //   this.options3 = resp.data;
-    // });
+    created() {
+      this.$axios.get("/fake_supplies_data").then((res) => {
+        this.fake_supplies_data = res.fake_supplies_data;
+      });
     },
 
     data() {
@@ -288,100 +210,12 @@
           destination:"",
           current_location:"",
         },
-        fake_supplies_data: [
-        {
-          transport_id: "000001",
-          material_name: "奥利奥",
-          required_supplies_types: "食品",
-          order_time:"2022-8-22",
-          state: "等待揽收",
-          required_supplies_num: 2,
-          courier_name: "大泽森赛",
-          courier_id:"007",
-          courier_phone:"123456",
-          departure:"上海",
-          destination:"济南",
-          current_location:"蚌埠",
-        },
-        {
-          transport_id: "000002",
-          material_name: "奥利给",
-          required_supplies_types: "食品",
-          order_time:"2022-8-22",
-          state: "运输中",
-          required_supplies_num: 999,
-          courier_name: "大贤森赛",
-          courier_id:"007",
-          courier_phone:"123456",
-          departure:"上海",
-          destination:"济南",
-          current_location:"蚌埠",
-        },
-        {
-          transport_id: "000003",
-          material_name: "奥利澳",
-          required_supplies_types: "生活用品",
-          order_time:"2022-8-22",
-          state: "已签收",
-          required_supplies_num: 999,
-          courier_name: "刘某",
-          courier_id:"007",
-          courier_phone:"123456",
-          departure:"上海",
-          destination:"济南",
-          current_location:"蚌埠",
-        },
-        {
-          transport_id: "000099",
-          material_name: "奥力奥",
-          required_supplies_types: "其它",
-          order_time:"2022-8-22",
-          state: "已送达",
-          required_supplies_num: 999,
-          courier_name: "刘谋",
-          courier_id:"007",
-          courier_phone:"123456",
-          departure:"上海",
-          destination:"济南",
-          current_location:"蚌埠",
-        }
-        ],
-        options3:[
-        {
-          value: "食品",
-          label: "食品",
-        },{
-          value: "药品",
-          label: "药品",
-        },{
-          value: "日用品",
-          label: "日用品",
-        },{
-          value: "防护物资",
-          label: "防护物资",
-        }],
-        options2: [{
-          value: '正常',
-          label: '无下列情况，身体健康'
-        }, {
-          value: '咳嗽',
-          label: '咳嗽'
-        }, {
-          value: '乏力',
-          label: '乏力'
-        }, {
-          value: '呼吸困难',
-          label: '呼吸困难'
-        }, {
-          value: '与新冠肺炎有关的其他症状，如流涕，咽痛，肌痛，腹泻等',
-          label: '与新冠肺炎有关的其他症状，如流涕，咽痛，肌痛，腹泻等'
-        }],
+        fake_supplies_data: [ ],
         value: '',
         cname:'',
         nameInput:'',
         //searchKey:"",
         options: [],
-        // value: [],
         list: [],
         loading: false,
         tableData: null,
@@ -390,19 +224,6 @@
         dialogItemsVisible: false,
          formLabelWidth: '120px',
          LabelWidth: '180px',
-
-          Emp: {
-            transport_id:"",
-            material_name:"",
-            sex:"",
-            phonenum:"",
-            temp:"",
-            risk:"",
-            state:"",
-            createTime:"",
-            content:"",
-            depart:""
-                }
       }
     },
     computed: {

@@ -178,16 +178,16 @@ export const asyncRoutes = [
     ],
   },
   {
-    path: "/isolationAllocate",
+    path: "/IsolationAllocate",
     redirect: "/Index",
     name: "医疗资源分配",
     meta: { icon: "Medical",roles: ["admin","user"] },
     component: () => import("../views/SystemIndex.vue"),
     children: [
       {
-        path: "/isolationAllocate",
+        path: "/IsolationAllocate",
         name: "隔离点分配",
-        component: () => import("../views/isolationAllocate.vue"),
+        component: () => import("../views/IsolationAllocate.vue"),
     meta: { roles: ["admin","user"] },
       },
     ],
