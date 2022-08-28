@@ -250,7 +250,7 @@ router.beforeEach(async (to, from, next) => {
             roles
           );
 
-          accessRoutes.forEach((singleRoute, index) => {
+          accessRoutes.forEach((singleRoute) => {
             router.addRoute(singleRoute);
           });
 

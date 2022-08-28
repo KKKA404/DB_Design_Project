@@ -34,7 +34,7 @@
         </el-submenu>
       </el-menu>
     </div>
-    <el-dialog title="用户信息" :visible.sync="showUserInfoFormVisible">
+    <el-dialog title="用户信息" :visible.sync="showUserInfoFormVisible" width="30%">
       <template>
         <p>用户名：{{ this.$store.getters.name }}</p>
         <p>性别：{{ this.$store.getters.gender }}</p>
@@ -42,7 +42,7 @@
         <p>年龄：{{ this.$store.getters.age }}</p>
       </template>
     </el-dialog>
-    <el-dialog title="修改用户信息" :visible.sync="editUserInfoFormVisible">
+    <el-dialog title="修改用户信息" :visible.sync="editUserInfoFormVisible" width="30%">
       <el-form :model="userInfoForm">
         <el-form-item label="用户名" :label-width="formLabelWidth">
           <el-input v-model="userInfoForm.userName"></el-input>
@@ -67,7 +67,7 @@
         <el-button @click.native.prevent="editUserInfo">确定</el-button>
       </div>
     </el-dialog>
-    <el-dialog title="修改密码" :visible.sync="resetPassWordFormVisible">
+    <el-dialog title="修改密码" :visible.sync="resetPassWordFormVisible" width="30%">
       <el-form :model="newPassWordForm">
         <el-form-item label="旧密码" :label-width="formLabelWidth">
           <el-input
@@ -160,7 +160,7 @@ export default {
               this.$message.error(res.msg);
             }
           })
-          .catch((err) => {});
+          .catch(() => {});
       }
     },
     editUserInfo() {

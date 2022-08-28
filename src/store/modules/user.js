@@ -105,7 +105,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       service
         .post("/user/logout", state.token)
-        .then((res) => {
+        .then(() => {
           removeToken(); // must remove token first
           resetRouter();
           commit("RESET_STATE");

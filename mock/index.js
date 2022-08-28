@@ -138,7 +138,7 @@ Mock.mock(baseURL + "/donateData", "post", (req, res) => {
     username: "baokker",
     email: Random.email(),
   };
-  return { ...data, ...req, code: 20000 };
+  return {...res,...data};
 });
 
 //个人需求表单
