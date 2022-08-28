@@ -8,7 +8,7 @@
 <style scoped>
      .header{
         width: 100%;
-        height: 0;
+        min-height: 100px;
         position: relative;
         padding-top: 33.5%;
         color: #fff;
