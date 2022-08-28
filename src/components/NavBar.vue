@@ -22,19 +22,25 @@
         <el-submenu index="">
           <template slot="title"><i class="el-icon-user"></i>账户</template>
           <el-menu-item @click="changeShowUserInfoFormVisible" index=""
-            >用户信息</el-menu-item
+            ><i class="el-icon-s-order"></i>用户信息</el-menu-item
           >
           <el-menu-item @click="changeEditUserInfoFormVisible" index=""
-            >更改用户信息</el-menu-item
+            ><i class="el-icon-paperclip"></i>更改用户信息</el-menu-item
           >
           <el-menu-item @click="changeResetPassWordFormVisible" index=""
-            >更改密码</el-menu-item
+            ><i class="el-icon-s-operation"></i>更改密码</el-menu-item
           >
-          <el-menu-item @click="logout" index="">登出</el-menu-item>
+          <el-menu-item @click="logout" index=""
+            ><i class="el-icon-switch-button"></i>登出</el-menu-item
+          >
         </el-submenu>
       </el-menu>
     </div>
-    <el-dialog title="用户信息" :visible.sync="showUserInfoFormVisible" width="30%">
+    <el-dialog
+      title="用户信息"
+      :visible.sync="showUserInfoFormVisible"
+      width="30%"
+    >
       <template>
         <p>用户名：{{ this.$store.getters.name }}</p>
         <p>性别：{{ this.$store.getters.gender }}</p>
@@ -42,7 +48,11 @@
         <p>年龄：{{ this.$store.getters.age }}</p>
       </template>
     </el-dialog>
-    <el-dialog title="修改用户信息" :visible.sync="editUserInfoFormVisible" width="30%">
+    <el-dialog
+      title="修改用户信息"
+      :visible.sync="editUserInfoFormVisible"
+      width="30%"
+    >
       <el-form :model="userInfoForm">
         <el-form-item label="用户名" :label-width="formLabelWidth">
           <el-input v-model="userInfoForm.userName"></el-input>
@@ -67,7 +77,11 @@
         <el-button @click.native.prevent="editUserInfo">确定</el-button>
       </div>
     </el-dialog>
-    <el-dialog title="修改密码" :visible.sync="resetPassWordFormVisible" width="30%">
+    <el-dialog
+      title="修改密码"
+      :visible.sync="resetPassWordFormVisible"
+      width="30%"
+    >
       <el-form :model="newPassWordForm">
         <el-form-item label="旧密码" :label-width="formLabelWidth">
           <el-input
@@ -175,7 +189,10 @@ export default {
             });
             this.$store.commit("user/SET_NAME", this.userInfoForm.userName);
             this.$store.commit("user/SET_GENDER", this.userInfoForm.gender);
-            this.$store.commit("user/SET_PHONE_NUMBER", this.userInfoForm.phoneNumber);
+            this.$store.commit(
+              "user/SET_PHONE_NUMBER",
+              this.userInfoForm.phoneNumber
+            );
             this.$store.commit("user/SET_AGE", this.userInfoForm.age);
             console.log(this.$store.getters.phoneNumber);
           }
