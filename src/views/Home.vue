@@ -34,9 +34,8 @@ export default {
           note4:"易感人群：人群普遍易感。老年人及有基础疾病者感染后病情较重，儿童及婴幼儿也有发病。",
           note5:"潜伏期：一般为3~7天，最长不超过14天，潜伏期内可能存在传染性，其中无症状病例传染性非常罕见。",
         }
-    this.$api.getDataInfo({
-        key:"e187c82474d5c0b5c338824d54729d59"
-    }).then(res=>{
+    this.$axios.get("http://api.tianapi.com/ncov/index?key=e187c82474d5c0b5c338824d54729d59"
+    ).then(res=>{
       console.log(res);
       this.NewsData=res.newslist[0].news;
          this.CaseNumData = {
