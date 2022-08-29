@@ -1,30 +1,48 @@
 <template>
   <el-main>
-    <el-input placeholder="请输入购买时间/物资名称" v-model="input" clearable>
-    </el-input>
-    <el-button type="box" @click="dialogFormVisible = true">提交采购信息</el-button>
-    <el-table
-      :data="searchData"
-      height="500"
-      border
-      style="width: 100%"
-      :default-sort="{ prop: 'needTime', order: 'descending' }"
-    >
-      <el-table-column prop="purchaseTime" sortable label="购买时间"> </el-table-column>
-      <el-table-column label="物资信息">
-       <el-table-column prop="materialName" label="物资名称"> </el-table-column>
-       <el-table-column prop="materialNum" label="物资数量"> </el-table-column>
-       <el-table-column prop="materialPrice" label="价格"> </el-table-column>
-      </el-table-column>
-      <el-table-column label="疫情防控单位信息">
-       <el-table-column prop="buyerType" label="采购方种类"> </el-table-column>
-       <el-table-column prop="buyerName" label="采购方名称"> </el-table-column>
-      </el-table-column>
-    </el-table>
+    <el-tabs v-model="activeName" type="card">
+      <el-tab-pane label="防控单位采购" name="first">
+        <el-input placeholder="请输入物资名称" v-model="inputMaterialName" clearable 
+        style="width:40%; margin-right:50px; margin-top:10px; margin-bottom:30px" >
+        </el-input>
+        <el-button type="box" @click="dialogFormVisible = true">提交采购信息</el-button>
+        <el-table :data="searchUnitPurchaseData" height="500" border style="width: 100%"
+          :default-sort="{ prop: 'needTime', order: 'descending' }">
+          <el-table-column prop="purchaseTime" sortable label="购买时间"> </el-table-column>
+          <el-table-column label="物资信息">
+            <el-table-column prop="materialName" label="物资名称"> </el-table-column>
+            <el-table-column prop="materialNum" label="物资数量"> </el-table-column>
+            <el-table-column prop="materialPrice" label="价格"> </el-table-column>
+          </el-table-column>
+          <el-table-column label="采购方信息（疫情防控单位）">
+            <el-table-column prop="buyerID" label="采购方ID"> </el-table-column>
+            <el-table-column prop="buyerName" label="采购方名称"> </el-table-column>
+          </el-table-column>
+        </el-table>
+      </el-tab-pane>
+      <el-tab-pane label="捐赠方采购" name="second">
+        <el-input placeholder="请输入物资名称" v-model="inputMaterialName" clearable 
+        style="width:40%; margin-right:50px; margin-top:10px; margin-bottom:30px">
+        </el-input>
+        <el-button type="box" @click="dialogFormVisible = true">提交采购信息</el-button>
+        <el-table :data="searchDonorPurchaseData" height="500" border style="width: 100%"
+          :default-sort="{ prop: 'needTime', order: 'descending' }">
+          <el-table-column prop="purchaseTime" sortable label="购买时间"> </el-table-column>
+          <el-table-column label="物资信息">
+            <el-table-column prop="materialName" label="物资名称"> </el-table-column>
+            <el-table-column prop="materialNum" label="物资数量"> </el-table-column>
+            <el-table-column prop="materialPrice" label="价格"> </el-table-column>
+          </el-table-column>
+          <el-table-column label="采购方信息（捐赠方）">
+            <el-table-column prop="buyerID" label="采购方ID"> </el-table-column>
+            <el-table-column prop="buyerName" label="采购方名称"> </el-table-column>
+          </el-table-column>
+        </el-table>
+      </el-tab-pane>
+    </el-tabs>
 
     <!-- Form -->
-      
-    <el-dialog title="信息表单" :visible.sync="dialogFormVisible">
+    <!-- <el-dialog title="信息表单" :visible.sync="dialogFormVisible">
       <el-form :model="form">
         <el-form-item label="物资名称" :label-width="formLabelWidth">
           <el-input v-model="form.name" autocomplete="off"></el-input>
@@ -52,33 +70,30 @@
         <el-button @click="dialogFormVisible = false">取 消</el-button>
         <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
       </div>
-    </el-dialog>
+    </el-dialog> -->
 
   </el-main>
 </template>
 
 <script>
-// import SideBar from "../components/SideBar.vue";
-// import BottomFooter from "../components/BottomFooter.vue";
-// import NavBar from "../components/NavBar.vue";
-//
 export default {
   name: "CheckPurchRecord",
   components: {
-    // SideBar,
-    // BottomFooter,
-    // NavBar,
   },
-  created(){
-    this.$axios.get("/purchData").then((res) => {
-        console.log(res);
-      this.purchData = res.purchData;
+  created() {
+    this.$axios.get("/purchaseData").then((res) => {
+      console.log(res);
+      console.log(res.unitPurchaseData);
+      this.unitPurchaseData = res.unitPurchaseData;
+      this.donorPurchaseData = res.donorPurchaseData;
     });
   },
   data() {
     return {
-      input: "",
-      purchData: [],
+      unitPurchaseData: [],
+      donorPurchaseData: [],
+      activeName: 'first',
+      inputMaterialName: "",
       dialogFormVisible: false,
       form: {
         name: '',
@@ -93,13 +108,23 @@ export default {
       formLabelWidth: '120px'
     };
   },
+  methods: {
+    handleClick(tab, event) {
+      console.log(tab, event);
+    }
+  },
   computed: {
-    searchData: function () {
-      let SearchResult = this.purchData.filter(
-        (item) =>
-        String(item.materialName).indexOf(String(this.input)) > -1||item.purchaseTime.indexOf(String(this.input)) > -1
+    searchUnitPurchaseData: function () {
+      let SearchUnitResult = this.unitPurchaseData.filter(
+        (item) => String(item.materialName).indexOf(String(this.inputMaterialName)) > -1
       );
-      return SearchResult;
+      return SearchUnitResult;
+    },
+    searchDonorPurchaseData: function () {
+      let SearchDonorResult = this.donorPurchaseData.filter(
+        (item) => String(item.materialName).indexOf(String(this.inputMaterialName)) > -1
+      );
+      return SearchDonorResult;
     },
   },
 };
@@ -119,15 +144,21 @@ export default {
   color: #333;
   text-align: center;
   line-height: 200px;
+}*/
+
+/* .el-input {
+  margin-top: 10px;
+  margin-bottom: 30px;
+  margin-right: 40px;
 }
 
-.el-main {
-  background-color: #e9eef3;
-  color: #333;
-  text-align: center;
-  line-height: 60px;
-}
+.el-button {
+  margin-top: 10px;
+  margin-bottom: 30px;
+  margin-left: 40px;
+} */
 
+/*
 body > .el-container {
   margin-bottom: 40px;
 }
