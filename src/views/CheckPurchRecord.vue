@@ -79,102 +79,16 @@ export default {
     // BottomFooter,
     // NavBar,
   },
+  created(){
+    this.$axios.get("/purchData").then((res) => {
+        console.log(res);
+      this.purchData = res.purchData;
+    });
+  },
   data() {
     return {
       input: "",
-      needData: [
-        {
-          needName: "bc",
-          needID: 2,
-          needTime: "2022.7.20",
-          needdOrganization: "Huangduligong",
-          needdOrganizationID: 65742,
-
-          city: "Shanghai",
-          district: "Jiading",
-          contactAddress: "caoangonglu 4800",
-        },
-        {
-          needName: "c",
-          needID: 2,
-          needTime: "2022.7.22",
-          needdOrganization: "Huangduligong",
-          needdOrganizationID: 65742,
-          city: "Shanghai",
-          district: "Jiading",
-          contactAddress: "caoangonglu 4800",
-        },
-        {
-          needName: "fbc",
-          needID: 2,
-          needTime: "2022.7.20",
-          needdOrganization: "Huangduligong",
-          needdOrganizationID: 65742,
-          city: "Shanghai",
-          district: "Jiading",
-          contactAddress: "caoangonglu 4800",
-        },
-        {
-          needName: "fbc",
-          needID: 2,
-          needTime: "2022.7.20",
-          needdOrganization: "Huangduligong",
-          needdOrganizationID: 65742,
-          city: "Shanghai",
-          district: "Jiading",
-          contactAddress: "caoangonglu 4800",
-        },
-        {
-          needName: "fbc",
-          needID: 2,
-          needTime: "2022.7.20",
-          needdOrganization: "Huangduligong",
-          needdOrganizationID: 65742,
-          city: "Shanghai",
-          district: "Jiading",
-          contactAddress: "caoangonglu 4800",
-        },
-        {
-          needName: "fbc",
-          needID: 2,
-          needTime: "2022.7.20",
-          needdOrganization: "Huangduligong",
-          needdOrganizationID: 65742,
-          city: "Shanghai",
-          district: "Jiading",
-          contactAddress: "caoangonglu 4800",
-        },
-        {
-          needName: "fbc",
-          needID: 2,
-          needTime: "2022.7.20",
-          needdOrganization: "Huangduligong",
-          needdOrganizationID: 65742,
-          city: "Shanghai",
-          district: "Jiading",
-          contactAddress: "caoangonglu 4800",
-        },
-        {
-          needName: "fbc",
-          needID: 2,
-          needTime: "2022.7.20",
-          needdOrganization: "Huangduligong",
-          needdOrganizationID: 65742,
-          city: "Shanghai",
-          district: "Jiading",
-          contactAddress: "caoangonglu 4800",
-        },
-        {
-          needName: "fbc",
-          needID: 2,
-          needTime: "2022.7.20",
-          needdOrganization: "Huangduligong",
-          needdOrganizationID: 65742,
-          city: "Shanghai",
-          district: "Jiading",
-          contactAddress: "caoangonglu 4800",
-        },
-      ],
+      purchData: [],
       dialogFormVisible: false,
       form: {
         name: '',
@@ -191,9 +105,9 @@ export default {
   },
   computed: {
     searchData: function () {
-      let SearchResult = this.needData.filter(
+      let SearchResult = this.purchData.filter(
         (item) =>
-          String(item.needID) == this.input || item.needName == this.input
+        String(item.needID).indexOf(String(this.input)) > -1||item.needName.indexOf(String(this.input)) > -1
       );
       return SearchResult;
     },

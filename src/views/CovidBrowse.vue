@@ -11,7 +11,7 @@
  
 <script>
 import Header from "../views/Header.vue"
-import Covid19Info from "../views/Covid19Info.vue"
+import Covid19Introduction from "../views/Covid19Introduction.vue"
 import CaseNum from "../views/CaseNum.vue"
 import Map from "../views/Map.vue"
 //import Covid19Chart from "../views/Covid19Chart"
@@ -70,7 +70,7 @@ export default {
   },
   components: {
     Header,
-    Covid19Info,
+    Covid19Introduction,
     CaseNum,
     Map,
     //Covid19Chart,

@@ -3,7 +3,7 @@
   <el-input placeholder="请输入内容" v-model="nameInput" class="input-with-select" style="width:40%">
     <el-select v-model="cname" slot="prepend" placeholder="请选择" @change="getKey">
       <el-option label="姓名" value="name"></el-option>
-      <el-option label="所需物资种类" value="required_supplies_types"></el-option>
+      <el-option label="所需物资种类" value="type"></el-option>
       <el-option label="提交时间" value="createTime"></el-option>
     </el-select>
     <el-button slot="append" icon="el-icon-search" @click="search()"></el-button>
@@ -15,7 +15,7 @@
     style="width: 100%">
     <el-table-column
       fixed
-      prop="id"
+      prop="personId"
       label="编号"
       sortable
       width="100">
@@ -26,7 +26,7 @@
       width="50">
     </el-table-column>
     <el-table-column
-      prop="sex"
+      prop="gender"
       label="性别"
       width="50">
     </el-table-column>
@@ -51,17 +51,17 @@
       width="80">
     </el-table-column>
     <el-table-column
-      prop="required_supplies_types"
+      prop="type"
       label="所需物资种类"
       width="120">
     </el-table-column>
     <el-table-column
-      prop="required_supplies"
+      prop="goodsName"
       label="所需物资"
       width="120">
     </el-table-column>
     <el-table-column
-      prop="required_supplies_num"
+      prop="num"
       label="所需物资数量"
       width="120">
     </el-table-column>
@@ -92,8 +92,8 @@
       <el-input v-model="Emp.name"  autocomplete="off" ></el-input>
     </el-form-item>
       <el-form-item label="性别" :label-width="formLabelWidth" prop="sex">
-  <el-radio v-model="Emp.sex" label="男">男</el-radio>
-  <el-radio v-model="Emp.sex" label="女">女</el-radio>
+  <el-radio v-model="Emp.gender" label="男">男</el-radio>
+  <el-radio v-model="Emp.gender" label="女">女</el-radio>
     </el-form-item>
     <el-form-item label="紧急程度" :label-width="formLabelWidth" prop="urgency">
   <el-radio v-model="Emp.urgency" label="紧急">紧急</el-radio>
@@ -232,8 +232,9 @@
   //     }
     },
     created(){
-      this.$axios.get("/fake_supplies_data").then((res) => {
-      this.fake_supplies_data = res.fake_supplies_data;
+      this.$axios.get("/personalRequest").then((res) => {
+        console.log(res);
+      this.personalRequest = res.personalRequest;
     });
     //   axios.get('http://localhost:8080/emp/findAll/1/6').then((resp)=>{
     //     console.log(resp)
@@ -249,7 +250,7 @@
     data() {
 
       return {
-        fake_supplies_data: [],
+        personalRequest: [],
         options3:[
         {
           value: "食品",
@@ -296,9 +297,9 @@
         LabelWidth: '180px',
 
           Emp: {
-            id:"",
+            personId:"",
             name:"",
-            sex:"",
+            gender:"",
             phonenum:"",
             temp:"",
             risk:"",
@@ -311,7 +312,7 @@
     },
     computed: {
     searchData: function () {
-      let SearchResult = this.fake_supplies_data.filter(
+      let SearchResult = this.personalRequest.filter(
         (item) =>
           String(item.name).indexOf(String(this.nameInput)) > -1 
           // &&

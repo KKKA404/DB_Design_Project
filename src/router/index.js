@@ -43,13 +43,13 @@ export const asyncRoutes = [
   {
     path: "/Index", // forget to add Index !!!!!!
     name: "主页",
-    redirect:"/CovidIntroduction",
+    redirect:"/CovidBrowse",
     meta: {icon:"Home",roles: ["admin","user"]},
     component: () => import("../views/SystemIndex.vue"),
     children:[{
-        path: "/CovidIntroduction",
-        name: "信息测试",
-        component: () => import("../views/Home.vue"),
+        path: "/CovidBrowse",
+        name: "疫情速览",
+        component: () => import("../views/CovidBrowse.vue"),
         meta: { roles: ["admin","user"] },
     },
   ]
