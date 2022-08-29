@@ -65,7 +65,7 @@ export default {
   methods: {
     allocate(row) {
       this.$confirm(
-        "确定将当前病人分配到" + row.is_id + "号隔离点?",
+        "确定将当前病人分配到 " + row.name + " 隔离点?",
         "删除数据",
         {
           confirmButtonText: "确定",
@@ -74,7 +74,7 @@ export default {
         }
       ).then(() => {
         axios
-          .delete("http://localhost:8080/emp/deleteById/" + row.is_id)
+          .delete("http://localhost:8080/emp/deleteById/" + row.name)
           //具体逻辑待完成
           .then((resp) => {
             this.$alert(row.name + "隔离点分配成功！", "消息", {
