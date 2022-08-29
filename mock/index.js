@@ -499,15 +499,15 @@ Mock.mock(baseURL + "/fake_data", "get", {
 });
 
 //物资购买
-Mock.mock(baseURL+"/purchData","get",{
+Mock.mock(baseURL+"/purchaseData","get",{
   code:20000,
-  purchData:[
+  unitPurchaseData:[
     {
       purchaseTime: "2022 8 29",
       materialName: "趣多多",
       materialNum: 3,
       materialPrice: "6",
-      buyerType: "？",
+      buyerID: "369",
       buyerName:"yangpuqu",
     },
     {
@@ -515,7 +515,7 @@ Mock.mock(baseURL+"/purchData","get",{
       materialName: "泡面",
       materialNum: 3,
       materialPrice: "6",
-      buyerType: "？",
+      buyerID: "？",
       buyerName:"yangpuqu",
     },
     {
@@ -523,7 +523,7 @@ Mock.mock(baseURL+"/purchData","get",{
       materialName: "趣多多",
       materialNum: 3,
       materialPrice: "6",
-      buyerType: "？",
+      buyerID: "？",
       buyerName:"yangpuqu",
     },
     {
@@ -531,7 +531,7 @@ Mock.mock(baseURL+"/purchData","get",{
       materialName: "趣多多",
       materialNum: 3,
       materialPrice: "6",
-      buyerType: "？",
+      buyerID: "？",
       buyerName:"yangpuqu",
     },
     {
@@ -539,7 +539,7 @@ Mock.mock(baseURL+"/purchData","get",{
       materialName: "趣多多",
       materialNum: 3,
       materialPrice: "6",
-      buyerType: "？",
+      buyerID: "？",
       buyerName:"yangpuqu",
     },
     {
@@ -547,7 +547,7 @@ Mock.mock(baseURL+"/purchData","get",{
       materialName: "趣多多",
       materialNum: 3,
       materialPrice: "6",
-      buyerType: "？",
+      buyerID: "？",
       buyerName:"yangpuqu",
     },
     {
@@ -555,7 +555,7 @@ Mock.mock(baseURL+"/purchData","get",{
       materialName: "趣多多",
       materialNum: 3,
       materialPrice: "6",
-      buyerType: "？",
+      buyerID: "？",
       buyerName:"yangpuqu",
     },
     {
@@ -563,7 +563,7 @@ Mock.mock(baseURL+"/purchData","get",{
       materialName: "趣多多",
       materialNum: 3,
       materialPrice: "6",
-      buyerType: "？",
+      buyerID: "？",
       buyerName:"yangpuqu",
     },
     {
@@ -571,7 +571,81 @@ Mock.mock(baseURL+"/purchData","get",{
       materialName: "趣多多",
       materialNum: 3,
       materialPrice: "6",
-      buyerType: "？",
+      buyerID: "？",
+      buyerName:"yangpuqu",
+    },
+  ],
+  donorPurchaseData:[
+    {
+      purchaseTime: "2022 8 29",
+      materialName: "趣多多",
+      materialNum: 3,
+      materialPrice: "6",
+      buyerID: "369",
+      buyerName:"yangpuqu",
+    },
+    {
+      purchaseTime: "2022 8 29",
+      materialName: "泡面",
+      materialNum: 3,
+      materialPrice: "6",
+      buyerID: "？",
+      buyerName:"yangpuqu",
+    },
+    {
+      purchaseTime: "2022 8 29",
+      materialName: "趣多多",
+      materialNum: 3,
+      materialPrice: "6",
+      buyerID: "？",
+      buyerName:"yangpuqu",
+    },
+    {
+      purchaseTime: "2022 8 29",
+      materialName: "趣多多",
+      materialNum: 3,
+      materialPrice: "6",
+      buyerID: "？",
+      buyerName:"yangpuqu",
+    },
+    {
+      purchaseTime: "2022 8 29",
+      materialName: "趣多多",
+      materialNum: 3,
+      materialPrice: "6",
+      buyerID: "？",
+      buyerName:"yangpuqu",
+    },
+    {
+      purchaseTime: "2022 8 29",
+      materialName: "趣多多",
+      materialNum: 3,
+      materialPrice: "6",
+      buyerID: "？",
+      buyerName:"yangpuqu",
+    },
+    {
+      purchaseTime: "2022 8 29",
+      materialName: "趣多多",
+      materialNum: 3,
+      materialPrice: "6",
+      buyerID: "？",
+      buyerName:"yangpuqu",
+    },
+    {
+      purchaseTime: "2022 8 29",
+      materialName: "趣多多",
+      materialNum: 3,
+      materialPrice: "6",
+      buyerID: "？",
+      buyerName:"yangpuqu",
+    },
+    {
+      purchaseTime: "2022 8 29",
+      materialName: "趣多多",
+      materialNum: 3,
+      materialPrice: "6",
+      buyerID: "？",
       buyerName:"yangpuqu",
     },
   ]

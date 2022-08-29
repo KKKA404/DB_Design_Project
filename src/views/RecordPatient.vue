@@ -13,7 +13,7 @@
       >
       </el-date-picker>
     </el-row>
-    <el-select v-model="SamplingResults" placeholder="核酸结果">
+    <el-select v-model="SamplingResult" placeholder="核酸结果">
       <el-option
         v-for="item in options"
         :key="item.value"
@@ -34,7 +34,7 @@ export default {
     return {
       ID: "",
       DetectionTime: "",
-      SamplingResults: false,
+      SamplingResult: false,
       options: [
         {
           label: "阴性",
@@ -130,7 +130,22 @@ export default {
     },
     submitForm() {
       if (this.checkID() && this.DetectionTime != "") {
-        this.$message("提交成功");
+        this.$axios
+          .post("PatientRecord", {
+            ID: this.ID,
+            DetectionTime: this.DetectionTime,
+            SamplingResult: this.SamplingResult,
+          })
+          .then((res) => {
+            if (res.code == 20000) {
+              this.$message("提交成功");
+            } else {
+              this.$message.error("提交失败");
+            }
+          })
+          .catch(() => {
+            this.$message.error("提交失败");
+          });
       }
       return;
     },
