@@ -185,13 +185,14 @@ export default {
       this.$axios
         .get("/personalRequest", { params: { ID: row.personId } })
         .then((res) => {
-          this.Emp = res.data;
+          console.log(res.personalRequest);
+          this.Emp = res.personalRequest;
         });
     },
 
     handleCurrentChange(currentPage) {
       axios
-        .get("http://localhost:8080/emp/findAll/" + currentPage + "/6")
+        .get("/personalRequest" + currentPage + "/6")
         .then((resp) => {
           this.tableData = resp.data.records;
           this.total = resp.data.total;
@@ -267,13 +268,14 @@ export default {
         personId: "",
         name: "",
         gender: "",
+        urgency:"",
         phonenum: "",
-        temp: "",
-        risk: "",
+        IDcard:"",
         health: "",
-        createTime: "",
-        content: "",
-        depart: "",
+        type:"",
+        goodsName: "趣多多",
+        num: 2,
+        content: "带瓶老干妈",
       },
     };
   },

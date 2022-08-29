@@ -5,6 +5,7 @@ import service from "@/plugins/axios";
 const getDefaultState = () => {
   return {
     token: getToken(),
+    ID:"",
     name: "",
     roles: [],
     gender: 1, // 1 = male, 0 = female
@@ -15,6 +16,7 @@ const getDefaultState = () => {
 
 const state = {
   token: getToken(),
+  ID:"",
   name: "",
   roles: [],
   gender: 1, // 1 = male, 0 = female
@@ -28,6 +30,9 @@ const mutations = {
   },
   SET_TOKEN: (state, token) => {
     state.token = token;
+  },
+  SET_ID: (state, ID) => {
+    state.ID = ID;
   },
   SET_NAME: (state, name) => {
     state.name = name;
@@ -80,13 +85,14 @@ const actions = {
           }
           console.log("data.roles", data.roles);
 
-          const { roles, name , gender,phoneNumber,age} = data;
+          const { roles, ID ,name , gender,phoneNumber,age} = data;
           // roles must be a non-empty array
           if (!roles || roles.length <= 0) {
             reject("getInfo: roles must be a non-null array!");
           }
 
           commit("SET_ROLES", roles);
+          commit("SET_ID",ID);
           commit("SET_NAME", name);
           commit("SET_GENDER", gender);
           commit("SET_PHONE_NUMBER", phoneNumber);
