@@ -2,8 +2,8 @@
 <div>
   <el-input placeholder="请输入内容" v-model="nameInput" class="input-with-select" style="width:40%">
     <el-select v-model="cname" slot="prepend" placeholder="请选择" @change="getKey">
-      <el-option label="物资名称" value="material_name"></el-option>
-      <el-option label="物资种类" value="required_supplies_types"></el-option>
+      <el-option label="物资名称" value="materialName"></el-option>
+      <el-option label="物资种类" value="materialType"></el-option>
     </el-select>
     <el-button slot="append" icon="el-icon-search" @click="search()"></el-button>
   </el-input>
@@ -14,24 +14,24 @@
     style="width: 100%">
     <el-table-column
       fixed
-      prop="transport_id"
-      label="物流编号"
+      prop="materialID"
+      label="物资编号"
       sortable
       width="120">
     </el-table-column>
     <el-table-column
-      prop="material_name"
+      prop="materialName"
       label="物资名称"
       width="150">
     </el-table-column>
     <el-table-column
-      prop="required_supplies_types"
+      prop="materialType"
       label="物资种类"
       width="120">
     </el-table-column>
     <el-table-column
-      prop="order_time"
-      label="下单时间"
+      prop="courierCompany"
+      label="承运物流公司"
       width="180">
     </el-table-column>
     <el-table-column
@@ -40,12 +40,12 @@
       width="120">
     </el-table-column>
     <el-table-column
-      prop="required_supplies_num"
+      prop="materialNum"
       label="物资数量"
       width="100">
     </el-table-column>
     <el-table-column
-      prop="courier_name"
+      prop="courierName"
       label="快递员姓名"
       width="120">
     </el-table-column>
@@ -74,87 +74,87 @@
     border>
     <el-descriptions-item>
       <template slot="label">
-        <i class="el-icon-tickets"></i>
-        物流编号
-      </template>
-      {{fake_supplies_detaildata.transport_id}}
-    </el-descriptions-item>
-    <el-descriptions-item>
-      <template slot="label">
         <i class="el-icon-truck"></i>
         物流状态
       </template>
-      {{fake_supplies_detaildata.state}}
+      {{transportDetailedData.state}}
+    </el-descriptions-item>
+    <el-descriptions-item :span="2">
+      <template slot="label">
+        <i class="el-icon-tickets"></i>
+        物资编号
+      </template>
+      {{transportDetailedData.materialID}}
     </el-descriptions-item>
     <el-descriptions-item>
       <template slot="label">
         <i class="el-icon-time"></i>
-        下单时间
+        承运物流公司
       </template>
-      {{fake_supplies_detaildata.order_time}}
+      {{transportDetailedData.courierCompany}}
+    </el-descriptions-item>
+    <el-descriptions-item :span="2">
+      <template slot="label">
+        <i class="el-icon-tickets"></i>
+        运输员编号
+      </template>
+      {{transportDetailedData.courierID}}
     </el-descriptions-item>
     <el-descriptions-item>
       <template slot="label">
         <i class="el-icon-user"></i>
         运输员姓名
       </template>
-      {{fake_supplies_detaildata.courier_name}}
+      {{transportDetailedData.courierName}}
     </el-descriptions-item>
-    <el-descriptions-item>
+    <el-descriptions-item :span="2">
       <template slot="label">
         <i class="el-icon-mobile-phone"></i>
         运输员手机号
       </template>
-      {{fake_supplies_detaildata.courier_phone}}
-    </el-descriptions-item>
-    <el-descriptions-item>
-      <template slot="label">
-        <i class="el-icon-tickets"></i>
-        运输员编号
-      </template>
-      {{fake_supplies_detaildata.courier_id}}
+      {{transportDetailedData.courierPhone}}
     </el-descriptions-item>
     <el-descriptions-item>
       <template slot="label">
         <i class="el-icon-office-building"></i>
         起始地
       </template>
-      {{fake_supplies_detaildata.departure}}
+      {{transportDetailedData.departure}}
     </el-descriptions-item>
     <el-descriptions-item>
       <template slot="label">
         <i class="el-icon-location-outline"></i>
         当前位置
       </template>
-      {{fake_supplies_detaildata.current_location}}
+      {{transportDetailedData.currentLocation}}
     </el-descriptions-item>
     <el-descriptions-item>
       <template slot="label">
         <i class="el-icon-office-building"></i>
         目的地
       </template>
-      {{fake_supplies_detaildata.destination}}
+      {{transportDetailedData.destination}}
     </el-descriptions-item>
     <el-descriptions-item>
       <template slot="label">
         <i class="el-icon-tickets"></i>
         物资名称
       </template>
-      {{fake_supplies_detaildata.material_name}}
+      {{transportDetailedData.materialName}}
     </el-descriptions-item>
     <el-descriptions-item>
       <template slot="label">
         <i class="el-icon-copy-document"></i>
         物资种类
       </template>
-      {{fake_supplies_detaildata.required_supplies_types}}
+      {{transportDetailedData.materialType}}
     </el-descriptions-item>
     <el-descriptions-item>
       <template slot="label">
         <i class="el-icon-coin"></i>
         物资数量
       </template>
-      {{fake_supplies_detaildata.required_supplies_num}}
+      {{transportDetailedData.materialNum}}
     </el-descriptions-item>
   </el-descriptions>
 
@@ -173,44 +173,44 @@
     methods: {
       showDetail (row) {
       this.show = true //控制弹窗显示
-      this.fake_supplies_detaildata.courier_id=row.courier_id
-      this.fake_supplies_detaildata.courier_name=row.courier_name
-      this.fake_supplies_detaildata.courier_phone=row.courier_phone
-      this.fake_supplies_detaildata.current_location=row.current_location
-      this.fake_supplies_detaildata.departure=row.departure
-      this.fake_supplies_detaildata.destination=row.destination
-      this.fake_supplies_detaildata.material_name=row.material_name
-      this.fake_supplies_detaildata.order_time=row.order_time
-      this.fake_supplies_detaildata.required_supplies_num=row.required_supplies_num
-      this.fake_supplies_detaildata.required_supplies_types=row.required_supplies_types
-      this.fake_supplies_detaildata.state=row.state
-      this.fake_supplies_detaildata.transport_id=row.transport_id
+      this.transportDetailedData.courierID=row.courierID
+      this.transportDetailedData.courierName=row.courierName
+      this.transportDetailedData.courierPhone=row.courierPhone
+      this.transportDetailedData.currentLocation=row.currentLocation
+      this.transportDetailedData.departure=row.departure
+      this.transportDetailedData.destination=row.destination
+      this.transportDetailedData.materialName=row.materialName
+      this.transportDetailedData.courierCompany=row.courierCompany
+      this.transportDetailedData.materialNum=row.materialNum
+      this.transportDetailedData.materialType=row.materialType
+      this.transportDetailedData.state=row.state
+      this.transportDetailedData.materialID=row.materialID
       }
     },
     created() {
-      this.$axios.get("/fake_supplies_data").then((res) => {
-        this.fake_supplies_data = res.fake_supplies_data;
+      this.$axios.get("/transportData").then((res) => {
+        this.transportData = res.transportData;
       });
     },
 
     data() {
 
       return {
-        fake_supplies_detaildata:{
-          transport_id: "",
-          material_name: "",
-          required_supplies_types: "",
-          order_time:"",
+        transportDetailedData:{
+          materialID: "",
+          materialName: "",
+          materialType: "",
+          materialNum: 2,
+          courierCompany:"",
           state: "",
-          required_supplies_num: 2,
-          courier_name: "",
-          courier_id:"",
-          courier_phone:"",
+          courierName: "",
+          courierID:"",
+          courierPhone:"",
           departure:"",
           destination:"",
-          current_location:"",
+          currentLocation:"",
         },
-        fake_supplies_data: [ ],
+        transportData: [ ],
         value: '',
         cname:'',
         nameInput:'',
@@ -228,11 +228,11 @@
     },
     computed: {
     searchData: function () {
-      let SearchResult = this.fake_supplies_data.filter(
+      let SearchResult = this.transportData.filter(
         (item) =>
-          String(item.material_name).indexOf(String(this.nameInput)) > -1 
+          String(item.materialName).indexOf(String(this.nameInput)) > -1 
           // &&
-          // item.required_supplies_types.indexOf(this.required_supplies_typesInput) > -1
+          // item.materialType.indexOf(this.materialTypeInput) > -1
       );
 
       return SearchResult;
