@@ -142,6 +142,13 @@ Mock.mock(baseURL + "/donateData", "post", (req, res) => {
 });
 
 //个人需求表单
+Mock.mock(baseURL + "/personalRequest", "put", {
+  code: 20000,
+})
+Mock.mock(baseURL + "/personalRequest", "delete", {
+  code: 20000,
+})
+
 Mock.mock(baseURL + "/personalRequest", "get", {
   code: 20000,
   personalRequest: [
