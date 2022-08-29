@@ -11,7 +11,7 @@
     >
       <el-table-column prop="id" sortable label="需求者编号"> </el-table-column>
       <el-table-column prop="name" sortable label="姓名"> </el-table-column>
-      <el-table-column prop="phonenum" sortable label="电话号码">
+      <el-table-column prop="phoneNumber" sortable label="电话号码">
       </el-table-column>
       <el-table-column prop="goodID" sortable label="物资编号">
       </el-table-column>

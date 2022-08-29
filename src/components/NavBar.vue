@@ -42,7 +42,7 @@
       width="30%"
     >
       <template>
-        <p>用户ID：{{ this.$store.getters.ID }}</p>
+        <p>用户ID：{{ this.$store.getters.ID}}</p>
         <p>用户名：{{ this.$store.getters.name }}</p>
         <p>性别：{{ this.$store.getters.gender }}</p>
         <p>联系方式：{{ this.$store.getters.phoneNumber }}</p>

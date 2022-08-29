@@ -25,7 +25,7 @@
       <el-table-column prop="gender" label="性别" width="50"> </el-table-column>
       <el-table-column prop="urgency" label="紧急程度" width="100">
       </el-table-column>
-      <el-table-column prop="phonenum" label="手机号码" width="120">
+      <el-table-column prop="phoneNumber" label="手机号码" width="120">
       </el-table-column>
       <el-table-column prop="IDcard" label="身份证号码" width="120">
       </el-table-column>
@@ -85,7 +85,7 @@
             <el-radio v-model="Emp.urgency" label="一般">一般</el-radio>
           </el-form-item>
           <el-form-item label="手机号码" :label-width="formLabelWidth">
-            <el-input v-model="Emp.phonenum" autocomplete="off"></el-input>
+            <el-input v-model="Emp.phoneNumber" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item label="身份证号码" :label-width="formLabelWidth">
             <el-input v-model="Emp.IDcard" autocomplete="off"></el-input>
@@ -186,7 +186,9 @@ export default {
         .get("/personalRequest", { params: { ID: row.personId } })
         .then((res) => {
           console.log(res.personalRequest);
-          this.Emp = res.personalRequest;
+          if(res.code==20000){
+            this.Emp = res.personalRequest;
+          }
         });
     },
 
@@ -269,7 +271,7 @@ export default {
         name: "",
         gender: "",
         urgency:"",
-        phonenum: "",
+        phoneNumber: "",
         IDcard:"",
         health: "",
         type:"",

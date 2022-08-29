@@ -4,9 +4,9 @@
       <el-input v-model="Emp.name" autocomplete="off"></el-input>
     </el-form-item>
 
-    <el-form-item label="性别" :label-width="formLabelWidth" prop="sex">
-      <el-radio v-model="Emp.sex" label="男">男</el-radio>
-      <el-radio v-model="Emp.sex" label="女">女</el-radio>
+    <el-form-item label="性别" :label-width="formLabelWidth" prop="gender">
+      <el-radio v-model="Emp.gender" label="男">男</el-radio>
+      <el-radio v-model="Emp.gender" label="女">女</el-radio>
     </el-form-item>
 
     <el-form-item label="紧急程度" :label-width="formLabelWidth" prop="urgency">
@@ -14,8 +14,8 @@
       <el-radio v-model="Emp.urgency" label="一般">一般</el-radio>
     </el-form-item>
 
-    <el-form-item label="手机号码" :label-width="formLabelWidth" prop="phonenum">
-      <el-input v-model="Emp.phonenum" autocomplete="off"></el-input>
+    <el-form-item label="手机号码" :label-width="formLabelWidth" prop="phoneNumber">
+      <el-input v-model="Emp.phoneNumber" autocomplete="off"></el-input>
     </el-form-item>
     <el-form-item label="身份证号码" :label-width="formLabelWidth" prop="IDcard">
       <el-input v-model="Emp.IDcard" autocomplete="off"></el-input>
@@ -26,20 +26,20 @@
         </el-option>
       </el-select>
     </el-form-item>
-    <el-form-item label="所需物资种类" :label-width="formLabelWidth" prop="required_supplies_types">
-      <el-select v-model="Emp.required_supplies_types" clearable placeholder="请选择">
+    <el-form-item label="所需物资种类" :label-width="formLabelWidth" prop="type">
+      <el-select v-model="Emp.type" clearable placeholder="请选择">
         <!--el-option  v-for="(item, index) in options3" :key="index" :label="item" :value="item"-->
         <el-option v-for="item in options3" :key="item.value" :label="item.label" :value="item.value">
         </el-option>
       </el-select>
     </el-form-item>
-    <el-form-item label="所需物资" :label-width="formLabelWidth" prop="required_supplies">
-      <el-input v-model="Emp.required_supplies" autocomplete="off"></el-input>
+    <el-form-item label="所需物资" :label-width="formLabelWidth" prop="goodsName">
+      <el-input v-model="Emp.goodsName" autocomplete="off"></el-input>
     </el-form-item>
-    <el-form-item label="所需物资数量" :label-width="formLabelWidth" prop="required_supplies_num">
-      <el-input v-model="Emp.required_supplies_num" autocomplete="off"></el-input>
+    <el-form-item label="所需物资数量" :label-width="formLabelWidth" prop="num">
+      <el-input v-model="Emp.num" autocomplete="off"></el-input>
     </el-form-item>
-    <el-form-item label="备注" :label-width="formLabelWidth">
+    <el-form-item label="备注" :label-width="formLabelWidth" prop="content">
       <el-input v-model="Emp.content" autocomplete="off"></el-input>
     </el-form-item>
     <el-form-item>
@@ -100,23 +100,23 @@ export default {
         label: '一般'
       }],
       options: [{
-        value: '男',
+        value: 1,
         label: '男'
       }, {
-        value: '女',
+        value: 0,
         label: '女'
       }],
       Emp: {
+        personId: "",
         name: "",
-        sex: "",
-        urgency: "",
-        phonenum: "",
-        IDcard: "",
+        gender: undefined,
+        urgency:"",
+        phoneNumber: "",
+        IDcard:"",
         health: "",
-        required_supplies_types: "",
-        required_supplies: "",
-        required_supplies_num: "",
-        createTime: "",
+        type:"",
+        goodsName: "",
+        num: undefined,
         content: "",
       },
       rules: {
@@ -124,13 +124,13 @@ export default {
           { required: true, message: '请输入姓名', trigger: 'blur' },
           { min: 2, max: 20, message: '长度在 3 到 20 个字符', trigger: 'blur' }
         ],
-        sex: [
+        gender: [
           { required: true, message: '请输入性别', trigger: 'blur' }
         ],
         urgency: [
           { required: true, message: '请输入紧急程度', trigger: 'blur' }
         ],
-        phonenum: [
+        phoneNumber: [
           { required: true, message: '请输入手机号码', trigger: 'blur' },
           { min: 11, max: 11, message: '长度为11个字符', trigger: 'blur' }
         ],
@@ -141,42 +141,41 @@ export default {
         health: [
           { required: true, message: '请输入健康状况', trigger: 'blur' }
         ],
-        required_supplies_types: [
+        type: [
           { required: true, message: '请选择所需物资种类', trigger: 'blur' },
           { required: true, message: '请填写所需要的物资', trigger: 'blur' }
         ],
-        required_supplies: [
+        goodsName: [
           { required: true, message: '请填写所需要的物资', trigger: 'blur' }
         ],
-        required_supplies_num: [
+        num: [
           { required: true, message: '请填写所需要的物资数量', trigger: 'blur' }
-        ]
+        ],
+        content:[
+          { required: false, message: '备注', trigger: 'blur' }
+        ],
       }
     };
   },
-  // methods: {
 
-  //   // submitForm(formName) {
-  //   //   this.$refs[formName].validate((valid) => {
-  //   //     if (valid) {
-  //   //       axios.post('http://localhost:8080/emp/save',this.Emp).then((resp)=>{
-  //   //         if(resp.data=='success'){
-  //   //          this.$alert('打卡成功！',"消息",{
-  //   //            confirmButtonText:"确定",
-  //   //            callback:action=>{
-  //   //              this.$router.push('/RecordManage')
-  //   //            }
-  //   //          })
-  //   //         }
-  //   //       })
-  //   //     } else {
-  //   //       return false;
-  //   //     }
-  //   //   });
-  //   // },
-  //   // resetForm(formName) {
-  //   //   this.$refs[formName].resetFields();
-  //   // }
-  // }
+  methods: {
+
+    submitForm(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.$axios.post('/personalRequest',this.Emp).then((resp)=>{
+            if(resp.code==20000){
+             this.$message("表单提交成功");
+            }
+          })
+        } else {
+          return false;
+        }
+      });
+    },
+    resetForm(formName) {
+      this.$refs[formName].resetFields();
+    }
+  }
 }
 </script>
