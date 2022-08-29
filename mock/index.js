@@ -138,7 +138,7 @@ Mock.mock(baseURL + "/donateData", "post", (req, res) => {
     username: "baokker",
     email: Random.email(),
   };
-  return {...res,...data};
+  return { ...res, ...data };
 });
 
 //个人需求表单
@@ -391,124 +391,119 @@ Mock.mock(baseURL + "/fake_DNA_data", "get", {
   ],
 });
 //物资运输 -- MaterialTransport
-Mock.mock(baseURL + "/transportData","get",{
-  code:20000,
+Mock.mock(baseURL + "/transportData", "get", {
+  code: 20000,
   transportData: [
-  {
-    materialID: "000001",
-    materialName: "奥利奥",
-    materialType: "食品",
-    materialNum: 2,
-    courierCompany:"某通",
-    state: "等待揽收",
-    courierName: "大泽森赛",
-    courierID:"007",
-    courierPhone:"123456",
-    departure:"上海",
-    destination:"济南",
-    currentLocation:"蚌埠",
-  },
-  {
-    materialID: "000002",
-    materialName: "奥利给",
-    materialType: "食品",
-    materialNum: 999,
-    courierCompany:"某达",
-    state: "运输中",
-    courierName: "大贤森赛",
-    courierID:"007",
-    courierPhone:"123456",
-    departure:"上海",
-    destination:"济南",
-    currentLocation:"蚌埠",
-  },
-  {
-    materialID: "000003",
-    materialName: "奥利澳",
-    materialType: "生活用品",
-    materialNum: 999,
-    courierCompany:"某风",
-    state: "已签收",
-    courierName: "刘某",
-    courierID:"007",
-    courierPhone:"123456",
-    departure:"上海",
-    destination:"济南",
-    currentLocation:"蚌埠",
-  },
-  {
-    materialID: "000099",
-    materialName: "奥力奥",
-    materialType: "其它",
-    materialNum: 999,
-    courierCompany:"未知？",
-    state: "已送达",
-    courierName: "刘谋",
-    courierID:"007",
-    courierPhone:"123456",
-    departure:"上海",
-    destination:"济南",
-    currentLocation:"蚌埠",
-  }
+    {
+      materialID: "000001",
+      materialName: "奥利奥",
+      materialType: "食品",
+      materialNum: 2,
+      courierCompany: "某通",
+      state: "等待揽收",
+      courierName: "大泽森赛",
+      courierID: "007",
+      courierPhone: "123456",
+      departure: "上海",
+      destination: "济南",
+      currentLocation: "蚌埠",
+    },
+    {
+      materialID: "000002",
+      materialName: "奥利给",
+      materialType: "食品",
+      materialNum: 999,
+      courierCompany: "某达",
+      state: "运输中",
+      courierName: "大贤森赛",
+      courierID: "007",
+      courierPhone: "123456",
+      departure: "上海",
+      destination: "济南",
+      currentLocation: "蚌埠",
+    },
+    {
+      materialID: "000003",
+      materialName: "奥利澳",
+      materialType: "生活用品",
+      materialNum: 999,
+      courierCompany: "某风",
+      state: "已签收",
+      courierName: "刘某",
+      courierID: "007",
+      courierPhone: "123456",
+      departure: "上海",
+      destination: "济南",
+      currentLocation: "蚌埠",
+    },
+    {
+      materialID: "000099",
+      materialName: "奥力奥",
+      materialType: "其它",
+      materialNum: 999,
+      courierCompany: "未知？",
+      state: "已送达",
+      courierName: "刘谋",
+      courierID: "007",
+      courierPhone: "123456",
+      departure: "上海",
+      destination: "济南",
+      currentLocation: "蚌埠",
+    },
   ],
 });
 
-//隔离点分配fake_patients_data
-Mock.mock(baseURL + "/fake_data", "get", {
+//隔离点分配patientsData
+Mock.mock(baseURL + "/isolationData", "get", {
   code: 20000,
-  fake_patients_data: [
+  assignmentData: [
     {
       id: "000001",
       name: "大贤三赛",
-      sex: "男",
-      urgency: "紧急",
+      gender: "男",
       phonenum: "18743379266",
-      IDcard: "222543345352383946",
-      location: "同济大学四平路校区",
-      health: "重症",
-      content: "请优先处理",
+      address: "同济大学四平路校区",
+      signInDate: "8.29",
+      signOutDate: "9.3",
     },
     {
-      id: "000006",
-      name: "大贤老师",
-      sex: "男",
-      urgency: "一般",
-      phonenum: "18723379266",
-      IDcard: "222457345352383946",
-      location: "同济大学嘉定校区",
-      health: "无症状",
-      content: "无",
+      id: "000002",
+      name: "大贤三赛",
+      gender: "男",
+      phonenum: "18743379377",
+      address: "同济大学嘉定校区",
+      signInDate: "8.27",
+      signOutDate: "9.6",
     },
   ],
-  fake_isolations_data: [
+  isolatedPointsData: [
     {
-      is_id: "000001",
-      is_phonenum: "18743379266",
-      is_location: "同济大学四平路校区",
-      is_capacity: "100",
-      is_allowance: "50",
+      name: "同济迎宾馆",
+      region: "上海市杨浦区",
+      capacity: "100",
+      num: "50",
+      cost: "150",
     },
     {
-      is_id: "000002",
-      is_phonenum: "18723379266",
-      is_location: "同济大学嘉定校区",
-      is_capacity: "200",
-      is_allowance: "20",
+      name: "同济大学博楼",
+      region: "上海市嘉定区",
+      capacity: "200",
+      num: "10",
+      cost: "15",
     },
   ],
 });
-
 //物资购买
-Mock.mock(baseURL+"/purchaseData","get",{
-  code:20000,
-  unitPurchaseData:[
+Mock.mock(baseURL + "/purchaseData", "get", {
+  code: 20000,
+  unitPurchaseData: [
     {
       purchaseTime: "2022 8 29",
       materialName: "趣多多",
       materialNum: 3,
       materialPrice: "6",
       buyerID: "369",
-      buyerName:"yangpuqu",
+      buyerName: "yangpuqu",
     },
     {
       purchaseTime: "2022 8 29",
@@ -516,7 +511,7 @@ Mock.mock(baseURL+"/purchaseData","get",{
       materialNum: 3,
       materialPrice: "6",
       buyerID: "？",
-      buyerName:"yangpuqu",
+      buyerName: "yangpuqu",
     },
     {
       purchaseTime: "2022 8 29",
@@ -524,7 +519,7 @@ Mock.mock(baseURL+"/purchaseData","get",{
       materialNum: 3,
       materialPrice: "6",
       buyerID: "？",
-      buyerName:"yangpuqu",
+      buyerName: "yangpuqu",
     },
     {
       purchaseTime: "2022 8 29",
@@ -532,7 +527,7 @@ Mock.mock(baseURL+"/purchaseData","get",{
       materialNum: 3,
       materialPrice: "6",
       buyerID: "？",
-      buyerName:"yangpuqu",
+      buyerName: "yangpuqu",
     },
     {
       purchaseTime: "2022 8 29",
@@ -540,7 +535,7 @@ Mock.mock(baseURL+"/purchaseData","get",{
       materialNum: 3,
       materialPrice: "6",
       buyerID: "？",
-      buyerName:"yangpuqu",
+      buyerName: "yangpuqu",
     },
     {
       purchaseTime: "2022 8 29",
@@ -548,7 +543,7 @@ Mock.mock(baseURL+"/purchaseData","get",{
       materialNum: 3,
       materialPrice: "6",
       buyerID: "？",
-      buyerName:"yangpuqu",
+      buyerName: "yangpuqu",
     },
     {
       purchaseTime: "2022 8 29",
@@ -556,7 +551,7 @@ Mock.mock(baseURL+"/purchaseData","get",{
       materialNum: 3,
       materialPrice: "6",
       buyerID: "？",
-      buyerName:"yangpuqu",
+      buyerName: "yangpuqu",
     },
     {
       purchaseTime: "2022 8 29",
@@ -564,7 +559,7 @@ Mock.mock(baseURL+"/purchaseData","get",{
       materialNum: 3,
       materialPrice: "6",
       buyerID: "？",
-      buyerName:"yangpuqu",
+      buyerName: "yangpuqu",
     },
     {
       purchaseTime: "2022 8 29",
@@ -572,17 +567,17 @@ Mock.mock(baseURL+"/purchaseData","get",{
       materialNum: 3,
       materialPrice: "6",
       buyerID: "？",
-      buyerName:"yangpuqu",
+      buyerName: "yangpuqu",
     },
   ],
-  donorPurchaseData:[
+  donorPurchaseData: [
     {
       purchaseTime: "2022 8 29",
       materialName: "趣多多",
       materialNum: 3,
       materialPrice: "6",
       buyerID: "369",
-      buyerName:"yangpuqu",
+      buyerName: "yangpuqu",
     },
     {
       purchaseTime: "2022 8 29",
@@ -590,7 +585,7 @@ Mock.mock(baseURL+"/purchaseData","get",{
       materialNum: 3,
       materialPrice: "6",
       buyerID: "？",
-      buyerName:"yangpuqu",
+      buyerName: "yangpuqu",
     },
     {
       purchaseTime: "2022 8 29",
@@ -598,7 +593,7 @@ Mock.mock(baseURL+"/purchaseData","get",{
       materialNum: 3,
       materialPrice: "6",
       buyerID: "？",
-      buyerName:"yangpuqu",
+      buyerName: "yangpuqu",
     },
     {
       purchaseTime: "2022 8 29",
@@ -606,7 +601,7 @@ Mock.mock(baseURL+"/purchaseData","get",{
       materialNum: 3,
       materialPrice: "6",
       buyerID: "？",
-      buyerName:"yangpuqu",
+      buyerName: "yangpuqu",
     },
     {
       purchaseTime: "2022 8 29",
@@ -614,7 +609,7 @@ Mock.mock(baseURL+"/purchaseData","get",{
       materialNum: 3,
       materialPrice: "6",
       buyerID: "？",
-      buyerName:"yangpuqu",
+      buyerName: "yangpuqu",
     },
     {
       purchaseTime: "2022 8 29",
@@ -622,7 +617,7 @@ Mock.mock(baseURL+"/purchaseData","get",{
       materialNum: 3,
       materialPrice: "6",
       buyerID: "？",
-      buyerName:"yangpuqu",
+      buyerName: "yangpuqu",
     },
     {
       purchaseTime: "2022 8 29",
@@ -630,7 +625,7 @@ Mock.mock(baseURL+"/purchaseData","get",{
       materialNum: 3,
       materialPrice: "6",
       buyerID: "？",
-      buyerName:"yangpuqu",
+      buyerName: "yangpuqu",
     },
     {
       purchaseTime: "2022 8 29",
@@ -638,7 +633,7 @@ Mock.mock(baseURL+"/purchaseData","get",{
       materialNum: 3,
       materialPrice: "6",
       buyerID: "？",
-      buyerName:"yangpuqu",
+      buyerName: "yangpuqu",
     },
     {
       purchaseTime: "2022 8 29",
@@ -646,109 +641,43 @@ Mock.mock(baseURL+"/purchaseData","get",{
       materialNum: 3,
       materialPrice: "6",
       buyerID: "？",
-      buyerName:"yangpuqu",
+      buyerName: "yangpuqu",
     },
-  ]
-})
-
-//物资需求
-Mock.mock(baseURL+"/needData","get",{
-  code:20000,
-  needData:[
+  ],
+});
+//需求needData
+Mock.mock(baseURL + "/needData", "get", {
+  code: 20000,
+  needData: [
     {
-      needName: "bc",
-      needID: 2,
-      needTime: "2022.7.20",
-      needdOrganization: "Huangduligong",
-      needdOrganizationID: 65742,
-
-      city: "Shanghai",
-      district: "Jiading",
-      contactAddress: "caoangonglu 4800",
+      id: "000001",
+      name: "孟星羽",
+      phonenum: "18743379266",
+      goodID: "002",
+      type: "食品",
+      goodName: "趣多多",
+      num: 2,
     },
     {
-      needName: "c",
-      needID: 2,
-      needTime: "2022.7.22",
-      needdOrganization: "Huangduligong",
-      needdOrganizationID: 65742,
-      city: "Shanghai",
-      district: "Jiading",
-      contactAddress: "caoangonglu 4800",
+      id: "000002",
+      name: "大梦老师",
+      phonenum: "18743379266",
+      goodID: "003",
+      type: "食品",
+      goodName: "粉面菜蛋",
+      num: 100,
     },
     {
-      needName: "fbc",
-      needID: 2,
-      needTime: "2022.7.20",
-      needdOrganization: "Huangduligong",
-      needdOrganizationID: 65742,
-      city: "Shanghai",
-      district: "Jiading",
-      contactAddress: "caoangonglu 4800",
+      id: "000003",
+      name: "大星老师",
+      phonenum: "18743379266",
+      goodID: "004",
+      type: "生活用品",
+      goodName: "浴花",
+      num: 1,
     },
-    {
-      needName: "fbc",
-      needID: 2,
-      needTime: "2022.7.20",
-      needdOrganization: "Huangduligong",
-      needdOrganizationID: 65742,
-      city: "Shanghai",
-      district: "Jiading",
-      contactAddress: "caoangonglu 4800",
-    },
-    {
-      needName: "fbc",
-      needID: 2,
-      needTime: "2022.7.20",
-      needdOrganization: "Huangduligong",
-      needdOrganizationID: 65742,
-      city: "Shanghai",
-      district: "Jiading",
-      contactAddress: "caoangonglu 4800",
-    },
-    {
-      needName: "fbc",
-      needID: 2,
-      needTime: "2022.7.20",
-      needdOrganization: "Huangduligong",
-      needdOrganizationID: 65742,
-      city: "Shanghai",
-      district: "Jiading",
-      contactAddress: "caoangonglu 4800",
-    },
-    {
-      needName: "fbc",
-      needID: 2,
-      needTime: "2022.7.20",
-      needdOrganization: "Huangduligong",
-      needdOrganizationID: 65742,
-      city: "Shanghai",
-      district: "Jiading",
-      contactAddress: "caoangonglu 4800",
-    },
-    {
-      needName: "fbc",
-      needID: 2,
-      needTime: "2022.7.20",
-      needdOrganization: "Huangduligong",
-      needdOrganizationID: 65742,
-      city: "Shanghai",
-      district: "Jiading",
-      contactAddress: "caoangonglu 4800",
-    },
-    {
-      needName: "fbc",
-      needID: 2,
-      needTime: "2022.7.20",
-      needdOrganization: "Huangduligong",
-      needdOrganizationID: 65742,
-      city: "Shanghai",
-      district: "Jiading",
-      contactAddress: "caoangonglu 4800",
-    },
-  ]
-})
-
+  ],
+});
 
 Mock.mock(baseURL + "/user/login", "post", (config) => {
   // 传递过来的是JSON 必须要先解析！之后考虑封装吧 现在还只是测试
@@ -806,4 +735,4 @@ Mock.mock(RegExp(baseURL + "/user/info.*"), "get", (config) => {
 Mock.mock(baseURL + "/user/editInfo", "post", {
   code: 20000,
   data: "success",
-})
+});
