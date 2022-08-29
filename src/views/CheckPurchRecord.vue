@@ -1,8 +1,10 @@
 <template>
   <el-main>
-    <el-input placeholder="请输入购买时间/物资名称" v-model="input" clearable>
+    <el-input placeholder="请输入购买时间/物资名称" v-model="input" clearable style="width:40%">
     </el-input>
-    <el-button type="box" @click="dialogFormVisible = true">提交采购信息</el-button>
+    <el-button type="box" @click="dialogFormVisible = true"
+      >提交采购信息</el-button
+    >
     <el-table
       :data="searchData"
       height="500"
@@ -10,20 +12,22 @@
       style="width: 100%"
       :default-sort="{ prop: 'needTime', order: 'descending' }"
     >
-      <el-table-column prop="purchaseTime" sortable label="购买时间"> </el-table-column>
+      <el-table-column prop="purchaseTime" sortable label="购买时间">
+      </el-table-column>
       <el-table-column label="物资信息">
-       <el-table-column prop="materialName" label="物资名称"> </el-table-column>
-       <el-table-column prop="materialNum" label="物资数量"> </el-table-column>
-       <el-table-column prop="materialPrice" label="价格"> </el-table-column>
+        <el-table-column prop="materialName" label="物资名称">
+        </el-table-column>
+        <el-table-column prop="materialNum" label="物资数量"> </el-table-column>
+        <el-table-column prop="materialPrice" label="价格"> </el-table-column>
       </el-table-column>
       <el-table-column label="疫情防控单位信息">
-       <el-table-column prop="buyerType" label="采购方种类"> </el-table-column>
-       <el-table-column prop="buyerName" label="采购方名称"> </el-table-column>
+        <el-table-column prop="buyerType" label="采购方种类"> </el-table-column>
+        <el-table-column prop="buyerName" label="采购方名称"> </el-table-column>
       </el-table-column>
     </el-table>
 
     <!-- Form -->
-      
+
     <el-dialog title="信息表单" :visible.sync="dialogFormVisible">
       <el-form :model="form">
         <el-form-item label="物资名称" :label-width="formLabelWidth">
@@ -41,7 +45,12 @@
         </el-form-item>
         <el-form-item label="生产日期" :label-width="formLabelWidth">
           <el-col :span="8">
-            <el-date-picker type="date" placeholder="选择日期" v-model="form.date1" style="width: 100%;"></el-date-picker>
+            <el-date-picker
+              type="date"
+              placeholder="选择日期"
+              v-model="form.date1"
+              style="width: 100%"
+            ></el-date-picker>
           </el-col>
         </el-form-item>
         <el-form-item label="保质期" :label-width="formLabelWidth">
@@ -50,10 +59,11 @@
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+        <el-button type="primary" @click="dialogFormVisible = false"
+          >确 定</el-button
+        >
       </div>
     </el-dialog>
-
   </el-main>
 </template>
 
@@ -69,9 +79,9 @@ export default {
     // BottomFooter,
     // NavBar,
   },
-  created(){
+  created() {
     this.$axios.get("/purchData").then((res) => {
-        console.log(res);
+      console.log(res);
       this.purchData = res.purchData;
     });
   },
@@ -81,23 +91,24 @@ export default {
       purchData: [],
       dialogFormVisible: false,
       form: {
-        name: '',
-        type: '',
-        price: '',
-        date1: '',
-        date2: '',
+        name: "",
+        type: "",
+        price: "",
+        date1: "",
+        date2: "",
         delivery: false,
-        resource: '',
-        desc: ''
+        resource: "",
+        desc: "",
       },
-      formLabelWidth: '120px'
+      formLabelWidth: "120px",
     };
   },
   computed: {
     searchData: function () {
       let SearchResult = this.purchData.filter(
         (item) =>
-        String(item.materialName).indexOf(String(this.input)) > -1||item.purchaseTime.indexOf(String(this.input)) > -1
+          String(item.materialName).indexOf(String(this.input)) > -1 ||
+          item.purchaseTime.indexOf(String(this.input)) > -1
       );
       return SearchResult;
     },
