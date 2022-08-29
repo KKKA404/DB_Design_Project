@@ -75,21 +75,21 @@
     </el-row> -->
 
     <!-- 以下是表单形式 -->
-    <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-      <el-form-item label="捐赠方ID" prop="ID">
-        <el-input v-model="ruleForm.ID"></el-input>
+    <el-form :model="donateForm" :rules="rules" ref="donateForm" label-width="100px" class="demo-ruleForm">
+      <el-form-item label="捐赠方ID" prop="donorID">
+        <el-input v-model="donateForm.donorID"></el-input>
       </el-form-item>
       <el-form-item label="捐赠方名称" prop="name">
-        <el-input v-model="ruleForm.name"></el-input>
+        <el-input v-model="donateForm.name"></el-input>
       </el-form-item>
-      <el-form-item label="物资编号" prop="itemID">
-        <el-input v-model="ruleForm.itemID"></el-input>
+      <el-form-item label="物资编号" prop="goodsID">
+        <el-input v-model="donateForm.goodsID"></el-input>
       </el-form-item>
-      <el-form-item label="物资名称" prop="itemName">
-        <el-input v-model="ruleForm.itemName"></el-input>
+      <el-form-item label="物资名称" prop="goodsName">
+        <el-input v-model="donateForm.goodsName"></el-input>
       </el-form-item>
-      <el-form-item label="物资类型" prop="itemType" align="left">
-        <el-select v-model="ruleForm.itemType" placeholder="请输入物资类型">
+      <el-form-item label="物资类型" prop="goodsType" align="left">
+        <el-select v-model="donateForm.goodsType" placeholder="请输入物资类型">
           <el-option label="医护用品" value="medical"></el-option>
           <el-option label="生活用品" value="living"></el-option>
         </el-select>
@@ -97,7 +97,7 @@
       <el-form-item label="采购时间" required>
         <el-col :span="11">
           <el-form-item prop="date1">
-            <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.date1" style="width: 100%;">
+            <el-date-picker type="date" placeholder="选择日期" v-model="donateForm.date1" style="width: 100%;">
             </el-date-picker>
           </el-form-item>
         </el-col>
@@ -105,7 +105,7 @@
       <el-form-item label="捐赠时间" required>
         <el-col :span="11">
           <el-form-item prop="date2">
-            <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.date2" style="width: 100%;">
+            <el-date-picker type="date" placeholder="选择日期" v-model="donateForm.date2" style="width: 100%;">
             </el-date-picker>
           </el-form-item>
         </el-col>
@@ -131,8 +131,8 @@
         <el-input type="textarea" v-model="ruleForm.desc"></el-input>
       </el-form-item> -->
       <el-form-item>
-        <el-button type="primary" @click="submitForm('ruleForm')">提交捐赠信息</el-button>
-        <el-button @click="resetForm('ruleForm')">重置</el-button>
+        <el-button type="primary" @click="submitForm('donateForm')">提交捐赠信息</el-button>
+        <el-button @click="resetForm('donateForm')">重置</el-button>
       </el-form-item>
     </el-form>
   </el-main>
@@ -190,21 +190,17 @@ export default {
   //表单数据传递
   data() {
     return {
-      ruleForm: {
-        ID: '',
-        name: '',
-        itemID: '',
-        itemName: '',
-        itemType: '',
-        date1: '',
-        date2: '',
-        // delivery: false,
-        // itemType: [],
-        // resource: '',
-        // desc: ''
+      donateForm: {
+        donorID: "",
+        name: "",
+        goodsID: "",
+        goodsName: "",
+        goodsType: "",
+        date1: "",
+        date2: "",
       },
       rules: {
-        ID: [
+        donorID: [
           { required: true, message: '请输入捐赠者ID', trigger: 'blur' },
           { min: 1, max: 5, message: '长度在 1 到 5 个字符', trigger: 'blur' }
         ],
@@ -212,15 +208,15 @@ export default {
           { required: true, message: '请输入捐赠者名称', trigger: 'blur' },
           { min: 1, max: 5, message: '长度在 1 到 5 个字符', trigger: 'blur' }
         ],
-        itemID: [
+        goodsID: [
           { required: true, message: '请输入物资ID', trigger: 'blur' },
           { min: 1, max: 5, message: '长度在 1 到 5 个字符', trigger: 'blur' }
         ],
-        itemName: [
+        goodsName: [
           { required: true, message: '请输入物资名称', trigger: 'blur' },
           { min: 1, max: 5, message: '长度在 1 到 5 个字符', trigger: 'blur' }
         ],
-        itemType: [
+        goodsType: [
           { required: true, message: '请选择物资类型', trigger: 'change' }
         ],
         date1: [
@@ -229,15 +225,6 @@ export default {
         date2: [
           { type: 'date', required: true, message: '请选择日期', trigger: 'change' }
         ]
-        // itemType: [
-        //   { type: 'array', required: true, message: '请至少选择一个活动性质', trigger: 'change' }
-        // ],
-        // resource: [
-        //   { required: true, message: '请选择活动资源', trigger: 'change' }
-        // ],
-        // desc: [
-        //   { required: true, message: '请填写活动形式', trigger: 'blur' }
-        // ]
       }
     };
   },
@@ -246,7 +233,10 @@ export default {
       this.$refs[formName].validate((valid) => {
         //需要添加使捐赠日期不早于购买日期的条件约束
         if (valid) {
-          alert('submit!');
+          this.$axios.post('/makeDonate',this.donateForm).then((resp)=>{
+            if(resp.code==20000){
+             this.$message("捐赠提交成功");
+            }});
         } else {
           console.log('error submit!!');
           return false;
