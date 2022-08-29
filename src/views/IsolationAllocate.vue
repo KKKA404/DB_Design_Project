@@ -4,18 +4,14 @@
       <el-table-column fixed prop="id" label="编号" sortable width="100">
       </el-table-column>
       <el-table-column prop="name" label="姓名" width="100"> </el-table-column>
-      <el-table-column prop="sex" label="性别" width="50"> </el-table-column>
-      <el-table-column prop="urgency" label="紧急程度" width="100">
-      </el-table-column>
+      <el-table-column prop="gender" label="性别" width="50"> </el-table-column>
       <el-table-column prop="phonenum" label="手机号码" width="120">
       </el-table-column>
-      <el-table-column prop="IDcard" label="身份证号码" width="240">
+      <el-table-column prop="address" label="当前住址" width="240">
       </el-table-column>
-      <el-table-column prop="location" label="当前住址" width="240">
+      <el-table-column prop="signInDate" label="隔离开始日期" width="240">
       </el-table-column>
-      <el-table-column label="健康状况" prop="health" width="80">
-      </el-table-column>
-      <el-table-column prop="content" label="备注" width="240">
+      <el-table-column prop="signOutDate" label="隔离结束日期" width="240">
       </el-table-column>
       <el-table-column width="120" label="操作">
         <template>
@@ -32,19 +28,20 @@
           <el-table :data="searchIs" border style="width: 100%">
             <el-table-column
               fixed
-              prop="is_id"
-              label="编号"
+              prop="name"
+              label="隔离点名称"
               sortable
-              width="100"
+              width="120"
             >
             </el-table-column>
-            <el-table-column prop="is_phonenum" label="联系号码" width="120">
+
+            <el-table-column prop="region" label="所处地区" width="240">
             </el-table-column>
-            <el-table-column prop="is_location" label="地址" width="240">
+            <el-table-column prop="capacity" label="最大容纳人数" width="100">
             </el-table-column>
-            <el-table-column prop="is_capacity" label="总容量" width="100">
+            <el-table-column prop="num" label="当前隔离人数" width="100">
             </el-table-column>
-            <el-table-column prop="is_allowance" label="剩余容量" width="100">
+            <el-table-column prop="cost" label="隔离费用" width="100">
             </el-table-column>
             <el-table-column width="120" label="操作">
               <template slot-scope="scope">
@@ -91,16 +88,16 @@ export default {
     },
   },
   created() {
-    this.$axios.get("/fake_data").then((res) => {
-      this.fake_patients_data = res.fake_patients_data;
-      this.fake_isolations_data = res.fake_isolations_data;
+    this.$axios.get("/isolationData").then((res) => {
+      this.assignmentData = res.assignmentData;
+      this.isolatedPointsData = res.isolatedPointsData;
     });
   },
   data() {
     return {
-      fake_patients_data: [],
+      assignmentData: [],
 
-      fake_isolations_data: [],
+      isolatedPointsData: [],
 
       value: "",
       cname: "",
@@ -116,29 +113,17 @@ export default {
       dialogFormVisible: false,
       formLabelWidth: "120px",
       LabelWidth: "180px",
-
-      Emp: {
-        id: "",
-        name: "",
-        sex: "",
-        phonenum: "",
-        temp: "",
-        risk: "",
-        health: "",
-        content: "",
-        depart: "",
-      },
     };
   },
   computed: {
     searchData: function () {
-      let SearchResult = this.fake_patients_data.filter(
+      let SearchResult = this.assignmentData.filter(
         (item) => String(item.name).indexOf(String(this.nameInput)) > -1
       );
       return SearchResult;
     },
     searchIs: function () {
-      let SearchResult = this.fake_isolations_data.filter(
+      let SearchResult = this.isolatedPointsData.filter(
         (item) => String(item.name).indexOf(String(this.nameInput)) > -1
       );
       return SearchResult;
