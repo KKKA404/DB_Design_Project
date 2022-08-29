@@ -10,31 +10,21 @@
       style="width: 100%"
       :default-sort="{ prop: 'needTime', order: 'descending' }"
     >
-      <el-table-column prop="needName" sortable label="名称"> </el-table-column>
-      <el-table-column prop="needID" sortable label="ID"> </el-table-column>
-      <el-table-column prop="needTime" sortable label="捐赠时间">
+      <el-table-column prop="purchaseTime" sortable label="购买时间"> </el-table-column>
+      <el-table-column label="物资信息">
+       <el-table-column prop="materialName" label="物资名称"> </el-table-column>
+       <el-table-column prop="materialNum" label="物资数量"> </el-table-column>
+       <el-table-column prop="materialPrice" label="价格"> </el-table-column>
       </el-table-column>
-      <el-table-column
-        prop="needdOrganizationID"
-        sortable
-        label="受捐防控单位ID"
-      >
-      </el-table-column>
-      <el-table-column
-        prop="needdOrganization"
-        sortable
-        label="受捐防控单位名称"
-      >
-      </el-table-column>
-      <el-table-column prop="city" label="市" sortable> </el-table-column>
-      <el-table-column prop="district" label="区" sortable> </el-table-column>
-      <el-table-column prop="contactAddress" sortable label="联系方式">
+      <el-table-column label="疫情防控单位信息">
+       <el-table-column prop="materialName" label="采购方种类"> </el-table-column>
+       <el-table-column prop="materialNum" label="采购方名称"> </el-table-column>
       </el-table-column>
     </el-table>
 
     <!-- Form -->
       
-    <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
+    <el-dialog title="信息表单" :visible.sync="dialogFormVisible">
       <el-form :model="form">
         <el-form-item label="物资名称" :label-width="formLabelWidth">
           <el-input v-model="form.name" autocomplete="off"></el-input>

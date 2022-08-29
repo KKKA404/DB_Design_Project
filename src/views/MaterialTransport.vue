@@ -74,17 +74,17 @@
     border>
     <el-descriptions-item>
       <template slot="label">
-        <i class="el-icon-tickets"></i>
-        物资编号
-      </template>
-      {{transportDetailedData.materialID}}
-    </el-descriptions-item>
-    <el-descriptions-item>
-      <template slot="label">
         <i class="el-icon-truck"></i>
         物流状态
       </template>
       {{transportDetailedData.state}}
+    </el-descriptions-item>
+    <el-descriptions-item :span="2">
+      <template slot="label">
+        <i class="el-icon-tickets"></i>
+        物资编号
+      </template>
+      {{transportDetailedData.materialID}}
     </el-descriptions-item>
     <el-descriptions-item>
       <template slot="label">
@@ -93,6 +93,13 @@
       </template>
       {{transportDetailedData.courierCompany}}
     </el-descriptions-item>
+    <el-descriptions-item :span="2">
+      <template slot="label">
+        <i class="el-icon-tickets"></i>
+        运输员编号
+      </template>
+      {{transportDetailedData.courierID}}
+    </el-descriptions-item>
     <el-descriptions-item>
       <template slot="label">
         <i class="el-icon-user"></i>
@@ -100,19 +107,12 @@
       </template>
       {{transportDetailedData.courierName}}
     </el-descriptions-item>
-    <el-descriptions-item>
+    <el-descriptions-item :span="2">
       <template slot="label">
         <i class="el-icon-mobile-phone"></i>
         运输员手机号
       </template>
       {{transportDetailedData.courierPhone}}
-    </el-descriptions-item>
-    <el-descriptions-item>
-      <template slot="label">
-        <i class="el-icon-tickets"></i>
-        运输员编号
-      </template>
-      {{transportDetailedData.courierID}}
     </el-descriptions-item>
     <el-descriptions-item>
       <template slot="label">
