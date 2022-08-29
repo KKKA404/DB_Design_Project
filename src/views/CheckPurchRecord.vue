@@ -1,6 +1,6 @@
 <template>
   <el-main>
-    <el-input placeholder="请输入需求方ID/名称" v-model="input" clearable>
+    <el-input placeholder="请输入购买时间/物资名称" v-model="input" clearable>
     </el-input>
     <el-button type="box" @click="dialogFormVisible = true">提交采购信息</el-button>
     <el-table
@@ -17,8 +17,8 @@
        <el-table-column prop="materialPrice" label="价格"> </el-table-column>
       </el-table-column>
       <el-table-column label="疫情防控单位信息">
-       <el-table-column prop="materialName" label="采购方种类"> </el-table-column>
-       <el-table-column prop="materialNum" label="采购方名称"> </el-table-column>
+       <el-table-column prop="buyerType" label="采购方种类"> </el-table-column>
+       <el-table-column prop="buyerName" label="采购方名称"> </el-table-column>
       </el-table-column>
     </el-table>
 
@@ -97,7 +97,7 @@ export default {
     searchData: function () {
       let SearchResult = this.purchData.filter(
         (item) =>
-        String(item.needID).indexOf(String(this.input)) > -1||item.needName.indexOf(String(this.input)) > -1
+        String(item.materialName).indexOf(String(this.input)) > -1||item.purchaseTime.indexOf(String(this.input)) > -1
       );
       return SearchResult;
     },
