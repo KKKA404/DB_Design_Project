@@ -655,6 +655,15 @@ Mock.mock(baseURL + "/purchaseData", "get", {
     },
   ],
 });
+//物资购买（post）
+Mock.mock(baseURL + "/purchaseData/unitPurchase", "post", {
+  code: 20000,
+  data: "success",
+});
+Mock.mock(baseURL + "/purchaseData/donorPurchase", "post", {
+  code: 20000,
+  data: "success",
+});
 //需求needData
 Mock.mock(baseURL + "/needData", "get", {
   code: 20000,
