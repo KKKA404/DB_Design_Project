@@ -11,7 +11,7 @@
     >
       <el-table-column prop="id" sortable label="需求者编号"> </el-table-column>
       <el-table-column prop="name" sortable label="姓名"> </el-table-column>
-      <el-table-column prop="phoneNumber" sortable label="电话号码">
+      <el-table-column prop="phonenum" sortable label="电话号码">
       </el-table-column>
       <el-table-column prop="goodID" sortable label="物资编号">
       </el-table-column>
@@ -47,24 +47,20 @@ export default {
         cancelButtonText: "取消",
         type: "warning",
       }).then(() => {
-        axios
-          .delete("http://localhost:8080/emp/deleteById/" + row.is_id)
-          //具体逻辑待完成
-          .then((resp) => {
-            this.$alert(row.name + "隔离点分配成功！", "消息", {
-              confirmButtonText: "确定",
-              callback: (action) => {
-                window.location.reload();
-              },
-            });
+        this.$axios
+          .delete("/needData", { data: { ID: row.id } })
+          .then((res) => {
+            if (res.code == 20000) {
+              this.$alert(row.name + " 的需求消除成功！", "消息", {
+                confirmButtonText: "确定",
+                callback: (action) => {
+                  window.location.reload();
+                },
+              });
+            }
           });
       });
     },
-  },
-  created() {
-    this.$axios.get("/needData").then((res) => {
-      this.needData = res.needData;
-    });
   },
   created() {
     this.$axios.get("/needData").then((res) => {

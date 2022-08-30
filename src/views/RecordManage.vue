@@ -186,19 +186,17 @@ export default {
         .get("/personalRequest", { params: { ID: row.personId } })
         .then((res) => {
           console.log(res.personalRequest);
-          if(res.code==20000){
+          if (res.code == 20000) {
             this.Emp = res.personalRequest;
           }
         });
     },
 
     handleCurrentChange(currentPage) {
-      axios
-        .get("/personalRequest" + currentPage + "/6")
-        .then((resp) => {
-          this.tableData = resp.data.records;
-          this.total = resp.data.total;
-        });
+      axios.get("/personalRequest" + currentPage + "/6").then((resp) => {
+        this.tableData = resp.data.records;
+        this.total = resp.data.total;
+      });
     },
   },
   created() {
@@ -267,14 +265,14 @@ export default {
       LabelWidth: "180px",
 
       Emp: {
-        personId: "",
+        id: "",
         name: "",
         gender: "",
-        urgency:"",
+        urgency: "",
         phoneNumber: "",
-        IDcard:"",
+        IDcard: "",
         health: "",
-        type:"",
+        type: "",
         goodsName: "趣多多",
         num: 2,
         content: "带瓶老干妈",

@@ -144,13 +144,13 @@ Mock.mock(baseURL + "/donateData", "post", (req, res) => {
 //个人需求表单
 Mock.mock(baseURL + "/personalRequest", "post", {
   code: 20000,
-})
+});
 Mock.mock(baseURL + "/personalRequest", "put", {
   code: 20000,
-})
+});
 Mock.mock(baseURL + "/personalRequest", "delete", {
   code: 20000,
-})
+});
 
 Mock.mock(baseURL + "/personalRequest", "get", {
   code: 20000,
@@ -332,13 +332,13 @@ Mock.mock(baseURL + "/fake_Material_data", "get", {
 //核酸结果管理
 Mock.mock(baseURL + "/samplingData", "delete", {
   code: 20000,
-})
+});
 Mock.mock(baseURL + "/samplingData", "put", {
   code: 20000,
-})
+});
 Mock.mock(baseURL + "/samplingData", "post", {
   code: 20000,
-})
+});
 Mock.mock(baseURL + "/samplingData", "get", {
   code: 20000,
   samplingData: [
@@ -473,6 +473,11 @@ Mock.mock(baseURL + "/transportData", "get", {
 });
 
 //隔离点分配patientsData
+
+Mock.mock(baseURL + "/isolationData", "delete", {
+  code: 20000,
+});
+
 Mock.mock(baseURL + "/isolationData", "get", {
   code: 20000,
   assignmentData: [
@@ -668,14 +673,12 @@ Mock.mock(baseURL + "/purchaseData", "get", {
 //志愿信息提交
 Mock.mock(baseURL + "/volunteerApplication", "post", {
   code: 20000,
-
-})
+});
 
 //捐赠物资表单
 Mock.mock(baseURL + "/makeDonate", "post", {
   code: 20000,
-
-})
+});
 
 //物资购买（post）
 Mock.mock(baseURL + "/purchaseData/unitPurchase", "post", {
@@ -686,7 +689,12 @@ Mock.mock(baseURL + "/purchaseData/donorPurchase", "post", {
   code: 20000,
   data: "success",
 });
+
 //需求needData
+Mock.mock(baseURL + "/needData", "delete", {
+  code: 20000,
+});
+
 Mock.mock(baseURL + "/needData", "get", {
   code: 20000,
   needData: [
@@ -698,6 +706,7 @@ Mock.mock(baseURL + "/needData", "get", {
       type: "食品",
       goodName: "趣多多",
       num: 2,
+      content: "",
     },
     {
       id: "000002",
@@ -707,6 +716,7 @@ Mock.mock(baseURL + "/needData", "get", {
       type: "食品",
       goodName: "粉面菜蛋",
       num: 100,
+      content: "金汤肥牛味",
     },
     {
       id: "000003",
@@ -716,6 +726,7 @@ Mock.mock(baseURL + "/needData", "get", {
       type: "生活用品",
       goodName: "浴花",
       num: 1,
+      content: "很急，没法洗澡了",
     },
   ],
 });
