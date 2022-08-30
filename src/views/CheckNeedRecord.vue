@@ -48,7 +48,7 @@ export default {
         type: "warning",
       }).then(() => {
         this.$axios
-          .delete("/needData", { data: { ID: row.id } })
+          .delete("/needData", { data: { id: row.id, goodID: row.goodID } })
           .then((res) => {
             if (res.code == 20000) {
               this.$alert(row.name + " 的需求消除成功！", "消息", {
