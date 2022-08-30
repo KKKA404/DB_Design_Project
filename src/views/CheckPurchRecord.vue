@@ -1,6 +1,6 @@
 <template>
   <el-main>
-    <el-tabs v-model="activeName" type="card">
+    <el-tabs v-model="activeName" type="border-card">
       <el-tab-pane label="防控单位采购" name="first">
         <el-input placeholder="请输入物资名称" v-model="inputMaterialName" clearable style="
             width: 40%;
