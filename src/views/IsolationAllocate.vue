@@ -14,8 +14,15 @@
       <el-table-column prop="signOutDate" label="隔离结束日期" width="240">
       </el-table-column>
       <el-table-column width="120" label="操作">
-        <template>
-          <el-button @click="dialogFormVisible = true" type="text" size="medium"
+        <template slot-scope="scope">
+          <el-button
+            @click="
+              (dialogFormVisible = true),
+                (tempID = scope.row.id),
+                (tempName = scope.row.name)
+            "
+            type="text"
+            size="medium"
             >分配隔离点</el-button
           >
         </template>
@@ -46,7 +53,9 @@
             <el-table-column width="120" label="操作">
               <template slot-scope="scope">
                 <el-button
-                  @click="(dialogFormVisible = true), allocate(scope.row)"
+                  @click="
+                    (dialogFormVisible = true), allocate(scope.row), update()
+                  "
                   type="text"
                   size="medium"
                   >确定分配</el-button
@@ -63,26 +72,43 @@
 <script>
 export default {
   methods: {
+    update() {
+      this.$axios.get("/isolationData").then((res) => {
+        this.assignmentData = res.assignmentData;
+        this.isolatedPointsData = res.isolatedPointsData;
+      });
+    },
     allocate(row) {
       this.$confirm(
         "确定将当前病人分配到 " + row.name + " 隔离点?",
-        "删除数据",
+        "清除数据",
         {
           confirmButtonText: "确定",
           cancelButtonText: "取消",
           type: "warning",
         }
       ).then(() => {
-        axios
-          .delete("http://localhost:8080/emp/deleteById/" + row.name)
-          //具体逻辑待完成
-          .then((resp) => {
-            this.$alert(row.name + "隔离点分配成功！", "消息", {
-              confirmButtonText: "确定",
-              callback: (action) => {
-                window.location.reload();
-              },
-            });
+        this.$axios
+          .post("/isolationData/isolatedPointsData", { name: row.name })
+          .then((res) => {
+            if (res.code == 20000) {
+              this.$message("隔离点信息更新成功");
+            }
+          });
+        this.$axios
+          .delete("/isolationData/assignmentData", {
+            data: { id: this.tempID },
+          })
+          .then((res) => {
+            if (res.code == 20000) {
+              this.$alert(this.tempName + " 的隔离点分配成功！", "消息", {
+                confirmButtonText: "确定",
+                callback: (action) => {
+                  window.location.reload();
+                },
+              });
+              
+            }
           });
       });
     },
@@ -96,20 +122,10 @@ export default {
   data() {
     return {
       assignmentData: [],
-
       isolatedPointsData: [],
-
-      value: "",
-      cname: "",
+      tempID: "",
+      tempName: "",
       nameInput: "",
-      //searchKey:"",
-      options: [],
-      // value: [],
-      list: [],
-      loading: false,
-      tableData: null,
-      total: null,
-      dialogTableVisible: false,
       dialogFormVisible: false,
       formLabelWidth: "120px",
       LabelWidth: "180px",
