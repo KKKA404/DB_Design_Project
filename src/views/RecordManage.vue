@@ -1,60 +1,66 @@
 <template>
-  <div>
-    <el-input
-      placeholder="请输入姓名"
-      v-model="nameInput"
-      class="input-with-select"
-      style="width: 40%"
-    >
-      <!-- <el-select v-model="cname" slot="prepend" placeholder="请选择" @change="getKey">
+  <el-main>
+    <el-card>
+      <el-tag
+        effect="plain"
+        style="
+          float: left;
+          margin-bottom: 13px;
+          font-size: 18px;
+          font-weight: 400;
+        "
+        >筛选条件</el-tag
+      >
+      <el-input
+        placeholder="请输入姓名"
+        v-model="nameInput"
+        class="input-with-select"
+        style="width: 100%; margin-bottom: 14px"
+      >
+        <!-- <el-select v-model="cname" slot="prepend" placeholder="请选择" @change="getKey">
       <el-option label="姓名" value="name"></el-option>
       <el-option label="所需物资种类" value="type"></el-option>
       <el-option label="提交时间" value="createTime"></el-option>
     </el-select> -->
-      <el-button
-        slot="append"
-        icon="el-icon-search"
-      ></el-button>
-    </el-input>
-
-    <el-table :data="searchData" border style="width: 100%">
-      <el-table-column fixed prop="demandFormId" label="表单编号" sortable width="100">
-      </el-table-column>
-      <el-table-column fixed prop="personId" label="人员编号" sortable width="100">
-      </el-table-column>
-      <el-table-column prop="name" label="姓名" width="50"> </el-table-column>
-      <el-table-column prop="gender" label="性别" width="50"> </el-table-column>
-      <el-table-column prop="urgency" label="紧急程度" width="100">
-      </el-table-column>
-      <el-table-column prop="phoneNumber" label="手机号码" width="120">
-      </el-table-column>
-      <el-table-column prop="IDcard" label="身份证号码" width="120">
-      </el-table-column>
-      <el-table-column label="健康状况" prop="health" width="80">
-      </el-table-column>
-      <el-table-column prop="type" label="所需物资种类" width="120">
-      </el-table-column>
-      <el-table-column prop="goodsName" label="所需物资" width="120">
-      </el-table-column>
-      <el-table-column prop="num" label="所需物资数量" width="120">
-      </el-table-column>
-      <el-table-column prop="content" label="备注" width="120">
-      </el-table-column>
-      <el-table-column width="120" label="操作" fixed="right">
-        <template slot-scope="scope">
-          <el-button
-            @click="(dialogFormVisible = true), edit(scope.row)"
-            type="text"
-            size="small"
-            >修改</el-button
-          >
-          <el-button type="text" size="small" @click="deleteRecord(scope.row)"
-            >删除</el-button
-          >
-        </template>
-      </el-table-column>
-    </el-table>
-
+        <el-button slot="append" icon="el-icon-search"></el-button>
+      </el-input>
+    </el-card>
+    <br />
+    <el-card>
+      <el-table :data="searchData" border style="width: 100%">
+        <el-table-column
+          fixed
+          prop="personId"
+          label="编号"
+          sortable
+          width="100"
+        >
+        </el-table-column>
+        <el-table-column prop="name" label="姓名"> </el-table-column>
+        <el-table-column prop="gender" label="性别"> </el-table-column>
+        <el-table-column prop="urgency" label="紧急程度"> </el-table-column>
+        <el-table-column prop="phoneNumber" label="手机号码"> </el-table-column>
+        <el-table-column prop="IDcard" label="身份证号码"> </el-table-column>
+        <el-table-column label="健康状况" prop="health"> </el-table-column>
+        <el-table-column prop="type" label="所需物资种类"> </el-table-column>
+        <el-table-column prop="goodsName" label="所需物资"> </el-table-column>
+        <el-table-column prop="num" label="所需物资数量"> </el-table-column>
+        <el-table-column prop="content" label="备注"> </el-table-column>
+        <el-table-column label="操作">
+          <template slot-scope="scope">
+            <el-button
+              @click="(dialogFormVisible = true), edit(scope.row)"
+              type="text"
+              >修改</el-button
+            >
+            <el-button type="text" @click="deleteRecord(scope.row)"
+              >删除</el-button
+            >
+          </template>
+        </el-table-column>
+      </el-table>
+    </el-card>
+    >>>>>>> Stashed changes
     <div class="block">
       <el-pagination
         @current-change="handleCurrentChange"
@@ -111,7 +117,6 @@
           </el-form-item> -->
           <el-form-item label="所需物资种类" :label-width="formLabelWidth">
             <el-select v-model="Emp.depart" clearable placeholder="请选择">
-              
               <el-option
                 v-for="item in options3"
                 :key="item.value"
@@ -136,7 +141,7 @@
         </div>
       </el-dialog>
     </div>
-  </div>
+  </el-main>
 </template>
 
 <script>
@@ -261,7 +266,7 @@ export default {
       LabelWidth: "180px",
 
       Emp: {
-        demandFormId:"",
+        demandFormId: "",
         personalId: "",
         name: "",
         gender: undefined,

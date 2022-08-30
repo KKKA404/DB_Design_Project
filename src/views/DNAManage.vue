@@ -1,52 +1,51 @@
 <template>
-  <div>
-    <el-button type="primary" @click="addDialogFormVisible = true" size="medium"
-      >新增记录</el-button
-    >
-    <el-input
-      placeholder="请输入检索姓名"
-      v-model="nameInput"
-      class="input-with-select"
-      style="width: 40%"
-    >
+  <el-main>
+    <el-card>
+      <el-input
+        placeholder="请输入检索姓名"
+        v-model="nameInput"
+        class="input-with-select"
+        style="width: 90%; float: left; margin-right: 30px"
+      >
+        <el-button slot="append" icon="el-icon-search"></el-button>
+      </el-input>
       <el-button
-        slot="append"
-        icon="el-icon-search"
-      ></el-button>
-    </el-input>
-
-    <el-table :data="searchData" border style="width: 100%">
-      <el-table-column fixed prop="name" label="姓名" width="100">
-      </el-table-column>
-      <el-table-column prop="id" label="编号" width="50"> </el-table-column>
-      <el-table-column prop="gender" label="性别" width="50"> </el-table-column>
-      <el-table-column prop="IDcard" label="身份证号码" width="170">
-      </el-table-column>
-      <el-table-column prop="sampleTime" label="采样时间" width="160">
-      </el-table-column>
-      <el-table-column prop="place" label="检测机构" width="200">
-      </el-table-column>
-      <el-table-column prop="testResult" label="检测结果" width="120">
-      </el-table-column>
-      <el-table-column prop="phoneNumber" label="手机号码" width="120">
-      </el-table-column>
-      <el-table-column prop="testResultTime" label="检测结果时间" width="170">
-      </el-table-column>
-      <el-table-column width="120" label="操作" fixed="right">
-        <template slot-scope="scope">
-          <el-button
-            @click="(dialogFormVisible = true), edit(scope.row)"
-            type="text"
-            size="small"
-            >修改</el-button
-          >
-          <el-button type="text" size="small" @click="deleteRecord(scope.row)"
-            >删除</el-button
-          >
-        </template>
-      </el-table-column>
-    </el-table>
-
+        type="primary"
+        style="margin-left: 10px"
+        @click="addDialogFormVisible = true"
+        size="medium"
+        >新增记录</el-button
+      >
+    </el-card>
+    <br />
+    <el-card>
+      <el-table :data="searchData" border style="width: 100%">
+        <el-table-column fixed prop="name" label="姓名" width="100">
+        </el-table-column>
+        <el-table-column prop="personId" label="编号"> </el-table-column>
+        <el-table-column prop="gender" label="性别"> </el-table-column>
+        <el-table-column prop="IDcard" label="身份证号码"> </el-table-column>
+        <el-table-column prop="sampleTime" label="采样时间"> </el-table-column>
+        <el-table-column prop="place" label="检测机构"> </el-table-column>
+        <el-table-column prop="testResult" label="检测结果"> </el-table-column>
+        <el-table-column prop="phoneNumber" label="手机号码"> </el-table-column>
+        <el-table-column prop="testResultTime" label="检测结果时间">
+        </el-table-column>
+        <el-table-column label="操作" fixed="right">
+          <template slot-scope="scope">
+            <el-button
+              @click="(dialogFormVisible = true), edit(scope.row)"
+              type="text"
+              size="small"
+              >修改</el-button
+            >
+            <el-button type="text" size="small" @click="deleteRecord(scope.row)"
+              >删除</el-button
+            >
+          </template>
+        </el-table-column>
+      </el-table>
+    </el-card>
     <div class="block">
       <el-pagination
         @current-change="handleCurrentChange"
@@ -180,7 +179,7 @@
         </div>
       </el-dialog>
     </div>
-  </div>
+  </el-main>
 </template>
 
 <script>
@@ -206,48 +205,46 @@ export default {
         cancelButtonText: "取消",
         type: "warning",
       }).then(() => {
-        this.$axios.delete("/samplingData" ,{ data: { ID: row.personId } }).then((resp) => {
-          if (resp.code == 20000) {
-            this.$alert(row.name + "的病例记录删除成功！", "消息", {
-              confirmButtonText: "确定",
-              callback: (action) => {
-                window.location.reload();
-              },
-            });
-          }
-        });
+        this.$axios
+          .delete("/samplingData", { data: { ID: row.personId } })
+          .then((resp) => {
+            if (resp.code == 20000) {
+              this.$alert(row.name + "的病例记录删除成功！", "消息", {
+                confirmButtonText: "确定",
+                callback: (action) => {
+                  window.location.reload();
+                },
+              });
+            }
+          });
       });
     },
 
     update() {
-      this.$axios
-        .put("/samplingData", this.EmpIden)
-        .then((resp) => {
-          console.log(resp);
-          if (resp.code == 20000) {
-            this.$alert(this.EmpIden.name + "的病例记录修改成功！", "消息", {
-              confirmButtonText: "确定",
-              callback: (action) => {
-                window.location.reload();
-              },
-            });
-          }
-        });
+      this.$axios.put("/samplingData", this.EmpIden).then((resp) => {
+        console.log(resp);
+        if (resp.code == 20000) {
+          this.$alert(this.EmpIden.name + "的病例记录修改成功！", "消息", {
+            confirmButtonText: "确定",
+            callback: (action) => {
+              window.location.reload();
+            },
+          });
+        }
+      });
     },
     edit(row) {
       this.$axios
-        .get("/samplingData" ,{params:{ID:row.personId}})
+        .get("/samplingData", { params: { ID: row.personId } })
         .then((resp) => {
           this.EmpIden = resp.data;
         });
     },
     handleCurrentChange(currentPage) {
-      this.$axios
-        .get("/samplingData" + currentPage + "/6")
-        .then((resp) => {
-          this.tableData = resp.data.records;
-          this.total = resp.data.total;
-        });
+      this.$axios.get("/samplingData" + currentPage + "/6").then((resp) => {
+        this.tableData = resp.data.records;
+        this.total = resp.data.total;
+      });
     },
   },
 
@@ -306,7 +303,7 @@ export default {
           },
         ],
       },
-      nameInput:"",
+      nameInput: "",
       options: [],
       //value: [],
       list: [],

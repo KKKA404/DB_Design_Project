@@ -1,38 +1,58 @@
 <template>
   <el-main>
-    <el-input placeholder="请输入捐赠方ID" v-model="idInput" clearable>
-    </el-input>
-    <el-input placeholder="请输入捐赠方名称" v-model="nameInput" clearable>
-    </el-input>
-    <el-table
-      :data="searchData"
-      height="500"
-      border
-      style="width: 100%"
-      :default-sort="{ prop: 'donateTime', order: 'descending' }"
-    >
-      <el-table-column prop="donateName" sortable label="名称">
-      </el-table-column>
-      <el-table-column prop="donateID" sortable label="ID"> </el-table-column>
-      <el-table-column prop="donateTime" sortable label="捐赠时间">
-      </el-table-column>
-      <el-table-column
-        prop="donatedOrganizationID"
-        sortable
-        label="受捐防控单位ID"
+    <el-card style="margin-bottom: 10px">
+      <el-tag
+        effect="plain"
+        style="
+          float: left;
+          margin-bottom: 10px;
+          font-size: 18px;
+          font-weight: 400;
+          padding: auto;
+        "
+        >筛选条件</el-tag
       >
-      </el-table-column>
-      <el-table-column
-        prop="donatedOrganization"
-        sortable
-        label="受捐防控单位名称"
+      <el-input
+        placeholder="请输入捐赠方ID"
+        v-model="idInput"
+        clearable
+        style="margin-bottom: 10px"
       >
-      </el-table-column>
-      <el-table-column prop="city" label="市" sortable> </el-table-column>
-      <el-table-column prop="district" label="区" sortable> </el-table-column>
-      <el-table-column prop="contactAddress" sortable label="联系方式">
-      </el-table-column>
-    </el-table>
+      </el-input>
+      <el-input placeholder="请输入捐赠方名称" v-model="nameInput" clearable>
+      </el-input>
+    </el-card>
+    <el-card>
+      <el-table
+        :data="searchData"
+        height="500"
+        border
+        style="width: 100%"
+        :default-sort="{ prop: 'donateTime', order: 'descending' }"
+      >
+        <el-table-column prop="donateName" sortable label="名称">
+        </el-table-column>
+        <el-table-column prop="donateID" sortable label="ID"> </el-table-column>
+        <el-table-column prop="donateTime" sortable label="捐赠时间">
+        </el-table-column>
+        <el-table-column
+          prop="donatedOrganizationID"
+          sortable
+          label="受捐防控单位ID"
+        >
+        </el-table-column>
+        <el-table-column
+          prop="donatedOrganization"
+          sortable
+          label="受捐防控单位名称"
+        >
+        </el-table-column>
+        <el-table-column prop="city" label="市" sortable> </el-table-column>
+        <el-table-column prop="district" label="区" sortable> </el-table-column>
+        <el-table-column prop="contactAddress" label="联系方式">
+        </el-table-column>
+      </el-table>
+    </el-card>
   </el-main>
 </template>
 

@@ -1,56 +1,75 @@
 <template>
-  <div>
-    <el-table :data="searchData" border style="width: 100%">
-      <el-table-column fixed prop="id" label="编号" sortable width="100">
-      </el-table-column>
-      <el-table-column prop="name" label="姓名" width="100"> </el-table-column>
-      <el-table-column prop="gender" label="性别" width="50"> </el-table-column>
-      <el-table-column prop="phonenum" label="手机号码" width="120">
-      </el-table-column>
-      <el-table-column prop="address" label="当前住址" width="240">
-      </el-table-column>
-      <el-table-column prop="signInDate" label="隔离开始日期" width="240">
-      </el-table-column>
-      <el-table-column prop="signOutDate" label="隔离结束日期" width="240">
-      </el-table-column>
-      <el-table-column width="120" label="操作">
-        <template slot-scope="scope">
-          <el-button
-            @click="
-              (dialogFormVisible = true),
-                (tempID = scope.row.id),
-                (tempName = scope.row.name)
-            "
-            type="text"
-            size="medium"
-            >分配隔离点</el-button
-          >
-        </template>
-      </el-table-column>
-    </el-table>
+  <el-main>
+    <el-card>
+      <el-tag
+        effect="plain"
+        style="
+          float: left;
+          margin-bottom: 10px;
+          font-size: 18px;
+          font-weight: 400;
+        "
+        >筛选条件</el-tag
+      >
+      <el-input
+        placeholder="请输入待隔离者的 ID / 姓名 / 隔离开始日期"
+        v-model="inputPerson"
+        clearable
+      >
+      </el-input>
+    </el-card>
+
+    <br />
+    <el-card>
+      <el-table :data="searchData" border style="width: 100%">
+        <el-table-column fixed prop="id" label="编号" sortable>
+        </el-table-column>
+        <el-table-column prop="name" label="姓名"> </el-table-column>
+        <el-table-column prop="gender" label="性别"> </el-table-column>
+        <el-table-column prop="phoneNumber" label="手机号码"> </el-table-column>
+        <el-table-column prop="address" label="当前住址"> </el-table-column>
+        <el-table-column prop="signInDate" label="隔离开始日期">
+        </el-table-column>
+        <el-table-column prop="signOutDate" label="隔离结束日期">
+        </el-table-column>
+        <el-table-column label="操作">
+          <template slot-scope="scope">
+            <el-button
+              @click="
+                (dialogFormVisible = true),
+                  (tempID = scope.row.id),
+                  (tempName = scope.row.name)
+              "
+              type="text"
+              size="medium"
+              >分配隔离点</el-button
+            >
+          </template>
+        </el-table-column>
+      </el-table>
+    </el-card>
 
     <div class="block">
       <el-dialog title="隔离点分配" :visible.sync="dialogFormVisible" slot>
         <el-form :model="Emp" ref="Emp">
-          <el-table :data="searchIs" border style="width: 100%">
-            <el-table-column
-              fixed
-              prop="name"
-              label="隔离点名称"
-              sortable
-              width="120"
-            >
+          <el-input
+            placeholder="请输入 隔离点名称 / 所处地区"
+            v-model="inputPoint"
+            clearable
+            style="margin-bottom: 20px"
+          >
+          </el-input>
+          <el-table :data="searchIs" border>
+            <el-table-column fixed prop="name" label="隔离点名称" sortable>
             </el-table-column>
 
-            <el-table-column prop="region" label="所处地区" width="240">
+            <el-table-column prop="region" label="所处地区"> </el-table-column>
+            <el-table-column prop="capacity" label="最大容纳人数">
             </el-table-column>
-            <el-table-column prop="capacity" label="最大容纳人数" width="100">
+            <el-table-column prop="num" label="当前隔离人数" sortable>
             </el-table-column>
-            <el-table-column prop="num" label="当前隔离人数" width="100">
-            </el-table-column>
-            <el-table-column prop="cost" label="隔离费用" width="100">
-            </el-table-column>
-            <el-table-column width="120" label="操作">
+            <el-table-column prop="cost" label="隔离费用"> </el-table-column>
+            <el-table-column label="操作">
               <template slot-scope="scope">
                 <el-button
                   @click="
@@ -66,7 +85,7 @@
         </el-form>
       </el-dialog>
     </div>
-  </div>
+  </el-main>
 </template>
 
 <script>
@@ -129,18 +148,25 @@ export default {
       dialogFormVisible: false,
       formLabelWidth: "120px",
       LabelWidth: "180px",
+      inputPerson: "",
+      inputPoint: "",
     };
   },
   computed: {
     searchData: function () {
       let SearchResult = this.assignmentData.filter(
-        (item) => String(item.name).indexOf(String(this.nameInput)) > -1
+        (item) =>
+          String(item.id).indexOf(String(this.inputPerson)) > -1 ||
+          item.name.indexOf(String(this.inputPerson)) > -1 ||
+          item.signInDate.indexOf(String(this.inputPerson)) > -1
       );
       return SearchResult;
     },
     searchIs: function () {
       let SearchResult = this.isolatedPointsData.filter(
-        (item) => String(item.name).indexOf(String(this.nameInput)) > -1
+        (item) =>
+          String(item.name).indexOf(String(this.inputPoint)) > -1 ||
+          String(item.region).indexOf(String(this.inputPoint)) > -1
       );
       return SearchResult;
     },
