@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="content">
     <div>
     <CovidProtectionInfo :CovidProtectionInfoData="CovidProtectionInfoData" />
   </div>
@@ -37,3 +37,8 @@
 }
 </script>
 
+<style>
+  .content{
+    margin-left: 50px;
+  }
+</style>
