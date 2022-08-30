@@ -1,30 +1,61 @@
 <template>
-  <el-main>
-    <el-row>
-      <el-input placeholder="请输入18位身份证号" v-model="ID" clearable>
-      </el-input>
-    </el-row>
-    <el-row>
-      <el-date-picker
-        v-model="DetectionTime"
-        type="date"
-        placeholder="选择日期"
-        :picker-options="pickerOptions"
+  <el-main
+    style="display: flex; justify-content: center; align-items: flex-start"
+  >
+    <el-card style="width: 70%; margin-top: 25px; margin-bottom: 35px">
+      <div slot="header" class="clearfix">
+        <h1 style="float: left; margin-left: 15px">核酸信息表单</h1>
+      </div>
+      <el-form
+        style="width: 60%"
+        :model="Emp"
+        :rules="rules"
+        ref="Emp"
+        label-width="100px"
+        class="demo-Emp"
       >
-      </el-date-picker>
-    </el-row>
-    <el-select v-model="SamplingResult" placeholder="核酸结果">
-      <el-option
-        v-for="item in options"
-        :key="item.value"
-        :label="item.label"
-        :value="item.value"
-      >
-      </el-option>
-    </el-select>
-    <el-row>
-      <el-button type="primary" @click="submitForm">立即创建</el-button>
-    </el-row>
+        <el-form-item
+          label="个人编号"
+          :label-width="formLabelWidth"
+          style="width: 50%"
+        >
+          <el-input placeholder="请输入18位身份证号" v-model="ID" clearable>
+          </el-input>
+        </el-form-item>
+        <el-form-item
+          label="核酸日期"
+          :label-width="formLabelWidth"
+          style="width: 50%"
+        >
+          <el-date-picker
+            v-model="DetectionTime"
+            type="date"
+            placeholder="选择日期"
+            :picker-options="pickerOptions"
+          >
+          </el-date-picker>
+        </el-form-item>
+
+        <el-form-item
+          label="核酸日期"
+          :label-width="formLabelWidth"
+          style="width: 50%"
+        >
+          <el-select v-model="SamplingResult" placeholder="核酸结果">
+            <el-option
+              v-for="item in options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            >
+            </el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item align="left" style="margin-left: 58.5%">
+          <el-button type="primary" @click="submitForm">立即创建</el-button>
+        </el-form-item>
+      </el-form>
+    </el-card>
   </el-main>
 </template>
 
@@ -152,3 +183,35 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.text {
+  font-size: 14px;
+}
+
+.item {
+  margin-bottom: 18px;
+}
+
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+}
+.clearfix:after {
+  clear: both;
+}
+
+.box-card {
+  width: 480px;
+}
+.el-card {
+  transition: all 0.25s;
+}
+.el-card:hover {
+  margin-top: -5px;
+}
+.el-input {
+  margin-left: 10px;
+}
+</style>

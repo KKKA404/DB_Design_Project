@@ -60,7 +60,6 @@
         </el-table-column>
       </el-table>
     </el-card>
-    >>>>>>> Stashed changes
     <div class="block">
       <el-pagination
         @current-change="handleCurrentChange"
