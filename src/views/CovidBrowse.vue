@@ -1,7 +1,5 @@
 <template>
-  <div class="home">
-    <Header />
-    <covid19Info :Covid19InfoData="Covid19InfoData" />
+  <div>
     <CaseNum :CaseNumData="CaseNumData"/>
     <Map />
     <!-- <Covid19Chart /> -->
@@ -10,8 +8,6 @@
 </template>
  
 <script>
-import Header from "../views/Header.vue"
-import Covid19Introduction from "../views/Covid19Introduction.vue"
 import CaseNum from "../views/CaseNum.vue"
 import Map from "../views/Map.vue"
 //import Covid19Chart from "../views/Covid19Chart"
@@ -21,19 +17,12 @@ export default {
   name: 'Home',
   data(){
     return{
-        Covid19InfoData:{},
         CaseNumData:{},
         NewsData:{},
     }
   },
   created(){
-    this.Covid19InfoData={
-          note1:"病毒：SARS-CoV-2,其导致疾病命名COVID-19。",
-          note2:"传染源：新冠肺炎的患者。无症状感染者也可能成为传染源。",
-          note3:"传播途径：经呼吸道飞沫，接触传播是主要的传播途径。",
-          note4:"易感人群：人群普遍易感。老年人及有基础疾病者感染后病情较重，儿童及婴幼儿也有发病。",
-          note5:"潜伏期：一般为3~7天，最长不超过14天，潜伏期内可能存在传染性，其中无症状病例传染性非常罕见。",
-        }
+    
     this.$axios.get("http://api.tianapi.com/ncov/index?key=e187c82474d5c0b5c338824d54729d59"
     ).then(res=>{
       console.log(res);
@@ -69,8 +58,6 @@ export default {
     })
   },
   components: {
-    Header,
-    Covid19Introduction,
     CaseNum,
     Map,
     //Covid19Chart,
