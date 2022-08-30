@@ -1,33 +1,46 @@
 <template>
-    <div class="info">
+  <div class="info">
+    <el-card shadow="hover"
+     style="width:90%;
+     margin-bottom: 50px;
+     padding-bottom: 20px;
+     padding-top: 20px;
+     padding-left: 20px;
+     padding-right: 20px">
       <p class="title i">
         <i></i>
         病毒信息
       </p>
       <div class="content">
-        <p>{{ CovidProtectionInfoData.note1 }}</p>
-        <p>{{ CovidProtectionInfoData.note2 }}</p>
-        <p>{{ CovidProtectionInfoData.note3 }}</p>
-        <img src="../assets/transmit.jpg" width="800">
+        <p style="margin-bottom: 10px;">{{ CovidProtectionInfoData.note1 }}</p>
+        <p style="margin-bottom: 10px;">{{  CovidProtectionInfoData.note2  }}</p>
+        <p style="margin-bottom: 20px;">{{  CovidProtectionInfoData.note3  }}</p>
+        <img src="../assets/transmit.jpg" width="650">
       </div>
+    </el-card>
+    <el-card shadow="hover"
+     style="width:90%;
+     margin-bottom: 50px;
+     padding-bottom: 20px;
+     padding-top: 20px;
+     padding-left: 20px;
+     padding-right: 20px">
       <p class="title i">
         <i></i>
         防疫小贴士
       </p>
       <div class="content">
-        <p>{{ CovidProtectionInfoData.note4 }}</p>
-      <img src="../assets/riskingArea.jpg" width="800" >
-      <p>{{ CovidProtectionInfoData.note5 }}</p>
-      <img src="../assets/protection.jpg" width="800" >
-  
-  
-      <p>{{ CovidProtectionInfoData.note6 }}</p>
-      <img src="../assets/symptom.jpg" width="800" >
-  
+        <p style="margin-bottom: 10px;">{{  CovidProtectionInfoData.note4  }}</p>
+        <img src="../assets/riskingArea.jpg" width="650" style="margin-bottom: 10px;">
+        <p style="margin-bottom: 10px;">{{  CovidProtectionInfoData.note5  }}</p>
+        <img src="../assets/protection.jpg" width="650" style="margin-bottom: 10px;">
+        <p style="margin-bottom: 10px;">{{  CovidProtectionInfoData.note6  }}</p>
+        <img src="../assets/symptom.jpg" width="650" style="margin-bottom: 10px;">
       </div>
-      
-    </div>
-  </template>
+    </el-card>
+
+  </div>
+</template>
   
   <script>
   //import api from "../api"

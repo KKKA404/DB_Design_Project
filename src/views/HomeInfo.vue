@@ -1,25 +1,31 @@
 <template>
   <div class="info">
-    <p class="title i">
-      <i></i>
-      项目背景
-    </p>
-    <div class="content">
-      <p>{{ HomeInfoData.note3 }}</p>
-    </div>
-    <p class="title i">
-      <i></i>
-      项目板块介绍
-    </p>
-    <img src="../assets/module.jpg" width="1500"></img>
-    <p class="title i">
-      <i></i>
-      关于我们
-    </p>
-    <div class="content">
-      <p>{{ HomeInfoData.note1 }}</p>
-      <p>{{ HomeInfoData.note2 }}</p>
-    </div>
+    <el-card shadow="hover" style="margin-bottom: 40px;padding-bottom: 30px;">
+      <p class="title i">
+        <i></i>
+        项目背景
+      </p>
+      <div class="content">
+        <p>{{ HomeInfoData.note3 }}</p>
+      </div>
+    </el-card>
+    <el-card shadow="hover" style="margin-bottom: 40px;padding-bottom: 40px;">
+      <p class="title i">
+        <i></i>
+        项目板块介绍
+      </p>
+      <img src="../assets/module.jpg" width="1300">
+    </el-card>
+    <el-card shadow="hover" style="margin-bottom: 40px;padding-bottom: 40px;">
+      <p class="title i">
+        <i></i>
+        关于我们
+      </p>
+      <div class="content">
+        <p>{{ HomeInfoData.note1 }}</p>
+        <p>{{ HomeInfoData.note2 }}</p>
+      </div>
+    </el-card>
   </div>
 </template>
 
