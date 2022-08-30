@@ -18,7 +18,9 @@
     </el-input>
 
     <el-table :data="searchData" border style="width: 100%">
-      <el-table-column fixed prop="personId" label="编号" sortable width="100">
+      <el-table-column fixed prop="demandFormId" label="表单编号" sortable width="100">
+      </el-table-column>
+      <el-table-column fixed prop="personId" label="人员编号" sortable width="100">
       </el-table-column>
       <el-table-column prop="name" label="姓名" width="50"> </el-table-column>
       <el-table-column prop="gender" label="性别" width="50"> </el-table-column>
@@ -68,13 +70,13 @@
         slot
       >
         <el-form :model="Emp" ref="Emp">
-          <el-form-item label="姓名" :label-width="formLabelWidth">
+          <!-- <el-form-item label="姓名" :label-width="formLabelWidth">
             <el-input v-model="Emp.name" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item label="性别" :label-width="formLabelWidth" prop="sex">
             <el-radio v-model="Emp.gender" label="男">男</el-radio>
             <el-radio v-model="Emp.gender" label="女">女</el-radio>
-          </el-form-item>
+          </el-form-item> -->
           <el-form-item
             label="紧急程度"
             :label-width="formLabelWidth"
@@ -86,9 +88,9 @@
           <el-form-item label="手机号码" :label-width="formLabelWidth">
             <el-input v-model="Emp.phoneNumber" autocomplete="off"></el-input>
           </el-form-item>
-          <el-form-item label="身份证号码" :label-width="formLabelWidth">
+          <!-- <el-form-item label="身份证号码" :label-width="formLabelWidth">
             <el-input v-model="Emp.IDcard" autocomplete="off"></el-input>
-          </el-form-item>
+          </el-form-item> -->
           <el-form-item
             label="健康状况"
             :label-width="formLabelWidth"
@@ -104,17 +106,12 @@
               </el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="提交时间" :label-width="formLabelWidth">
+          <!-- <el-form-item label="提交时间" :label-width="formLabelWidth">
             <el-input v-model="Emp.createTime" autocomplete="off"></el-input>
-          </el-form-item>
+          </el-form-item> -->
           <el-form-item label="所需物资种类" :label-width="formLabelWidth">
             <el-select v-model="Emp.depart" clearable placeholder="请选择">
-              <!--el-option
-                v-for="(item, index) in options3"
-                :key="index"
-                :label="item"
-                :value="item"
-              -->
+              
               <el-option
                 v-for="item in options3"
                 :key="item.value"
@@ -147,7 +144,7 @@ import service from "@/plugins/axios";
 export default {
   methods: {
     deleteRecord(row) {
-      this.$confirm("是否确定要删除" + row.name + "的打卡记录?", "删除数据", {
+      this.$confirm("是否确定要删除" + row.name + "的需求记录?", "删除数据", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning",
@@ -156,7 +153,7 @@ export default {
           .delete("/personalRequest", { data: { ID: row.personId } })
           .then((res) => {
             if (res.code == 20000) {
-              this.$alert(row.name + "的打卡记录删除成功！", "消息", {
+              this.$alert(row.name + "的需求记录删除成功！", "消息", {
                 confirmButtonText: "确定",
                 callback: (action) => {
                   window.location.reload();
@@ -264,17 +261,18 @@ export default {
       LabelWidth: "180px",
 
       Emp: {
-        id: "",
+        demandFormId:"",
+        personalId: "",
         name: "",
-        gender: "",
+        gender: undefined,
         urgency: "",
         phoneNumber: "",
         IDcard: "",
         health: "",
         type: "",
-        goodsName: "趣多多",
-        num: 2,
-        content: "带瓶老干妈",
+        goodsName: "",
+        num: undefined,
+        content: "",
       },
     };
   },
