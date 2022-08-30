@@ -1,8 +1,10 @@
 <template>
-  <div class="hello">
-    <div ref="mapbox" style="width:1000px;height:750px;margin:0 auto"></div>
-    <!-- 初始化echarts需要有个宽高的盒子 -->
-  </div>
+  <el-card shadow="hover" style="width:90%;margin-left: 60px;">
+    <div class="hello">
+      <div ref="mapbox" style="width:1000px;height:750px;margin:0 auto"></div>
+      <!-- 初始化echarts需要有个宽高的盒子 -->
+    </div>
+  </el-card>
 </template>
 
 <script>

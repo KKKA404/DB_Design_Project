@@ -2,7 +2,7 @@
   <div class="case-num">
       <div class="container">
           <div class="title">
-              <span>截止 {{formatData(CaseNumData.modifyTime)}} 全国数据统计</span>
+              <span style="margin-bottom: 20px;">截止 {{formatData(CaseNumData.modifyTime)}} 全国数据统计</span>
           </div>
       </div>
       <div class="num">
