@@ -144,13 +144,13 @@ Mock.mock(baseURL + "/donateData", "post", (req, res) => {
 //个人需求表单
 Mock.mock(baseURL + "/personalRequest", "post", {
   code: 20000,
-})
+});
 Mock.mock(baseURL + "/personalRequest", "put", {
   code: 20000,
-})
+});
 Mock.mock(baseURL + "/personalRequest", "delete", {
   code: 20000,
-})
+});
 
 Mock.mock(baseURL + "/personalRequest", "get", {
   code: 20000,
@@ -330,14 +330,23 @@ Mock.mock(baseURL + "/fake_Material_data", "get", {
 });
 
 //核酸结果管理
-Mock.mock(baseURL + "/fake_DNA_data", "get", {
+Mock.mock(baseURL + "/samplingData", "delete", {
   code: 20000,
-  fake_DNA_data: [
+});
+Mock.mock(baseURL + "/samplingData", "put", {
+  code: 20000,
+});
+Mock.mock(baseURL + "/samplingData", "post", {
+  code: 20000,
+});
+Mock.mock(baseURL + "/samplingData", "get", {
+  code: 20000,
+  samplingData: [
     {
       name: "孟星羽",
-      id: "2053853",
-      sex: 1,
-      idcard: "22223423345245634",
+      personId: "2053853",
+      gender: 1,
+      IDcard: "22223423345245634",
       sampleTime: "2022.6.6-22:02",
       place: "延吉市人民医院",
       testResult: "阴性",
@@ -346,9 +355,9 @@ Mock.mock(baseURL + "/fake_DNA_data", "get", {
     },
     {
       name: "孟士大夫星羽",
-      id: "203453",
-      sex: "女",
-      idcard: "22223223445245634",
+      personId: "203453",
+      gender: 0,
+      IDcard: "22223223445245634",
       sampleTime: "2022.12.6-22:02",
       place: "延吉市撒旦发射点人民医院",
       testResult: "阴性",
@@ -357,9 +366,9 @@ Mock.mock(baseURL + "/fake_DNA_data", "get", {
     },
     {
       name: "孟水电费星羽",
-      id: "2053453",
-      sex: 1,
-      idcard: "222234523345245634",
+      personId: "2053453",
+      gender: 1,
+      IDcard: "222234523345245634",
       sampleTime: "2022.6.14-22:02",
       place: "延吉市人民医院",
       testResult: "阴性",
@@ -368,9 +377,9 @@ Mock.mock(baseURL + "/fake_DNA_data", "get", {
     },
     {
       name: "朱洵缘",
-      id: "2053872",
-      sex: 1,
-      idcard: "2222342322545634",
+      personId: "2053872",
+      gender: 1,
+      IDcard: "2222342322545634",
       sampleTime: "2022.7.6-22:02",
       place: "延吉市人民医院",
       testResult: "阴性",
@@ -379,9 +388,9 @@ Mock.mock(baseURL + "/fake_DNA_data", "get", {
     },
     {
       name: "朱水电费洵缘",
-      id: "2053853",
-      sex: 1,
-      idcard: "22223423345245634",
+      personId: "2053853",
+      gender: 1,
+      IDcard: "22223423345245634",
       sampleTime: "2022.6.6-22:02",
       place: "延吉市人地方官民医院",
       testResult: "阴性",
@@ -464,6 +473,15 @@ Mock.mock(baseURL + "/transportData", "get", {
 });
 
 //隔离点分配patientsData
+
+Mock.mock(baseURL + "/isolationData/assignmentData", "delete", {
+  code: 20000,
+});
+
+Mock.mock(baseURL + "/isolationData/isolatedPointsData", "post", {
+  code: 20000,
+});
+
 Mock.mock(baseURL + "/isolationData", "get", {
   code: 20000,
   assignmentData: [
@@ -656,11 +674,15 @@ Mock.mock(baseURL + "/purchaseData", "get", {
   ],
 });
 
+//志愿信息提交
+Mock.mock(baseURL + "/volunteerApplication", "post", {
+  code: 20000,
+});
+
 //捐赠物资表单
 Mock.mock(baseURL + "/makeDonate", "post", {
-  code:20000,
-
-})
+  code: 20000,
+});
 
 //物资购买（post）
 Mock.mock(baseURL + "/purchaseData/unitPurchase", "post", {
@@ -671,7 +693,12 @@ Mock.mock(baseURL + "/purchaseData/donorPurchase", "post", {
   code: 20000,
   data: "success",
 });
+
 //需求needData
+Mock.mock(baseURL + "/needData", "delete", {
+  code: 20000,
+});
+
 Mock.mock(baseURL + "/needData", "get", {
   code: 20000,
   needData: [
@@ -683,6 +710,7 @@ Mock.mock(baseURL + "/needData", "get", {
       type: "食品",
       goodName: "趣多多",
       num: 2,
+      content: "",
     },
     {
       id: "000002",
@@ -692,6 +720,7 @@ Mock.mock(baseURL + "/needData", "get", {
       type: "食品",
       goodName: "粉面菜蛋",
       num: 100,
+      content: "金汤肥牛味",
     },
     {
       id: "000003",
@@ -701,6 +730,7 @@ Mock.mock(baseURL + "/needData", "get", {
       type: "生活用品",
       goodName: "浴花",
       num: 1,
+      content: "很急，没法洗澡了",
     },
   ],
 });
@@ -738,7 +768,7 @@ Mock.mock(RegExp(baseURL + "/user/info.*"), "get", (config) => {
       code: 20000,
       data: {
         roles: ["admin"],
-        ID:"123",
+        ID: "123",
         name: "admin",
         gender: 1,
         phoneNumber: "",
@@ -750,7 +780,7 @@ Mock.mock(RegExp(baseURL + "/user/info.*"), "get", (config) => {
       code: 20000,
       data: {
         roles: ["user"],
-        ID:"456",
+        ID: "456",
         name: "user",
         gender: 0,
         phoneNumber: "12345678",

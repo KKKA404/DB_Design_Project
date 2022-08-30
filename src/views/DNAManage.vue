@@ -4,35 +4,23 @@
       >新增记录</el-button
     >
     <el-input
-      placeholder="请输入内容"
-      v-model="stext"
+      placeholder="请输入检索姓名"
+      v-model="nameInput"
       class="input-with-select"
       style="width: 40%"
     >
-      <el-select
-        v-model="cname"
-        slot="prepend"
-        placeholder="请选择"
-        @change="getKey"
-      >
-        <el-option label="姓名" value="name"></el-option>
-        <el-option label="检测机构" value="place"></el-option>
-        <el-option label="检测结果" value="testResult"></el-option>
-        <el-option label="采样时间" value="sampleTime"></el-option>
-      </el-select>
       <el-button
         slot="append"
         icon="el-icon-search"
-        @click="search()"
       ></el-button>
     </el-input>
 
-    <el-table :data="fake_DNA_data" border style="width: 100%">
+    <el-table :data="searchData" border style="width: 100%">
       <el-table-column fixed prop="name" label="姓名" width="100">
       </el-table-column>
       <el-table-column prop="id" label="编号" width="50"> </el-table-column>
-      <el-table-column prop="sex" label="性别" width="50"> </el-table-column>
-      <el-table-column prop="idcard" label="身份证号码" width="170">
+      <el-table-column prop="gender" label="性别" width="50"> </el-table-column>
+      <el-table-column prop="IDcard" label="身份证号码" width="170">
       </el-table-column>
       <el-table-column prop="sampleTime" label="采样时间" width="160">
       </el-table-column>
@@ -40,7 +28,7 @@
       </el-table-column>
       <el-table-column prop="testResult" label="检测结果" width="120">
       </el-table-column>
-      <el-table-column prop="phonenum" label="手机号码" width="120">
+      <el-table-column prop="phoneNumber" label="手机号码" width="120">
       </el-table-column>
       <el-table-column prop="testResultTime" label="检测结果时间" width="170">
       </el-table-column>
@@ -74,15 +62,18 @@
         slot
       >
         <el-form :model="EmpIden" ref="EmpIden">
+          <el-form-item label="编号" :label-width="formLabelWidth">
+            <el-input v-model="EmpIden.personId" autocomplete="off"></el-input>
+          </el-form-item>
           <el-form-item label="姓名" :label-width="formLabelWidth">
             <el-input v-model="EmpIden.name" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item label="性别" :label-width="formLabelWidth">
-            <el-radio v-model="EmpIden.sex" label="男">男</el-radio>
-            <el-radio v-model="EmpIden.sex" label="女">女</el-radio>
+            <el-radio v-model="EmpIden.gender" label="男">男</el-radio>
+            <el-radio v-model="EmpIden.gender" label="女">女</el-radio>
           </el-form-item>
           <el-form-item label="身份证号" :label-width="formLabelWidth">
-            <el-input v-model="EmpIden.idcard" autocomplete="off"></el-input>
+            <el-input v-model="EmpIden.IDcard" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item label="采样时间" :label-width="formLabelWidth">
             <el-date-picker
@@ -104,16 +95,19 @@
               placeholder="请选择"
             >
               <el-option
-                v-for="(item, index) in options2"
-                :key="index"
-                :label="item"
-                :value="item"
+                v-for="item in options2"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
               >
               </el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="手机号码" :label-width="formLabelWidth">
-            <el-input v-model="EmpIden.phonenum" autocomplete="off"></el-input>
+            <el-input
+              v-model="EmpIden.phoneNumber"
+              autocomplete="off"
+            ></el-input>
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
@@ -126,12 +120,11 @@
         </div>
       </el-dialog>
 
-      <el-dialog
-        title="核酸信息录入"
-        :visible.sync="addDialogFormVisible"
-        slot
-      >
+      <el-dialog title="核酸信息录入" :visible.sync="addDialogFormVisible" slot>
         <el-form :model="addEmpIden">
+          <el-form-item label="编号" :label-width="formLabelWidth">
+            <el-input v-model="EmpIden.personId" autocomplete="off"></el-input>
+          </el-form-item>
           <el-form-item label="姓名" :label-width="formLabelWidth">
             <el-input v-model="addEmpIden.name" autocomplete="off"></el-input>
           </el-form-item>
@@ -140,7 +133,7 @@
             <el-radio v-model="addEmpIden.sex" label="女">女</el-radio>
           </el-form-item>
           <el-form-item label="身份证号" :label-width="formLabelWidth">
-            <el-input v-model="addEmpIden.idcard" autocomplete="off"></el-input>
+            <el-input v-model="addEmpIden.IDcard" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item label="采样时间" :label-width="formLabelWidth">
             <el-date-picker
@@ -165,13 +158,14 @@
                 v-for="item in options2"
                 :key="item.value"
                 :label="item.label"
-                :value="item.value">
+                :value="item.value"
+              >
               </el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="手机号码" :label-width="formLabelWidth">
             <el-input
-              v-model="addEmpIden.phonenum"
+              v-model="addEmpIden.phoneNumber"
               autocomplete="off"
             ></el-input>
           </el-form-item>
@@ -192,129 +186,97 @@
 <script>
 export default {
   created() {
-    this.$axios.get("/fake_DNA_data").then((res) => {
-      this.fake_DNA_data = res.fake_DNA_data;
+    this.$axios.get("/samplingData").then((res) => {
+      this.samplingData = res.samplingData;
     });
   },
-  // methods: {
-  //   search() {
-  //     if (!this.stext) {
-  //       axios.get("http://localhost:8080/empiden/findAll/1/6").then((resp) => {
-  //         this.tableData = resp.data.records;
-  //         this.total = resp.data.total;
-  //         this.cname = "";
-  //       });
-  //     } else {
-  //       axios
-  //         .get(
-  //           "http://localhost:8080/empiden/search/" +
-  //             this.searchKey +
-  //             "/" +
-  //             this.stext
-  //         )
-  //         .then((resp) => {
-  //           this.tableData = resp.data;
-  //           this.total = resp.data.total;
-  //         });
-  //     }
-  //   },
-  //   getKey(e) {
-  //     this.searchKey = e;
-  //   },
-  //   submitForm() {
-  //     axios
-  //       .post("http://localhost:8080/empiden/save", this.addEmpIden)
-  //       .then((resp) => {
-  //         if (resp.data == "success") {
-  //           this.$alert("确诊/疑似病例添加成功！", "消息", {
-  //             confirmButtonText: "确定",
-  //             callback: (action) => {
-  //               window.location.reload();
-  //             },
-  //           });
-  //         }
-  //       });
-  //   },
-  //   deleteRecord(row) {
-  //     this.$confirm("是否确定要删除" + row.name + "的病例记录?", "删除数据", {
-  //       confirmButtonText: "确定",
-  //       cancelButtonText: "取消",
-  //       type: "warning",
-  //     }).then(() => {
-  //       axios
-  //         .delete("http://localhost:8080/empiden/deleteById/" + row.id)
-  //         .then((resp) => {
-  //           this.$alert(row.name + "的病例记录删除成功！", "消息", {
-  //             confirmButtonText: "确定",
-  //             callback: (action) => {
-  //               window.location.reload();
-  //             },
-  //           });
-  //         });
-  //     });
-  //   },
+  methods: {
+    submitForm() {
+      this.$axios.post("samplingData", this.addEmpIden).then((resp) => {
+        if (resp.code == 20000) {
+          this.$message("记录添加成功");
+        } else {
+          this.$message("记录添加失败");
+        }
+      });
+    },
+    deleteRecord(row) {
+      this.$confirm("是否确定要删除" + row.name + "的病例记录?", "删除数据", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+      }).then(() => {
+        this.$axios.delete("/samplingData" ,{ data: { ID: row.personId } }).then((resp) => {
+          if (resp.code == 20000) {
+            this.$alert(row.name + "的病例记录删除成功！", "消息", {
+              confirmButtonText: "确定",
+              callback: (action) => {
+                window.location.reload();
+              },
+            });
+          }
+        });
+      });
+    },
 
-  //   update() {
-  //     axios
-  //       .put("http://localhost:8080/empiden/update", this.EmpIden)
-  //       .then((resp) => {
-  //         console.log(resp);
-  //         if (resp.data == "success") {
-  //           this.$alert(this.EmpIden.name + "的病例记录修改成功！", "消息", {
-  //             confirmButtonText: "确定",
-  //             callback: (action) => {
-  //               window.location.reload();
-  //             },
-  //           });
-  //         }
-  //       });
-  //   },
-  //   edit(row) {
-  //     axios
-  //       .get("http://localhost:8080/empiden/findById/" + row.id)
-  //       .then((resp) => {
-  //         this.EmpIden = resp.data;
-  //       });
-  //   },
-  //   handleCurrentChange(currentPage) {
-  //     axios
-  //       .get("http://localhost:8080/empiden/findAll/" + currentPage + "/6")
-  //       .then((resp) => {
-  //         this.tableData = resp.data.records;
-  //         this.total = resp.data.total;
-  //       });
-  //   },
-  //   remoteMethod(query) {
-  //     if (query !== "") {
-  //       this.loading = true;
-  //       setTimeout(() => {
-  //         this.loading = false;
-  //         this.options = this.list.filter((item) => {
-  //           return item.label.toLowerCase().indexOf(query.toLowerCase()) > -1;
-  //         });
-  //       }, 200);
-  //     } else {
-  //       this.options = [];
-  //     }
-  //   },
-  // },
-  // created() {
-  //   axios.get("http://localhost:8080/empiden/findAll/1/6").then((resp) => {
-  //     this.tableData = resp.data.records;
-  //     this.total = resp.data.total;
-  //   });
-  //   axios.get("http://localhost:8080/testResult/findAll").then((resp) => {
-  //     console.log(resp.data);
-  //     this.options2 = resp.data;
-  //   });
-  // },
+    update() {
+      this.$axios
+        .put("/samplingData", this.EmpIden)
+        .then((resp) => {
+          console.log(resp);
+          if (resp.code == 20000) {
+            this.$alert(this.EmpIden.name + "的病例记录修改成功！", "消息", {
+              confirmButtonText: "确定",
+              callback: (action) => {
+                window.location.reload();
+              },
+            });
+          }
+        });
+    },
+    edit(row) {
+      this.$axios
+        .get("/samplingData" ,{params:{ID:row.personId}})
+        .then((resp) => {
+          this.EmpIden = resp.data;
+        });
+    },
+    handleCurrentChange(currentPage) {
+      this.$axios
+        .get("/samplingData" + currentPage + "/6")
+        .then((resp) => {
+          this.tableData = resp.data.records;
+          this.total = resp.data.total;
+        });
+    },
+  },
+
+  computed: {
+    searchData: function () {
+      let SearchResult = this.samplingData.filter(
+        (item) => String(item.name).indexOf(String(this.nameInput)) > -1
+      );
+
+      return SearchResult;
+    },
+  },
 
   data() {
     return {
-      fake_DNA_data: [],
+      samplingData: [],
       value: "",
       cname: "",
       stext: "",
+      options2: [
+        {
+          value: "阴性",
+          label: "阴性",
+        },
+        {
+          value: "阳性",
+          label: "阳性",
+        },
+      ],
       pickerOptions: {
         disabledDate(time) {
           return time.getTime() > Date.now();
@@ -344,6 +306,7 @@ export default {
           },
         ],
       },
+      nameInput:"",
       options: [],
       //value: [],
       list: [],
@@ -356,24 +319,24 @@ export default {
       formLabelWidth: "120px",
       addLabelWidth: "50px",
       EmpIden: {
-        id: "",
+        personId: "",
         name: "",
-        sex: "",
-        idcard: "",
+        gender: undefined,
+        IDcard: "",
         sampleTime: "",
         place: "",
         testResult: "",
-        phonenum: "",
+        phoneNumber: "",
       },
       addEmpIden: {
-        id: "",
+        personId: "",
         name: "",
-        sex: "",
-        idcard: "",
+        gender: undefined,
+        IDcard: "",
         sampleTime: "",
         place: "",
         testResult: "",
-        phonenum: "",
+        phoneNumber: "",
       },
     };
   },

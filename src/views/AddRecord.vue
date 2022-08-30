@@ -1,5 +1,11 @@
 <template>
   <el-form style="width:60%" :model="Emp" :rules="rules" ref="Emp" label-width="100px" class="demo-Emp">
+    <el-form-item label="表单编号" :label-width="formLabelWidth" prop="demandFormId">
+      <el-input v-model="Emp.demandFormId" autocomplete="off"></el-input>
+    </el-form-item>
+    <el-form-item label="个人编号" :label-width="formLabelWidth" prop="personId">
+      <el-input v-model="Emp.personId" autocomplete="off"></el-input>
+    </el-form-item>
     <el-form-item label="姓名" :label-width="formLabelWidth" prop="name">
       <el-input v-model="Emp.name" autocomplete="off"></el-input>
     </el-form-item>
@@ -107,6 +113,7 @@ export default {
         label: '女'
       }],
       Emp: {
+        demandFormId:"",
         personId: "",
         name: "",
         gender: undefined,
@@ -120,6 +127,12 @@ export default {
         content: "",
       },
       rules: {
+        personId: [
+          { required: true, message: '请输入个人编号', trigger: 'blur' },
+        ],
+        demandFormId: [
+          { required: true, message: '请输入表单编号', trigger: 'blur' },
+        ],
         name: [
           { required: true, message: '请输入姓名', trigger: 'blur' },
           { min: 2, max: 20, message: '长度在 3 到 20 个字符', trigger: 'blur' }
