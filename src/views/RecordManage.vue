@@ -14,7 +14,6 @@
       <el-button
         slot="append"
         icon="el-icon-search"
-        @click="search()"
       ></el-button>
     </el-input>
 

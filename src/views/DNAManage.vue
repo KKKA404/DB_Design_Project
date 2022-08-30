@@ -4,30 +4,18 @@
       >新增记录</el-button
     >
     <el-input
-      placeholder="请输入内容"
-      v-model="stext"
+      placeholder="请输入检索姓名"
+      v-model="nameInput"
       class="input-with-select"
       style="width: 40%"
     >
-      <el-select
-        v-model="cname"
-        slot="prepend"
-        placeholder="请选择"
-        @change="getKey"
-      >
-        <el-option label="姓名" value="name"></el-option>
-        <el-option label="检测机构" value="place"></el-option>
-        <el-option label="检测结果" value="testResult"></el-option>
-        <el-option label="采样时间" value="sampleTime"></el-option>
-      </el-select>
       <el-button
         slot="append"
         icon="el-icon-search"
-        @click="search()"
       ></el-button>
     </el-input>
 
-    <el-table :data="samplingData" border style="width: 100%">
+    <el-table :data="searchData" border style="width: 100%">
       <el-table-column fixed prop="name" label="姓名" width="100">
       </el-table-column>
       <el-table-column prop="id" label="编号" width="50"> </el-table-column>
@@ -263,6 +251,16 @@ export default {
     },
   },
 
+  computed: {
+    searchData: function () {
+      let SearchResult = this.samplingData.filter(
+        (item) => String(item.name).indexOf(String(this.nameInput)) > -1
+      );
+
+      return SearchResult;
+    },
+  },
+
   data() {
     return {
       samplingData: [],
@@ -308,6 +306,7 @@ export default {
           },
         ],
       },
+      nameInput:"",
       options: [],
       //value: [],
       list: [],
