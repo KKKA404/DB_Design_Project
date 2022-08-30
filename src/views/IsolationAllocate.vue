@@ -89,7 +89,16 @@ export default {
         }
       ).then(() => {
         this.$axios
-          .delete("/isolationData", { data: { ID: this.tempID } })
+          .post("/isolationData/isolatedPointsData", { name: row.name })
+          .then((res) => {
+            if (res.code == 20000) {
+              this.$message("隔离点信息更新成功");
+            }
+          });
+        this.$axios
+          .delete("/isolationData/assignmentData", {
+            data: { id: this.tempID },
+          })
           .then((res) => {
             if (res.code == 20000) {
               this.$alert(this.tempName + " 的隔离点分配成功！", "消息", {

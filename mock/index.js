@@ -474,7 +474,11 @@ Mock.mock(baseURL + "/transportData", "get", {
 
 //隔离点分配patientsData
 
-Mock.mock(baseURL + "/isolationData", "delete", {
+Mock.mock(baseURL + "/isolationData/assignmentData", "delete", {
+  code: 20000,
+});
+
+Mock.mock(baseURL + "/isolationData/isolatedPointsData", "post", {
   code: 20000,
 });
 
