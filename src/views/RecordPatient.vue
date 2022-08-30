@@ -131,7 +131,7 @@ export default {
     submitForm() {
       if (this.checkID() && this.DetectionTime != "") {
         this.$axios
-          .post("PatientRecord", {
+          .post("/PatientRecord", {
             ID: this.ID,
             DetectionTime: this.DetectionTime,
             SamplingResult: this.SamplingResult,

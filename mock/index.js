@@ -263,68 +263,75 @@ Mock.mock(baseURL + "/personalRequest", "get", {
 });
 
 //现有物资
-Mock.mock(baseURL + "/fake_Material_data", "get", {
+Mock.mock(baseURL + "/existingMaterial", "delete", {
   code: 20000,
-  fake_Material_data: [
+});
+Mock.mock(baseURL + "/existingMaterial", "put", {
+  code: 20000,
+});
+
+Mock.mock(baseURL + "/existingMaterial", "get", {
+  code: 20000,
+  existingMaterial: [
     {
-      id: "000001",
-      material_types: "食品",
-      name: "趣多多",
+      goodsId: "000001",
+      goodsType: "食品",
+      goodsName: "趣多多",
       count: "2",
       type: "箱",
       isImp: "一般",
       units: "杨浦区疫情防控单位",
-      units_phone: "23423234",
+      unitsPhone: "23423234",
     },
     {
-      id: "000003",
-      material_types: "药品",
-      name: "感康",
+      goodsId: "000003",
+      goodsType: "药品",
+      goodsName: "感康",
       count: "2",
       type: "盒",
       isImp: "重要",
       units: "嘉定区疫情防控单位",
-      units_phone: "23421323234",
+      unitsPhone: "23421323234",
     },
     {
-      id: "000011",
-      material_types: "防护用品",
-      name: "免洗消毒液",
+      goodsId: "000011",
+      goodsType: "防护用品",
+      goodsName: "免洗消毒液",
       count: "66",
       type: "个",
       isImp: "重要",
       units: "嘉定区疫情防控单位",
-      units_phone: "23143325423234",
+      unitsPhone: "23143325423234",
     },
     {
-      id: "000023",
-      material_types: "食品",
-      name: "趣多多",
+      goodsId: "000023",
+      goodsType: "食品",
+      goodsName: "趣多多",
       count: "2",
       type: "箱",
       isImp: "一般",
       units: "杨浦区疫情防控单位",
-      units_phone: "23423234",
+      unitsPhone: "23423234",
     },
     {
-      id: "000101",
-      material_types: "食品",
-      name: "趣多对是非多",
+      goodsId: "000101",
+      goodsType: "食品",
+      goodsName: "趣多对是非多",
       count: "223",
       type: "箱",
       isImp: "一般",
       units: "杨撒旦发射点区疫情防控单位",
-      units_phone: "234232134234",
+      unitsPhone: "234232134234",
     },
     {
-      id: "001201",
-      material_types: "食品",
-      name: "第三范式趣多多",
+      goodsId: "001201",
+      goodsType: "食品",
+      goodsName: "第三范式趣多多",
       count: "2",
       type: "盆",
       isImp: "一般",
       units: "杨浦区疫情防控单位",
-      units_phone: "23423234",
+      unitsPhone: "23423234",
     },
   ],
 });
@@ -472,6 +479,11 @@ Mock.mock(baseURL + "/transportData", "get", {
   ],
 });
 
+
+//病例记录
+Mock.mock(baseURL + "/PatientRecord", "post", {
+  code: 20000,
+});
 //隔离点分配patientsData
 
 Mock.mock(baseURL + "/isolationData/assignmentData", "delete", {
@@ -683,6 +695,9 @@ Mock.mock(baseURL + "/volunteerApplication", "post", {
 Mock.mock(baseURL + "/makeDonate", "post", {
   code: 20000,
 });
+
+
+
 
 //物资购买（post）
 Mock.mock(baseURL + "/purchaseData/unitPurchase", "post", {

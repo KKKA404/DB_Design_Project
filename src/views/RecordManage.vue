@@ -171,7 +171,7 @@ export default {
 
     update() {
       this.$axios.put("/personalRequest", this.Emp).then((res) => {
-        console.log(res);
+        //console.log(res);
         if (res.code == 20000) {
           this.$alert(this.Emp.name + "的打卡记录修改成功！", "消息", {
             confirmButtonText: "确定",
@@ -184,7 +184,7 @@ export default {
     },
     edit(row) {
       this.$axios
-        .get("/personalRequest", { params: { ID: row.personId } })
+        .get("/personalRequest", { params: { personID: row.personId ,demandFormID:row.demandFormId} })
         .then((res) => {
           console.log(res.personalRequest);
           if (res.code == 20000) {
