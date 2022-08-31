@@ -134,8 +134,31 @@ Mock.mock(baseURL + "/donateData", "get", {
 });
 
 //管理人员
-Mock.mock(baseURL + "/manage", "post",{
-  code:20000,
+Mock.mock(baseURL + "/manage", "post", {
+  code: 20000,
+})
+Mock.mock(baseURL + "/manage", "delete", {
+  code: 20000,
+})
+Mock.mock(baseURL + "/manage", "get", {
+  code: 20000,
+  manageRecord: [
+    {
+      unitId: "11",
+      unitName: "haha",
+      personId: "22",
+      personName: "huhu",
+    },
+    {
+      unitId: "33",
+      unitName: "haha",
+      personId: "22",
+      personName: "huhu",
+    }
+  ]
+})
+Mock.mock(baseURL + "/manage", "post", {
+  code: 20000,
 })
 
 //个人需求表单
@@ -304,7 +327,7 @@ Mock.mock(baseURL + "/existingMaterial", "get", {
       goodsId: "000023",
       goodsType: "食品",
       goodsName: "趣多多",
-      count:2,
+      count: 2,
       type: "箱",
       isImp: "一般",
       units: "杨浦区疫情防控单位",
@@ -695,28 +718,28 @@ Mock.mock(baseURL + "/volunteerApplication", "put", {
 });
 Mock.mock(baseURL + "/volunteerApplication", "get", {
   code: 20000,
-  volunteerRecord:[
-  {
-    personId: "123",
-    name: "huhu",
-    district:"",
-    location: "",
-    riskLevel: "",
-    volunteerLocation: "",
-    date1: "",
-    volunteerType: "",
-  },
-  {
-    personId: "123",
-    name: "haha",
-    district:"",
-    location: "",
-    riskLevel: "",
-    volunteerLocation: "",
-    date1: "",
-    volunteerType: "",
-  },
-]
+  volunteerRecord: [
+    {
+      personId: "123",
+      name: "huhu",
+      district: "",
+      location: "",
+      riskLevel: "",
+      volunteerLocation: "",
+      date1: "",
+      volunteerType: "",
+    },
+    {
+      personId: "123",
+      name: "haha",
+      district: "",
+      location: "",
+      riskLevel: "",
+      volunteerLocation: "",
+      date1: "",
+      volunteerType: "",
+    },
+  ]
 });
 
 //捐赠物资表单
@@ -778,8 +801,8 @@ Mock.mock(baseURL + "/needData", "get", {
   ],
 });
 
-Mock.mock(baseURL+"/user/password","post",{
-  code:20000,
+Mock.mock(baseURL + "/user/password", "post", {
+  code: 20000,
 })
 Mock.mock(baseURL + "/user/login", "post", (config) => {
   // 传递过来的是JSON 必须要先解析！之后考虑封装吧 现在还只是测试
