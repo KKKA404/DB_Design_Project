@@ -117,22 +117,37 @@
 </template>
 
 <script>
-import { getExistingMaterials } from "@/api/material";
+import { getExistingMaterials, getNeedData } from "@/api/material";
 export default {
   methods: {
-
-    getAllNum(){
-      var num=0;
-      this.existingMaterial.map((item)=>{
-        
-        num+=item.count;
-      })
-      console.log(num)
-      return num;
+    async getLackSupplies() {
+      let { needData } = await getNeedData();
+      let { existingMaterial } = await getExistingMaterials();
+      let needDataDic = {};
+      needData.forEach((item) => {
+        if (needDataDic[item.goodName] == undefined) {
+          needDataDic[item.goodName] = 1;
+        } else needDataDic[item.goodName] += 1;
+      });
+      let existingMaterialDic = {};
+      existingMaterial.forEach((item) => {
+        if (existingMaterialDic[item.goodsName] == undefined) {
+          existingMaterialDic[item.goodsName] = 1;
+        } else existingMaterialDic[item.goodsName] += 1;
+      });
+      let lackSupplies = [];
+      for (let key in needDataDic) {
+        if (existingMaterialDic[key] == undefined) {
+          lackSupplies.push(key);
+        }
+        if (existingMaterialDic[key] <= needDataDic[key]) {
+          lackSupplies.push(key);
+        }
+      }
+      return lackSupplies;
     },
 
     deleteRecord(row) {
-      
       this.$confirm(
         "是否确定要删除" + row.goodsName + "的物资记录?",
         "删除数据",
@@ -163,13 +178,13 @@ export default {
   created() {
     getExistingMaterials().then((res) => {
       this.existingMaterial = res.existingMaterial;
-      var num=this.getAllNum();
-      if(num<=300){
-        //this.$message("存在物资短缺状况");
-        this.$alert("存在物资短缺状况", "消息", {
-                confirmButtonText: "确定",
-              });
-      }
+      this.getLackSupplies().then((lackSupplies) => {
+        if (lackSupplies.length !== 0) {
+          this.$alert(lackSupplies.toString() + "存在物资短缺状况", "消息", {
+            confirmButtonText: "确定",
+          });
+        }
+      });
     });
   },
 

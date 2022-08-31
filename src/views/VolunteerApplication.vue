@@ -75,7 +75,7 @@
 </template>
 
 <script>
-import { submitVolunteerApplication } from '@/api/volunteer';
+import { submitVolunteerApplication } from "@/api/volunteer";
 
 export default {
   //表单数据传递
@@ -171,8 +171,6 @@ export default {
             }
           });
         } else {
-          console.log("error submit!!");
-          return false;
         }
       });
     },

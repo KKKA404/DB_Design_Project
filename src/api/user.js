@@ -40,7 +40,7 @@ export function editInfo (data){
 
 }
 
-export function userRegister(data){
+export function register(data){
   return request({
     url: "/user/register",
     method: "post",

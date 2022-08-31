@@ -109,8 +109,8 @@ export default {
       donateForm: {
         donorID: "",
         name: "",
-        unitID:"",
-        unitName:"",
+        unitID: "",
+        unitName: "",
         goodsID: "",
         // goodsName: "",
         // goodsType: "",
@@ -124,15 +124,29 @@ export default {
         ],
         name: [
           { required: true, message: "请输入捐赠者名称", trigger: "blur" },
-          { min: 1, max: 10, message: "长度在 1 到 10 个字符", trigger: "blur" },
+          {
+            min: 1,
+            max: 10,
+            message: "长度在 1 到 10 个字符",
+            trigger: "blur",
+          },
         ],
         unitID: [
           { required: true, message: "请输入防控单位ID", trigger: "blur" },
           { min: 1, max: 5, message: "长度在 1 到 5 个字符", trigger: "blur" },
         ],
-        name: [
-          { required: true, message: "请输入疫情防控单位名称", trigger: "blur" },
-          { min: 1, max: 10, message: "长度在 1 到 10 个字符", trigger: "blur" },
+        unitName: [
+          {
+            required: true,
+            message: "请输入疫情防控单位名称",
+            trigger: "blur",
+          },
+          {
+            min: 1,
+            max: 10,
+            message: "长度在 1 到 10 个字符",
+            trigger: "blur",
+          },
         ],
         goodsID: [
           { required: true, message: "请输入物资ID", trigger: "blur" },
@@ -175,8 +189,6 @@ export default {
             }
           });
         } else {
-          console.log("error submit!!");
-          return false;
         }
       });
     },

@@ -186,7 +186,7 @@ export const asyncRoutes = [
         path: "/VolunteerRecord",
         name: "查询志愿申请",
         meta: { roles: ["admin", "user"] },
-        component: () => import("../views/VolunteerRecord.vue"),
+        // component: () => import("../views/VolunteerRecord.vue"),
       },
     ],
   },

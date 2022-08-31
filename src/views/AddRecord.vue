@@ -238,7 +238,7 @@ export default {
       this.$refs[formName].resetFields();
     },
     handleChange(value) {
-      console.log(value);
+      // console.log(value);
     },
   },
 };

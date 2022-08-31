@@ -191,7 +191,6 @@ export default {
         personID: row.personId,
         demandFormID: row.demandFormId,
       }).then((res) => {
-        console.log(res.personalRequest);
         if (res.code == 20000) {
           this.Emp = res.personalRequest;
         }
