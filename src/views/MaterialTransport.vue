@@ -29,7 +29,13 @@
     </el-card>
     <br />
     <el-card>
-      <el-table :data="searchData" border style="width: 100%">
+      <el-table
+        :data="
+          searchData.slice((currentPage - 1) * pageSize, currentPage * pageSize)
+        "
+        border
+        style="width: 100%"
+      >
         <el-table-column
           fixed
           prop="materialID"
@@ -192,6 +198,10 @@ export default {
       this.transportDetailedData.state = row.state;
       this.transportDetailedData.materialID = row.materialID;
     },
+
+    handleCurrentChange(currentPage) {
+      this.currentPage = currentPage;
+    },
   },
   created() {
     this.$axios.get("/transportData").then((res) => {
@@ -201,6 +211,8 @@ export default {
 
   data() {
     return {
+      currentPage: 1,
+      pageSize: 6,
       transportDetailedData: {
         materialID: "",
         materialName: "",
