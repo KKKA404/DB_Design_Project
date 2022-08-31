@@ -165,12 +165,13 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          submitVolunteerApplication(this.ruleForm).then((resp) => {
-            if (resp.code == 20000) {
-              this.$message("志愿报名提交成功");
+          submitVolunteerApplication(this.ruleForm).then((res) => {
+            if (res.code == 20000) {
+              this.$message("志愿报名提交成功！");
             }
           });
         } else {
+          this.$message.error("志愿报名提交失败！");
         }
       });
     },

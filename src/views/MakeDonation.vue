@@ -188,7 +188,6 @@ export default {
               this.$message("捐赠提交成功");
             }
           });
-        } else {
         }
       });
     },
