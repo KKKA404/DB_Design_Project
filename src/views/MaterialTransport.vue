@@ -21,7 +21,6 @@
           v-model="cname"
           slot="prepend"
           placeholder="请选择"
-          @change="getKey"
         >
           <el-option label="物资名称" value="materialName"></el-option>
           <el-option label="物资种类" value="materialType"></el-option>
@@ -29,7 +28,6 @@
         <el-button
           slot="append"
           icon="el-icon-search"
-          @click="search()"
         ></el-button>
       </el-input>
     </el-card>
@@ -239,13 +237,25 @@ export default {
   },
   computed: {
     searchData: function () {
-      let SearchResult = this.transportData.filter(
-        (item) => String(item.materialName).indexOf(String(this.nameInput)) > -1
-        // &&
-        // item.materialType.indexOf(this.materialTypeInput) > -1
-      );
-
-      return SearchResult;
+      if(this.cname=="materialName"){
+        let SearchResult = this.transportData.filter(
+          (item) => String(item.materialName).indexOf(String(this.nameInput)) > -1
+          // &&
+          // item.materialType.indexOf(this.materialTypeInput) > -1
+        );
+        return SearchResult;
+      }
+      else if(this.cname=="materialType"){
+        let SearchResult = this.transportData.filter(
+          (item) => String(item.materialType).indexOf(String(this.nameInput)) > -1
+          // &&
+          // item.materialType.indexOf(this.materialTypeInput) > -1
+        );
+        return SearchResult;
+      }
+      else{
+        return this.transportData;
+      }
     },
   },
 };
