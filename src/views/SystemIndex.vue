@@ -1,13 +1,7 @@
 <template>
-  <div>
-    <el-header>
-      <img
-        src="../assets/网站头部logo.png"
-        width="300"
-        height="50px"
-        align="left"
-        style="margin-bottom: 10px"
-      />
+  <div id="building">
+    <el-header style="margin-top: 5px;">
+      <img src="../assets/网站头部logo.png" width="300" height="50px" align="left" style="margin-bottom: 10px" />
       <div align="right">
         <div class="right-menu">
           <el-menu mode="horizontal" align="right" style="width: 10%">
@@ -375,11 +369,21 @@ export default {
 </script>
 
 <style>
+
 .el-menu-vertical:not(.el-menu--collapse) {
   width: 175px;
   overflow: hidden;
 }
+#building {
+  background-image:url(../assets/背景.png);
+  /* background-color: aqua; */
+  position:fixed;
+  height:100%;
+  width:100%;
+  top:0;
+  left:0;
 
+}
 .right-menu {
   justify-content: flex-end;
   margin-left: auto;
