@@ -682,6 +682,37 @@ Mock.mock(baseURL + "/purchaseData", "get", {
 Mock.mock(baseURL + "/volunteerApplication", "post", {
   code: 20000,
 });
+Mock.mock(baseURL + "/volunteerApplication", "delete", {
+  code: 20000,
+});
+Mock.mock(baseURL + "/volunteerApplication", "put", {
+  code: 20000,
+});
+Mock.mock(baseURL + "/volunteerApplication", "get", {
+  code: 20000,
+  volunteerRecord:[
+  {
+    personId: "123",
+    name: "huhu",
+    district:"",
+    location: "",
+    riskLevel: "",
+    volunteerLocation: "",
+    date1: "",
+    volunteerType: "",
+  },
+  {
+    personId: "123",
+    name: "haha",
+    district:"",
+    location: "",
+    riskLevel: "",
+    volunteerLocation: "",
+    date1: "",
+    volunteerType: "",
+  },
+]
+});
 
 //捐赠物资表单
 Mock.mock(baseURL + "/donateData", "post", {

@@ -182,6 +182,12 @@ export const asyncRoutes = [
         meta: { roles: ["admin", "user"] },
         component: () => import("../views/VolunteerApplication.vue"),
       },
+      {
+        path: "/VolunteerRecord",
+        name: "查询志愿申请",
+        meta: { roles: ["admin", "user"] },
+        component: () => import("../views/VolunteerRecord.vue"),
+      },
     ],
   },
   // 404 page must be placed at the end !!!
