@@ -377,7 +377,7 @@ export default {
 #building {
   background-image:url(../assets/背景.png);
   /* background-color: aqua; */
-  position:fixed;
+  /*position:fixed;*/
   height:100%;
   width:100%;
   top:0;
