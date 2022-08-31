@@ -1,14 +1,20 @@
 <template>
   <el-main>
     <el-card>
+      <!-- 筛选栏 -->
       <el-input
-        placeholder="请输入检索姓名"
+        placeholder="请输入内容"
         v-model="nameInput"
         class="input-with-select"
-        style="width: 90%; float: left; margin-right: 30px"
+        style="width: 87%; margin-bottom: 20px; margin-left: 2%; float: left"
       >
+        <el-select v-model="cname" slot="prepend" placeholder="请选择">
+          <el-option label="需求者ID" value="personId"></el-option>
+          <el-option label="需求者姓名" value="name"></el-option>
+        </el-select>
         <el-button slot="append" icon="el-icon-search"></el-button>
       </el-input>
+      <!-- 筛选栏 -->
       <el-button
         type="primary"
         style="margin-left: 10px"
@@ -256,11 +262,19 @@ export default {
 
   computed: {
     searchData: function () {
-      let SearchResult = this.samplingData.filter(
-        (item) => String(item.name).indexOf(String(this.nameInput)) > -1
-      );
-
-      return SearchResult;
+      if (this.cname == "personId") {
+        let SearchResult = this.samplingData.filter(
+          (item) => String(item.personId).indexOf(String(this.nameInput)) > -1
+        );
+        return SearchResult;
+      } else if (this.cname == "name") {
+        let SearchResult = this.samplingData.filter(
+          (item) => String(item.name).indexOf(String(this.nameInput)) > -1
+        );
+        return SearchResult;
+      } else {
+        return this.samplingData;
+      }
     },
   },
 
