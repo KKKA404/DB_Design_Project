@@ -81,6 +81,12 @@ export const asyncRoutes = [
         component: () => import("../views/AddManageRecord.vue"),
         meta: { roles: ["admin"] },
       },
+      {
+        path: "/checkManageRecord",
+        name: "查看管理信息",
+        component: () => import("../views/checkManageRecord.vue"),
+        meta: { roles: ["admin"] },
+      },
     ],
   },
   {
