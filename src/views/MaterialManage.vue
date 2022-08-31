@@ -140,7 +140,7 @@ export default {
         if (existingMaterialDic[key] == undefined) {
           lackSupplies.push(key);
         }
-        if (existingMaterialDic[key] <= needDataDic[key]) {
+        if (existingMaterialDic[key] <= needDataDic[key] * 0.1) {
           lackSupplies.push(key);
         }
       }

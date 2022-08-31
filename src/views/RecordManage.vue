@@ -175,7 +175,6 @@ export default {
 
     update() {
       modifyPersonalRequest(this.Emp).then((res) => {
-        //console.log(res);
         if (res.code == 20000) {
           this.$alert(this.Emp.name + "的需求记录修改成功！", "消息", {
             confirmButtonText: "确定",
