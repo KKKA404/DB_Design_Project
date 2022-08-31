@@ -5,22 +5,28 @@
         effect="plain"
         style="
           float: left;
-          margin-bottom: 10px;
+          margin-bottom: 20px;
+          margin-right: 80%;
           font-size: 18px;
           font-weight: 400;
           padding: auto;
         "
         >筛选条件</el-tag
       >
+      <!-- 筛选栏 -->
       <el-input
-        placeholder="请输入捐赠方ID"
-        v-model="idInput"
-        clearable
-        style="margin-bottom: 10px"
+        placeholder="请输入内容"
+        v-model="nameInput"
+        class="input-with-select"
+        style="width: 90%; margin-bottom: 25px; margin-left: 3%; float: left"
       >
+        <el-select v-model="cname" slot="prepend" placeholder="请选择">
+          <el-option label="捐赠方ID" value="donateID"></el-option>
+          <el-option label="捐赠方名称" value="donateName"></el-option>
+        </el-select>
+        <el-button slot="append" icon="el-icon-search"></el-button>
       </el-input>
-      <el-input placeholder="请输入捐赠方名称" v-model="nameInput" clearable>
-      </el-input>
+      <!-- 筛选栏 -->
     </el-card>
     <el-card>
       <el-table
@@ -72,20 +78,28 @@ export default {
   },
   data() {
     return {
-      idInput: "",
-      nameInput: "",
       donateData: [],
+      value: "",
+      cname: "",
+      nameInput: "",
+      options: [],
     };
   },
   computed: {
     searchData: function () {
-      let SearchResult = this.donateData.filter(
-        (item) =>
-          String(item.donateID).indexOf(String(this.idInput)) > -1 &&
-          item.donateName.indexOf(this.nameInput) > -1
-      );
-
-      return SearchResult;
+      if (this.cname == "donateName") {
+        let SearchResult = this.transportData.filter(
+          (item) => String(item.donateName).indexOf(String(this.nameInput)) > -1
+        );
+        return SearchResult;
+      } else if (this.cname == "donateID") {
+        let SearchResult = this.transportData.filter(
+          (item) => String(item.donateID).indexOf(String(this.nameInput)) > -1
+        );
+        return SearchResult;
+      } else {
+        return this.donateData;
+      }
     },
   },
   created() {
@@ -100,38 +114,13 @@ export default {
 </script>
 
 <style>
-/* .el-header,
-.el-footer {
-  background-color: #b3c0d1;
-  color: #333;
-  text-align: center;
-  line-height: 60px;
+.el-select .el-input {
+  width: 130px;
 }
-
-.el-aside {
-  background-color: #d3dce6;
-  color: #333;
-  text-align: center;
-  line-height: 200px;
+.input-with-select .el-input-group__prepend {
+  background-color: #fff;
 }
-
-.el-main {
-  background-color: #e9eef3;
-  color: #333;
-  text-align: center;
-  line-height: 60px;
+.red {
+  color: red;
 }
-
-body > .el-container {
-  margin-bottom: 40px;
-}
-
-.el-container:nth-child(5) .el-aside,
-.el-container:nth-child(6) .el-aside {
-  line-height: 260px;
-}
-
-.el-container:nth-child(7) .el-aside {
-  line-height: 320px;
-} */
 </style>

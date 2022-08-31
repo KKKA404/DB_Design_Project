@@ -2,8 +2,7 @@
   <el-main
     style="display: flex; justify-content: center; align-items: flex-start"
   >
-    <!-- 以下是表单形式 -->
-    <el-card style="width: 85%">
+    <el-card style="width: 80%">
       <div slot="header" class="clearfix">
         <h1 style="float: left; margin-left: 15px">捐赠表单</h1>
       </div>

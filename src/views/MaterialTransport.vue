@@ -5,31 +5,27 @@
         effect="plain"
         style="
           float: left;
-          margin-bottom: 10px;
+          margin-bottom: 15px;
+          margin-right: 80%;
           font-size: 18px;
           font-weight: 400;
         "
         >筛选条件</el-tag
       >
+      <!-- 筛选栏 -->
       <el-input
         placeholder="请输入内容"
         v-model="nameInput"
         class="input-with-select"
-        style="width: 100%; margin-bottom: 10px"
+        style="width: 90%; margin-bottom: 20px; margin-left: 3%; float: left"
       >
-        <el-select
-          v-model="cname"
-          slot="prepend"
-          placeholder="请选择"
-        >
+        <el-select v-model="cname" slot="prepend" placeholder="请选择">
           <el-option label="物资名称" value="materialName"></el-option>
           <el-option label="物资种类" value="materialType"></el-option>
         </el-select>
-        <el-button
-          slot="append"
-          icon="el-icon-search"
-        ></el-button>
+        <el-button slot="append" icon="el-icon-search"></el-button>
       </el-input>
+      <!-- 筛选栏 -->
     </el-card>
     <br />
     <el-card>
@@ -225,7 +221,6 @@ export default {
       nameInput: "",
       //searchKey:"",
       options: [],
-      list: [],
       loading: false,
       tableData: null,
       total: null,
@@ -237,23 +232,23 @@ export default {
   },
   computed: {
     searchData: function () {
-      if(this.cname=="materialName"){
+      if (this.cname == "materialName") {
         let SearchResult = this.transportData.filter(
-          (item) => String(item.materialName).indexOf(String(this.nameInput)) > -1
+          (item) =>
+            String(item.materialName).indexOf(String(this.nameInput)) > -1
           // &&
           // item.materialType.indexOf(this.materialTypeInput) > -1
         );
         return SearchResult;
-      }
-      else if(this.cname=="materialType"){
+      } else if (this.cname == "materialType") {
         let SearchResult = this.transportData.filter(
-          (item) => String(item.materialType).indexOf(String(this.nameInput)) > -1
+          (item) =>
+            String(item.materialType).indexOf(String(this.nameInput)) > -1
           // &&
           // item.materialType.indexOf(this.materialTypeInput) > -1
         );
         return SearchResult;
-      }
-      else{
+      } else {
         return this.transportData;
       }
     },
