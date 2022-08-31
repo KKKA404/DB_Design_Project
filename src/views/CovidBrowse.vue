@@ -1,12 +1,24 @@
 <template>
   <div>
-    <CaseNum :CaseNumData="CaseNumData" />
-    <Map />
-    <!-- <Covid19Chart /> -->
-    <News :NewsData="NewsData" />
+    <el-card shadow="hover" style="width: 95%; margin-left: 30px">
+      <el-row>
+        <!-- <Covid19Chart /> -->
+        <el-col :span="12">
+          <el-card shadow="hover">
+            <CaseNum :CaseNumData="CaseNumData" />
+          </el-card>
+        </el-col>
+        <el-col :span="12">
+          <Map />
+        </el-col>
+      </el-row>
+      <el-row>
+        <News :NewsData="NewsData" />
+      </el-row>
+    </el-card>
   </div>
 </template>
- 
+
 <script>
 import CaseNum from "../views/CaseNum.vue";
 import Map from "../views/Map.vue";

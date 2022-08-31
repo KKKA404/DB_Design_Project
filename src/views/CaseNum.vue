@@ -10,6 +10,7 @@
     <div class="num">
       <ul class="count">
         <li class="create-item">
+          <span style="font-size:x-large">现存确诊</span>
           <div class="create-count">
             <b
               >较昨日
@@ -18,12 +19,12 @@
               }}</em></b
             >
           </div>
-          <strong style="color: rgb(247, 76, 49)">{{
+          <strong style="color: rgb(247, 76, 49);font-size:xx-large">{{
             CaseNumData.currentConfirmedCount
           }}</strong>
-          <span>现存确诊</span>
         </li>
         <li class="create-item">
+          <span style="font-size:x-large">累计确诊</span>
           <div class="create-count">
             <b
               >较昨日
@@ -32,12 +33,12 @@
               >
             </b>
           </div>
-          <strong style="color: rgb(247, 130, 7)">{{
+          <strong style="color: rgb(247, 130, 7);font-size:xx-large">{{
             CaseNumData.confirmedCount
           }}</strong>
-          <span>累计确诊</span>
         </li>
         <li class="create-item">
+          <span style="font-size:x-large">累计境外输入</span>
           <div class="create-count">
             <b
               >较昨日
@@ -46,12 +47,12 @@
               >
             </b>
           </div>
-          <strong style="color: rgb(162, 90, 78)">{{
+          <strong style="color: rgb(162, 90, 78);font-size:xx-large">{{
             CaseNumData.suspectedCount
           }}</strong>
-          <span>累计境外输入</span>
         </li>
         <li class="create-item">
+          <span style="font-size:x-large">累计治愈</span>
           <div class="create-count">
             <b
               >较昨日
@@ -60,12 +61,12 @@
               >
             </b>
           </div>
-          <strong style="color: rgb(174, 33, 44)">{{
+          <strong style="color: rgb(174, 33, 44);font-size:xx-large">{{
             CaseNumData.curedCount
           }}</strong>
-          <span>累计治愈</span>
         </li>
         <li class="create-item">
+          <span style="font-size:x-large">累计死亡</span>
           <div class="create-count">
             <b
               >较昨日
@@ -74,12 +75,12 @@
               >
             </b>
           </div>
-          <strong style="color: rgb(93, 112, 146)">{{
+          <strong style="color: rgb(93, 112, 146);font-size:xx-large">{{
             CaseNumData.deadCount
           }}</strong>
-          <span>累计死亡</span>
         </li>
         <li class="create-item">
+          <span style="font-size:x-large">现存无症状</span>
           <div class="create-count">
             <b
               >较昨日
@@ -88,10 +89,9 @@
               }}</em>
             </b>
           </div>
-          <strong style="color: rgb(40, 183, 163)">{{
+          <strong style="color: rgb(40, 183, 163);font-size:xx-large">{{
             CaseNumData.seriousCount
           }}</strong>
-          <span>现存无症状</span>
         </li>
       </ul>
     </div>
