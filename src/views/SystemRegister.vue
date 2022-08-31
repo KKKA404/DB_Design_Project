@@ -106,7 +106,7 @@
 
 <script>
 import Verify from "@/components/Verify.vue";
-
+import userRegister from '@/api/user'
 export default {
   name: "SystemRegister",
   components: {
@@ -172,8 +172,7 @@ export default {
     },
     handleRegister() {
       this.loading = true;
-      this.$axios
-        .post("/user/register", this.registerForm)
+      userRegister(this.registerForm)
         .then((res) => {
           if (res.code == 20000) {
             // success

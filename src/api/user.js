@@ -22,3 +22,20 @@ export function logout() {
     method: "post",
   });
 }
+
+export function modifyPassword(data){
+  return request({
+    url: "/user/password",
+    method: "post",
+    data,
+  });
+}
+
+export function editInfo (data){
+  return request({
+    url: "/user/editInfo",
+    method: "post",
+    data,
+  });
+
+}

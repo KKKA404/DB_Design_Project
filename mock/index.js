@@ -750,6 +750,9 @@ Mock.mock(baseURL + "/needData", "get", {
   ],
 });
 
+Mock.mock(baseURL+"/user/password","post",{
+  code:20000,
+})
 Mock.mock(baseURL + "/user/login", "post", (config) => {
   // 传递过来的是JSON 必须要先解析！之后考虑封装吧 现在还只是测试
   config.body = JSON.parse(config.body);

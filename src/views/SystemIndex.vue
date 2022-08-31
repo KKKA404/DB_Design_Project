@@ -168,6 +168,7 @@
   </div>
 </template>
 <script>
+import { editInfo, modifyPassword } from "@/api/user";
 import SvgIcon from "@/components/SvgIcon.vue";
 import Header from "./Header.vue";
 export default {
@@ -220,11 +221,10 @@ export default {
       ) {
         this.$message.error("两次输入新密码不一致！");
       } else {
-        this.$axios
-          .post("/user/password", {
-            newPassWord: this.newPassWordForm.newPassWord,
-            oldPassWord: this.newPassWordForm.oldPassWord,
-          })
+        modifyPassword({
+          newPassWord: this.newPassWordForm.newPassWord,
+          oldPassWord: this.newPassWordForm.oldPassWord,
+        })
           .then((res) => {
             if (res.code == 20000) {
               this.$message.success("修改密码成功！");
@@ -237,8 +237,7 @@ export default {
       }
     },
     editUserInfo() {
-      this.$axios
-        .post("/user/editInfo", this.userInfoForm)
+      editInfo(this.userInfoForm)
         .then((res) => {
           if (res.code == 20000) {
             // success

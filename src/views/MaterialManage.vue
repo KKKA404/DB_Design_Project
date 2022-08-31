@@ -128,6 +128,7 @@
 </template>
 
 <script>
+  import {getExistingMaterials} from '@/api/material'
 export default {
   methods: {
     deleteRecord(row) {
@@ -177,7 +178,7 @@ export default {
     },
   },
   created() {
-    this.$axios.get("/existingMaterial").then((res) => {
+    getExistingMaterials().then((res) => {
       this.existingMaterial = res.existingMaterial;
     });
     // axios.get('http://localhost:8080/Material/findAll/1/6').then((resp)=>{

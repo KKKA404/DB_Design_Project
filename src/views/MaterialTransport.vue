@@ -181,6 +181,7 @@
 </template>
 
 <script>
+  import {getTransportData} from '@/api/material'
 export default {
   methods: {
     showDetail(row) {
@@ -204,7 +205,7 @@ export default {
     },
   },
   created() {
-    this.$axios.get("/transportData").then((res) => {
+    getTransportData().then((res) => {
       this.transportData = res.transportData;
     });
   },

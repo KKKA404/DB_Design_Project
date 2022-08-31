@@ -1,53 +1,22 @@
 <template>
-  <el-main
-    style="display: flex; justify-content: center; align-items: flex-start"
-  >
+  <el-main style="display: flex; justify-content: center; align-items: flex-start">
     <el-card style="width: 70%">
       <div slot="header" class="clearfix">
         <h1 style="float: left; margin-left: 15px">核酸信息表单</h1>
       </div>
-      <el-form
-        style="width: 60%"
-        :model="Emp"
-        :rules="rules"
-        ref="Emp"
-        label-width="100px"
-        class="demo-Emp"
-      >
-        <el-form-item
-          label="个人编号"
-          :label-width="formLabelWidth"
-          style="width: 50%"
-        >
+      <el-form style="width: 60%" :model="Emp" :rules="rules" ref="Emp" label-width="100px" class="demo-Emp">
+        <el-form-item label="个人编号" :label-width="formLabelWidth" style="width: 50%">
           <el-input placeholder="请输入18位身份证号" v-model="ID" clearable>
           </el-input>
         </el-form-item>
-        <el-form-item
-          label="核酸日期"
-          :label-width="formLabelWidth"
-          style="width: 50%"
-        >
-          <el-date-picker
-            v-model="DetectionTime"
-            type="date"
-            placeholder="选择日期"
-            :picker-options="pickerOptions"
-          >
+        <el-form-item label="核酸日期" :label-width="formLabelWidth" style="width: 50%">
+          <el-date-picker v-model="DetectionTime" type="date" placeholder="选择日期" :picker-options="pickerOptions">
           </el-date-picker>
         </el-form-item>
 
-        <el-form-item
-          label="核酸日期"
-          :label-width="formLabelWidth"
-          style="width: 50%"
-        >
+        <el-form-item label="核酸日期" :label-width="formLabelWidth" style="width: 50%">
           <el-select v-model="SamplingResult" placeholder="核酸结果">
-            <el-option
-              v-for="item in options"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            >
+            <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
             </el-option>
           </el-select>
         </el-form-item>
@@ -60,6 +29,7 @@
 </template>
 
 <script>
+import { addPatientData } from '@/api/medical';
 export default {
   data() {
     return {
@@ -161,12 +131,11 @@ export default {
     },
     submitForm() {
       if (this.checkID() && this.DetectionTime != "") {
-        this.$axios
-          .post("/PatientRecord", {
-            ID: this.ID,
-            DetectionTime: this.DetectionTime,
-            SamplingResult: this.SamplingResult,
-          })
+        addPatientData({
+          ID: this.ID,
+          DetectionTime: this.DetectionTime,
+          SamplingResult: this.SamplingResult,
+        })
           .then((res) => {
             if (res.code == 20000) {
               this.$message("提交成功");
@@ -198,6 +167,7 @@ export default {
   display: table;
   content: "";
 }
+
 .clearfix:after {
   clear: both;
 }
@@ -205,12 +175,15 @@ export default {
 .box-card {
   width: 480px;
 }
+
 .el-card {
   transition: all 0.25s;
 }
+
 .el-card:hover {
   margin-top: -5px;
 }
+
 .el-input {
   margin-left: 10px;
 }
