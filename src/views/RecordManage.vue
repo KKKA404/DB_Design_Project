@@ -33,7 +33,6 @@
         <el-table-column prop="type" label="所需物资种类"> </el-table-column>
         <el-table-column prop="goodsName" label="所需物资"> </el-table-column>
         <el-table-column prop="num" label="所需物资数量"> </el-table-column>
-        <el-table-column prop="content" label="备注"> </el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
             <el-button @click="(dialogFormVisible = true), edit(scope.row)" type="text">修改</el-button>
@@ -80,9 +79,6 @@
               <el-option v-for="item in options3" :key="item.value" :label="item.label" :value="item.value">
               </el-option>
             </el-select>
-          </el-form-item>
-          <el-form-item label="备注" :label-width="formLabelWidth">
-            <el-input v-model="Emp.content" autocomplete="off"></el-input>
           </el-form-item>
         </el-form>
 
@@ -240,7 +236,6 @@ export default {
         type: "",
         goodsName: "",
         num: undefined,
-        content: "",
       },
     };
   },

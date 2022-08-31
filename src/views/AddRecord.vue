@@ -78,9 +78,6 @@
             style="margin-left: 10px"
           ></el-input-number>
         </el-form-item>
-        <el-form-item label="备注" :label-width="formLabelWidth">
-          <el-input v-model="Emp.content" autocomplete="off"></el-input>
-        </el-form-item>
 
         <el-form-item align="left" style="margin-left: 50%">
           <el-button type="primary" @click="submitForm('Emp')"
@@ -173,7 +170,6 @@ export default {
         type: "",
         goodsName: "",
         num: 0,
-        content: "",
       },
       rules: {
         personId: [
@@ -220,7 +216,6 @@ export default {
             trigger: "blur",
           },
         ],
-        content: [{ required: false, message: "备注", trigger: "blur" }],
       },
     };
   },

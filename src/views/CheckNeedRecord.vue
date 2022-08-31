@@ -1,35 +1,26 @@
 <template>
   <el-main>
     <el-card>
-      <el-tag
-        effect="plain"
-        style="
+      <el-tag effect="plain" style="
           float: left;
           margin-bottom: 10px;
           font-size: 18px;
           font-weight: 400;
           padding: auto;
-        "
-        >筛选条件</el-tag
-      >
-      <el-input
-        placeholder="请输入需求者的 ID / 姓名"
-        v-model="needInput"
-        clearable
-      >
+        ">筛选条件</el-tag>
+      <el-input placeholder="请输入需求者的 ID / 姓名" v-model="needInput" clearable>
       </el-input>
     </el-card>
 
     <br />
     <el-card>
-      <el-table
-        :data="searchData"
-        height="500"
-        border
-        style="width: 100%"
-        :default-sort="{ prop: 'needTime', order: 'descending' }"
-      >
+      <el-table :data="searchData" height="500" border style="width: 100%"
+        :default-sort="{ prop: 'needTime', order: 'descending' }">
         <el-table-column prop="id" sortable label="需求者编号">
+        </el-table-column>
+        <el-table-column prop="unitId"  label="疫情防控单位编号">
+        </el-table-column>
+        <el-table-column prop="unitName" label="疫情防控单位">
         </el-table-column>
         <el-table-column prop="name" sortable label="姓名"> </el-table-column>
         <el-table-column prop="phoneNumber" label="电话号码"> </el-table-column>
@@ -40,12 +31,8 @@
         <el-table-column prop="num" label="物资数量"> </el-table-column>
         <el-table-column width="120" label="操作">
           <template slot-scope="scope">
-            <el-button
-              @click="(dialogFormVisible = true), allocate(scope.row)"
-              type="text"
-              size="medium"
-              >完成分配</el-button
-            >
+            <el-button @click="(dialogFormVisible = true), allocate(scope.row)" type="text" size="medium">完成分配
+            </el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -54,7 +41,7 @@
 </template>
 
 <script>
-import { getNeedData,deleteNeedData } from '@/api/material';
+import { getNeedData, deleteNeedData } from '@/api/material';
 export default {
   name: "CheckNeedRecord",
   methods: {
@@ -64,7 +51,7 @@ export default {
         cancelButtonText: "取消",
         type: "warning",
       }).then(() => {
-        deleteNeedData( { id: row.id, goodID: row.goodID })
+        deleteNeedData({ id: row.id, goodID: row.goodID })
           .then((res) => {
             if (res.code == 20000) {
               this.$alert(row.name + " 的需求消除成功！", "消息", {
@@ -116,6 +103,7 @@ export default {
   display: table;
   content: "";
 }
+
 .clearfix:after {
   clear: both;
 }
