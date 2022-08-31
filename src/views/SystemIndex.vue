@@ -1,5 +1,8 @@
 <template>
   <div>
+    <el-header>
+      <img src="../assets/网站头部logo.png" width="300" height="50px" align="left" style="margin-bottom: 10px;">
+    </el-header>
     <el-container style="height: 100%; border: 1px solid #eee">
       <el-aside
         width="collapse"
