@@ -131,7 +131,19 @@
   import {getExistingMaterials} from '@/api/material'
 export default {
   methods: {
+
+    getAllNum(){
+      var num=0;
+      this.existingMaterial.map((item)=>{
+        
+        num+=item.count;
+      })
+      console.log(num)
+      return num;
+    },
+
     deleteRecord(row) {
+      
       this.$confirm(
         "是否确定要删除" + row.goodsName + "的物资记录?",
         "删除数据",
@@ -180,7 +192,16 @@ export default {
   created() {
     getExistingMaterials().then((res) => {
       this.existingMaterial = res.existingMaterial;
+      var num=this.getAllNum();
+      if(num<=300){
+        //this.$message("存在物资短缺状况");
+        this.$alert("存在物资短缺状况", "消息", {
+                confirmButtonText: "确定",
+              });
+      }
     });
+
+    //console.log(num);
     // axios.get('http://localhost:8080/Material/findAll/1/6').then((resp)=>{
     //   console.log(resp)
     //   this.tableData=resp.data.records
