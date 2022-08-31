@@ -38,8 +38,6 @@
         </el-table-column>
         <el-table-column prop="name" label="姓名"> </el-table-column>
         <el-table-column prop="district" label="地区"> </el-table-column>
-        <el-table-column prop="location" label="地址"> </el-table-column>
-        <el-table-column prop="riskLevel" label="风险等级"> </el-table-column>
         <el-table-column label="志愿地点" prop="volunteerLocation">
         </el-table-column>
         <el-table-column prop="date1" label="服务日期"> </el-table-column>
@@ -81,11 +79,7 @@
               <el-radio v-model="Emp.gender" label="男">男</el-radio>
               <el-radio v-model="Emp.gender" label="女">女</el-radio>
             </el-form-item> -->
-          <el-form-item label="风险等级" :label-width="formLabelWidth">
-            <el-radio v-model="Emp.riskLevel" label="低风险">低风险</el-radio>
-            <el-radio v-model="Emp.riskLevel" label="中风险">中风险</el-radio>
-            <el-radio v-model="Emp.riskLevel" label="高风险">高风险</el-radio>
-          </el-form-item>
+          
           <el-form-item label="志愿地点" :label-width="formLabelWidth">
             <el-input
               v-model="Emp.volunteerLocation"
@@ -207,8 +201,6 @@ export default {
         personId: "",
         name: "",
         district: "",
-        location: "",
-        riskLevel: "",
         volunteerLocation: "",
         date1: "",
         volunteerType: "",

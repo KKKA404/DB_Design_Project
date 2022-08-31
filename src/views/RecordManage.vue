@@ -44,10 +44,10 @@
         </el-table-column>
         <el-table-column prop="name" label="姓名"> </el-table-column>
         <el-table-column prop="gender" label="性别"> </el-table-column>
-        <el-table-column prop="urgency" label="紧急程度"> </el-table-column>
+        <!-- <el-table-column prop="urgency" label="紧急程度"> </el-table-column> -->
         <el-table-column prop="phoneNumber" label="手机号码"> </el-table-column>
-        <el-table-column prop="IDcard" label="身份证号码"> </el-table-column>
-        <el-table-column label="健康状况" prop="health"> </el-table-column>
+        <!-- <el-table-column prop="IDcard" label="身份证号码"> </el-table-column>
+        <el-table-column label="健康状况" prop="health"> </el-table-column> -->
         <el-table-column prop="type" label="所需物资种类"> </el-table-column>
         <el-table-column prop="goodsName" label="所需物资"> </el-table-column>
         <el-table-column prop="num" label="所需物资数量"> </el-table-column>
@@ -87,21 +87,21 @@
             <el-radio v-model="Emp.gender" label="男">男</el-radio>
             <el-radio v-model="Emp.gender" label="女">女</el-radio>
           </el-form-item> -->
-          <el-form-item
+          <!-- <el-form-item
             label="紧急程度"
             :label-width="formLabelWidth"
             prop="urgency"
           >
             <el-radio v-model="Emp.urgency" label="紧急">紧急</el-radio>
             <el-radio v-model="Emp.urgency" label="一般">一般</el-radio>
-          </el-form-item>
+          </el-form-item> -->
           <el-form-item label="手机号码" :label-width="formLabelWidth">
             <el-input v-model="Emp.phoneNumber" autocomplete="off"></el-input>
           </el-form-item>
           <!-- <el-form-item label="身份证号码" :label-width="formLabelWidth">
             <el-input v-model="Emp.IDcard" autocomplete="off"></el-input>
           </el-form-item> -->
-          <el-form-item
+          <!-- <el-form-item
             label="健康状况"
             :label-width="formLabelWidth"
             prop="health"
@@ -115,7 +115,7 @@
               >
               </el-option>
             </el-select>
-          </el-form-item>
+          </el-form-item> -->
           <!-- <el-form-item label="提交时间" :label-width="formLabelWidth">
             <el-input v-model="Emp.createTime" autocomplete="off"></el-input>
           </el-form-item> -->
@@ -271,10 +271,10 @@ export default {
         personalId: "",
         name: "",
         gender: undefined,
-        urgency: "",
+        //urgency: "",
         phoneNumber: "",
-        IDcard: "",
-        health: "",
+        // IDcard: "",
+        // health: "",
         type: "",
         goodsName: "",
         num: undefined,

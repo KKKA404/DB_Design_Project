@@ -26,7 +26,7 @@
           ></el-input>
         </el-form-item>
 
-        <el-form-item
+        <!-- <el-form-item
           label="紧急程度"
           :label-width="formLabelWidth"
           style="width: 45%"
@@ -37,7 +37,7 @@
           <el-radio v-model="Emp.urgency" label="一般" align="left"
             >一般</el-radio
           >
-        </el-form-item>
+        </el-form-item> -->
 
         <el-form-item
           label="所需物资种类"
@@ -163,10 +163,7 @@ export default {
         personId: this.$store.getters.ID,
         name: "",
         gender: undefined,
-        urgency: "",
         phoneNumber: "",
-        IDcard: "",
-        health: "",
         type: "",
         goodsName: "",
         num: 0,
@@ -188,19 +185,10 @@ export default {
           },
         ],
         gender: [{ required: true, message: "请输入性别", trigger: "blur" }],
-        urgency: [
-          { required: true, message: "请输入紧急程度", trigger: "blur" },
-        ],
+        
         phoneNumber: [
           { required: true, message: "请输入手机号码", trigger: "blur" },
           { min: 11, max: 11, message: "长度为11个字符", trigger: "blur" },
-        ],
-        IDcard: [
-          { required: true, message: "请输入身份证号码", trigger: "blur" },
-          { min: 18, max: 18, message: "长度为18个字符", trigger: "blur" },
-        ],
-        health: [
-          { required: true, message: "请输入健康状况", trigger: "blur" },
         ],
         type: [
           { required: true, message: "请选择所需物资种类", trigger: "blur" },

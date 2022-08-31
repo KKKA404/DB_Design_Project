@@ -23,19 +23,6 @@
         <el-form-item label="地区" prop="district">
           <el-input v-model="ruleForm.district"></el-input>
         </el-form-item>
-        <el-form-item label="地址" prop="location">
-          <el-input v-model="ruleForm.location"></el-input>
-        </el-form-item>
-        <el-form-item label="风险等级" prop="riskLevel" align="left">
-          <el-radio-group
-            v-model="ruleForm.riskLevel"
-            style="margin-left: 10px"
-          >
-            <el-radio label="低风险"></el-radio>
-            <el-radio label="中风险"></el-radio>
-            <el-radio label="高风险"></el-radio>
-          </el-radio-group>
-        </el-form-item>
         <el-form-item label="志愿地点" prop="volunteerLocation">
           <el-input v-model="ruleForm.volunteerLocation"></el-input>
         </el-form-item>
@@ -58,9 +45,9 @@
             placeholder="请输入志愿服务类型类型"
             style="margin-left: 10px"
           >
-            <el-option label="秩序引导" value="medical"></el-option>
-            <el-option label="扫码登记" value="living"></el-option>
-            <el-option label="物资搬运" value="shifting"></el-option>
+            <el-option label="秩序引导" value="秩序引导"></el-option>
+            <el-option label="扫码登记" value="秩序引导"></el-option>
+            <el-option label="物资搬运" value="秩序引导"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item align="left" style="margin-left: 35%">
@@ -85,8 +72,6 @@ export default {
         ID: "",
         name: "",
         district: "",
-        location: "",
-        riskLevel: "",
         volunteerLocation: "",
         date1: "",
         volunteerType: "",
@@ -109,22 +94,7 @@ export default {
             trigger: "blur",
           },
         ],
-        location: [
-          {
-            required: true,
-            message: "请输入您现在居住的地址",
-            trigger: "blur",
-          },
-          {
-            min: 1,
-            max: 20,
-            message: "长度在 1 到 20 个字符",
-            trigger: "blur",
-          },
-        ],
-        riskLevel: [
-          { required: true, message: "请选择地区风险等级", trigger: "change" },
-        ],
+        
         volunteerLocation: [
           {
             required: true,
@@ -149,15 +119,6 @@ export default {
         volunteerType: [
           { required: true, message: "请选择志愿服务类型", trigger: "change" },
         ],
-        // itemType: [
-        //   { type: 'array', required: true, message: '请至少选择一个活动性质', trigger: 'change' }
-        // ],
-        // riskLevel: [
-        //   { required: true, message: '请选择地区风险等级', trigger: 'change' }
-        // ],
-        // desc: [
-        //   { required: true, message: '请填写活动形式', trigger: 'blur' }
-        // ]
       },
     };
   },
