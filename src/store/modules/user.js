@@ -1,11 +1,11 @@
 import { getToken, setToken, removeToken } from "@/utils/auth";
 import { resetRouter } from "@/router";
-import service from "@/plugins/axios";
+import { login, getInfo, logout } from "@/api/user.js";
 
 const getDefaultState = () => {
   return {
     token: getToken(),
-    ID:"",
+    ID: "",
     name: "",
     roles: [],
     gender: 1, // 1 = male, 0 = female
@@ -16,7 +16,7 @@ const getDefaultState = () => {
 
 const state = {
   token: getToken(),
-  ID:"",
+  ID: "",
   name: "",
   roles: [],
   gender: 1, // 1 = male, 0 = female
@@ -56,8 +56,7 @@ const actions = {
   login({ commit }, userInfo) {
     const { userName, passWord } = userInfo;
     return new Promise((resolve, reject) => {
-      service
-        .post("/user/login", { userName: userName.trim(), passWord: passWord })
+      login({ userName: userName.trim(), passWord: passWord })
         .then((res) => {
           const { token } = res;
 
@@ -73,10 +72,9 @@ const actions = {
   },
 
   // get user info
-  getInfo({ commit, state }) {
+  getInfo({ commit }) {
     return new Promise((resolve, reject) => {
-      service
-        .get("/user/info", { params: { token: state.token } })
+      getInfo(state.token)
         .then((res) => {
           const { data } = res;
 
@@ -85,14 +83,14 @@ const actions = {
           }
           console.log("data.roles", data.roles);
 
-          const { roles, ID ,name , gender,phoneNumber,age} = data;
+          const { roles, ID, name, gender, phoneNumber, age } = data;
           // roles must be a non-empty array
           if (!roles || roles.length <= 0) {
             reject("getInfo: roles must be a non-null array!");
           }
 
           commit("SET_ROLES", roles);
-          commit("SET_ID",ID);
+          commit("SET_ID", ID);
           commit("SET_NAME", name);
           commit("SET_GENDER", gender);
           commit("SET_PHONE_NUMBER", phoneNumber);
@@ -107,10 +105,9 @@ const actions = {
   },
 
   // user logout
-  logout({ commit, state }) {
+  logout({ commit }) {
     return new Promise((resolve, reject) => {
-      service
-        .post("/user/logout", state.token)
+      logout()
         .then(() => {
           removeToken(); // must remove token first
           resetRouter();

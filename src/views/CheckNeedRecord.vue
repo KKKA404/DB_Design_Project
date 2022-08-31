@@ -54,10 +54,6 @@
 </template>
 
 <script>
-// import SideBar from "../components/SideBar.vue";
-// import BottomFooter from "../components/BottomFooter.vue";
-// import NavBar from "../components/NavBar.vue";
-//
 export default {
   name: "CheckNeedRecord",
   methods: {
