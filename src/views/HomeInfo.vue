@@ -1,6 +1,14 @@
 <template>
   <div class="info">
-    <el-card shadow="hover" style="margin-bottom: 40px;padding-bottom: 30px;">
+    <el-card
+      shadow="hover"
+      style="
+        margin-bottom: 40px;
+        padding-bottom: 30px;
+        width: 85%;
+        margin-left: 7.5%;
+      "
+    >
       <p class="title i">
         <i></i>
         项目背景
@@ -9,14 +17,30 @@
         <p>{{ HomeInfoData.note3 }}</p>
       </div>
     </el-card>
-    <el-card shadow="hover" style="margin-bottom: 40px;padding-bottom: 40px;">
+    <el-card
+      shadow="hover"
+      style="
+        margin-bottom: 40px;
+        padding-bottom: 40px;
+        width: 85%;
+        margin-left: 7.5%;
+      "
+    >
       <p class="title i">
         <i></i>
         项目板块介绍
       </p>
-      <img src="../assets/module.jpg" width="1300">
+      <img src="../assets/module.jpg" width="1300" />
     </el-card>
-    <el-card shadow="hover" style="margin-bottom: 40px;padding-bottom: 40px;">
+    <el-card
+      shadow="hover"
+      style="
+        margin-bottom: 40px;
+        padding-bottom: 40px;
+        width: 85%;
+        margin-left: 7.5%;
+      "
+    >
       <p class="title i">
         <i></i>
         关于我们
@@ -76,6 +100,4 @@ export default {
   font-size: 18px;
   margin: 5px 0;
 }
-
-
 </style>

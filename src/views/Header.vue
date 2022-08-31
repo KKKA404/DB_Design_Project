@@ -1,26 +1,29 @@
-
 <template>
   <!-- <div class="header">
       <h3></h3>
   </div> -->
-  <el-carousel indicator-position="outside" height="383px">
+  <el-carousel indicator-position="outside" height="525px">
     <el-carousel-item>
-      <img src="../assets/新型冠状病毒肺炎.png" width="900"
-       style="margin-bottom: 10px;
-       margin-top: 30px;">
+      <img
+        src="../assets/新型冠状病毒肺炎.png"
+        width="1233"
+        style="margin-bottom: 10px; margin-top: 45px"
+      />
     </el-carousel-item>
     <el-carousel-item>
-      <img src="../assets/鸣谢.png" width="900"
-       style="margin-bottom: 10px;
-       margin-top: 30px;">
+      <img
+        src="../assets/鸣谢.png"
+        width="1233"
+        style="margin-bottom: 10px; margin-top: 45px"
+      />
     </el-carousel-item>
   </el-carousel>
   <!-- <img src="../assets/新型冠状病毒肺炎.png" width="900" style="margin-bottom: 10px;
    margin-top: 30px;"> -->
 </template>
- 
+
 <style scoped>
-     /* .header{
+/* .header{
         width: 100%;
         min-height: 100px;
         position: relative;
