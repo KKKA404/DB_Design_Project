@@ -48,21 +48,22 @@ export const asyncRoutes = [
     component: () => import("../views/SystemIndex.vue"),
     children: [
       {
-        path: "/AboutUs",
-        name: "网站简介",
-        component: () => import("../views/Home.vue"),
-        meta: { roles: ["admin", "user"] },
-      },
-      {
         path: "/CovidBrowse",
         name: "疫情速览",
         component: () => import("../views/CovidBrowse.vue"),
         meta: { roles: ["admin", "user"] },
       },
+
       {
         path: "/CovidProtection",
         name: "防控指南",
         component: () => import("../views/CovidProtection.vue"),
+        meta: { roles: ["admin", "user"] },
+      },
+      {
+        path: "/AboutUs",
+        name: "网站简介",
+        component: () => import("../views/Home.vue"),
         meta: { roles: ["admin", "user"] },
       },
     ],
