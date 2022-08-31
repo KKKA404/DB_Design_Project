@@ -5,38 +5,27 @@
         effect="plain"
         style="
           float: left;
-          margin-bottom: 10px;
+          margin-bottom: 15px;
+          margin-right: 80%;
           font-size: 18px;
           font-weight: 400;
-          padding: auto;
         "
         >筛选条件</el-tag
       >
+      <!-- 筛选栏 -->
       <el-input
-        placeholder="请输入防控单位名称"
+        placeholder="请输入内容"
         v-model="nameInput"
         class="input-with-select"
-        style="width: 100%; margin-bottom: 10px"
+        style="width: 92%; margin-bottom: 20px; margin-left: 3%; float: left"
       >
-        <el-button
-          slot="append"
-          icon="el-icon-search"
-          @click="search()"
-        ></el-button>
+        <el-select v-model="cname" slot="prepend" placeholder="请选择">
+          <el-option label="防控单位名称" value="units"></el-option>
+          <el-option label="物资种类" value="goodsType"></el-option>
+        </el-select>
+        <el-button slot="append" icon="el-icon-search"></el-button>
       </el-input>
-
-      <el-input
-        placeholder="请输入物资种类"
-        v-model="materialInput"
-        class="input-with-select"
-        style="width: 100%; margin-bottom: 10px"
-      >
-        <el-button
-          slot="append"
-          icon="el-icon-search"
-          @click="search()"
-        ></el-button>
-      </el-input>
+      <!-- 筛选栏 -->
     </el-card>
 
     <!-- <el-input placeholder="请输入物资种类" v-model="materialInput" clearable>
@@ -128,9 +117,36 @@
 </template>
 
 <script>
-  import {getExistingMaterials} from '@/api/material'
+import { getExistingMaterials, getNeedData } from "@/api/material";
 export default {
   methods: {
+    async getLackSupplies() {
+      let { needData } = await getNeedData();
+      let { existingMaterial } = await getExistingMaterials();
+      let needDataDic = {};
+      needData.forEach((item) => {
+        if (needDataDic[item.goodName] == undefined) {
+          needDataDic[item.goodName] = 1;
+        } else needDataDic[item.goodName] += 1;
+      });
+      let existingMaterialDic = {};
+      existingMaterial.forEach((item) => {
+        if (existingMaterialDic[item.goodsName] == undefined) {
+          existingMaterialDic[item.goodsName] = 1;
+        } else existingMaterialDic[item.goodsName] += 1;
+      });
+      let lackSupplies = [];
+      for (let key in needDataDic) {
+        if (existingMaterialDic[key] == undefined) {
+          lackSupplies.push(key);
+        }
+        if (existingMaterialDic[key] <= needDataDic[key]) {
+          lackSupplies.push(key);
+        }
+      }
+      return lackSupplies;
+    },
+
     deleteRecord(row) {
       this.$confirm(
         "是否确定要删除" + row.goodsName + "的物资记录?",
@@ -155,24 +171,6 @@ export default {
           });
       });
     },
-    // update(){
-    //       this.$axios.put('/existingMaterial',this.Mat).then((resp)=>{
-    //         console.log(resp)
-    //         if(resp.code==20000){
-    //          this.$alert(this.Mat.goodsName+'的物资记录修改成功！',"消息",{
-    //            confirmButtonText:"确定",
-    //            callback:action=>{
-    //              window.location.reload()
-    //            }
-    //          })
-    //         }
-    //       })
-    //   },
-    // edit(row) {
-    //    this.$axios.get('/existingMaterial',{params:{goodsID:row.goodsId}}).then((resp)=>{
-    //   this.Mat=resp.data;
-    // })
-    // },
     handleCurrentChange(currentPage) {
       this.currentPage = currentPage;
     },
@@ -180,12 +178,14 @@ export default {
   created() {
     getExistingMaterials().then((res) => {
       this.existingMaterial = res.existingMaterial;
+      this.getLackSupplies().then((lackSupplies) => {
+        if (lackSupplies.length !== 0) {
+          this.$alert(lackSupplies.toString() + "存在物资短缺状况", "消息", {
+            confirmButtonText: "确定",
+          });
+        }
+      });
     });
-    // axios.get('http://localhost:8080/Material/findAll/1/6').then((resp)=>{
-    //   console.log(resp)
-    //   this.tableData=resp.data.records
-    //   this.total=resp.data.total
-    // })
   },
 
   data() {
@@ -221,13 +221,19 @@ export default {
   },
   computed: {
     searchData: function () {
-      let SearchResult = this.existingMaterial.filter(
-        (item) =>
-          String(item.goodsType).indexOf(String(this.materialInput)) > -1 &&
-          String(item.units).indexOf(String(this.nameInput)) > -1
-      );
-
-      return SearchResult;
+      if (this.cname == "goodsType") {
+        let SearchResult = this.existingMaterial.filter(
+          (item) => String(item.goodsType).indexOf(String(this.nameInput)) > -1
+        );
+        return SearchResult;
+      } else if (this.cname == "units") {
+        let SearchResult = this.existingMaterial.filter(
+          (item) => String(item.units).indexOf(String(this.nameInput)) > -1
+        );
+        return SearchResult;
+      } else {
+        return this.existingMaterial;
+      }
     },
   },
 };

@@ -21,10 +21,16 @@
         <el-form-item label="捐赠方名称" prop="name" style="width: 40%">
           <el-input v-model="donateForm.name"></el-input>
         </el-form-item>
+        <el-form-item label="受捐单位ID" prop="unitID" style="width: 40%">
+          <el-input v-model="donateForm.unitID"></el-input>
+        </el-form-item>
+        <el-form-item label="受捐单位名称" prop="unitName" style="width: 40%">
+          <el-input v-model="donateForm.unitName"></el-input>
+        </el-form-item>
         <el-form-item label="物资编号" prop="goodsID" style="width: 55%">
           <el-input v-model="donateForm.goodsID"></el-input>
         </el-form-item>
-        <el-form-item label="物资名称" prop="goodsName" style="width: 55%">
+        <!-- <el-form-item label="物资名称" prop="goodsName" style="width: 55%">
           <el-input v-model="donateForm.goodsName"></el-input>
         </el-form-item>
         <el-form-item
@@ -59,7 +65,7 @@
               </el-date-picker>
             </el-form-item>
           </el-col>
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item label="捐赠时间" required style="width: 35%">
           <el-col :span="11">
             <el-form-item prop="date2">
@@ -103,10 +109,12 @@ export default {
       donateForm: {
         donorID: "",
         name: "",
+        unitID: "",
+        unitName: "",
         goodsID: "",
-        goodsName: "",
-        goodsType: "",
-        date1: "",
+        // goodsName: "",
+        // goodsType: "",
+        // date1: "",
         date2: "",
       },
       rules: {
@@ -116,7 +124,29 @@ export default {
         ],
         name: [
           { required: true, message: "请输入捐赠者名称", trigger: "blur" },
+          {
+            min: 1,
+            max: 10,
+            message: "长度在 1 到 10 个字符",
+            trigger: "blur",
+          },
+        ],
+        unitID: [
+          { required: true, message: "请输入防控单位ID", trigger: "blur" },
           { min: 1, max: 5, message: "长度在 1 到 5 个字符", trigger: "blur" },
+        ],
+        unitName: [
+          {
+            required: true,
+            message: "请输入疫情防控单位名称",
+            trigger: "blur",
+          },
+          {
+            min: 1,
+            max: 10,
+            message: "长度在 1 到 10 个字符",
+            trigger: "blur",
+          },
         ],
         goodsID: [
           { required: true, message: "请输入物资ID", trigger: "blur" },
@@ -158,9 +188,6 @@ export default {
               this.$message("捐赠提交成功");
             }
           });
-        } else {
-          console.log("error submit!!");
-          return false;
         }
       });
     },

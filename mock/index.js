@@ -269,7 +269,7 @@ Mock.mock(baseURL + "/existingMaterial", "get", {
       goodsId: "000001",
       goodsType: "食品",
       goodsName: "趣多多",
-      count: "2",
+      count: 2,
       type: "箱",
       isImp: "一般",
       units: "杨浦区疫情防控单位",
@@ -279,7 +279,7 @@ Mock.mock(baseURL + "/existingMaterial", "get", {
       goodsId: "000003",
       goodsType: "药品",
       goodsName: "感康",
-      count: "2",
+      count: 2,
       type: "盒",
       isImp: "重要",
       units: "嘉定区疫情防控单位",
@@ -289,7 +289,7 @@ Mock.mock(baseURL + "/existingMaterial", "get", {
       goodsId: "000011",
       goodsType: "防护用品",
       goodsName: "免洗消毒液",
-      count: "66",
+      count: 66,
       type: "个",
       isImp: "重要",
       units: "嘉定区疫情防控单位",
@@ -299,7 +299,7 @@ Mock.mock(baseURL + "/existingMaterial", "get", {
       goodsId: "000023",
       goodsType: "食品",
       goodsName: "趣多多",
-      count: "2",
+      count:2,
       type: "箱",
       isImp: "一般",
       units: "杨浦区疫情防控单位",
@@ -309,7 +309,7 @@ Mock.mock(baseURL + "/existingMaterial", "get", {
       goodsId: "000101",
       goodsType: "食品",
       goodsName: "趣多对是非多",
-      count: "223",
+      count: 223,
       type: "箱",
       isImp: "一般",
       units: "杨撒旦发射点区疫情防控单位",
@@ -319,7 +319,7 @@ Mock.mock(baseURL + "/existingMaterial", "get", {
       goodsId: "001201",
       goodsType: "食品",
       goodsName: "第三范式趣多多",
-      count: "2",
+      count: 2,
       type: "盆",
       isImp: "一般",
       units: "杨浦区疫情防控单位",
@@ -681,6 +681,37 @@ Mock.mock(baseURL + "/purchaseData", "get", {
 //志愿信息提交
 Mock.mock(baseURL + "/volunteerApplication", "post", {
   code: 20000,
+});
+Mock.mock(baseURL + "/volunteerApplication", "delete", {
+  code: 20000,
+});
+Mock.mock(baseURL + "/volunteerApplication", "put", {
+  code: 20000,
+});
+Mock.mock(baseURL + "/volunteerApplication", "get", {
+  code: 20000,
+  volunteerRecord:[
+  {
+    personId: "123",
+    name: "huhu",
+    district:"",
+    location: "",
+    riskLevel: "",
+    volunteerLocation: "",
+    date1: "",
+    volunteerType: "",
+  },
+  {
+    personId: "123",
+    name: "haha",
+    district:"",
+    location: "",
+    riskLevel: "",
+    volunteerLocation: "",
+    date1: "",
+    volunteerType: "",
+  },
+]
 });
 
 //捐赠物资表单

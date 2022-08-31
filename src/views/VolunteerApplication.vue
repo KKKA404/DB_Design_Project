@@ -75,7 +75,7 @@
 </template>
 
 <script>
-import { submitVolunteerApplication } from '@/api/volunteer';
+import { submitVolunteerApplication } from "@/api/volunteer";
 
 export default {
   //表单数据传递
@@ -165,14 +165,13 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          submitVolunteerApplication(this.ruleForm).then((resp) => {
-            if (resp.code == 20000) {
-              this.$message("志愿报名提交成功");
+          submitVolunteerApplication(this.ruleForm).then((res) => {
+            if (res.code == 20000) {
+              this.$message("志愿报名提交成功！");
             }
           });
         } else {
-          console.log("error submit!!");
-          return false;
+          this.$message.error("志愿报名提交失败！");
         }
       });
     },

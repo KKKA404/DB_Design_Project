@@ -7,3 +7,27 @@ export function submitVolunteerApplication(ruleForm){
         data: ruleForm
     })
 }
+
+export function getVolunteerRecord(params){
+  return request({
+        url: "/volunteerApplication",
+        method: "get",
+        params:params,
+    })
+}
+export function deleteVolunteerRecord(data){
+  return request({
+        url: "/volunteerApplication",
+        method: "delete",
+        data,
+    })
+}
+export function modifyVolunteerRecord(data){
+  return request({
+        url: "/volunteerApplication",
+        method: "put",
+        data,
+    })
+}
+
+
