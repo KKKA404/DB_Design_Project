@@ -14,8 +14,8 @@
           </el-date-picker>
         </el-form-item>
 
-        <el-form-item label="核酸日期" :label-width="formLabelWidth" style="width: 50%">
-          <el-select v-model="SamplingResult" placeholder="核酸结果">
+        <el-form-item label="病例类型" :label-width="formLabelWidth" style="width: 50%">
+          <el-select v-model="SamplingResult" placeholder="选择类型">
             <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
             </el-option>
           </el-select>
@@ -35,15 +35,15 @@ export default {
     return {
       ID: "",
       DetectionTime: "",
-      SamplingResult: false,
+      SamplingResult: "",
       options: [
         {
-          label: "阴性",
-          value: false,
+          label: "无症状",
+          value: "无症状",
         },
         {
-          label: "阳性",
-          value: true,
+          label: "确诊",
+          value: "确诊",
         },
       ],
       pickerOptions: {
@@ -185,6 +185,10 @@ export default {
 }
 
 .el-input {
+  margin-left: 10px;
+}
+
+.el-select {
   margin-left: 10px;
 }
 </style>
