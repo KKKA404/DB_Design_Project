@@ -1,7 +1,4 @@
 <template>
-  <!-- <div class="header">
-      <h3></h3>
-  </div> -->
   <el-carousel indicator-position="outside" height="525px">
     <el-carousel-item>
       <img
@@ -18,8 +15,6 @@
       />
     </el-carousel-item>
   </el-carousel>
-  <!-- <img src="../assets/新型冠状病毒肺炎.png" width="900" style="margin-bottom: 10px;
-   margin-top: 30px;"> -->
 </template>
 
 <style scoped>

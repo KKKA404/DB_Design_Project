@@ -122,7 +122,7 @@ export default {
             if (res.code == 20000) {
               this.$alert(this.tempName + " 的隔离点分配成功！", "消息", {
                 confirmButtonText: "确定",
-                callback: (action) => {
+                callback: () => {
                   window.location.reload();
                 },
               });

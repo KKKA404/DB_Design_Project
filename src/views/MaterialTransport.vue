@@ -17,23 +17,22 @@
         class="input-with-select"
         style="width: 100%; margin-bottom: 10px"
       >
-        <el-select
-          v-model="cname"
-          slot="prepend"
-          placeholder="请选择"
-        >
+        <el-select v-model="cname" slot="prepend" placeholder="请选择">
           <el-option label="物资名称" value="materialName"></el-option>
           <el-option label="物资种类" value="materialType"></el-option>
         </el-select>
-        <el-button
-          slot="append"
-          icon="el-icon-search"
-        ></el-button>
+        <el-button slot="append" icon="el-icon-search"></el-button>
       </el-input>
     </el-card>
     <br />
     <el-card>
-      <el-table :data="searchData" border style="width: 100%">
+      <el-table
+        :data="
+          searchData.slice((currentPage - 1) * pageSize, currentPage * pageSize)
+        "
+        border
+        style="width: 100%"
+      >
         <el-table-column
           fixed
           prop="materialID"
@@ -196,6 +195,10 @@ export default {
       this.transportDetailedData.state = row.state;
       this.transportDetailedData.materialID = row.materialID;
     },
+
+    handleCurrentChange(currentPage) {
+      this.currentPage = currentPage;
+    },
   },
   created() {
     this.$axios.get("/transportData").then((res) => {
@@ -205,6 +208,8 @@ export default {
 
   data() {
     return {
+      currentPage: 1,
+      pageSize: 6,
       transportDetailedData: {
         materialID: "",
         materialName: "",
@@ -237,23 +242,23 @@ export default {
   },
   computed: {
     searchData: function () {
-      if(this.cname=="materialName"){
+      if (this.cname == "materialName") {
         let SearchResult = this.transportData.filter(
-          (item) => String(item.materialName).indexOf(String(this.nameInput)) > -1
+          (item) =>
+            String(item.materialName).indexOf(String(this.nameInput)) > -1
           // &&
           // item.materialType.indexOf(this.materialTypeInput) > -1
         );
         return SearchResult;
-      }
-      else if(this.cname=="materialType"){
+      } else if (this.cname == "materialType") {
         let SearchResult = this.transportData.filter(
-          (item) => String(item.materialType).indexOf(String(this.nameInput)) > -1
+          (item) =>
+            String(item.materialType).indexOf(String(this.nameInput)) > -1
           // &&
           // item.materialType.indexOf(this.materialTypeInput) > -1
         );
         return SearchResult;
-      }
-      else{
+      } else {
         return this.transportData;
       }
     },

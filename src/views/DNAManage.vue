@@ -19,7 +19,13 @@
     </el-card>
     <br />
     <el-card>
-      <el-table :data="searchData" border style="width: 100%">
+      <el-table
+        :data="
+          searchData.slice((currentPage - 1) * pageSize, currentPage * pageSize)
+        "
+        border
+        style="width: 100%"
+      >
         <el-table-column fixed prop="name" label="姓名" width="100">
         </el-table-column>
         <el-table-column prop="personId" label="编号"> </el-table-column>
@@ -211,7 +217,7 @@ export default {
             if (resp.code == 20000) {
               this.$alert(row.name + "的病例记录删除成功！", "消息", {
                 confirmButtonText: "确定",
-                callback: (action) => {
+                callback: () => {
                   window.location.reload();
                 },
               });
@@ -226,7 +232,7 @@ export default {
         if (resp.code == 20000) {
           this.$alert(this.EmpIden.name + "的病例记录修改成功！", "消息", {
             confirmButtonText: "确定",
-            callback: (action) => {
+            callback: () => {
               window.location.reload();
             },
           });
@@ -241,10 +247,7 @@ export default {
         });
     },
     handleCurrentChange(currentPage) {
-      this.$axios.get("/samplingData" + currentPage + "/6").then((resp) => {
-        this.tableData = resp.data.records;
-        this.total = resp.data.total;
-      });
+      this.currentPage = currentPage;
     },
   },
 
@@ -260,6 +263,8 @@ export default {
 
   data() {
     return {
+      currentPage: 1,
+      pageSize: 6,
       samplingData: [],
       value: "",
       cname: "",

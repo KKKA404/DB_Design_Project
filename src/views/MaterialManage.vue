@@ -45,11 +45,16 @@
     </el-input> -->
     <br />
     <el-card>
-      <el-table :data="searchData" border style="width: 100%">
+      <el-table
+        :data="
+          searchData.slice((currentPage - 1) * pageSize, currentPage * pageSize)
+        "
+        border
+        style="width: 100%"
+      >
         <el-table-column fixed prop="goodsId" label="编号" sortable>
         </el-table-column>
-        <el-table-column prop="goodsType" label="物资种类">
-        </el-table-column>
+        <el-table-column prop="goodsType" label="物资种类"> </el-table-column>
         <el-table-column prop="goodsName" label="物资名称"> </el-table-column>
         <el-table-column prop="count" label="物资数量"> </el-table-column>
         <!-- <el-table-column prop="type" label="计量单位"> </el-table-column> -->
@@ -79,10 +84,7 @@
       <el-dialog title="更新物资详情" :visible.sync="dialogFormVisible" slot>
         <el-form :model="Mat" ref="Mat">
           <el-form-item label="物资种类" :label-width="formLabelWidth">
-            <el-input
-              v-model="Mat.goodsType"
-              autocomplete="off"
-            ></el-input>
+            <el-input v-model="Mat.goodsType" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item label="物资名称" :label-width="formLabelWidth">
             <el-input v-model="Mat.goodsName" autocomplete="off"></el-input>
@@ -108,10 +110,7 @@
           <el-form-item label="疫情防控单位" :label-width="formLabelWidth">
             <el-input v-model="Mat.units" autocomplete="off"></el-input>
           </el-form-item>
-          <el-form-item
-            label="防控单位电话"
-            :label-width="formLabelWidth"
-          >
+          <el-form-item label="防控单位电话" :label-width="formLabelWidth">
             <el-input v-model="Mat.unitsPhone" autocomplete="off"></el-input>
           </el-form-item>
         </el-form>
@@ -131,50 +130,51 @@
 <script>
 export default {
   methods: {
-        // test(dd){
-        //   this.Mat.isImp=dd;
-        // },    
-    
-     deleteRecord(row){
-          this.$confirm('是否确定要删除'+row.goodsName+'的物资记录?','删除数据',{
-            confirmButtonText:'确定',
-            cancelButtonText:'取消',
-            type:'warning'
-          }).then(()=>{this.$axios.delete('/existingMaterial',{data:{goodsId:row.goodsId}}).then((resp)=>{
-            if(resp.code==20000){
-              this.$alert(row.goodsName+'的物资记录删除成功！',"消息",{
-                   confirmButtonText:"确定",
-                   callback:action=>{
-                     window.location.reload()
-                   }
-                 });
+    deleteRecord(row) {
+      this.$confirm(
+        "是否确定要删除" + row.goodsName + "的物资记录?",
+        "删除数据",
+        {
+          confirmButtonText: "确定",
+          cancelButtonText: "取消",
+          type: "warning",
+        }
+      ).then(() => {
+        this.$axios
+          .delete("/existingMaterial", { data: { goodsId: row.goodsId } })
+          .then((resp) => {
+            if (resp.code == 20000) {
+              this.$alert(row.goodsName + "的物资记录删除成功！", "消息", {
+                confirmButtonText: "确定",
+                callback: () => {
+                  window.location.reload();
+                },
+              });
             }
-          })})
-        },
-        // update(){
-        //       this.$axios.put('/existingMaterial',this.Mat).then((resp)=>{
-        //         console.log(resp)
-        //         if(resp.code==20000){
-        //          this.$alert(this.Mat.goodsName+'的物资记录修改成功！',"消息",{
-        //            confirmButtonText:"确定",
-        //            callback:action=>{
-        //              window.location.reload()
-        //            }
-        //          })
-        //         }
-        //       })
-        //   },
-        // edit(row) {
-        //    this.$axios.get('/existingMaterial',{params:{goodsID:row.goodsId}}).then((resp)=>{
-        //   this.Mat=resp.data;
-        // })
-        // },
-        handleCurrentChange(currentPage){
-          this.$axios.get('/existingMaterial'+currentPage+'/6').then((resp)=>{
-          this.tableData=resp.data.records
-          this.total=resp.data.total
-        })
-        },
+          });
+      });
+    },
+    // update(){
+    //       this.$axios.put('/existingMaterial',this.Mat).then((resp)=>{
+    //         console.log(resp)
+    //         if(resp.code==20000){
+    //          this.$alert(this.Mat.goodsName+'的物资记录修改成功！',"消息",{
+    //            confirmButtonText:"确定",
+    //            callback:action=>{
+    //              window.location.reload()
+    //            }
+    //          })
+    //         }
+    //       })
+    //   },
+    // edit(row) {
+    //    this.$axios.get('/existingMaterial',{params:{goodsID:row.goodsId}}).then((resp)=>{
+    //   this.Mat=resp.data;
+    // })
+    // },
+    handleCurrentChange(currentPage) {
+      this.currentPage = currentPage;
+    },
   },
   created() {
     this.$axios.get("/existingMaterial").then((res) => {
@@ -189,6 +189,8 @@ export default {
 
   data() {
     return {
+      currentPage: 1,
+      pageSize: 6,
       existingMaterial: [],
       cname: "",
       materialInput: "",
@@ -220,8 +222,8 @@ export default {
     searchData: function () {
       let SearchResult = this.existingMaterial.filter(
         (item) =>
-          String(item.goodsType).indexOf(String(this.materialInput)) >
-            -1 && String(item.units).indexOf(String(this.nameInput)) > -1
+          String(item.goodsType).indexOf(String(this.materialInput)) > -1 &&
+          String(item.units).indexOf(String(this.nameInput)) > -1
       );
 
       return SearchResult;
