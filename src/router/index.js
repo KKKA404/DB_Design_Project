@@ -43,136 +43,129 @@ export const asyncRoutes = [
   {
     path: "/Index", // forget to add Index !!!!!!
     name: "主页",
-    redirect:"/AboutUs",
-    meta: {icon:"Home",roles: ["admin","user"]},
+    redirect: "/AboutUs",
+    meta: { icon: "Home", roles: ["admin", "user"] },
     component: () => import("../views/SystemIndex.vue"),
-    children:[
+    children: [
       {
         path: "/AboutUs",
         name: "网站简介",
         component: () => import("../views/Home.vue"),
-        meta: { roles: ["admin","user"] },
-    },
+        meta: { roles: ["admin", "user"] },
+      },
       {
         path: "/CovidBrowse",
         name: "疫情速览",
         component: () => import("../views/CovidBrowse.vue"),
-        meta: { roles: ["admin","user"] },
-    },
-    {
-      path: "/CovidProtection",
-      name: "防控指南",
-      component: () => import("../views/CovidProtection.vue"),
-      meta: { roles: ["admin", "user"] },
-    },
-
-  ]
+        meta: { roles: ["admin", "user"] },
+      },
+      {
+        path: "/CovidProtection",
+        name: "防控指南",
+        component: () => import("../views/CovidProtection.vue"),
+        meta: { roles: ["admin", "user"] },
+      },
+    ],
   },
   {
     path: "/Materials",
     redirect: "/Index",
-    name: "物资",
+    name: "物资捐赠",
     component: () => import("../views/SystemIndex.vue"),
-    meta: { icon: "Material" ,roles: ["admin"]},
+    meta: { icon: "Material", roles: ["admin"] },
     children: [
       {
-        path: "/CheckDonationRecord",
-        name: "物资捐赠记录查询",
-        component: () => import("../views/CheckDonationRecord.vue"),
-        meta: { roles: ["admin"]},
+        path: "/MakeDonation",
+        name: "捐赠物资提交",
+        component: () => import("../views/MakeDonation.vue"),
+        meta: { roles: ["admin"] },
       },
       {
-        path: "/MakeDonation",
-        name: "捐赠物资",
-        component: () => import("../views/MakeDonation.vue"),
-        meta: { roles: ["admin"]},
+        path: "/CheckDonationRecord",
+        name: "捐赠记录查询",
+        component: () => import("../views/CheckDonationRecord.vue"),
+        meta: { roles: ["admin"] },
       },
     ],
   },
   {
     path: "/PersonalRequest",
     redirect: "/Index",
-    name: "个人需求表单",
+    name: "个人物资需求",
     component: () => import("../views/SystemIndex.vue"),
-    meta: { icon: "PersonalRequest", roles: ["user","admin"]},
+    meta: { icon: "PersonalRequest", roles: ["user", "admin"] },
     children: [
       {
         path: "/AddRecord",
-        name: "个人需求表单填写",
+        name: "需求表单填写",
         component: () => import("../views/AddRecord.vue"),
-        meta: { roles: ["user"]},
+        meta: { roles: ["user"] },
       },
       {
         path: "/RecordManage",
-        name: "个人需求表单查询",
+        name: "需求表单查询",
         component: () => import("../views/RecordManage.vue"),
-        meta: { roles: ["user"]},
-      },
-    ],
-  },
-  {
-    path: "/ExistingMaterials",
-    redirect: "/Index",
-    name: "现有物资",
-    meta: { icon: "ExistingMaterials" ,roles: ["admin"]},
-    component: () => import("../views/SystemIndex.vue"),
-    children: [
-      {
-        path: "/MaterialManage",
-        name: "现有物资查询",
-        component: () => import("../views/MaterialManage.vue"),
-        meta: {roles: ["admin"]},
+        meta: { roles: ["user"] },
       },
     ],
   },
   {
     path: "/MaterialPurchase",
     redirect: "/Index",
-    name: "物资购买",
-    meta: { icon: "MaterialPurchase" ,roles: ["admin"]},
+    name: "物资管理",
+    meta: { icon: "MaterialPurchase", roles: ["admin"] },
     component: () => import("../views/SystemIndex.vue"),
     children: [
       {
         path: "/CheckNeedRecord",
-        name: "物资需求查询",
-        meta: {roles: ["admin"]},
+        name: "物资需求",
+        meta: { roles: ["admin"] },
         component: () => import("../views/CheckNeedRecord.vue"),
       },
       {
         path: "/CheckPurchRecord",
-        name: "物资购买查询",
+        name: "物资购买",
         component: () => import("../views/CheckPurchRecord.vue"),
-        meta: {roles: ["admin"]},
+        meta: { roles: ["admin"] },
       },
       {
         path: "/MaterialTransport.vue",
         name: "物流信息",
         component: () => import("../views/MaterialTransport.vue"),
-        meta: {roles: ["admin"]},
+        meta: { roles: ["admin"] },
+      },
+      {
+        path: "/MaterialManage",
+        name: "现有物资查询",
+        component: () => import("../views/MaterialManage.vue"),
+        meta: { roles: ["admin"] },
       },
     ],
   },
   {
     path: "/InspectionInformation",
-    name: "核酸信息管理",
+    name: "医疗管理",
     redirect: "/Index",
-    meta: { icon: "InspectionInformation" ,roles: ["admin","user"]},
+    meta: { icon: "InspectionInformation", roles: ["admin", "user"] },
     component: () => import("../views/SystemIndex.vue"),
     children: [
-      {
-        path: "/DNAManage",
-        name: "核酸结果管理",
-        component: () => import("../views/DNAManage.vue"),
-    meta: {roles: ["admin","user"]},
-
-      },
-
       {
         path: "/RecordPatient",
         name: "病历记录",
         component: () => import("../views/RecordPatient.vue"),
-    meta: {roles: ["admin","user"]},
-
+        meta: { roles: ["admin", "user"] },
+      },
+      {
+        path: "/IsolationAllocate",
+        name: "隔离管理",
+        component: () => import("../views/IsolationAllocate.vue"),
+        meta: { roles: ["admin", "user"] },
+      },
+      {
+        path: "/DNAManage",
+        name: "核酸结果管理",
+        component: () => import("../views/DNAManage.vue"),
+        meta: { roles: ["admin", "user"] },
       },
     ],
   },
@@ -180,29 +173,14 @@ export const asyncRoutes = [
     path: "/Volunteer",
     redirect: "/Index",
     name: "志愿管理",
-    meta: { icon: "Volunteer", roles: ["admin","user"] },
+    meta: { icon: "Volunteer", roles: ["admin", "user"] },
     component: () => import("../views/SystemIndex.vue"),
     children: [
       {
         path: "/VolunteerApplication",
         name: "志愿申请信息",
-        meta: { roles: ["admin","user"] },
+        meta: { roles: ["admin", "user"] },
         component: () => import("../views/VolunteerApplication.vue"),
-      },
-    ],
-  },
-  {
-    path: "/IsolationAllocate",
-    redirect: "/Index",
-    name: "医疗资源分配",
-    meta: { icon: "Medical",roles: ["admin","user"] },
-    component: () => import("../views/SystemIndex.vue"),
-    children: [
-      {
-        path: "/IsolationAllocate",
-        name: "隔离点分配",
-        component: () => import("../views/IsolationAllocate.vue"),
-    meta: { roles: ["admin","user"] },
       },
     ],
   },
@@ -229,7 +207,7 @@ export function resetRouter() {
   router.matcher = newRouter.matcher; // reset router
 }
 
-const whiteList = ["/", "/Register","/404"]; // no redirect whitelist
+const whiteList = ["/", "/Register", "/404"]; // no redirect whitelist
 
 //路由拦截
 router.beforeEach(async (to, from, next) => {

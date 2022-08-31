@@ -54,10 +54,6 @@
 </template>
 
 <script>
-// import SideBar from "../components/SideBar.vue";
-// import BottomFooter from "../components/BottomFooter.vue";
-// import NavBar from "../components/NavBar.vue";
-//
 export default {
   name: "CheckNeedRecord",
   methods: {
@@ -73,7 +69,7 @@ export default {
             if (res.code == 20000) {
               this.$alert(row.name + " 的需求消除成功！", "消息", {
                 confirmButtonText: "确定",
-                callback: (action) => {
+                callback: () => {
                   window.location.reload();
                 },
               });

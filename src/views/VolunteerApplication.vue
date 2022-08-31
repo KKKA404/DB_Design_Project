@@ -2,7 +2,7 @@
   <el-main
     style="display: flex; justify-content: center; align-items: flex-start"
   >
-    <el-card style="width: 70%; margin-top: 25px; margin-bottom: 25px">
+    <el-card style="width: 70%">
       <div slot="header" class="clearfix">
         <h1 style="float: left; margin-left: 15px">志愿申请表单</h1>
       </div>

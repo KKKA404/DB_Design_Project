@@ -27,7 +27,13 @@
     </el-card>
     <br />
     <el-card>
-      <el-table :data="searchData" border style="width: 100%">
+      <el-table
+        :data="
+          searchData.slice((currentPage - 1) * pageSize, currentPage * pageSize)
+        "
+        border
+        style="width: 100%"
+      >
         <el-table-column
           fixed
           prop="personId"
@@ -144,8 +150,6 @@
 </template>
 
 <script>
-import axios from "axios";
-import service from "@/plugins/axios";
 export default {
   methods: {
     deleteRecord(row) {
@@ -160,7 +164,7 @@ export default {
             if (res.code == 20000) {
               this.$alert(row.name + "的需求记录删除成功！", "消息", {
                 confirmButtonText: "确定",
-                callback: (action) => {
+                callback: () => {
                   window.location.reload();
                 },
               });
@@ -191,7 +195,7 @@ export default {
         if (res.code == 20000) {
           this.$alert(this.Emp.name + "的打卡记录修改成功！", "消息", {
             confirmButtonText: "确定",
-            callback: (action) => {
+            callback: () => {
               window.location.reload();
             },
           });
@@ -200,7 +204,9 @@ export default {
     },
     edit(row) {
       this.$axios
-        .get("/personalRequest", { params: { personID: row.personId ,demandFormID:row.demandFormId} })
+        .get("/personalRequest", {
+          params: { personID: row.personId, demandFormID: row.demandFormId },
+        })
         .then((res) => {
           console.log(res.personalRequest);
           if (res.code == 20000) {
@@ -210,21 +216,19 @@ export default {
     },
 
     handleCurrentChange(currentPage) {
-      axios.get("/personalRequest" + currentPage + "/6").then((resp) => {
-        this.tableData = resp.data.records;
-        this.total = resp.data.total;
-      });
+      this.currentPage = currentPage;
     },
   },
   created() {
     this.$axios.get("/personalRequest").then((res) => {
-      console.log(res);
       this.personalRequest = res.personalRequest;
     });
   },
 
   data() {
     return {
+      pageSize: 6,
+      currentPage: 1,
       personalRequest: [],
       options3: [
         {
