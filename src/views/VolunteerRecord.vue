@@ -126,7 +126,6 @@ import {
   getVolunteerRecord,
   deleteVolunteerRecord,
   modifyVolunteerRecord,
-  getOriginRecord,
 } from "@/api/volunteer";
 export default {
   methods: {
@@ -166,7 +165,7 @@ export default {
       });
     },
     edit(row) {
-      getOriginRecord({
+      getVolunteerRecord({
         personID: row.personId,
       }).then((res) => {
         console.log(res.volunteerRecord);
