@@ -93,13 +93,8 @@
   </el-main>
 </template>
 <script>
+import { submitPersonalRequest } from "@/api/individual.js";
 export default {
-  //    created() {
-  //   axios.get("http://localhost:8080/depart/findAll").then((resp) => {
-  //     console.log(resp.data);
-  //     this.options3 = resp.data;
-  //   });
-  // },
   data() {
     return {
       options3: [
@@ -234,7 +229,7 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.$axios.post("/personalRequest", this.Emp).then((resp) => {
+          submitPersonalRequest(this.Emp).then((resp) => {
             if (resp.code == 20000) {
               this.$message("表单提交成功");
             }

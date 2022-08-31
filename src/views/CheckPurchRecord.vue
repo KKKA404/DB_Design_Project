@@ -172,12 +172,17 @@
 </template>
 
 <script>
+import {
+  submitUnitPurchase,
+  submitDonorPurchase,
+  getPurchaseData,
+} from "@/api/material";
+
 export default {
   name: "CheckPurchRecord",
   components: {},
   created() {
-    this.$axios.get("/purchaseData").then((res) => {
-      console.log(res);
+    getPurchaseData().then((res) => {
       this.unitPurchaseData = res.unitPurchaseData;
       this.donorPurchaseData = res.donorPurchaseData;
     });
@@ -242,12 +247,11 @@ export default {
         this.unitPurchaseForm.materialID != "" &&
         this.unitPurchaseForm.purchaseTime != ""
       ) {
-        this.$axios
-          .post("/purchaseData/unitPurchase", {
-            unitID: this.unitPurchaseForm.unitID,
-            materialID: this.unitPurchaseForm.materialID,
-            purchaseTime: this.unitPurchaseForm.purchaseTime,
-          })
+        submitUnitPurchase({
+          unitID: this.unitPurchaseForm.unitID,
+          materialID: this.unitPurchaseForm.materialID,
+          purchaseTime: this.unitPurchaseForm.purchaseTime,
+        })
           .then((res) => {
             if (res.code == 20000) {
               this.$message("提交成功");
@@ -268,12 +272,11 @@ export default {
         this.donorPurchaseForm.materialID != "" &&
         this.donorPurchaseForm.purchaseTime != ""
       ) {
-        this.$axios
-          .post("/purchaseData/donorPurchase", {
-            donorID: this.donorPurchaseForm.donorID,
-            materialID: this.donorPurchaseForm.materialID,
-            purchaseTime: this.donorPurchaseForm.purchaseTime,
-          })
+        submitDonorPurchase({
+          donorID: this.donorPurchaseForm.donorID,
+          materialID: this.donorPurchaseForm.materialID,
+          purchaseTime: this.donorPurchaseForm.purchaseTime,
+        })
           .then((res) => {
             if (res.code == 20000) {
               this.$message("提交成功");

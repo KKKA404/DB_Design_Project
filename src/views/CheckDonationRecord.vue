@@ -63,13 +63,10 @@
 </template>
 
 <script>
+import { getDonateData } from '@/api/donate';
+
 export default {
   name: "CheckDonationRecord",
-  components: {
-    // SideBar,
-    // BottomFooter,
-    // NavBar,
-  },
   data() {
     return {
       donateData: [],
@@ -97,10 +94,7 @@ export default {
     },
   },
   created() {
-    // just test
-    this.$axios.post("/donateData", { abc: 123 });
-
-    this.$axios.get("/donateData").then((res) => {
+    getDonateData().then((res) => {
       this.donateData = res.donateData;
     });
   },

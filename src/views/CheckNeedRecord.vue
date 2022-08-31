@@ -54,6 +54,7 @@
 </template>
 
 <script>
+import { getNeedData,deleteNeedData } from '@/api/material';
 export default {
   name: "CheckNeedRecord",
   methods: {
@@ -63,8 +64,7 @@ export default {
         cancelButtonText: "取消",
         type: "warning",
       }).then(() => {
-        this.$axios
-          .delete("/needData", { data: { id: row.id, goodID: row.goodID } })
+        deleteNeedData( { id: row.id, goodID: row.goodID })
           .then((res) => {
             if (res.code == 20000) {
               this.$alert(row.name + " 的需求消除成功！", "消息", {
@@ -79,8 +79,7 @@ export default {
     },
   },
   created() {
-    this.$axios.get("/needData").then((res) => {
-      console.log(res);
+    getNeedData().then((res) => {
       this.needData = res.needData;
     });
   },

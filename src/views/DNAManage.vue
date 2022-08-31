@@ -189,15 +189,22 @@
 </template>
 
 <script>
+import {
+  getSamplingData,
+  postSamplingData,
+  putSamplingData,
+  deleteSamplingData,
+} from "@/api/medical";
+
 export default {
   created() {
-    this.$axios.get("/samplingData").then((res) => {
+    getSamplingData().then((res) => {
       this.samplingData = res.samplingData;
     });
   },
   methods: {
     submitForm() {
-      this.$axios.post("samplingData", this.addEmpIden).then((resp) => {
+      postSamplingData(this.addEmpIden).then((resp) => {
         if (resp.code == 20000) {
           this.$message("记录添加成功");
         } else {
@@ -211,23 +218,21 @@ export default {
         cancelButtonText: "取消",
         type: "warning",
       }).then(() => {
-        this.$axios
-          .delete("/samplingData", { data: { ID: row.personId } })
-          .then((resp) => {
-            if (resp.code == 20000) {
-              this.$alert(row.name + "的病例记录删除成功！", "消息", {
-                confirmButtonText: "确定",
-                callback: () => {
-                  window.location.reload();
-                },
-              });
-            }
-          });
+        deleteSamplingData({ ID: row.personId }).then((resp) => {
+          if (resp.code == 20000) {
+            this.$alert(row.name + "的病例记录删除成功！", "消息", {
+              confirmButtonText: "确定",
+              callback: () => {
+                window.location.reload();
+              },
+            });
+          }
+        });
       });
     },
 
     update() {
-      this.$axios.put("/samplingData", this.EmpIden).then((resp) => {
+      putSamplingData(this.EmpIden).then((resp) => {
         console.log(resp);
         if (resp.code == 20000) {
           this.$alert(this.EmpIden.name + "的病例记录修改成功！", "消息", {
@@ -240,11 +245,9 @@ export default {
       });
     },
     edit(row) {
-      this.$axios
-        .get("/samplingData", { params: { ID: row.personId } })
-        .then((resp) => {
-          this.EmpIden = resp.data;
-        });
+      getSamplingData({ ID: row.personId }).then((resp) => {
+        this.EmpIden = resp.data;
+      });
     },
     handleCurrentChange(currentPage) {
       this.currentPage = currentPage;

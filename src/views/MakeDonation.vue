@@ -85,6 +85,7 @@
 </template>
 
 <script>
+import { postDonateData } from "@/api/donate";
 export default {
   //表单数据传递
   data() {
@@ -152,7 +153,7 @@ export default {
       this.$refs[formName].validate((valid) => {
         //需要添加使捐赠日期不早于购买日期的条件约束
         if (valid) {
-          this.$axios.post("/makeDonate", this.donateForm).then((resp) => {
+          postDonateData(this.donateForm).then((resp) => {
             if (resp.code == 20000) {
               this.$message("捐赠提交成功");
             }
