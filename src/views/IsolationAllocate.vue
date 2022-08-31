@@ -89,10 +89,15 @@
 </template>
 
 <script>
+import {
+  getIsolationData,
+  postIsolatedPointsData,
+  deleteAssignmentData,
+} from "@/api/medical";
 export default {
   methods: {
     update() {
-      this.$axios.get("/isolationData").then((res) => {
+      getIsolationData().then((res) => {
         this.assignmentData = res.assignmentData;
         this.isolatedPointsData = res.isolatedPointsData;
       });
@@ -107,33 +112,28 @@ export default {
           type: "warning",
         }
       ).then(() => {
-        this.$axios
-          .post("/isolationData/isolatedPointsData", { name: row.name })
-          .then((res) => {
-            if (res.code == 20000) {
-              this.$message("隔离点信息更新成功");
-            }
-          });
-        this.$axios
-          .delete("/isolationData/assignmentData", {
-            data: { id: this.tempID },
-          })
-          .then((res) => {
-            if (res.code == 20000) {
-              this.$alert(this.tempName + " 的隔离点分配成功！", "消息", {
-                confirmButtonText: "确定",
-                callback: () => {
-                  window.location.reload();
-                },
-              });
-              
-            }
-          });
+        postIsolatedPointsData({ name: row.name }).then((res) => {
+          if (res.code == 20000) {
+            this.$message("隔离点信息更新成功");
+          }
+        });
+        deleteAssignmentData({
+          data: { id: this.tempID },
+        }).then((res) => {
+          if (res.code == 20000) {
+            this.$alert(this.tempName + " 的隔离点分配成功！", "消息", {
+              confirmButtonText: "确定",
+              callback: () => {
+                window.location.reload();
+              },
+            });
+          }
+        });
       });
     },
   },
   created() {
-    this.$axios.get("/isolationData").then((res) => {
+    getIsolationData().then((res) => {
       this.assignmentData = res.assignmentData;
       this.isolatedPointsData = res.isolatedPointsData;
     });

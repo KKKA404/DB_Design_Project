@@ -32,3 +32,11 @@ export function getPersonalRequest(params){
         params:params,
     });
 }
+
+export function submitPersonalRequest(data) {
+  return request({
+        url: "/personalRequest",
+        method: "post",
+        data: data,
+    });
+}

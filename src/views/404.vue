@@ -8,7 +8,6 @@
 export default {
   name: "NotFound",
   mounted: function () {
-    console.log("404")
     this.$message.error("404页面");
   },
 };

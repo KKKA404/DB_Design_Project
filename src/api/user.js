@@ -39,3 +39,11 @@ export function editInfo (data){
   });
 
 }
+
+export function userRegister(data){
+  return request({
+    url: "/user/register",
+    method: "post",
+    data,
+  });
+}

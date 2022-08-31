@@ -29,7 +29,7 @@ function param2Obj(url) {
 }
 
 // Random
-const Random = Mock.Random;
+// const Random = Mock.Random;
 
 // 这里暂时采用baseURL + "/donateData"的简单方式封装...
 // 后续考虑参考vue-admin对此封装
@@ -131,14 +131,6 @@ Mock.mock(baseURL + "/donateData", "get", {
       contactAddress: "caoangonglu 4800",
     },
   ],
-});
-
-Mock.mock(baseURL + "/donateData", "post", (req, res) => {
-  let data = {
-    username: "baokker",
-    email: Random.email(),
-  };
-  return { ...res, ...data };
 });
 
 //个人需求表单
@@ -692,7 +684,7 @@ Mock.mock(baseURL + "/volunteerApplication", "post", {
 });
 
 //捐赠物资表单
-Mock.mock(baseURL + "/makeDonate", "post", {
+Mock.mock(baseURL + "/donateData", "post", {
   code: 20000,
 });
 
