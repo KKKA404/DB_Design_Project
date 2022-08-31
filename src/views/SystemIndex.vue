@@ -17,12 +17,15 @@
             :key="index"
           >
             <template slot="title">
-              <svg-icon
-                v-if="item.meta && item.meta.icon"
-                :icon-class="item.meta && item.meta.icon"
-              ></svg-icon>
-              <span>{{ item.name }}</span></template
-            >
+              <div align="left">
+                <svg-icon
+                  v-if="item.meta && item.meta.icon"
+                  :icon-class="item.meta && item.meta.icon"
+                  style="margin-right: 10px"
+                ></svg-icon>
+                <span style="font-weight: bold">{{ item.name }}</span>
+              </div>
+            </template>
             <el-menu-item-group>
               <el-menu-item
                 v-for="(item2, index2) in item.children"
@@ -34,7 +37,9 @@
                     v-if="item2.meta && item2.meta.icon"
                     :icon-class="item2.meta && item2.meta.icon"
                   ></svg-icon>
-                  <span>{{ item2.name }}</span>
+                  <span style="font-size: small; float: left">{{
+                    item2.name
+                  }}</span>
                 </template>
               </el-menu-item>
             </el-menu-item-group>
@@ -83,19 +88,7 @@ export default {
 
 <style>
 .el-menu-vertical:not(.el-menu--collapse) {
-  width: 200px;
+  width: 175px;
   overflow: hidden;
-}
-
-.el-menu--collapse {
-  .el-submenu {
-    span {
-      height: 0;
-      width: 0;
-      overflow: hidden;
-      visibility: hidden;
-      display: inline-block;
-    }
-  }
 }
 </style>
