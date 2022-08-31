@@ -134,9 +134,10 @@ Mock.mock(baseURL + "/donateData", "get", {
 });
 
 //管理人员
-Mock.mock(baseURL + "/manage", "post", {
-  code: 20000,
+Mock.mock(baseURL + "/manage", "post",{
+  code:20000,
 })
+
 Mock.mock(baseURL + "/manage", "delete", {
   code: 20000,
 })
@@ -156,9 +157,6 @@ Mock.mock(baseURL + "/manage", "get", {
       personName: "huhu",
     }
   ]
-})
-Mock.mock(baseURL + "/manage", "post", {
-  code: 20000,
 })
 
 //个人需求表单
@@ -499,7 +497,6 @@ Mock.mock(baseURL + "/transportData", "get", {
   ],
 });
 
-
 //病例记录
 Mock.mock(baseURL + "/PatientRecord", "post", {
   code: 20000,
@@ -718,37 +715,34 @@ Mock.mock(baseURL + "/volunteerApplication", "put", {
 });
 Mock.mock(baseURL + "/volunteerApplication", "get", {
   code: 20000,
-  volunteerRecord: [
-    {
-      personId: "123",
-      name: "huhu",
-      district: "",
-      location: "",
-      riskLevel: "",
-      volunteerLocation: "",
-      date1: "",
-      volunteerType: "",
-    },
-    {
-      personId: "123",
-      name: "haha",
-      district: "",
-      location: "",
-      riskLevel: "",
-      volunteerLocation: "",
-      date1: "",
-      volunteerType: "",
-    },
-  ]
+  volunteerRecord:[
+  {
+    personId: "123",
+    name: "huhu",
+    district:"",
+    location: "",
+    riskLevel: "",
+    volunteerLocation: "",
+    date1: "",
+    volunteerType: "",
+  },
+  {
+    personId: "123",
+    name: "haha",
+    district:"",
+    location: "",
+    riskLevel: "",
+    volunteerLocation: "",
+    date1: "",
+    volunteerType: "",
+  },
+]
 });
 
 //捐赠物资表单
 Mock.mock(baseURL + "/donateData", "post", {
   code: 20000,
 });
-
-
-
 
 //物资购买（post）
 Mock.mock(baseURL + "/purchaseData/unitPurchase", "post", {
@@ -801,8 +795,8 @@ Mock.mock(baseURL + "/needData", "get", {
   ],
 });
 
-Mock.mock(baseURL + "/user/password", "post", {
-  code: 20000,
+Mock.mock(baseURL+"/user/password","post",{
+  code:20000,
 })
 Mock.mock(baseURL + "/user/login", "post", (config) => {
   // 传递过来的是JSON 必须要先解析！之后考虑封装吧 现在还只是测试
@@ -862,4 +856,58 @@ Mock.mock(RegExp(baseURL + "/user/info.*"), "get", (config) => {
 Mock.mock(baseURL + "/user/editInfo", "post", {
   code: 20000,
   data: "success",
+});
+
+Mock.mock(baseURL + "/unManagePersonData", "get", {
+  code: 20000,
+  unManagedPersonData: [
+    {
+      ID: "123456",
+      name: "haha",
+      phoneNumber: 1235235,
+      age: 20,
+    },
+    {
+      ID: "123456",
+      name: "haha",
+      phoneNumber: 1235235,
+      age: 20,
+    },
+    {
+      ID: "123456",
+      name: "haha",
+      phoneNumber: 1235235,
+      age: 20,
+    },
+    {
+      ID: "123456",
+      name: "haha",
+      phoneNumber: 1235235,
+      age: 20,
+    },
+    {
+      ID: "123456",
+      name: "haha",
+      phoneNumber: 1235235,
+      age: 20,
+    },
+    {
+      ID: "123456",
+      name: "haha",
+      phoneNumber: 1235235,
+      age: 20,
+    },
+    {
+      ID: "123456",
+      name: "haha",
+      phoneNumber: 1235235,
+      age: 20,
+    },
+    {
+      ID: "123456",
+      name: "haha",
+      phoneNumber: 1235235,
+      age: 20,
+    },
+  ],
 });
