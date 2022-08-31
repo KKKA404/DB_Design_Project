@@ -11,7 +11,7 @@
       </transition-group>
     </el-breadcrumb>
 
-    <div class="right-menu">
+    <!-- <div class="right-menu">
       <el-menu mode="horizontal">
         <el-submenu index="">
           <template slot="title"><i class="el-icon-user"></i>账户</template>
@@ -32,11 +32,6 @@
           <div slot="header" class="clearfix" style="font-size:large;font-weight:400">
             <span>用户信息</span>
           </div>
-          <!-- <p>用户ID：{{ this.$store.getters.ID}}</p>
-            <p>用户名：{{ this.$store.getters.name }}</p>
-            <p>性别：{{ this.$store.getters.gender }}</p>
-            <p>联系方式：{{ this.$store.getters.phoneNumber }}</p>
-            <p>年龄：{{ this.$store.getters.age }}</p> -->
           <el-descriptions class="margin-top" :column="2" :size="size" border>
             <el-descriptions-item :span="2">
               <template slot="label">
@@ -142,7 +137,7 @@
           </el-button>
         </div>
       </div>
-    </el-drawer>
+    </el-drawer> -->
   </div>
 </template>
 
@@ -152,20 +147,20 @@ export default {
   data() {
     return {
       isCollapse: false,
-      newPassWordForm: {
-        oldPassWord: "",
-        newPassWord: "",
-        repeatPassWord: "",
-      },
-      userInfoForm: {
-        userName: this.$store.getters.name,
-        gender: this.$store.getters.gender == "男" ? "1" : "0",
-        phoneNumber: this.$store.getters.phoneNumber,
-        age: this.$store.getters.age,
-      },
-      resetPassWordFormVisible: false,
-      showUserInfoFormVisible: false,
-      editUserInfoFormVisible: false,
+      // newPassWordForm: {
+      //   oldPassWord: "",
+      //   newPassWord: "",
+      //   repeatPassWord: "",
+      // },
+      // userInfoForm: {
+      //   userName: this.$store.getters.name,
+      //   gender: this.$store.getters.gender == "男" ? "1" : "0",
+      //   phoneNumber: this.$store.getters.phoneNumber,
+      //   age: this.$store.getters.age,
+      // // },
+      // resetPassWordFormVisible: false,
+      // showUserInfoFormVisible: false,
+      // editUserInfoFormVisible: false,
       formLabelWidth: "120px",
     };
   },
@@ -175,76 +170,76 @@ export default {
     },
   },
   methods: {
-    async logout() {
-      await this.$store.dispatch("user/logout");
-      this.$message({
-        message: "已登出!",
-        type: "warning",
-      });
-      this.$router.push("/");
-    },
+    // async logout() {
+    //   await this.$store.dispatch("user/logout");
+    //   this.$message({
+    //     message: "已登出!",
+    //     type: "warning",
+    //   });
+    //   this.$router.push("/");
+    // },
     changeCollapse() {
       this.isCollapse = !this.isCollapse;
       this.$emit("changeMenu");
     },
-    changePassWord() {
-      if (this.newPassWordForm.newPassWord.length < 8) {
-        this.$message.error("密码长度需大于8位！");
-      } else if (
-        this.newPassWordForm.newPassWord != this.newPassWordForm.repeatPassWord
-      ) {
-        this.$message.error("两次输入新密码不一致！");
-      } else {
-        this.$axios
-          .post("/user/password", {
-            newPassWord: this.newPassWordForm.newPassWord,
-            oldPassWord: this.newPassWordForm.oldPassWord,
-          })
-          .then((res) => {
-            if (res.code == 20000) {
-              this.$message.success("修改密码成功！");
-              this.dialogFormVisible = !this.dialogFormVisible;
-            } else {
-              this.$message.error(res.msg);
-            }
-          })
-          .catch(() => {});
-      }
-    },
-    editUserInfo() {
-      this.$axios
-        .post("/user/editInfo", this.userInfoForm)
-        .then((res) => {
-          if (res.code == 20000) {
-            // success
-            this.$message({
-              type: "success",
-              message: "修改用户信息完成！",
-            });
-            this.$store.commit("user/SET_NAME", this.userInfoForm.userName);
-            this.$store.commit("user/SET_GENDER", this.userInfoForm.gender);
-            this.$store.commit(
-              "user/SET_PHONE_NUMBER",
-              this.userInfoForm.phoneNumber
-            );
-            this.$store.commit("user/SET_AGE", this.userInfoForm.age);
-            console.log(this.$store.getters.phoneNumber);
-          }
-          this.loading = false;
-        })
-        .catch(() => {
-          this.loading = false;
-        });
-    },
-    changeResetPassWordFormVisible() {
-      this.resetPassWordFormVisible = !this.resetPassWordFormVisible;
-    },
-    changeShowUserInfoFormVisible() {
-      this.showUserInfoFormVisible = !this.showUserInfoFormVisible;
-    },
-    changeEditUserInfoFormVisible() {
-      this.editUserInfoFormVisible = !this.editUserInfoFormVisible;
-    },
+    // changePassWord() {
+    //   if (this.newPassWordForm.newPassWord.length < 8) {
+    //     this.$message.error("密码长度需大于8位！");
+    //   } else if (
+    //     this.newPassWordForm.newPassWord != this.newPassWordForm.repeatPassWord
+    //   ) {
+    //     this.$message.error("两次输入新密码不一致！");
+    //   } else {
+    //     this.$axios
+    //       .post("/user/password", {
+    //         newPassWord: this.newPassWordForm.newPassWord,
+    //         oldPassWord: this.newPassWordForm.oldPassWord,
+    //       })
+    //       .then((res) => {
+    //         if (res.code == 20000) {
+    //           this.$message.success("修改密码成功！");
+    //           this.dialogFormVisible = !this.dialogFormVisible;
+    //         } else {
+    //           this.$message.error(res.msg);
+    //         }
+    //       })
+    //       .catch(() => {});
+    //   }
+    // },
+    // editUserInfo() {
+    //   this.$axios
+    //     .post("/user/editInfo", this.userInfoForm)
+    //     .then((res) => {
+    //       if (res.code == 20000) {
+    //         // success
+    //         this.$message({
+    //           type: "success",
+    //           message: "修改用户信息完成！",
+    //         });
+    //         this.$store.commit("user/SET_NAME", this.userInfoForm.userName);
+    //         this.$store.commit("user/SET_GENDER", this.userInfoForm.gender);
+    //         this.$store.commit(
+    //           "user/SET_PHONE_NUMBER",
+    //           this.userInfoForm.phoneNumber
+    //         );
+    //         this.$store.commit("user/SET_AGE", this.userInfoForm.age);
+    //         console.log(this.$store.getters.phoneNumber);
+    //       }
+    //       this.loading = false;
+    //     })
+    //     .catch(() => {
+    //       this.loading = false;
+    //     });
+    // },
+    // changeResetPassWordFormVisible() {
+    //   this.resetPassWordFormVisible = !this.resetPassWordFormVisible;
+    // },
+    // changeShowUserInfoFormVisible() {
+    //   this.showUserInfoFormVisible = !this.showUserInfoFormVisible;
+    // },
+    // changeEditUserInfoFormVisible() {
+    //   this.editUserInfoFormVisible = !this.editUserInfoFormVisible;
+    // },
   },
 };
 </script>
