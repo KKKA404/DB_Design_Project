@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import { getDonateData } from '@/api/donate';
+import { getDonateData } from "@/api/donate";
 
 export default {
   name: "CheckDonationRecord",
@@ -79,12 +79,12 @@ export default {
   computed: {
     searchData: function () {
       if (this.cname == "donateName") {
-        let SearchResult = this.transportData.filter(
+        let SearchResult = this.donateData.filter(
           (item) => String(item.donateName).indexOf(String(this.nameInput)) > -1
         );
         return SearchResult;
       } else if (this.cname == "donateID") {
-        let SearchResult = this.transportData.filter(
+        let SearchResult = this.donateData.filter(
           (item) => String(item.donateID).indexOf(String(this.nameInput)) > -1
         );
         return SearchResult;
