@@ -126,14 +126,14 @@ export default {
       let needDataDic = {};
       needData.forEach((item) => {
         if (needDataDic[item.goodName] == undefined) {
-          needDataDic[item.goodName] = 1;
-        } else needDataDic[item.goodName] += 1;
+          needDataDic[item.goodName] = item.num;
+        } else needDataDic[item.goodName] += item.num;
       });
       let existingMaterialDic = {};
       existingMaterial.forEach((item) => {
         if (existingMaterialDic[item.goodsName] == undefined) {
-          existingMaterialDic[item.goodsName] = 1;
-        } else existingMaterialDic[item.goodsName] += 1;
+          existingMaterialDic[item.goodsName] = item.count;
+        } else existingMaterialDic[item.goodsName] += item.count;
       });
       let lackSupplies = [];
       for (let key in needDataDic) {
