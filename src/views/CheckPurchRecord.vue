@@ -161,9 +161,7 @@
         >
         <el-button
           type="primary"
-          @click="
-            (dialogDonorPurchaseFormVisible = false), submitDonorPurchaseForm
-          "
+          @click.native.prevent="submitDonorPurchaseForm"
           >确 定</el-button
         >
       </div>
