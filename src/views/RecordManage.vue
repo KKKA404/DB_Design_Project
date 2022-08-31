@@ -1,28 +1,46 @@
 <template>
   <el-main>
     <el-card>
-      <el-tag effect="plain" style="
+      <el-tag
+        effect="plain"
+        style="
           float: left;
-          margin-bottom: 13px;
+          margin-bottom: 15px;
+          margin-right: 80%;
           font-size: 18px;
           font-weight: 400;
-        ">筛选条件</el-tag>
-      <el-input placeholder="请输入姓名" v-model="nameInput" class="input-with-select"
-        style="width: 100%; margin-bottom: 14px">
-        <!-- <el-select v-model="cname" slot="prepend" placeholder="请选择" @change="getKey">
-      <el-option label="姓名" value="name"></el-option>
-      <el-option label="所需物资种类" value="type"></el-option>
-      <el-option label="提交时间" value="createTime"></el-option>
-    </el-select> -->
+        "
+        >筛选条件</el-tag
+      >
+      <el-input
+        placeholder="请输入内容"
+        v-model="nameInput"
+        class="input-with-select"
+        style="width: 90%; margin-bottom: 20px; margin-left: 3%; float: left"
+      >
+        <el-select v-model="cname" slot="prepend" placeholder="请选择">
+          <el-option label="物资类型" value="type"></el-option>
+          <el-option label="所需物资" value="goodsName"></el-option>
+        </el-select>
         <el-button slot="append" icon="el-icon-search"></el-button>
       </el-input>
     </el-card>
     <br />
     <el-card>
-      <el-table :data="
-        searchData.slice((currentPage - 1) * pageSize, currentPage * pageSize)
-      " border style="width: 100%">
-        <el-table-column fixed prop="personId" label="编号" sortable width="100">
+      <el-table
+        :data="
+          searchData.slice((currentPage - 1) * pageSize, currentPage * pageSize)
+        "
+        border
+        style="width: 100%"
+      >
+        <el-table-column
+          fixed
+          prop="personId"
+          label="编号"
+          sortable
+          width="100"
+        >
         </el-table-column>
         <el-table-column prop="name" label="姓名"> </el-table-column>
         <el-table-column prop="gender" label="性别"> </el-table-column>
@@ -35,18 +53,32 @@
         <el-table-column prop="num" label="所需物资数量"> </el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
-            <el-button @click="(dialogFormVisible = true), edit(scope.row)" type="text">修改</el-button>
-            <el-button type="text" @click="deleteRecord(scope.row)">删除</el-button>
+            <el-button
+              @click="(dialogFormVisible = true), edit(scope.row)"
+              type="text"
+              >修改</el-button
+            >
+            <el-button type="text" @click="deleteRecord(scope.row)"
+              >删除</el-button
+            >
           </template>
         </el-table-column>
       </el-table>
     </el-card>
     <div class="block">
-      <el-pagination @current-change="handleCurrentChange" :page-size="6" layout="total, prev, pager, next"
-        :total="total">
+      <el-pagination
+        @current-change="handleCurrentChange"
+        :page-size="6"
+        layout="total, prev, pager, next"
+        :total="total"
+      >
       </el-pagination>
 
-      <el-dialog title="修改所需物资记录" :visible.sync="dialogFormVisible" slot>
+      <el-dialog
+        title="修改所需物资记录"
+        :visible.sync="dialogFormVisible"
+        slot
+      >
         <el-form :model="Emp" ref="Emp">
           <!-- <el-form-item label="姓名" :label-width="formLabelWidth">
             <el-input v-model="Emp.name" autocomplete="off"></el-input>
@@ -55,7 +87,11 @@
             <el-radio v-model="Emp.gender" label="男">男</el-radio>
             <el-radio v-model="Emp.gender" label="女">女</el-radio>
           </el-form-item> -->
-          <el-form-item label="紧急程度" :label-width="formLabelWidth" prop="urgency">
+          <el-form-item
+            label="紧急程度"
+            :label-width="formLabelWidth"
+            prop="urgency"
+          >
             <el-radio v-model="Emp.urgency" label="紧急">紧急</el-radio>
             <el-radio v-model="Emp.urgency" label="一般">一般</el-radio>
           </el-form-item>
@@ -65,9 +101,18 @@
           <!-- <el-form-item label="身份证号码" :label-width="formLabelWidth">
             <el-input v-model="Emp.IDcard" autocomplete="off"></el-input>
           </el-form-item> -->
-          <el-form-item label="健康状况" :label-width="formLabelWidth" prop="health">
+          <el-form-item
+            label="健康状况"
+            :label-width="formLabelWidth"
+            prop="health"
+          >
             <el-select v-model="Emp.health" clearable placeholder="请选择">
-              <el-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value">
+              <el-option
+                v-for="item in options2"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              >
               </el-option>
             </el-select>
           </el-form-item>
@@ -76,7 +121,12 @@
           </el-form-item> -->
           <el-form-item label="所需物资种类" :label-width="formLabelWidth">
             <el-select v-model="Emp.depart" clearable placeholder="请选择">
-              <el-option v-for="item in options3" :key="item.value" :label="item.label" :value="item.value">
+              <el-option
+                v-for="item in options3"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              >
               </el-option>
             </el-select>
           </el-form-item>
@@ -84,7 +134,11 @@
 
         <div slot="footer" class="dialog-footer">
           <el-button @click="dialogFormVisible = false">取 消</el-button>
-          <el-button type="primary" @click="(dialogFormVisible = false), update()">确 定</el-button>
+          <el-button
+            type="primary"
+            @click="(dialogFormVisible = false), update()"
+            >确 定</el-button
+          >
         </div>
       </el-dialog>
     </div>
@@ -92,7 +146,12 @@
 </template>
 
 <script>
-import { deletePersonalRequest, modifyPersonalRequest, getOriginRequest, getPersonalRequest } from '@/api/individual';
+import {
+  deletePersonalRequest,
+  modifyPersonalRequest,
+  getOriginRequest,
+  getPersonalRequest,
+} from "@/api/individual";
 export default {
   methods: {
     deleteRecord(row) {
@@ -101,34 +160,17 @@ export default {
         cancelButtonText: "取消",
         type: "warning",
       }).then(() => {
-        deletePersonalRequest(row.personId)
-          .then((res) => {
-            if (res.code == 20000) {
-              this.$alert(row.name + "的需求记录删除成功！", "消息", {
-                confirmButtonText: "确定",
-                callback: () => {
-                  window.location.reload();
-                },
-              });
-            }
-          });
+        deletePersonalRequest(row.personId).then((res) => {
+          if (res.code == 20000) {
+            this.$alert(row.name + "的需求记录删除成功！", "消息", {
+              confirmButtonText: "确定",
+              callback: () => {
+                window.location.reload();
+              },
+            });
+          }
+        });
       });
-      // axios({
-      //   method:"get",
-      //   url:"http://111.187.77.22:91/api/Login/Get",
-
-      // }).then(function(resp){
-      //   console.log(resp)
-      // })
-      // this.$axios.get(
-
-      //   "http://111.187.77.22:91/api/Login/Get",
-
-      // ).then(function(resp){
-      //   console.log(resp)
-      // })
-
-
     },
 
     update() {
@@ -145,13 +187,15 @@ export default {
       });
     },
     edit(row) {
-      getOriginRequest({ personID: row.personId, demandFormID: row.demandFormId })
-        .then((res) => {
-          console.log(res.personalRequest);
-          if (res.code == 20000) {
-            this.Emp = res.personalRequest;
-          }
-        });
+      getOriginRequest({
+        personID: row.personId,
+        demandFormID: row.demandFormId,
+      }).then((res) => {
+        console.log(res.personalRequest);
+        if (res.code == 20000) {
+          this.Emp = res.personalRequest;
+        }
+      });
     },
 
     handleCurrentChange(currentPage) {
@@ -241,11 +285,19 @@ export default {
   },
   computed: {
     searchData: function () {
-      let SearchResult = this.personalRequest.filter(
-        (item) => String(item.name).indexOf(String(this.nameInput)) > -1
-      );
-
-      return SearchResult;
+      if (this.cname == "goodsName") {
+        let SearchResult = this.personalRequest.filter(
+          (item) => String(item.goodsName).indexOf(String(this.nameInput)) > -1
+        );
+        return SearchResult;
+      } else if (this.cname == "type") {
+        let SearchResult = this.personalRequest.filter(
+          (item) => String(item.type).indexOf(String(this.nameInput)) > -1
+        );
+        return SearchResult;
+      } else {
+        return this.personalRequest;
+      }
     },
   },
 };

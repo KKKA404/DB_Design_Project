@@ -3,17 +3,18 @@
     <el-tabs v-model="activeName" type="border-card">
       <el-tab-pane label="防控单位采购" name="first">
         <el-input
-          placeholder="请输入物资名称"
-          v-model="inputMaterialName"
-          clearable
-          style="
-            width: 40%;
-            margin-right: 50px;
-            margin-top: 10px;
-            margin-bottom: 30px;
-          "
+          placeholder="请输入内容"
+          v-model="nameInput"
+          class="input-with-select"
+          style="width: 80%; margin-bottom: 20px; margin-left: 3%; float: left"
         >
+          <el-select v-model="cname" slot="prepend" placeholder="请选择">
+            <el-option label="购买时间" value="purchaseTime"></el-option>
+            <el-option label="物资名称" value="materialName"></el-option>
+          </el-select>
+          <el-button slot="append" icon="el-icon-search"></el-button>
         </el-input>
+
         <el-button type="box" @click="dialogUnitPurchaseFormVisible = true"
           >提交采购信息</el-button
         >
@@ -43,16 +44,16 @@
       </el-tab-pane>
       <el-tab-pane label="捐赠方采购" name="second">
         <el-input
-          placeholder="请输入物资名称"
-          v-model="inputMaterialName"
-          clearable
-          style="
-            width: 40%;
-            margin-right: 50px;
-            margin-top: 10px;
-            margin-bottom: 30px;
-          "
+          placeholder="请输入内容"
+          v-model="nameInput"
+          class="input-with-select"
+          style="width: 80%; margin-bottom: 20px; margin-left: 3%; float: left"
         >
+          <el-select v-model="cname" slot="prepend" placeholder="请选择">
+            <el-option label="购买时间" value="purchaseTime"></el-option>
+            <el-option label="物资名称" value="materialName"></el-option>
+          </el-select>
+          <el-button slot="append" icon="el-icon-search"></el-button>
         </el-input>
         <el-button type="box" @click="dialogDonorPurchaseFormVisible = true"
           >提交采购信息</el-button
@@ -187,6 +188,10 @@ export default {
   },
   data() {
     return {
+      value: "",
+      cname: "",
+      nameInput: "",
+      options: [],
       unitPurchaseData: [],
       donorPurchaseData: [],
       activeName: "first",
@@ -293,18 +298,38 @@ export default {
   },
   computed: {
     searchUnitPurchaseData: function () {
-      let SearchUnitResult = this.unitPurchaseData.filter(
-        (item) =>
-          String(item.materialName).indexOf(String(this.inputMaterialName)) > -1
-      );
-      return SearchUnitResult;
+      if (this.cname == "purchaseTime") {
+        let SearchResult = this.unitPurchaseData.filter(
+          (item) =>
+            String(item.purchaseTime).indexOf(String(this.nameInput)) > -1
+        );
+        return SearchResult;
+      } else if (this.cname == "materialName") {
+        let SearchResult = this.unitPurchaseData.filter(
+          (item) =>
+            String(item.materialName).indexOf(String(this.nameInput)) > -1
+        );
+        return SearchResult;
+      } else {
+        return this.unitPurchaseData;
+      }
     },
     searchDonorPurchaseData: function () {
-      let SearchDonorResult = this.donorPurchaseData.filter(
-        (item) =>
-          String(item.materialName).indexOf(String(this.inputMaterialName)) > -1
-      );
-      return SearchDonorResult;
+      if (this.cname == "purchaseTime") {
+        let SearchResult = this.donorPurchaseData.filter(
+          (item) =>
+            String(item.purchaseTime).indexOf(String(this.nameInput)) > -1
+        );
+        return SearchResult;
+      } else if (this.cname == "materialName") {
+        let SearchResult = this.donorPurchaseData.filter(
+          (item) =>
+            String(item.materialName).indexOf(String(this.nameInput)) > -1
+        );
+        return SearchResult;
+      } else {
+        return this.donorPurchaseData;
+      }
     },
   },
 };

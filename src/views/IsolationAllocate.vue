@@ -5,18 +5,28 @@
         effect="plain"
         style="
           float: left;
-          margin-bottom: 10px;
+          margin-bottom: 15px;
+          margin-right: 80%;
           font-size: 18px;
           font-weight: 400;
         "
         >筛选条件</el-tag
       >
+      <!-- 筛选栏 -->
       <el-input
-        placeholder="请输入待隔离者的 ID / 姓名 / 隔离开始日期"
-        v-model="inputPerson"
-        clearable
+        placeholder="请输入内容"
+        v-model="nameInput"
+        class="input-with-select"
+        style="width: 90%; margin-bottom: 20px; margin-left: 3%; float: left"
       >
+        <el-select v-model="cname" slot="prepend" placeholder="请选择">
+          <el-option label="隔离者ID" value="id"></el-option>
+          <el-option label="隔离者姓名" value="name"></el-option>
+          <el-option label="隔离开始日期" value="signInDate"></el-option>
+        </el-select>
+        <el-button slot="append" icon="el-icon-search"></el-button>
       </el-input>
+      <!-- 筛选栏 -->
     </el-card>
 
     <br />
@@ -52,19 +62,32 @@
     <div class="block">
       <el-dialog title="隔离点分配" :visible.sync="dialogFormVisible" slot>
         <el-form :model="Emp" ref="Emp">
+          <!-- 筛选栏 -->
           <el-input
-            placeholder="请输入 隔离点名称 / 所处地区"
-            v-model="inputPoint"
-            clearable
-            style="margin-bottom: 20px"
+            placeholder="请输入内容"
+            v-model="isInput"
+            class="input-with-select"
+            style="
+              width: 90%;
+              margin-bottom: 20px;
+              margin-left: 3%;
+              float: left;
+            "
           >
+            <el-select v-model="isname" slot="prepend" placeholder="请选择">
+              <el-option label="隔离点名称" value="name"></el-option>
+              <el-option label="所处地区" value="region"></el-option>
+            </el-select>
+            <el-button slot="append" icon="el-icon-search"></el-button>
           </el-input>
+          <!-- 筛选栏 -->
+
           <el-table :data="searchIs" border>
             <el-table-column fixed prop="name" label="隔离点名称" sortable>
             </el-table-column>
 
             <el-table-column prop="region" label="所处地区"> </el-table-column>
-            <el-table-column prop="capacity" label="最大容纳人数">
+            <el-table-column prop="capacity" label="最大容纳人数" sortable>
             </el-table-column>
             <el-table-column prop="num" label="当前隔离人数" sortable>
             </el-table-column>
@@ -145,30 +168,51 @@ export default {
       tempID: "",
       tempName: "",
       nameInput: "",
+      cname: "",
       dialogFormVisible: false,
       formLabelWidth: "120px",
       LabelWidth: "180px",
       inputPerson: "",
       inputPoint: "",
+      isInput: "",
+      isname: "",
     };
   },
   computed: {
     searchData: function () {
-      let SearchResult = this.assignmentData.filter(
-        (item) =>
-          String(item.id).indexOf(String(this.inputPerson)) > -1 ||
-          item.name.indexOf(String(this.inputPerson)) > -1 ||
-          item.signInDate.indexOf(String(this.inputPerson)) > -1
-      );
-      return SearchResult;
+      if (this.cname == "id") {
+        let SearchResult = this.assignmentData.filter(
+          (item) => String(item.id).indexOf(String(this.nameInput)) > -1
+        );
+        return SearchResult;
+      } else if (this.cname == "name") {
+        let SearchResult = this.assignmentData.filter(
+          (item) => String(item.name).indexOf(String(this.nameInput)) > -1
+        );
+        return SearchResult;
+      } else if (this.cname == "signInDate") {
+        let SearchResult = this.assignmentData.filter(
+          (item) => String(item.signInDate).indexOf(String(this.nameInput)) > -1
+        );
+        return SearchResult;
+      } else {
+        return this.assignmentData;
+      }
     },
     searchIs: function () {
-      let SearchResult = this.isolatedPointsData.filter(
-        (item) =>
-          String(item.name).indexOf(String(this.inputPoint)) > -1 ||
-          String(item.region).indexOf(String(this.inputPoint)) > -1
-      );
-      return SearchResult;
+      if (this.isname == "name") {
+        let SearchResult = this.isolatedPointsData.filter(
+          (item) => String(item.name).indexOf(String(this.isInput)) > -1
+        );
+        return SearchResult;
+      } else if (this.isname == "region") {
+        let SearchResult = this.isolatedPointsData.filter(
+          (item) => String(item.region).indexOf(String(this.isInput)) > -1
+        );
+        return SearchResult;
+      } else {
+        return this.isolatedPointsData;
+      }
     },
   },
 };
