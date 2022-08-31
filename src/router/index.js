@@ -69,6 +69,21 @@ export const asyncRoutes = [
     ],
   },
   {
+    path: "/PersonManage",
+    redirect: "/Index",
+    name: "防控单位管理",
+    component: () => import("../views/SystemIndex.vue"),
+    meta: { icon: "Unit", roles: ["admin"] },
+    children: [
+      {
+        path: "/addManageRecord",
+        name: "添加管理信息",
+        component: () => import("../views/AddManageRecord.vue"),
+        meta: { roles: ["admin"] },
+      },
+    ],
+  },
+  {
     path: "/Materials",
     redirect: "/Index",
     name: "物资捐赠",

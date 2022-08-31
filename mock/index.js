@@ -133,6 +133,11 @@ Mock.mock(baseURL + "/donateData", "get", {
   ],
 });
 
+//管理人员
+Mock.mock(baseURL + "/manage", "post",{
+  code:20000,
+})
+
 //个人需求表单
 Mock.mock(baseURL + "/personalRequest", "post", {
   code: 20000,
