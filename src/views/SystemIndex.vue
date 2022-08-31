@@ -1,10 +1,13 @@
 <template>
+  
   <div>
     <el-container style="height: 100%; border: 1px solid #eee">
+      
       <el-aside
         width="collapse"
         style="background-color: #ffffff height: 100%;"
       >
+      
         <el-menu
           router
           :default-active="$route.path"
@@ -58,9 +61,10 @@
 </template>
 <script>
 import SvgIcon from "@/components/SvgIcon.vue";
+import Header from './Header.vue';
 export default {
   name: "SystemIndex",
-  components: { SvgIcon },
+  components: { SvgIcon, Header },
   data() {
     return {
       currentMenu: "",

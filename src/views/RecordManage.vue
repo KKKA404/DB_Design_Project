@@ -144,6 +144,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import service from "@/plugins/axios";
 export default {
   methods: {
@@ -166,6 +167,22 @@ export default {
             }
           });
       });
+      // axios({
+      //   method:"get",
+      //   url:"http://111.187.77.22:91/api/Login/Get",
+
+      // }).then(function(resp){
+      //   console.log(resp)
+      // })
+      // this.$axios.get(
+        
+      //   "http://111.187.77.22:91/api/Login/Get",
+
+      // ).then(function(resp){
+      //   console.log(resp)
+      // })
+
+
     },
 
     update() {
