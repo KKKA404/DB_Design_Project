@@ -58,24 +58,24 @@ const actions = {
     return new Promise((resolve, reject) => {
       login({ userName: userName.trim(), passWord: passWord })
         .then((res) => {
-          // const { token } = res;
-          const { token,data} = res;
+          const { token } = res;
+          // const { token, data} = res;
 
           commit("SET_TOKEN", token);
           setToken(token);
 
-          const { roles, ID, name, gender, phoneNumber, age } = data;
-          // roles must be a non-empty array
-          if (!roles || roles.length <= 0) {
-            reject("getInfo: roles must be a non-null array!");
-          }
+          // const { roles, ID, name, gender, phoneNumber, age } = data;
+          // // roles must be a non-empty array
+          // if (!roles || roles.length <= 0) {
+          //   reject("getInfo: roles must be a non-null array!");
+          // }
 
-          commit("SET_ROLES", roles);
-          commit("SET_ID", ID);
-          commit("SET_NAME", name);
-          commit("SET_GENDER", gender);
-          commit("SET_PHONE_NUMBER", phoneNumber);
-          commit("SET_AGE", age);
+          // commit("SET_ROLES", roles);
+          // commit("SET_ID", ID);
+          // commit("SET_NAME", name);
+          // commit("SET_GENDER", gender);
+          // commit("SET_PHONE_NUMBER", phoneNumber);
+          // commit("SET_AGE", age);
 
           resolve();
         })
