@@ -24,10 +24,11 @@ export function modifyPersonalRequest(data) {
 //   });
 // }
 
-export function getPersonalRequest() {
+export function getPersonalRequest(params) {
   return request({
     url: "/personalRequest",
     method: "get",
+    params,
   });
 }
 

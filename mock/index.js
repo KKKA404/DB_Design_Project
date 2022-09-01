@@ -170,7 +170,7 @@ Mock.mock(baseURL + "/personalRequest", "delete", {
   code: 20000,
 });
 
-Mock.mock(baseURL + "/personalRequest", "get", {
+Mock.mock(RegExp(baseURL + "/personalRequest.*"), "get", {
   code: 20000,
   personalRequest: [
     {
@@ -829,7 +829,8 @@ Mock.mock(baseURL + "/user/logout", "post", {
 });
 
 Mock.mock(RegExp(baseURL + "/user/info.*"), "get", (config) => {
-  if (param2Obj(config.url).token.includes("admin")) {
+  console.log("User info",config);
+  // if (param2Obj(config.url).token.includes("admin")) {
     return {
       code: 20000,
       data: {
@@ -841,19 +842,19 @@ Mock.mock(RegExp(baseURL + "/user/info.*"), "get", (config) => {
         age: 0,
       },
     };
-  } else {
-    return {
-      code: 20000,
-      data: {
-        roles: ["user"],
-        ID: "456",
-        name: "user",
-        gender: 0,
-        phoneNumber: "12345678",
-        age: 20,
-      },
-    };
-  }
+  // } else {
+  //   return {
+  //     code: 20000,
+  //     data: {
+  //       roles: ["user"],
+  //       ID: "456",
+  //       name: "user",
+  //       gender: 0,
+  //       phoneNumber: "12345678",
+  //       age: 20,
+  //     },
+  //   };
+  // }
 });
 
 Mock.mock(baseURL + "/user/editInfo", "post", {

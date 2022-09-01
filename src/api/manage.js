@@ -21,7 +21,6 @@ export function getManageRecord(){
     return request({
         url: "/manage",
         method: "get",
-        params:params,
     })
 
 }
