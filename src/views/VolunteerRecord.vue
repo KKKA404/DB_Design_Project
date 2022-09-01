@@ -97,9 +97,9 @@
               clearable
               placeholder="请选择"
             >
-              <el-option label="秩序引导" value="medical"></el-option>
-              <el-option label="扫码登记" value="living"></el-option>
-              <el-option label="物资搬运" value="shifting"></el-option>
+              <el-option label="秩序引导" value="秩序引导"></el-option>
+              <el-option label="扫码登记" value="扫码登记"></el-option>
+              <el-option label="物资搬运" value="物资搬运"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="志愿时间" :label-width="formLabelWidth">

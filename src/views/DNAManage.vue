@@ -5,8 +5,8 @@
       <el-input placeholder="请输入内容" v-model="nameInput" class="input-with-select"
         style="width: 87%; margin-bottom: 20px; margin-left: 2%; float: left">
         <el-select v-model="cname" slot="prepend" placeholder="请选择">
-          <el-option label="需求者ID" value="personId"></el-option>
-          <el-option label="需求者姓名" value="name"></el-option>
+          <el-option label="ID" value="personId"></el-option>
+          <el-option label="姓名" value="name"></el-option>
         </el-select>
         <el-button slot="append" icon="el-icon-search"></el-button>
       </el-input>
