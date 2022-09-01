@@ -35,7 +35,10 @@
         <el-table-column fixed prop="id" label="编号" sortable>
         </el-table-column>
         <el-table-column prop="name" label="姓名"> </el-table-column>
-        <el-table-column prop="gender" label="性别"> </el-table-column>
+        <el-table-column prop="gender" label="性别"> <template slot-scope="scope"
+            ><span v-if="scope.row.gender === 1">男</span
+            ><span v-if="scope.row.gender === 0">女</span></template
+          ></el-table-column>
         <el-table-column prop="phoneNumber" label="手机号码"> </el-table-column>
         <el-table-column prop="address" label="当前住址"> </el-table-column>
         <el-table-column prop="signInDate" label="隔离开始日期">

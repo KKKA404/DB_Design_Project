@@ -22,7 +22,10 @@
         <el-table-column fixed prop="name" label="姓名" width="100">
         </el-table-column>
         <el-table-column prop="personId" label="编号"> </el-table-column>
-        <el-table-column prop="gender" label="性别"> </el-table-column>
+        <el-table-column prop="gender" label="性别"> <template slot-scope="scope"
+            ><span v-if="scope.row.gender === 1">男</span
+            ><span v-if="scope.row.gender === 0">女</span></template
+          ></el-table-column>
         <el-table-column prop="IDcard" label="身份证号码"> </el-table-column>
         <el-table-column prop="sampleTime" label="采样时间"> </el-table-column>
         <el-table-column prop="place" label="检测机构"> </el-table-column>
