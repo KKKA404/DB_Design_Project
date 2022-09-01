@@ -318,7 +318,7 @@ export default {
         type: "",
         goodsName: "",
         num: undefined,
-        writeTime: "",
+        writeTime:"",
       },
     };
   },
