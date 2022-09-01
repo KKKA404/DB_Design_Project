@@ -151,7 +151,7 @@ export const asyncRoutes = [
         meta: { roles: ["admin"] },
       },
       {
-        path: "/MaterialTransport.vue",
+        path: "/MaterialTransport",
         name: "物流信息",
         component: () => import("../views/MaterialTransport.vue"),
         meta: { roles: ["admin"] },

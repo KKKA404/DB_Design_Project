@@ -10,23 +10,23 @@ Mock.setup({
 });
 
 // get 带参数，将后面的参数转为对象
-function param2Obj(url) {
-  const search = decodeURIComponent(url.split("?")[1]).replace(/\+/g, " ");
-  if (!search) {
-    return {};
-  }
-  const obj = {};
-  const searchArr = search.split("&");
-  searchArr.forEach((v) => {
-    const index = v.indexOf("=");
-    if (index !== -1) {
-      const name = v.substring(0, index);
-      const val = v.substring(index + 1, v.length);
-      obj[name] = val;
-    }
-  });
-  return obj;
-}
+// function param2Obj(url) {
+//   const search = decodeURIComponent(url.split("?")[1]).replace(/\+/g, " ");
+//   if (!search) {
+//     return {};
+//   }
+//   const obj = {};
+//   const searchArr = search.split("&");
+//   searchArr.forEach((v) => {
+//     const index = v.indexOf("=");
+//     if (index !== -1) {
+//       const name = v.substring(0, index);
+//       const val = v.substring(index + 1, v.length);
+//       obj[name] = val;
+//     }
+//   });
+//   return obj;
+// }
 
 // Random
 // const Random = Mock.Random;
