@@ -22,10 +22,10 @@
         <el-table-column fixed prop="name" label="姓名" width="100">
         </el-table-column>
         <el-table-column prop="personId" label="编号"> </el-table-column>
-        <el-table-column prop="gender" label="性别"> <template slot-scope="scope"
-            ><span v-if="scope.row.gender === 1">男</span
-            ><span v-if="scope.row.gender === 0">女</span></template
-          ></el-table-column>
+        <el-table-column prop="gender" label="性别">
+          <template slot-scope="scope"><span v-if="scope.row.gender === 1">男</span><span
+              v-if="scope.row.gender === 0">女</span></template>
+        </el-table-column>
         <el-table-column prop="IDcard" label="身份证号码"> </el-table-column>
         <el-table-column prop="sampleTime" label="采样时间"> </el-table-column>
         <el-table-column prop="place" label="检测机构"> </el-table-column>
@@ -48,7 +48,7 @@
 
       <el-dialog title="修改确诊/疑似病例记录" :visible.sync="dialogFormVisible" slot>
         <el-form :model="EmpIden" ref="EmpIden">
-          <el-form-item label="编号" :label-width="formLabelWidth" >
+          <el-form-item label="编号" :label-width="formLabelWidth">
             <el-input v-model="EmpIden.personId" autocomplete="off" :disabled="true"></el-input>
           </el-form-item>
           <el-form-item label="姓名" :label-width="formLabelWidth">
@@ -94,8 +94,8 @@
             <el-input v-model="addEmpIden.name" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item label="性别" :label-width="formLabelWidth">
-            <el-radio v-model="addEmpIden.gender" label=1>男</el-radio>
-            <el-radio v-model="addEmpIden.gender" label=0>女</el-radio>
+            <el-radio v-model="addEmpIden.gender" label="1">男</el-radio>
+            <el-radio v-model="addEmpIden.gender" label="0">女</el-radio>
           </el-form-item>
           <el-form-item label="身份证号" :label-width="formLabelWidth">
             <el-input v-model="addEmpIden.IDcard" autocomplete="off"></el-input>
@@ -185,7 +185,6 @@ export default {
     },
 
     edit(row) {
-
       this.EmpIden.personId = row.personId;
       this.EmpIden.name = row.name;
       //this.EmpIden.gender = row.gender;
@@ -194,7 +193,6 @@ export default {
       this.EmpIden.place = row.place;
       this.EmpIden.testResult = row.testResult;
       this.EmpIden.phoneNumber = row.phoneNumber;
-
     },
 
     handleCurrentChange(currentPage) {

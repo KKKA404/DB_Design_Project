@@ -241,7 +241,7 @@ export default {
     },
   },
   created() {
-    getPersonalRequest().then((res) => {
+    getPersonalRequest(this.$store.getters.ID).then((res) => {
       this.personalRequest = res.personalRequest;
     });
   },

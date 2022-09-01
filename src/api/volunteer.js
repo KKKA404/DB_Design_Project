@@ -8,12 +8,13 @@ export function submitVolunteerApplication(ruleForm) {
   });
 }
 
-export function getVolunteerRecord(params) {
+// export function getVolunteerRecord(params) {
+export function getVolunteerRecord() {
   return request({
     url: "/volunteerApplication",
     method: "get",
     // if has params, return the data filtered by the personID in params
-    params: params,
+    // params: params,
   });
 }
 export function deleteVolunteerRecord(data) {
