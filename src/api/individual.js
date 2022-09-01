@@ -16,18 +16,18 @@ export function modifyPersonalRequest(data) {
   });
 }
 //edit中调用
-export function getOriginRequest(params) {
+// export function getOriginRequest(params) {
+//   return request({
+//     url: "/personalRequest",
+//     method: "get",
+//     params: params,
+//   });
+// }
+
+export function getPersonalRequest() {
   return request({
     url: "/personalRequest",
     method: "get",
-    params: params,
-  });
-}
-export function getPersonalRequest(params) {
-  return request({
-    url: "/personalRequest",
-    method: "get",
-    params: params,
   });
 }
 

@@ -43,7 +43,12 @@
         >
         </el-table-column>
         <el-table-column prop="name" label="姓名"> </el-table-column>
-        <el-table-column prop="gender" label="性别"> </el-table-column>
+        <el-table-column prop="gender" label="性别"
+          ><template slot-scope="scope"
+            ><span v-if="scope.row.gender === 1">男</span
+            ><span v-if="scope.row.gender === 0">女</span></template
+          >
+        </el-table-column>
         <!-- <el-table-column prop="urgency" label="紧急程度"> </el-table-column> -->
         <el-table-column prop="phoneNumber" label="手机号码"> </el-table-column>
         <!-- <el-table-column prop="IDcard" label="身份证号码"> </el-table-column>
@@ -131,19 +136,36 @@
               </el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="填写时间"  :label-width="formLabelWidth">
-          <el-col :span="11">
-            <el-form-item >
-              <el-date-picker
-                type="date"
-                placeholder="选择日期"
-                v-model="Emp.writeTime"
-                style="width: 100%"
-              >
-              </el-date-picker>
-            </el-form-item>
-          </el-col>
+          <el-form-item label="物资名称" :label-width="formLabelWidth">
+            <el-input v-model="Emp.goodsName" autocomplete="on"></el-input>
+          </el-form-item>
+          <el-form-item
+          label="所需物资数量"
+          :label-width="formLabelWidth"
+          style="width: 40%"
+          required
+        >
+          <el-input-number
+            v-model="Emp.num"
+            :min="1"
+            :max="10"
+            align="left"
+            style="margin-left: 10px"
+          ></el-input-number>
         </el-form-item>
+          <el-form-item label="填写时间" :label-width="formLabelWidth">
+            <el-col :span="11">
+              <el-form-item>
+                <el-date-picker
+                  type="date"
+                  placeholder="选择日期"
+                  v-model="Emp.writeTime"
+                  style="width: 100%"
+                >
+                </el-date-picker>
+              </el-form-item>
+            </el-col>
+          </el-form-item>
         </el-form>
 
         <div slot="footer" class="dialog-footer">
@@ -163,7 +185,6 @@
 import {
   deletePersonalRequest,
   modifyPersonalRequest,
-  getOriginRequest,
   getPersonalRequest,
 } from "@/api/individual";
 export default {
@@ -200,14 +221,19 @@ export default {
       });
     },
     edit(row) {
-      getOriginRequest({
-        personID: row.personId,
-        demandFormID: row.demandFormId,
-      }).then((res) => {
-        if (res.code == 20000) {
-          this.Emp = res.personalRequest;
-        }
-      });
+      // getOriginRequest({
+      //   personID: row.personId,
+      //   demandFormID: row.demandFormId,
+      // }).then((res) => {
+      //   if (res.code == 20000) {
+      //     this.Emp = res.personalRequest;
+      //   }
+      // });
+      this.Emp.name = row.name;
+      this.Emp.phoneNumber = row.phoneNumber;
+      this.Emp.type = row.type;
+      this.Emp.goodsName = row.goodsName;
+      this.Emp.num = row.num;
     },
 
     handleCurrentChange(currentPage) {
@@ -282,16 +308,17 @@ export default {
 
       Emp: {
         demandFormId: "",
-        personalId: "",
+        // personalId: "",
         name: "",
-        gender: undefined,
-        //urgency: "",
+        // gender: undefined,
+        // urgency: "",
         phoneNumber: "",
         // IDcard: "",
         // health: "",
         type: "",
         goodsName: "",
         num: undefined,
+        writeTime: "",
       },
     };
   },
