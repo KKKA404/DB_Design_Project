@@ -195,7 +195,7 @@ export default {
         cancelButtonText: "取消",
         type: "warning",
       }).then(() => {
-        deletePersonalRequest(row.personId).then((res) => {
+        deletePersonalRequest({personId:row.personId,demandId:row.demandId}).then((res) => {
           if (res.code == 20000) {
             this.$alert(row.name + "的需求记录删除成功！", "消息", {
               confirmButtonText: "确定",
