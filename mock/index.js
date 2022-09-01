@@ -836,6 +836,7 @@ Mock.mock(baseURL + "/user/logout", "post", {
   data: "success",
 });
 
+// this mock is useless now
 Mock.mock(RegExp(baseURL + "/user/info.*"), "get", (config) => {
   console.log("User info", config);
   // if (param2Obj(config.url).token.includes("admin")) {
