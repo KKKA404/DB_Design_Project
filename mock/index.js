@@ -184,7 +184,7 @@ Mock.mock(baseURL + "/personalRequest", "get", {
       type: "食品",
       goodsName: "趣多多",
       num: 2,
-      content: "带瓶老干妈",
+      writeTime:"2022"
     },
     {
       personId: "000006",
@@ -198,6 +198,7 @@ Mock.mock(baseURL + "/personalRequest", "get", {
       goodsName: "趣多多",
       num: 4,
       content: "带瓶老干妈",
+      writeTime:"2022"
     },
     {
       personId: "000012",
@@ -215,7 +216,7 @@ Mock.mock(baseURL + "/personalRequest", "get", {
     {
       personId: "000021",
       name: "朱洵缘撒打算",
-      gender: "女",
+      gender: 0,
       urgency: "紧急",
       phoneNumber: "17923335266",
       IDcard: "223457312792383946",
@@ -228,7 +229,7 @@ Mock.mock(baseURL + "/personalRequest", "get", {
     {
       personId: "003201",
       name: "孟星羽",
-      gender: "女",
+      gender: 0,
       urgency: "紧急",
       phoneNumber: "18743379266",
       IDcard: "222543345352383946",
@@ -267,7 +268,7 @@ Mock.mock(baseURL + "/personalRequest", "get", {
     {
       personId: "000011",
       name: "朱洵都会感到缘撒打算",
-      gender: "女",
+      gender: 0,
       urgency: "紧急",
       phoneNumber: "17923335266",
       IDcard: "223457312792383946",
@@ -717,6 +718,7 @@ Mock.mock(baseURL + "/volunteerApplication", "get", {
   code: 20000,
   volunteerRecord:[
   {
+    volunteerID: "123",
     personId: "123",
     name: "huhu",
     district:"",
@@ -724,9 +726,10 @@ Mock.mock(baseURL + "/volunteerApplication", "get", {
     riskLevel: "",
     volunteerLocation: "",
     date1: "",
-    volunteerType: "",
+    volunteerType: "秩序引导",
   },
   {
+    volunteerID: "123",
     personId: "123",
     name: "haha",
     district:"",
@@ -734,7 +737,7 @@ Mock.mock(baseURL + "/volunteerApplication", "get", {
     riskLevel: "",
     volunteerLocation: "",
     date1: "",
-    volunteerType: "",
+    volunteerType: "秩序引导",
   },
 ]
 });

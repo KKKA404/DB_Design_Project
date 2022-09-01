@@ -39,6 +39,7 @@ export default {
         "http://api.tianapi.com/ncov/index?key=e187c82474d5c0b5c338824d54729d59"
       )
       .then((res) => {
+        console.log(res);
         this.NewsData = res.newslist[0].news;
         this.CaseNumData = {
           // 更新时间戳

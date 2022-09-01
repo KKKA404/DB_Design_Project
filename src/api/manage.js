@@ -17,7 +17,7 @@ export function deleteManageRecord(data){
 
 }
 
-export function getManageRecord(params){
+export function getManageRecord(){
     return request({
         url: "/manage",
         method: "get",
@@ -27,10 +27,9 @@ export function getManageRecord(params){
 }
 
 // return UnManage Person Data judged by the UnitID in params
-export function getUnManagePersonData(params){
+export function getUnManagePersonData(){
     return request({
         url: "/unManagePersonData",
         method: "get",
-        params
     })
 }

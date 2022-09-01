@@ -34,7 +34,9 @@
         border
         style="width: 100%"
       >
-        <el-table-column fixed prop="personId" label="ID" sortable width="100">
+        <el-table-column fixed prop="personId" label="人员编号" sortable width="100">
+          </el-table-column>
+        <el-table-column fixed prop="volunteerID" label="志愿填写编号" sortable width="100">
         </el-table-column>
         <el-table-column prop="name" label="姓名"> </el-table-column>
         <el-table-column prop="district" label="地区"> </el-table-column>
@@ -133,7 +135,7 @@ export default {
           type: "warning",
         }
       ).then(() => {
-        deleteVolunteerRecord(row.personId).then((res) => {
+        deleteVolunteerRecord({ID: row.personId}).then((res) => {
           if (res.code == 20000) {
             this.$alert(row.name + "的志愿申请记录删除成功！", "消息", {
               confirmButtonText: "确定",
@@ -159,14 +161,10 @@ export default {
       });
     },
     edit(row) {
-      getVolunteerRecord({
-        personID: row.personId,
-      }).then((res) => {
-        console.log(res.volunteerRecord);
-        if (res.code == 20000) {
-          this.Emp = res.volunteerRecord;
-        }
-      });
+      this.Emp.volunteerID = row.volunteerID;
+      this.Emp.name = row.name;
+      this.Emp.volunteerLocation = row.volunteerLocation;
+      this.Emp.volunteerType = row.volunteerType;
     },
 
     handleCurrentChange(currentPage) {
@@ -198,11 +196,12 @@ export default {
       LabelWidth: "180px",
 
       Emp: {
-        personId: "",
+        volunteerID: "",
+        // personId: "",
         name: "",
-        district: "",
+        // district: "",
         volunteerLocation: "",
-        date1: "",
+        // date1: "",
         volunteerType: "",
       },
     };

@@ -8,12 +8,10 @@ export function addPatientData(data) {
     data,
   });
 }
-export function getSamplingData(params) {
+export function getSamplingData() {
   return request({
     url: "/samplingData",
     method: "get",
-    // if have params, return the data filtered by ID in params
-    params: params,
   });
 }
 
