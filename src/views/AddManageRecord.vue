@@ -2,47 +2,61 @@
   <el-main
     style="display: flex; justify-content: center; align-items: flex-start"
   >
-    <el-card style="width: 70%">
+    <el-card style="width: 80%">
       <div slot="header" class="clearfix">
         <h1 style="float: left; margin-left: 15px">添加管理信息</h1>
       </div>
-      <el-form style="width: 60%" label-width="100px">
-        <el-form-item label="疫情防控单位ID" style="width: 50%">
+      <el-form label-width="150px" :label-position="labelPosition">
+        <el-form-item
+          label="疫情防控单位ID"
+          style="width: 40%; text-align: left; margin-left: 5%"
+        >
           <el-input
             placeholder="请输入疫情防控单位ID"
             v-model="unitID"
             clearable
+            style="margin-left: 20px"
           ></el-input>
         </el-form-item>
-        <el-form-item label="未添加管理人员信息">
-          <el-table
-            :data="unManagedPersonData"
-            border
-            ref="unManagedPersonTable"
-            @selection-change="handleSelectionChange"
-          >
-            <el-table-column
-              type="selection"
-              v-model="multipleSelection"
-            ></el-table-column>
-            <el-table-column label="ID" prop="ID" sortable> </el-table-column>
-            <el-table-column label="名称" prop="name" sortable>
-            </el-table-column>
-            <el-table-column label="ID" prop="phoneNumber"> </el-table-column>
-            <el-table-column label="ID" prop="age" sortable> </el-table-column>
-          </el-table>
+        <el-form-item
+          label="未添加管理人员信息"
+          style="text-align: left; margin-left: 5%"
+        >
+          <el-card>
+            <el-table
+              :data="unManagedPersonData"
+              border
+              ref="unManagedPersonTable"
+              @selection-change="handleSelectionChange"
+              style="margin-left: 10px"
+            >
+              <el-table-column
+                type="selection"
+                v-model="multipleSelection"
+              ></el-table-column>
+              <el-table-column label="ID" prop="ID" sortable> </el-table-column>
+              <el-table-column label="名称" prop="name" sortable>
+              </el-table-column>
+              <el-table-column label="ID" prop="phoneNumber"> </el-table-column>
+              <el-table-column label="ID" prop="age" sortable>
+              </el-table-column>
+            </el-table>
+          </el-card>
         </el-form-item>
       </el-form>
-      <el-button type="primary" @click="submitForm">立即添加</el-button>
+      <el-button type="primary" @click="submitForm" style="margin-top: 20px"
+        >立即添加</el-button
+      >
     </el-card>
   </el-main>
 </template>
-  
-  <script>
+
+<script>
 import { addManageRecord, getUnManagePersonData } from "@/api/manage";
 export default {
   data() {
     return {
+      labelPosition: "top",
       unManagedPersonData: [],
       unitID: "",
       multipleSelection: [],
@@ -97,7 +111,6 @@ export default {
   },
 };
 </script>
-  
 <style scoped>
 .text {
   font-size: 14px;
@@ -112,7 +125,6 @@ export default {
   display: table;
   content: "";
 }
-
 .clearfix:after {
   clear: both;
 }
@@ -120,14 +132,13 @@ export default {
 .box-card {
   width: 480px;
 }
-
 .el-card {
   transition: all 0.25s;
 }
-
 .el-card:hover {
   margin-top: -5px;
 }
-
+.el-input {
+  margin-left: 10px;
+}
 </style>
-  

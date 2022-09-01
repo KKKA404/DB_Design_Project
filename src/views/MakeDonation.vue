@@ -30,42 +30,6 @@
         <el-form-item label="物资编号" prop="goodsID" style="width: 55%">
           <el-input v-model="donateForm.goodsID"></el-input>
         </el-form-item>
-        <!-- <el-form-item label="物资名称" prop="goodsName" style="width: 55%">
-          <el-input v-model="donateForm.goodsName"></el-input>
-        </el-form-item>
-        <el-form-item
-          label="物资类型"
-          prop="goodsType"
-          align="left"
-          style="width: 40%"
-        >
-          <el-select
-            v-model="donateForm.goodsType"
-            placeholder="物资类型"
-            style="margin-left: 10px"
-          >
-            <el-option
-              v-for="item in options"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            >
-            </el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="采购时间" required style="width: 35%">
-          <el-col :span="11">
-            <el-form-item prop="date1">
-              <el-date-picker
-                type="date"
-                placeholder="选择日期"
-                v-model="donateForm.date1"
-                style="width: 100%"
-              >
-              </el-date-picker>
-            </el-form-item>
-          </el-col>
-        </el-form-item> -->
         <el-form-item label="捐赠时间" required style="width: 35%">
           <el-col :span="11">
             <el-form-item prop="date2">
