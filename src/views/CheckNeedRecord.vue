@@ -45,8 +45,6 @@
         </el-table-column>
         <el-table-column prop="name" sortable label="姓名"> </el-table-column>
         <el-table-column prop="phoneNumber" label="电话号码"> </el-table-column>
-        <el-table-column prop="goodID" sortable label="物资编号">
-        </el-table-column>
         <el-table-column prop="type" label="物资类型"> </el-table-column>
         <el-table-column prop="goodName" label="物资名称"> </el-table-column>
         <el-table-column prop="num" label="物资数量"> </el-table-column>
