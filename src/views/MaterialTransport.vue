@@ -17,7 +17,7 @@
         placeholder="请输入内容"
         v-model="nameInput"
         class="input-with-select"
-        style="width: 90%; margin-bottom: 20px; margin-left: 3%; float: left"
+        style="width: 85%; margin-bottom: 20px; margin-left: 3%; float: left"
       >
         <el-select v-model="cname" slot="prepend" placeholder="请选择">
           <el-option label="物资名称" value="materialName"></el-option>
@@ -25,6 +25,8 @@
         </el-select>
         <el-button slot="append" icon="el-icon-search"></el-button>
       </el-input>
+      <el-button type="primary" style="margin-left: 10px;margin-top:48px" @click="addDialogFormVisible = true" size="medium">新增物流信息
+      </el-button>
       <!-- 筛选栏 -->
     </el-card>
     <br />
@@ -176,12 +178,40 @@
           >
         </div>
       </el-dialog>
+
+      <el-dialog title="新增物流信息" :visible.sync="addDialogFormVisible" slot>
+        <el-form :model="transportAddForm">
+          <el-form-item label="物资编号" :label-width="formLabelWidth" required>
+            <el-input v-model="transportAddForm.materialID" autocomplete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="快递员编号" :label-width="formLabelWidth" required>
+            <el-input v-model="transportAddForm.courierID" autocomplete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="物流状态" :label-width="formLabelWidth" required>
+            <el-input v-model="transportAddForm.state" autocomplete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="始发地" :label-width="formLabelWidth" required>
+            <el-input v-model="transportAddForm.departure" autocomplete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="目的地" :label-width="formLabelWidth" required>
+            <el-input v-model="transportAddForm.destination" autocomplete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="当前所在地" :label-width="formLabelWidth" required>
+            <el-input v-model="transportAddForm.currentLocation" autocomplete="off"></el-input>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="addDialogFormVisible = false">取 消</el-button>
+          <el-button type="primary" @click="(addDialogFormVisible = false), submitForm()">确 定</el-button>
+        </div>
+      </el-dialog>
+
     </div>
   </el-main>
 </template>
 
 <script>
-  import {getTransportData} from '@/api/material'
+  import {getTransportData,addTransportData} from '@/api/material'
 export default {
   methods: {
     showDetail(row) {
@@ -210,10 +240,31 @@ export default {
     });
   },
 
+  methods:{
+    submitForm() {
+      addTransportData(this.transportAddForm).then((resp) => {
+        if (resp.code == 20000) {
+          this.$message("物流信息添加成功");
+        } else {
+          this.$message("物流信息添加成功");
+        }
+      });
+    },
+  },
+
   data() {
     return {
       currentPage: 1,
       pageSize: 6,
+      addDialogFormVisible:false,
+      transportAddForm:{
+        materialID: "",
+        courierID:"",
+        state: "",
+        departure: "",
+        destination: "",
+        currentLocation: "",
+      },
       transportDetailedData: {
         materialID: "",
         materialName: "",

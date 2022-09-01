@@ -1,5 +1,12 @@
 import request from "@/plugins/axios";
 //获取物流信息
+export function addTransportData(data) {
+  return request({
+    url: "/transportData",
+    method: "post",
+    data,
+  });
+}
 export function getTransportData() {
   return request({
     url: "/transportData",

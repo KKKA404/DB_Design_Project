@@ -436,6 +436,9 @@ Mock.mock(baseURL + "/samplingData", "get", {
   ],
 });
 //物资运输 -- MaterialTransport
+Mock.mock(baseURL + "/transportData", "post", {
+  code: 20000,
+})
 Mock.mock(baseURL + "/transportData", "get", {
   code: 20000,
   transportData: [
