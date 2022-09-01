@@ -223,9 +223,7 @@ export default {
       currentPage: 1,
       pageSize: 6,
       samplingData: [],
-      value: "",
       cname: "",
-      stext: "",
       options2: [
         {
           value: "阴性",
