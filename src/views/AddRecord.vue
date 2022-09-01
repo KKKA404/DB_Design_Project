@@ -17,7 +17,7 @@
         <el-form-item
           label="个人编号"
           :label-width="formLabelWidth"
-          style="width: 50%"
+          style="width: 60%"
         >
           <el-input
             v-model="Emp.personId"
@@ -42,7 +42,8 @@
         <el-form-item
           label="所需物资种类"
           :label-width="formLabelWidth"
-          style="width: 40%"
+          style="width: 50%"
+          required
         >
           <el-select
             v-model="Emp.type"
@@ -61,13 +62,14 @@
             </el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="所需物资名称" :label-width="formLabelWidth">
+        <el-form-item label="所需物资名称" :label-width="formLabelWidth" required>
           <el-input v-model="Emp.goodsName" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item
           label="所需物资数量"
           :label-width="formLabelWidth"
           style="width: 40%"
+          required
         >
           <el-input-number
             v-model="Emp.num"
@@ -78,8 +80,21 @@
             style="margin-left: 10px"
           ></el-input-number>
         </el-form-item>
+        <el-form-item label="填写时间" required :label-width="formLabelWidth">
+          <el-col :span="11">
+            <el-form-item >
+              <el-date-picker
+                type="date"
+                placeholder="选择日期"
+                v-model="Emp.writeTime"
+                style="width: 100%"
+              >
+              </el-date-picker>
+            </el-form-item>
+          </el-col>
+        </el-form-item>
 
-        <el-form-item align="left" style="margin-left: 50%">
+        <el-form-item align="left" style="margin-left: 45%">
           <el-button type="primary" @click="submitForm('Emp')"
             >立即创建</el-button
           >
@@ -167,6 +182,7 @@ export default {
         type: "",
         goodsName: "",
         num: 0,
+        writeTime:"",
       },
       rules: {
         personId: [

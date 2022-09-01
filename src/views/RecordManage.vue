@@ -51,6 +51,7 @@
         <el-table-column prop="type" label="所需物资种类"> </el-table-column>
         <el-table-column prop="goodsName" label="所需物资"> </el-table-column>
         <el-table-column prop="num" label="所需物资数量"> </el-table-column>
+        <el-table-column prop="writeTime" label="填写时间"> </el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
             <el-button
@@ -120,7 +121,7 @@
             <el-input v-model="Emp.createTime" autocomplete="off"></el-input>
           </el-form-item> -->
           <el-form-item label="所需物资种类" :label-width="formLabelWidth">
-            <el-select v-model="Emp.depart" clearable placeholder="请选择">
+            <el-select v-model="Emp.type" clearable placeholder="请选择">
               <el-option
                 v-for="item in options3"
                 :key="item.value"
@@ -130,6 +131,19 @@
               </el-option>
             </el-select>
           </el-form-item>
+          <el-form-item label="填写时间"  :label-width="formLabelWidth">
+          <el-col :span="11">
+            <el-form-item >
+              <el-date-picker
+                type="date"
+                placeholder="选择日期"
+                v-model="Emp.writeTime"
+                style="width: 100%"
+              >
+              </el-date-picker>
+            </el-form-item>
+          </el-col>
+        </el-form-item>
         </el-form>
 
         <div slot="footer" class="dialog-footer">

@@ -184,7 +184,7 @@ Mock.mock(baseURL + "/personalRequest", "get", {
       type: "食品",
       goodsName: "趣多多",
       num: 2,
-      content: "带瓶老干妈",
+      writeTime:"2022"
     },
     {
       personId: "000006",
@@ -198,6 +198,7 @@ Mock.mock(baseURL + "/personalRequest", "get", {
       goodsName: "趣多多",
       num: 4,
       content: "带瓶老干妈",
+      writeTime:"2022"
     },
     {
       personId: "000012",
