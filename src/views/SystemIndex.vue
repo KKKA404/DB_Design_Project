@@ -326,7 +326,7 @@ export default {
               this.$message.success("修改密码成功！");
               this.dialogFormVisible = !this.dialogFormVisible;
             } else {
-              this.$message.error(res.msg);
+              this.$message.error(res.message);
             }
           })
           .catch(() => {});
