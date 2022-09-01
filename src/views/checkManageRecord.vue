@@ -56,7 +56,7 @@ export default {
                     type: "warning",
                 }
             ).then(() => {
-                deleteManageRecord(row.personId).then((res) => {
+                deleteManageRecord({ID:row.personId}).then((res) => {
                     if (res.code == 20000) {
                         this.$alert(row.personName + "的记录删除成功！", "消息", {
                             confirmButtonText: "确定",
