@@ -8,6 +8,7 @@ export function login(data) {
   });
 }
 
+// this api is useless now, including the mock
 // export function getInfo(token) {
 export function getInfo() {
   return request({

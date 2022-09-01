@@ -36,8 +36,8 @@
       >
         <el-table-column fixed prop="personId" label="人员编号" sortable width="100">
           </el-table-column>
-        <el-table-column fixed prop="volunteerID" label="志愿填写编号" sortable width="100">
-        </el-table-column>
+        <!-- <el-table-column fixed prop="volunteerID" label="志愿填写编号" sortable width="100">
+        </el-table-column> -->
         <el-table-column prop="name" label="姓名"> </el-table-column>
         <el-table-column prop="district" label="地区"> </el-table-column>
         <el-table-column label="志愿地点" prop="volunteerLocation">
@@ -102,6 +102,19 @@
               <el-option label="物资搬运" value="shifting"></el-option>
             </el-select>
           </el-form-item>
+          <el-form-item label="志愿时间" :label-width="formLabelWidth">
+            <el-col :span="11">
+              <el-form-item>
+                <el-date-picker
+                  type="date"
+                  placeholder="选择日期"
+                  v-model="Emp.date1"
+                  style="width: 100%"
+                >
+                </el-date-picker>
+              </el-form-item>
+            </el-col>
+          </el-form-item>
         </el-form>
 
         <div slot="footer" class="dialog-footer">
@@ -161,8 +174,9 @@ export default {
       });
     },
     edit(row) {
-      this.Emp.volunteerID = row.volunteerID;
+      // this.Emp.volunteerID = row.volunteerID;
       this.Emp.name = row.name;
+      this.Emp.date1 = row.date1;
       this.Emp.volunteerLocation = row.volunteerLocation;
       this.Emp.volunteerType = row.volunteerType;
     },
@@ -196,12 +210,12 @@ export default {
       LabelWidth: "180px",
 
       Emp: {
-        volunteerID: "",
+        // volunteerID: "",
         // personId: "",
         name: "",
         // district: "",
         volunteerLocation: "",
-        // date1: "",
+        date1: "",
         volunteerType: "",
       },
     };

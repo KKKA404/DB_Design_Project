@@ -134,13 +134,13 @@ Mock.mock(baseURL + "/donateData", "get", {
 });
 
 //管理人员
-Mock.mock(baseURL + "/manage", "post",{
-  code:20000,
-})
+Mock.mock(baseURL + "/manage", "post", {
+  code: 20000,
+});
 
 Mock.mock(baseURL + "/manage", "delete", {
   code: 20000,
-})
+});
 Mock.mock(baseURL + "/manage", "get", {
   code: 20000,
   manageRecord: [
@@ -155,9 +155,9 @@ Mock.mock(baseURL + "/manage", "get", {
       unitName: "haha",
       personId: "22",
       personName: "huhu",
-    }
-  ]
-})
+    },
+  ],
+});
 
 //个人需求表单
 Mock.mock(baseURL + "/personalRequest", "post", {
@@ -184,7 +184,7 @@ Mock.mock(RegExp(baseURL + "/personalRequest.*"), "get", {
       type: "食品",
       goodsName: "趣多多",
       num: 2,
-      writeTime:"2022"
+      writeTime: "2022",
     },
     {
       personId: "000006",
@@ -198,7 +198,7 @@ Mock.mock(RegExp(baseURL + "/personalRequest.*"), "get", {
       goodsName: "趣多多",
       num: 4,
       content: "带瓶老干妈",
-      writeTime:"2022"
+      writeTime: "2022",
     },
     {
       personId: "000012",
@@ -716,30 +716,30 @@ Mock.mock(baseURL + "/volunteerApplication", "put", {
 });
 Mock.mock(baseURL + "/volunteerApplication", "get", {
   code: 20000,
-  volunteerRecord:[
-  {
-    volunteerID: "123",
-    personId: "123",
-    name: "huhu",
-    district:"",
-    location: "",
-    riskLevel: "",
-    volunteerLocation: "",
-    date1: "",
-    volunteerType: "秩序引导",
-  },
-  {
-    volunteerID: "123",
-    personId: "123",
-    name: "haha",
-    district:"",
-    location: "",
-    riskLevel: "",
-    volunteerLocation: "",
-    date1: "",
-    volunteerType: "秩序引导",
-  },
-]
+  volunteerRecord: [
+    {
+      volunteerID: "123",
+      personId: "123",
+      name: "huhu",
+      district: "",
+      location: "",
+      riskLevel: "",
+      volunteerLocation: "",
+      date1: "",
+      volunteerType: "秩序引导",
+    },
+    {
+      volunteerID: "123",
+      personId: "123",
+      name: "haha",
+      district: "",
+      location: "",
+      riskLevel: "",
+      volunteerLocation: "",
+      date1: "",
+      volunteerType: "秩序引导",
+    },
+  ],
 });
 
 //捐赠物资表单
@@ -798,9 +798,9 @@ Mock.mock(baseURL + "/needData", "get", {
   ],
 });
 
-Mock.mock(baseURL+"/user/password","post",{
-  code:20000,
-})
+Mock.mock(baseURL + "/user/password", "post", {
+  code: 20000,
+});
 Mock.mock(baseURL + "/user/login", "post", (config) => {
   // 传递过来的是JSON 必须要先解析！之后考虑封装吧 现在还只是测试
   config.body = JSON.parse(config.body);
@@ -819,6 +819,14 @@ Mock.mock(baseURL + "/user/login", "post", (config) => {
     return {
       code: 20000,
       token: config.body.userName + "-token",
+      data: {
+        roles: config.body.userName == "admin" ? ["admin"] : ["admin", "user"],
+        ID: "123456",
+        name: config.body.userName,
+        gender: 1,
+        phoneNumber: "34567",
+        age: 20,
+      },
     };
   }
 });
@@ -828,20 +836,21 @@ Mock.mock(baseURL + "/user/logout", "post", {
   data: "success",
 });
 
+// this mock is useless now
 Mock.mock(RegExp(baseURL + "/user/info.*"), "get", (config) => {
-  console.log("User info",config);
+  console.log("User info", config);
   // if (param2Obj(config.url).token.includes("admin")) {
-    return {
-      code: 20000,
-      data: {
-        roles: ["admin"],
-        ID: "123",
-        name: "admin",
-        gender: 1,
-        phoneNumber: "",
-        age: 0,
-      },
-    };
+  return {
+    code: 20000,
+    data: {
+      roles: ["admin"],
+      ID: "123",
+      name: "admin",
+      gender: 1,
+      phoneNumber: "",
+      age: 0,
+    },
+  };
   // } else {
   //   return {
   //     code: 20000,

@@ -14,6 +14,17 @@
           class="register-form"
           auto-complete="on"
         >
+        <el-form-item prop="userId">
+            <el-input
+              ref="userId"
+              prefix-icon="el-icon-user-solid"
+              v-model="registerForm.userId"
+              placeholder="请输入用户ID"
+              type="text"
+              tabindex="1"
+              auto-complete="on"
+            />
+          </el-form-item>
           <el-form-item prop="userName">
             <el-input
               ref="userName"
@@ -113,6 +124,13 @@ export default {
     Verify,
   },
   data() {
+    const validateUserId = (rule, value, callback) => {
+      if (value === "") {
+        callback(new Error("请输入用户ID！"));
+      } else {
+        callback();
+      }
+    };
     const validateUserName = (rule, value, callback) => {
       if (value === "") {
         callback(new Error("请输入用户名！"));
@@ -134,6 +152,7 @@ export default {
     return {
       repeatPassWord: "",
       registerForm: {
+        userId:"",
         userName: "",
         passWord: "",
         gender: -1,
@@ -141,6 +160,9 @@ export default {
         age: "",
       },
       registerRules: {
+        userId: [
+          { required: true, trigger: "blur", validator: validateUserId },
+        ],
         userName: [
           { required: true, trigger: "blur", validator: validateUserName },
         ],

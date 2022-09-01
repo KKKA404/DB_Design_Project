@@ -13,6 +13,13 @@ export function getExistingMaterials() {
     method: "get",
   });
 }
+export function deleteExistingMaterials(data) {
+  return request({
+    url: "/existingMaterial",
+    method: "delte",
+    data,
+  });
+}
 
 export function getNeedData() {
   return request({

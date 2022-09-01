@@ -126,14 +126,14 @@ export default {
       let needDataDic = {};
       needData.forEach((item) => {
         if (needDataDic[item.goodName] == undefined) {
-          needDataDic[item.goodName] = item.num;
-        } else needDataDic[item.goodName] += item.num;
+          needDataDic[item.goodName] = 1;
+        } else needDataDic[item.goodName] += 1;
       });
       let existingMaterialDic = {};
       existingMaterial.forEach((item) => {
         if (existingMaterialDic[item.goodsName] == undefined) {
-          existingMaterialDic[item.goodsName] = item.count;
-        } else existingMaterialDic[item.goodsName] += item.count;
+          existingMaterialDic[item.goodsName] = 1;
+        } else existingMaterialDic[item.goodsName] += 1;
       });
       let lackSupplies = [];
       for (let key in needDataDic) {
@@ -157,8 +157,7 @@ export default {
           type: "warning",
         }
       ).then(() => {
-        this.$axios
-          .delete("/existingMaterial", { data: { goodsId: row.goodsId } })
+        deleteExistingMaterials({goodsId: row.goodsId} )
           .then((resp) => {
             if (resp.code == 20000) {
               this.$alert(row.goodsName + "的物资记录删除成功！", "消息", {
