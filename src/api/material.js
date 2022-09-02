@@ -23,7 +23,7 @@ export function getExistingMaterials() {
 export function deleteExistingMaterials(data) {
   return request({
     url: "/existingMaterial",
-    method: "delte",
+    method: "delete",
     data,
   });
 }
