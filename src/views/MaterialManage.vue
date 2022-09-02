@@ -161,16 +161,18 @@ export default {
           type: "warning",
         }
       ).then(() => {
-        deleteExistingMaterials({ goodsId: row.goodsId }).then((resp) => {
-          if (resp.code == 20000) {
-            this.$alert(row.goodsName + "的物资记录删除成功！", "消息", {
-              confirmButtonText: "确定",
-              callback: () => {
-                window.location.reload();
-              },
-            });
+        deleteExistingMaterials({ goodsId: row.goodsId, units: row }).then(
+          (resp) => {
+            if (resp.code == 20000) {
+              this.$alert(row.goodsName + "的物资记录删除成功！", "消息", {
+                confirmButtonText: "确定",
+                callback: () => {
+                  window.location.reload();
+                },
+              });
+            }
           }
-        });
+        );
       });
     },
     handleCurrentChange(currentPage) {
