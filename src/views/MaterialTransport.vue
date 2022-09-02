@@ -25,7 +25,12 @@
         </el-select>
         <el-button slot="append" icon="el-icon-search"></el-button>
       </el-input>
-      <el-button type="primary" style="margin-left: 10px;margin-top:48px" @click="addDialogFormVisible = true" size="medium">新增物流信息
+      <el-button
+        type="primary"
+        style="margin-left: 10px; margin-top: 48px"
+        @click="addDialogFormVisible = true"
+        size="medium"
+        >新增物流信息
       </el-button>
       <!-- 筛选栏 -->
     </el-card>
@@ -182,36 +187,65 @@
       <el-dialog title="新增物流信息" :visible.sync="addDialogFormVisible" slot>
         <el-form :model="transportAddForm">
           <el-form-item label="物资编号" :label-width="formLabelWidth" required>
-            <el-input v-model="transportAddForm.materialID" autocomplete="off"></el-input>
+            <el-input
+              v-model="transportAddForm.materialID"
+              autocomplete="off"
+            ></el-input>
           </el-form-item>
-          <el-form-item label="快递员编号" :label-width="formLabelWidth" required>
-            <el-input v-model="transportAddForm.courierID" autocomplete="off"></el-input>
+          <el-form-item
+            label="快递员编号"
+            :label-width="formLabelWidth"
+            required
+          >
+            <el-input
+              v-model="transportAddForm.courierID"
+              autocomplete="off"
+            ></el-input>
           </el-form-item>
           <el-form-item label="物流状态" :label-width="formLabelWidth" required>
-            <el-input v-model="transportAddForm.state" autocomplete="off"></el-input>
+            <el-input
+              v-model="transportAddForm.state"
+              autocomplete="off"
+            ></el-input>
           </el-form-item>
           <el-form-item label="始发地" :label-width="formLabelWidth" required>
-            <el-input v-model="transportAddForm.departure" autocomplete="off"></el-input>
+            <el-input
+              v-model="transportAddForm.departure"
+              autocomplete="off"
+            ></el-input>
           </el-form-item>
           <el-form-item label="目的地" :label-width="formLabelWidth" required>
-            <el-input v-model="transportAddForm.destination" autocomplete="off"></el-input>
+            <el-input
+              v-model="transportAddForm.destination"
+              autocomplete="off"
+            ></el-input>
           </el-form-item>
-          <el-form-item label="当前所在地" :label-width="formLabelWidth" required>
-            <el-input v-model="transportAddForm.currentLocation" autocomplete="off"></el-input>
+          <el-form-item
+            label="当前所在地"
+            :label-width="formLabelWidth"
+            required
+          >
+            <el-input
+              v-model="transportAddForm.currentLocation"
+              autocomplete="off"
+            ></el-input>
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
           <el-button @click="addDialogFormVisible = false">取 消</el-button>
-          <el-button type="primary" @click="(addDialogFormVisible = false), submitForm()">确 定</el-button>
+          <el-button
+            type="primary"
+            @click="(addDialogFormVisible = false), submitForm()"
+            >确 定</el-button
+          >
         </div>
       </el-dialog>
-
     </div>
   </el-main>
 </template>
 
 <script>
-  import {getTransportData,addTransportData} from '@/api/material'
+import { getTransportData, addTransportData } from "@/api/material";
 export default {
   methods: {
     showDetail(row) {
@@ -233,14 +267,12 @@ export default {
     handleCurrentChange(currentPage) {
       this.currentPage = currentPage;
     },
-  },
-  created() {
-    getTransportData().then((res) => {
-      this.transportData = res.transportData;
-    });
-  },
+    created() {
+      getTransportData().then((res) => {
+        this.transportData = res.transportData;
+      });
+    },
 
-  methods:{
     submitForm() {
       addTransportData(this.transportAddForm).then((resp) => {
         if (resp.code == 20000) {
@@ -256,10 +288,10 @@ export default {
     return {
       currentPage: 1,
       pageSize: 6,
-      addDialogFormVisible:false,
-      transportAddForm:{
+      addDialogFormVisible: false,
+      transportAddForm: {
         materialID: "",
-        courierID:"",
+        courierID: "",
         state: "",
         departure: "",
         destination: "",
