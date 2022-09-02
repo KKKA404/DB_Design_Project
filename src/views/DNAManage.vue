@@ -138,13 +138,13 @@ import {
 export default {
   created() {
     getSamplingData().then((res) => {
-      this.samplingData = res.samplingData;
+      this.samplingData = res.data.samplingData;
     });
   },
   methods: {
     submitForm() {
-      postSamplingData(this.addEmpIden).then((resp) => {
-        if (resp.code == 20000) {
+      postSamplingData(this.addEmpIden).then((res) => {
+        if (res.code == 20000) {
           this.$message("记录添加成功");
         } else {
           this.$message("记录添加失败");

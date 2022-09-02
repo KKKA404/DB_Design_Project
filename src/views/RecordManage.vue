@@ -242,7 +242,7 @@ export default {
   },
   created() {
     getPersonalRequest(this.$store.getters.ID).then((res) => {
-      this.personalRequest = res.personalRequest;
+      this.personalRequest = res.data.personalRequest;
     });
   },
 

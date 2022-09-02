@@ -100,8 +100,8 @@ export default {
   methods: {
     update() {
       getIsolationData().then((res) => {
-        this.assignmentData = res.assignmentData;
-        this.isolatedPointsData = res.isolatedPointsData;
+        this.assignmentData = res.data.assignmentData;
+        this.isolatedPointsData = res.data.isolatedPointsData;
       });
     },
     allocate(row) {
@@ -136,8 +136,8 @@ export default {
   },
   created() {
     getIsolationData().then((res) => {
-      this.assignmentData = res.assignmentData;
-      this.isolatedPointsData = res.isolatedPointsData;
+      this.assignmentData = res.data.assignmentData;
+      this.isolatedPointsData = res.data.isolatedPointsData;
     });
   },
   data() {

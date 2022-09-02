@@ -179,7 +179,7 @@ export default {
   },
   created() {
     getExistingMaterials().then((res) => {
-      this.existingMaterial = res.existingMaterial;
+      this.existingMaterial = res.data.existingMaterial;
       this.getLackSupplies().then((lackSupplies) => {
         if (lackSupplies.length !== 0) {
           this.$alert(lackSupplies.toString() + "存在物资短缺状况", "消息", {

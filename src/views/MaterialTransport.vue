@@ -236,14 +236,14 @@ export default {
   },
   created() {
     getTransportData().then((res) => {
-      this.transportData = res.transportData;
+      this.transportData = res.data.transportData;
     });
   },
 
   methods:{
     submitForm() {
-      addTransportData(this.transportAddForm).then((resp) => {
-        if (resp.code == 20000) {
+      addTransportData(this.transportAddForm).then((res) => {
+        if (res.code == 20000) {
           this.$message("物流信息添加成功");
         } else {
           this.$message("物流信息添加成功");

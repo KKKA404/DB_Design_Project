@@ -20,7 +20,7 @@
         style="width: 90%; margin-bottom: 20px; margin-left: 3%; float: left"
       >
         <el-select v-model="cname" slot="prepend" placeholder="请选择">
-          <el-option label="需求者ID" value="id"></el-option>
+          <el-option label="防控单位名称" value="unitName"></el-option>
           <el-option label="需求者姓名" value="name"></el-option>
         </el-select>
         <el-button slot="append" icon="el-icon-search"></el-button>
@@ -89,7 +89,7 @@ export default {
   },
   created() {
     getNeedData().then((res) => {
-      this.needData = res.needData;
+      this.needData = res.data.needData;
     });
   },
   data() {
@@ -103,9 +103,9 @@ export default {
   },
   computed: {
     searchData: function () {
-      if (this.cname == "id") {
+      if (this.cname == "unitName") {
         let SearchResult = this.needData.filter(
-          (item) => String(item.id).indexOf(String(this.nameInput)) > -1
+          (item) => String(item.unitName).indexOf(String(this.nameInput)) > -1
         );
         return SearchResult;
       } else if (this.cname == "name") {
