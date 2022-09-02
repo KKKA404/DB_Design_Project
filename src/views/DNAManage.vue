@@ -31,8 +31,8 @@
         <el-table-column prop="place" label="检测机构"> </el-table-column>
         <el-table-column prop="testResult" label="检测结果"> </el-table-column>
         <el-table-column prop="phoneNumber" label="手机号码"> </el-table-column>
-        <el-table-column prop="testResultTime" label="检测结果时间">
-        </el-table-column>
+        <!-- <el-table-column prop="testResultTime" label="检测结果时间">
+        </el-table-column> -->
         <el-table-column label="操作" fixed="right">
           <template slot-scope="scope">
             <el-button @click="(dialogFormVisible = true), edit(scope.row)" type="text" size="small">修改</el-button>

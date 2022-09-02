@@ -164,7 +164,7 @@ export default {
     update() {
       modifyVolunteerRecord(this.Emp).then((res) => {
         if (res.code == 20000) {
-          this.$alert(this.Emp.name + "的需求记录修改成功！", "消息", {
+          this.$alert(this.Emp.name + "的志愿记录修改成功！", "消息", {
             confirmButtonText: "确定",
             callback: () => {
               window.location.reload();
