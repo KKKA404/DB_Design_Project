@@ -187,7 +187,7 @@ export default {
   },
   created() {
     getVolunteerRecord().then((res) => {
-      this.volunteerRecord = res.volunteerRecord;
+      this.volunteerRecord = res.data.volunteerRecord;
     });
   },
 

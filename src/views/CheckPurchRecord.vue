@@ -182,8 +182,8 @@ export default {
   components: {},
   created() {
     getPurchaseData().then((res) => {
-      this.unitPurchaseData = res.unitPurchaseData;
-      this.donorPurchaseData = res.donorPurchaseData;
+      this.unitPurchaseData = res.data.unitPurchaseData;
+      this.donorPurchaseData = res.data.donorPurchaseData;
     });
   },
   data() {

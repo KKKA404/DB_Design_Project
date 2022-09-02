@@ -64,7 +64,7 @@ export default {
   },
   created() {
     getUnManagePersonData().then((res) => {
-      this.unManagedPersonData = res.unManagedPersonData;
+      this.unManagedPersonData = res.data.unManagedPersonData;
     });
   },
   methods: {
@@ -74,7 +74,7 @@ export default {
     getUnManagePerson() {
       getUnManagePersonData().then((res) => {
         if (res.code === 20000)
-          this.unManagedPersonData = res.unManagedPersonData;
+          this.unManagedPersonData = res.data.unManagedPersonData;
       });
     },
     submitForm() {
@@ -98,7 +98,7 @@ export default {
             this.$refs.unManagedPersonTable.clearSelection();
             getUnManagePersonData().then((res) => {
               if (res.code === 20000)
-                this.unManagedPersonData = res.unManagedPersonData;
+                this.unManagedPersonData = res.data.unManagedPersonData;
             });
           } else {
             this.$message.error("添加管理失败");
