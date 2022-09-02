@@ -68,15 +68,13 @@ export default {
                 });
             });
         },
-
-
         handleCurrentChange(currentPage) {
             this.currentPage = currentPage;
         },
     },
     created() {
         getManageRecord().then((res) => {
-            this.manageRecord = res.manageRecord;
+            this.manageRecord = res.data.manageRecord;
         });
     },
 

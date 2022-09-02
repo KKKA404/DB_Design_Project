@@ -4,7 +4,7 @@
       <div slot="header" class="clearfix">
         <h1 style="float: left; margin-left: 15px">核酸信息表单</h1>
       </div>
-      <el-form style="width: 60%" :model="Emp" :rules="rules" ref="Emp" label-width="100px" class="demo-Emp">
+      <el-form style="width: 60%" label-width="100px">
         <el-form-item label="个人编号" :label-width="formLabelWidth" style="width: 50%">
           <el-input placeholder="请输入18位身份证号" v-model="ID" clearable>
           </el-input>
@@ -33,6 +33,7 @@ import { addPatientData } from '@/api/medical';
 export default {
   data() {
     return {
+      formLabelWidth: '120px',
       ID: "",
       DetectionTime: "",
       SamplingResult: "",
