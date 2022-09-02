@@ -1,50 +1,33 @@
 <template>
   <el-main>
     <el-card>
-      <el-tag
-        effect="plain"
-        style="
+      <el-tag effect="plain" style="
           float: left;
           margin-bottom: 15px;
           margin-right: 80%;
           font-size: 18px;
           font-weight: 400;
-        "
-        >筛选条件</el-tag
-      >
+        ">筛选条件</el-tag>
       <!-- 筛选栏 -->
-      <el-input
-        placeholder="请输入内容"
-        v-model="nameInput"
-        class="input-with-select"
-        style="width: 85%; margin-bottom: 20px; margin-left: 3%; float: left"
-      >
+      <el-input placeholder="请输入内容" v-model="nameInput" class="input-with-select"
+        style="width: 85%; margin-bottom: 20px; margin-left: 3%; float: left">
         <el-select v-model="cname" slot="prepend" placeholder="请选择">
           <el-option label="物资名称" value="materialName"></el-option>
           <el-option label="物资种类" value="materialType"></el-option>
         </el-select>
         <el-button slot="append" icon="el-icon-search"></el-button>
       </el-input>
-      <el-button type="primary" style="margin-left: 10px;margin-top:48px" @click="addDialogFormVisible = true" size="medium">新增物流信息
+      <el-button type="primary" style="margin-left: 10px; margin-top: 48px" @click="addDialogFormVisible = true"
+        size="medium">新增物流信息
       </el-button>
       <!-- 筛选栏 -->
     </el-card>
     <br />
     <el-card>
-      <el-table
-        :data="
-          searchData.slice((currentPage - 1) * pageSize, currentPage * pageSize)
-        "
-        border
-        style="width: 100%"
-      >
-        <el-table-column
-          fixed
-          prop="materialID"
-          label="物资编号"
-          sortable
-          width="120"
-        >
+      <el-table :data="
+        searchData.slice((currentPage - 1) * pageSize, currentPage * pageSize)
+      " border style="width: 100%">
+        <el-table-column fixed prop="materialID" label="物资编号" sortable width="120">
         </el-table-column>
         <el-table-column prop="materialName" label="物资名称">
         </el-table-column>
@@ -58,124 +41,107 @@
         </el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
-            <el-button
-              @click="(dialogItemsVisible = true), showDetail(scope.row)"
-              type="text"
-              >查看详情</el-button
-            >
+            <el-button @click="(dialogItemsVisible = true), showDetail(scope.row)" type="text">查看详情</el-button>
           </template>
         </el-table-column>
       </el-table>
     </el-card>
     <div class="block">
-      <el-pagination
-        @current-change="handleCurrentChange"
-        :page-size="6"
-        layout="total, prev, pager, next"
-        :total="total"
-      >
+      <el-pagination @current-change="handleCurrentChange" :page-size="6" layout="total, prev, pager, next"
+        :total="total">
       </el-pagination>
 
       <el-dialog title="查看详情" :visible.sync="dialogItemsVisible" slot>
         <el-card>
-          <el-descriptions
-            class="margin-top"
-            title="物流详细信息"
-            :column="3"
-            :size="size"
-            :data="getRowData"
-            border
-          >
+          <el-descriptions class="margin-top" title="物流详细信息" :column="3" :size="size" :data="getRowData" border>
             <el-descriptions-item>
               <template slot="label">
                 <i class="el-icon-truck"></i>
                 物流状态
               </template>
-              {{ transportDetailedData.state }}
+              {{  transportDetailedData.state  }}
             </el-descriptions-item>
             <el-descriptions-item :span="2">
               <template slot="label">
                 <i class="el-icon-tickets"></i>
                 物资编号
               </template>
-              {{ transportDetailedData.materialID }}
+              {{  transportDetailedData.materialID  }}
             </el-descriptions-item>
             <el-descriptions-item>
               <template slot="label">
                 <i class="el-icon-time"></i>
                 承运物流公司
               </template>
-              {{ transportDetailedData.courierCompany }}
+              {{  transportDetailedData.courierCompany  }}
             </el-descriptions-item>
             <el-descriptions-item :span="2">
               <template slot="label">
                 <i class="el-icon-tickets"></i>
                 运输员编号
               </template>
-              {{ transportDetailedData.courierID }}
+              {{  transportDetailedData.courierID  }}
             </el-descriptions-item>
             <el-descriptions-item>
               <template slot="label">
                 <i class="el-icon-user"></i>
                 运输员姓名
               </template>
-              {{ transportDetailedData.courierName }}
+              {{  transportDetailedData.courierName  }}
             </el-descriptions-item>
             <el-descriptions-item :span="2">
               <template slot="label">
                 <i class="el-icon-mobile-phone"></i>
                 运输员手机号
               </template>
-              {{ transportDetailedData.courierPhone }}
+              {{  transportDetailedData.courierPhone  }}
             </el-descriptions-item>
             <el-descriptions-item>
               <template slot="label">
                 <i class="el-icon-office-building"></i>
                 起始地
               </template>
-              {{ transportDetailedData.departure }}
+              {{  transportDetailedData.departure  }}
             </el-descriptions-item>
             <el-descriptions-item>
               <template slot="label">
                 <i class="el-icon-location-outline"></i>
                 当前位置
               </template>
-              {{ transportDetailedData.currentLocation }}
+              {{  transportDetailedData.currentLocation  }}
             </el-descriptions-item>
             <el-descriptions-item>
               <template slot="label">
                 <i class="el-icon-office-building"></i>
                 目的地
               </template>
-              {{ transportDetailedData.destination }}
+              {{  transportDetailedData.destination  }}
             </el-descriptions-item>
             <el-descriptions-item>
               <template slot="label">
                 <i class="el-icon-tickets"></i>
                 物资名称
               </template>
-              {{ transportDetailedData.materialName }}
+              {{  transportDetailedData.materialName  }}
             </el-descriptions-item>
             <el-descriptions-item>
               <template slot="label">
                 <i class="el-icon-copy-document"></i>
                 物资种类
               </template>
-              {{ transportDetailedData.materialType }}
+              {{  transportDetailedData.materialType  }}
             </el-descriptions-item>
             <el-descriptions-item>
               <template slot="label">
                 <i class="el-icon-coin"></i>
                 物资数量
               </template>
-              {{ transportDetailedData.materialNum }}
+              {{  transportDetailedData.materialNum  }}
             </el-descriptions-item>
           </el-descriptions>
         </el-card>
         <div slot="footer" class="dialog-footer">
-          <el-button type="primary" @click="dialogItemsVisible = false"
-            >确 定</el-button
-          >
+          <el-button type="primary" @click="dialogItemsVisible = false">确 定</el-button>
         </div>
       </el-dialog>
 
@@ -205,13 +171,12 @@
           <el-button type="primary" @click="(addDialogFormVisible = false), submitForm()">确 定</el-button>
         </div>
       </el-dialog>
-
     </div>
   </el-main>
 </template>
 
 <script>
-  import {getTransportData,addTransportData} from '@/api/material'
+import { getTransportData, addTransportData } from "@/api/material";
 export default {
   methods: {
     showDetail(row) {
@@ -233,14 +198,8 @@ export default {
     handleCurrentChange(currentPage) {
       this.currentPage = currentPage;
     },
-  },
-  created() {
-    getTransportData().then((res) => {
-      this.transportData = res.data.transportData;
-    });
-  },
 
-  methods:{
+
     submitForm() {
       addTransportData(this.transportAddForm).then((res) => {
         if (res.code == 20000) {
@@ -252,14 +211,19 @@ export default {
     },
   },
 
+  created() {
+    getTransportData().then((res) => {
+      this.transportData = res.data.transportData;
+    });
+  },
   data() {
     return {
       currentPage: 1,
       pageSize: 6,
-      addDialogFormVisible:false,
-      transportAddForm:{
+      addDialogFormVisible: false,
+      transportAddForm: {
         materialID: "",
-        courierID:"",
+        courierID: "",
         state: "",
         departure: "",
         destination: "",
@@ -323,9 +287,11 @@ export default {
 .el-select .el-input {
   width: 130px;
 }
+
 .input-with-select .el-input-group__prepend {
   background-color: #fff;
 }
+
 .red {
   color: red;
 }

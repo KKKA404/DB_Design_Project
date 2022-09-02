@@ -89,7 +89,7 @@ const actions = {
   getInfo({ commit }) {
     return new Promise((resolve, reject) => {
       // getInfo(state.token)
-      getInfo()
+      getInfo(state.token)
         .then((res) => {
           const { data } = res;
 
