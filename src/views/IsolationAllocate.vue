@@ -50,7 +50,7 @@
 
     <div class="block">
       <el-dialog title="隔离点分配" :visible.sync="dialogFormVisible" slot>
-        <el-form :model="Emp" ref="Emp">
+        <el-form >
           <!-- 筛选栏 -->
           <el-input placeholder="请输入内容" v-model="isInput" class="input-with-select" style="
               width: 90%;

@@ -44,7 +44,6 @@
             v-model="ruleForm.volunteerType"
             placeholder="请输入志愿服务类型类型"
             style="margin-left: 10px"
-            :label-width="formLabelWidth"
           >
             <el-option label="秩序引导" value="秩序引导"></el-option>
             <el-option label="扫码登记" value="秩序引导"></el-option>
