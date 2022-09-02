@@ -10,11 +10,11 @@ export function login(data) {
 
 // this api is useless now, including the mock
 // export function getInfo(token) {
-export function getInfo() {
+export function getInfo(token) {
   return request({
     url: "/user/info",
     method: "get",
-    // params: { token },
+    params: { token },
   });
 }
 
