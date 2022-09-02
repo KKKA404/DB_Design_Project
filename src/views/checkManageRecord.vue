@@ -68,8 +68,6 @@ export default {
                 });
             });
         },
-
-
         handleCurrentChange(currentPage) {
             this.currentPage = currentPage;
         },
