@@ -53,6 +53,7 @@
         <el-table-column prop="phoneNumber" label="手机号码"> </el-table-column>
         <!-- <el-table-column prop="IDcard" label="身份证号码"> </el-table-column>
         <el-table-column label="健康状况" prop="health"> </el-table-column> -->
+        <el-table-column prop="Demandformid" label="物资表单编号"> </el-table-column>
         <el-table-column prop="type" label="所需物资种类"> </el-table-column>
         <el-table-column prop="goodsName" label="所需物资"> </el-table-column>
         <el-table-column prop="num" label="所需物资数量"> </el-table-column>
@@ -195,7 +196,7 @@ export default {
         cancelButtonText: "取消",
         type: "warning",
       }).then(() => {
-        deletePersonalRequest({personId:row.personId,demandId:row.demandId}).then((res) => {
+        deletePersonalRequest({personId:row.personId,demandId:row.Demandformid}).then((res) => {
           if (res.code == 20000) {
             this.$alert(row.name + "的需求记录删除成功！", "消息", {
               confirmButtonText: "确定",
@@ -234,6 +235,7 @@ export default {
       this.Emp.type = row.type;
       this.Emp.goodsName = row.goodsName;
       this.Emp.num = row.num;
+      this.Emp.Demandformid = row.Demandformid;
     },
 
     handleCurrentChange(currentPage) {

@@ -125,16 +125,17 @@ import {
 export default {
   methods: {
     async getLackSupplies() {
-      let { needData } = await getNeedData();
-      let { existingMaterial } = await getExistingMaterials();
+      // let { needData } = await getNeedData();
+      // let { existingMaterial } = await getExistingMaterials();
       let needDataDic = {};
-      needData.forEach((item) => {
+      
+      this.needData.forEach((item) => {
         if (needDataDic[item.goodName] == undefined) {
           needDataDic[item.goodName] = item.num;
         } else needDataDic[item.goodName] += item.num;
       });
       let existingMaterialDic = {};
-      existingMaterial.forEach((item) => {
+      this.existingMaterial.forEach((item) => {
         if (existingMaterialDic[item.goodsName] == undefined) {
           existingMaterialDic[item.goodsName] = item.count;
         } else existingMaterialDic[item.goodsName] += item.count;
@@ -180,8 +181,12 @@ export default {
     },
   },
   created() {
+    
     getExistingMaterials().then((res) => {
       this.existingMaterial = res.data.existingMaterial;
+      getNeedData().then((res) => {
+      this.needData=res.data.needData;
+      
       this.getLackSupplies().then((lackSupplies) => {
         if (lackSupplies.length !== 0) {
           this.$alert(lackSupplies.toString() + "存在物资短缺状况", "消息", {
@@ -190,6 +195,8 @@ export default {
         }
       });
     });
+      
+    });
   },
 
   data() {
@@ -197,6 +204,7 @@ export default {
       currentPage: 1,
       pageSize: 6,
       existingMaterial: [],
+      needData:[],
       cname: "",
       materialInput: "",
       nameInput: "",

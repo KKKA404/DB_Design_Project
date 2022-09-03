@@ -97,13 +97,42 @@
             :disabled="true"
           ></el-input>
         </el-form-item>
-        <el-form-item label="物资ID" :label-width="formLabelWidth">
+        <el-form-item
+          label="购买物资种类"
+          :label-width="formLabelWidth"
+          style="width: 50%"
+          required
+        >
+          <el-select
+            v-model="unitPurchaseForm.materialType"
+            clearable
+            placeholder="请选择"
+            align="left"
+            style="margin-left: 10px"
+          >
+            <!--el-option  v-for="(item, index) in options3" :key="index" :label="item" :value="item"-->
+            <el-option
+              v-for="item in options3"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            >
+            </el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="物资名称" :label-width="formLabelWidth" required>
           <el-input
-            v-model="unitPurchaseForm.materialID"
+            v-model="unitPurchaseForm.materialName"
             autocomplete="off"
           ></el-input>
         </el-form-item>
-        <el-form-item label="采购日期" :label-width="formLabelWidth">
+        <el-form-item label="物资数量" :label-width="formLabelWidth" required>
+          <el-input
+            v-model="unitPurchaseForm.num"
+            autocomplete="off"
+          ></el-input>
+        </el-form-item>
+        <el-form-item label="采购日期" :label-width="formLabelWidth" required>
           <el-col :span="8">
             <el-date-picker
               type="date"
@@ -138,13 +167,42 @@
             :disabled="true"
           ></el-input>
         </el-form-item>
-        <el-form-item label="物资ID" :label-width="formLabelWidth">
+        <el-form-item
+          label="购买物资种类"
+          :label-width="formLabelWidth"
+          style="width: 50%"
+          required
+        >
+          <el-select
+            v-model="donorPurchaseForm.materialType"
+            clearable
+            placeholder="请选择"
+            align="left"
+            style="margin-left: 10px"
+          >
+            <!--el-option  v-for="(item, index) in options3" :key="index" :label="item" :value="item"-->
+            <el-option
+              v-for="item in options3"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            >
+            </el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="物资名称" :label-width="formLabelWidth" required>
           <el-input
-            v-model="donorPurchaseForm.materialID"
+            v-model="donorPurchaseForm.materialName"
             autocomplete="off"
           ></el-input>
         </el-form-item>
-        <el-form-item label="采购日期" :label-width="formLabelWidth">
+        <el-form-item label="物资数量" :label-width="formLabelWidth" required>
+          <el-input
+            v-model="donorPurchaseForm.num"
+            autocomplete="off"
+          ></el-input>
+        </el-form-item>
+        <el-form-item label="采购日期" :label-width="formLabelWidth" required>
           <el-col :span="8">
             <el-date-picker
               type="date"
@@ -188,6 +246,24 @@ export default {
   },
   data() {
     return {
+      options3: [
+        {
+          value: "食品",
+          label: "食品",
+        },
+        {
+          value: "药品",
+          label: "药品",
+        },
+        {
+          value: "日用品",
+          label: "日用品",
+        },
+        {
+          value: "防护物资",
+          label: "防护物资",
+        },
+      ],
       value: "",
       cname: "",
       nameInput: "",
@@ -200,12 +276,16 @@ export default {
       dialogDonorPurchaseFormVisible: false,
       unitPurchaseForm: {
         unitID: this.$store.getters.ID,
-        materialID: "",
+        materialName: "",
+        materialType:"",
+        num:undefined,
         purchaseTime: "",
       },
       donorPurchaseForm: {
         donorID: this.$store.getters.ID,
-        materialID: "",
+        materialName: "",
+        materialType:"",
+        num:undefined,
         purchaseTime: "",
       },
       formLabelWidth: "120px",
