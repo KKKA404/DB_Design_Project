@@ -79,6 +79,7 @@ export default {
     };
   },
   methods: {
+    
     checkID() {
       var IDcard = this.ID;
       // length
@@ -131,7 +132,7 @@ export default {
       return true;
     },
     submitForm() {
-      if (this.checkID() && this.DetectionTime != "") {
+      if ( this.DetectionTime != "") {
         addPatientData({
           ID: this.ID,
           DetectionTime: this.DetectionTime,

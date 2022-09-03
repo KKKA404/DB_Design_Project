@@ -101,7 +101,7 @@ export default {
     computed: {
         searchData: function () {
             let SearchResult = this.manageRecord.filter(
-                (item) => String(item.unitId) == String(this.contentInput)
+                (item) => String(item.UnitName) == String(this.contentInput)
             );
             return SearchResult;
         },

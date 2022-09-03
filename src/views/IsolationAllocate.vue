@@ -120,7 +120,7 @@ export default {
           }
         });
         deleteAssignmentData({
-          data: { id: this.tempID },
+           id: this.tempID ,
         }).then((res) => {
           if (res.code == 20000) {
             this.$alert(this.tempName + " 的隔离点分配成功！", "消息", {

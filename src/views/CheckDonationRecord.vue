@@ -30,7 +30,7 @@
     </el-card>
     <el-card>
       <el-table
-        :data="searchData"
+        :data="SearchResult"
         height="500"
         border
         style="width: 100%"

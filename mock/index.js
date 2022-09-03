@@ -861,7 +861,7 @@ Mock.mock(RegExp(baseURL + "/user/info.*"), "get", (config) => {
       code: 20000,
       data: {
         roles: ["admin"],
-        ID: "123",
+        ID: "2051563",
         name: "admin",
         gender: 1,
         phoneNumber: "",

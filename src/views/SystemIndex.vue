@@ -329,7 +329,9 @@ export default {
               this.$message.error(res.message);
             }
           })
-          .catch(() => {});
+          .catch(() => {
+            console.log("Test modify");
+          });
       }
     },
     editUserInfo() {

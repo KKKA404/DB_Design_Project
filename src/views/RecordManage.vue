@@ -57,6 +57,7 @@
         <el-table-column prop="goodsName" label="所需物资"> </el-table-column>
         <el-table-column prop="num" label="所需物资数量"> </el-table-column>
         <el-table-column prop="writeTime" label="填写时间"> </el-table-column>
+        <el-table-column prop="Demandformid" label="需求表单ID"> </el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
             <el-button
@@ -195,7 +196,7 @@ export default {
         cancelButtonText: "取消",
         type: "warning",
       }).then(() => {
-        deletePersonalRequest({personId:row.personId,demandId:row.demandId}).then((res) => {
+        deletePersonalRequest({personId:row.personId,demandId:row.Demandformid}).then((res) => {
           if (res.code == 20000) {
             this.$alert(row.name + "的需求记录删除成功！", "消息", {
               confirmButtonText: "确定",
@@ -234,6 +235,9 @@ export default {
       this.Emp.type = row.type;
       this.Emp.goodsName = row.goodsName;
       this.Emp.num = row.num;
+      this.Emp.personId = row.personId;
+      this.Emp.Demandformid = row.Demandformid;
+
     },
 
     handleCurrentChange(currentPage) {

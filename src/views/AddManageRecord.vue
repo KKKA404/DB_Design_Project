@@ -37,8 +37,8 @@
               <el-table-column label="ID" prop="ID" sortable> </el-table-column>
               <el-table-column label="名称" prop="name" sortable>
               </el-table-column>
-              <el-table-column label="ID" prop="phoneNumber"> </el-table-column>
-              <el-table-column label="ID" prop="age" sortable>
+              <el-table-column label="phoneNumber" prop="phoneNumber"> </el-table-column>
+              <el-table-column label="age" prop="age" sortable>
               </el-table-column>
             </el-table>
           </el-card>
