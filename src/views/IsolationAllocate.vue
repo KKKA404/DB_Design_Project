@@ -134,6 +134,7 @@ export default {
       getIsolationData().then((res) => {
         this.assignmentData = res.data.assignmentData;
         this.isolatedPointsData = res.data.isolatedPointsData;
+        this.data1 = res.data.data1;
       });
     },
     allocate(row) {
@@ -151,18 +152,6 @@ export default {
             this.$message("隔离点信息更新成功");
           }
         });
-        deleteAssignmentData({
-           id: this.tempID ,
-        }).then((res) => {
-          if (res.code == 20000) {
-            this.$alert(this.tempName + " 的隔离点分配成功！", "消息", {
-              confirmButtonText: "确定",
-              callback: () => {
-                window.location.reload();
-              },
-            });
-          }
-        });
       });
     },
   },
@@ -170,6 +159,7 @@ export default {
     getIsolationData().then((res) => {
       this.assignmentData = res.data.assignmentData;
       this.isolatedPointsData = res.data.isolatedPointsData;
+      this.data1 = res.data.data1;
     });
   },
   data() {
