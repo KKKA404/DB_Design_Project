@@ -30,7 +30,7 @@
     </el-card>
     <el-card>
       <el-table
-        :data="SearchResult"
+        :data="searchData"
         height="500"
         border
         style="width: 100%"
@@ -95,7 +95,7 @@ export default {
   },
   created() {
     getDonateData().then((res) => {
-      this.donateData = res.data.donateData;
+      this.donateData = res.data.donatedata;
     });
   },
 };
