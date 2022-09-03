@@ -155,7 +155,7 @@
             style="margin-left: 10px"
           ></el-input-number>
         </el-form-item>
-          <el-form-item label="填写时间" :label-width="formLabelWidth">
+          <!-- <el-form-item label="填写时间" :label-width="formLabelWidth">
             <el-col :span="11">
               <el-form-item>
                 <el-date-picker
@@ -167,7 +167,7 @@
                 </el-date-picker>
               </el-form-item>
             </el-col>
-          </el-form-item>
+          </el-form-item> -->
         </el-form>
 
         <div slot="footer" class="dialog-footer">
@@ -232,6 +232,7 @@ export default {
       //   }
       // });
       this.Emp.name = row.name;
+      this.Emp.writeTime = row.writeTime;
       this.Emp.phoneNumber = row.phoneNumber;
       this.Emp.type = row.type;
       this.Emp.goodsName = row.goodsName;

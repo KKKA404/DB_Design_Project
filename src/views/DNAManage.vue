@@ -204,7 +204,14 @@ export default {
     searchData: function () {
       if (this.cname == "personId") {
         let SearchResult = this.samplingData.filter(
-          (item) => String(item.personId).indexOf(String(this.nameInput)) > -1
+          (item) => {
+            if(this.$store.getters.roles.includes("user")){
+              return String(item.personId)==String(this.$store.getters.ID)
+            }
+            else{
+              String(item.personId).indexOf(String(this.nameInput)) > -1
+            }
+          }
         );
         return SearchResult;
       } else if (this.cname == "name") {
@@ -223,7 +230,7 @@ export default {
       currentPage: 1,
       pageSize: 6,
       samplingData: [],
-      cname: "",
+      cname: "personId",
       options2: [
         {
           value: "阴性",

@@ -53,7 +53,7 @@
 
       <el-dialog title="查看详情" :visible.sync="dialogItemsVisible" slot>
         <el-card>
-          <el-descriptions class="margin-top" title="物流详细信息" :column="3" :size="size"  border>
+          <el-descriptions class="margin-top" title="物流详细信息" :column="3" :size="size" border>
             <el-descriptions-item>
               <template slot="label">
                 <i class="el-icon-truck"></i>
@@ -150,12 +150,31 @@
           <el-form-item label="物资编号" :label-width="formLabelWidth" required>
             <el-input v-model="transportAddForm.materialID" autocomplete="off"></el-input>
           </el-form-item>
-          <el-form-item label="快递员编号" :label-width="formLabelWidth" required>
-            <el-input v-model="transportAddForm.courierID" autocomplete="off"></el-input>
+          <el-form-item label="快递员编号" :label-width="formLabelWidth" required align="left">
+            <el-select v-model="transportAddForm.courierID" clearable placeholder="请选择" >
+              <el-option label="0001" value="0001"></el-option>
+              <el-option label="0002" value="0002"></el-option>
+              <el-option label="0003" value="0003"></el-option>
+              <el-option label="0004" value="0004"></el-option>
+              <el-option label="0005" value="0005"></el-option>
+              <el-option label="0006" value="0006"></el-option>
+              <el-option label="0007" value="0007"></el-option>
+              <el-option label="0008" value="0008"></el-option>
+              <el-option label="0009" value="0009"></el-option>
+              <el-option label="0010" value="0010"></el-option>
+            </el-select>
           </el-form-item>
-          <el-form-item label="物流状态" :label-width="formLabelWidth" required>
+          <!-- <el-form-item label="物流状态" :label-width="formLabelWidth" required>
             <el-input v-model="transportAddForm.state" autocomplete="off"></el-input>
+          </el-form-item> -->
+          <el-form-item label="物流状态" :label-width="formLabelWidth" style="width: 50%" required>
+            <el-select v-model="transportAddForm.state" placeholder="选择">
+              <el-option v-for="item in states" :key="item.value" :label="item.label" :value="item.value">
+              </el-option>
+            </el-select>
           </el-form-item>
+
+
           <el-form-item label="始发地" :label-width="formLabelWidth" required>
             <el-input v-model="transportAddForm.departure" autocomplete="off"></el-input>
           </el-form-item>
@@ -218,6 +237,20 @@ export default {
   },
   data() {
     return {
+      states: [
+        {
+          label: "已揽件",
+          value: "已揽件",
+        },
+        {
+          label: "运输中",
+          value: "运输中",
+        },
+        {
+          label: "已到货",
+          value: "已到货",
+        },
+      ],
       currentPage: 1,
       pageSize: 6,
       addDialogFormVisible: false,

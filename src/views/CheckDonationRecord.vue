@@ -36,9 +36,10 @@
         style="width: 100%"
         :default-sort="{ prop: 'donateTime', order: 'descending' }"
       >
-        <el-table-column prop="donateName" sortable label="名称">
+      <el-table-column prop="donateID" sortable label="捐赠者ID"> </el-table-column>
+        <el-table-column prop="donateName"  label="捐赠者名称">
         </el-table-column>
-        <el-table-column prop="donateID" sortable label="ID"> </el-table-column>
+        
         <el-table-column prop="donateTime" sortable label="捐赠时间">
         </el-table-column>
         <el-table-column
