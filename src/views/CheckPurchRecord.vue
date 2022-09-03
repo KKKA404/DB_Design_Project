@@ -97,9 +97,9 @@
             :disabled="true"
           ></el-input>
         </el-form-item>
-        <el-form-item label="物资ID" :label-width="formLabelWidth">
+        <el-form-item label="物资Name" :label-width="formLabelWidth">
           <el-input
-            v-model="unitPurchaseForm.materialID"
+            v-model="unitPurchaseForm.materialName"
             autocomplete="off"
           ></el-input>
         </el-form-item>
