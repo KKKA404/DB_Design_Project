@@ -162,6 +162,7 @@ export default {
           type: "warning",
         }
       ).then(() => {
+
         deleteExistingMaterials({ goodsId: row.goodsId, unitName: row.units }).then(
           (resp) => {
             if (resp.code == 20000) {

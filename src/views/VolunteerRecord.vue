@@ -174,7 +174,7 @@ export default {
       });
     },
     edit(row) {
-      this.Emp.volunteerID = row.volunteerID;
+      this.Emp.volunteerID = row.personId;
       this.Emp.name = row.name;
       this.Emp.date1 = row.date1;
       this.Emp.volunteerLocation = row.volunteerLocation;

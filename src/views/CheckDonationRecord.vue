@@ -95,7 +95,7 @@ export default {
   },
   created() {
     getDonateData().then((res) => {
-      this.donateData = res.data.donateData;
+      this.donateData = res.data.donatedata;
     });
   },
 };

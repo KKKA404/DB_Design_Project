@@ -79,6 +79,7 @@ export default {
     };
   },
   methods: {
+
     // checkID() {
     //   var IDcard = this.ID;
     //   // length

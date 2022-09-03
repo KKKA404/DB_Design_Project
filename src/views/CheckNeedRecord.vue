@@ -75,7 +75,7 @@ export default {
         cancelButtonText: "取消",
         type: "warning",
       }).then(() => {
-        deleteNeedData({ id: row.id, goodID: row.demandID }).then((res) => {
+        deleteNeedData({ id: row.id, demandID: row.demandID }).then((res) => {
           if (res.code == 20000) {
             this.$alert(row.name + " 的需求消除成功！", "消息", {
               confirmButtonText: "确定",

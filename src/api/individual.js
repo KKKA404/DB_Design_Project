@@ -24,10 +24,13 @@ export function modifyPersonalRequest(data) {
 //   });
 // }
 
-export function getPersonalRequest(ID) {
+export function getPersonalRequest(params) {
   return request({
-    url: "/personalRequest/"+String(ID),
+
+    url: "/personalRequest/" + params,
     method: "get",
+    params: params
+
   });
 }
 

@@ -53,11 +53,12 @@
         <el-table-column prop="phoneNumber" label="手机号码"> </el-table-column>
         <!-- <el-table-column prop="IDcard" label="身份证号码"> </el-table-column>
         <el-table-column label="健康状况" prop="health"> </el-table-column> -->
-        <el-table-column prop="Demandformid" label="物资表单编号"> </el-table-column>
+        <!-- <el-table-column prop="personId" label="物资表单编个人ID"> </el-table-column> -->
         <el-table-column prop="type" label="所需物资种类"> </el-table-column>
         <el-table-column prop="goodsName" label="所需物资"> </el-table-column>
         <el-table-column prop="num" label="所需物资数量"> </el-table-column>
         <el-table-column prop="writeTime" label="填写时间"> </el-table-column>
+        <el-table-column prop="Demandformid" label="需求表单ID"> </el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
             <el-button
@@ -235,6 +236,7 @@ export default {
       this.Emp.type = row.type;
       this.Emp.goodsName = row.goodsName;
       this.Emp.num = row.num;
+      this.Emp.personId = row.personId;
       this.Emp.Demandformid = row.Demandformid;
     },
 
@@ -243,7 +245,7 @@ export default {
     },
   },
   created() {
-    getPersonalRequest({ID:this.$store.getters.ID}).then((res) => {
+    getPersonalRequest(this.$store.getters.ID).then((res) => {
       this.personalRequest = res.data.personalRequest;
     });
   },

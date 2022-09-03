@@ -282,7 +282,7 @@ export default {
       },
       userInfoForm: {
         userName: this.$store.getters.name,
-        gender: this.$store.getters.gender == "男" ? "1" : "0",
+        gender: this.$store.getters.gender == "男" ? "1 " : "0 ",
         phoneNumber: this.$store.getters.phoneNumber,
         age: this.$store.getters.age,
       },
@@ -329,7 +329,9 @@ export default {
               this.$message.error(res.message);
             }
           })
-          .catch(() => {});
+          .catch(() => {
+            console.log("Test modify");
+          });
       }
     },
     editUserInfo() {
