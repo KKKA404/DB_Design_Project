@@ -16,9 +16,9 @@
         <br />
         <el-card>
             <el-table :data="
-                searchData.slice((currentPage - 1) * pageSize, currentPage * pageSize)
+                manageRecord.slice((currentPage - 1) * pageSize, currentPage * pageSize)
             " border style="width: 100%">
-                <el-table-column prop="unitName" label="疫情防控单位名称"> </el-table-column>
+                <el-table-column prop="UnitName" label="疫情防控单位名称"> </el-table-column>
                 <el-table-column prop="personId" label="人员ID" sortable>
                 </el-table-column>
                 <el-table-column prop="personName" label="姓名"> </el-table-column>
@@ -56,7 +56,7 @@ export default {
                     type: "warning",
                 }
             ).then(() => {
-                deleteManageRecord({ID:row.personId}).then((res) => {
+                deleteManageRecord({personId:row.personId}).then((res) => {
                     if (res.code == 20000) {
                         this.$alert(row.personName + "的记录删除成功！", "消息", {
                             confirmButtonText: "确定",

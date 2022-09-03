@@ -53,7 +53,7 @@
 
       <el-dialog title="查看详情" :visible.sync="dialogItemsVisible" slot>
         <el-card>
-          <el-descriptions class="margin-top" title="物流详细信息" :column="3" :size="size" border>
+          <el-descriptions class="margin-top" title="物流详细信息" :column="3" :size="size"  border>
             <el-descriptions-item>
               <template slot="label">
                 <i class="el-icon-truck"></i>

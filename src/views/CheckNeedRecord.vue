@@ -45,6 +45,7 @@
         </el-table-column>
         <el-table-column prop="name" sortable label="姓名"> </el-table-column>
         <el-table-column prop="phoneNumber" label="电话号码"> </el-table-column>
+        <el-table-column prop="demandID" label="需求表单编号"> </el-table-column>
         <el-table-column prop="type" label="物资类型"> </el-table-column>
         <el-table-column prop="goodName" label="物资名称"> </el-table-column>
         <el-table-column prop="num" label="物资数量"> </el-table-column>
@@ -74,7 +75,7 @@ export default {
         cancelButtonText: "取消",
         type: "warning",
       }).then(() => {
-        deleteNeedData({ id: row.id, goodID: row.goodID }).then((res) => {
+        deleteNeedData({ id: row.id, goodID: row.demandID }).then((res) => {
           if (res.code == 20000) {
             this.$alert(row.name + " 的需求消除成功！", "消息", {
               confirmButtonText: "确定",
