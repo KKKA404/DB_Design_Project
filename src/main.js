@@ -16,7 +16,7 @@ import "./styles/index.scss";
 
 // mockjs
 if (process.env.NODE_ENV == "development") {
-  require("../mock/index");
+  //require("../mock/index");
 }
 
 // store

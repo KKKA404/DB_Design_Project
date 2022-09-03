@@ -79,7 +79,7 @@ export default {
       rules: {
         ID: [
           { required: true, message: "请输入捐赠者ID", trigger: "blur" },
-          { min: 1, max: 5, message: "长度在 1 到 5 个字符", trigger: "blur" },
+          { min: 1, max: 10, message: "长度在 1 到 10 个字符", trigger: "blur" },
         ],
         name: [
           { required: true, message: "请输入捐赠者名称", trigger: "blur" },

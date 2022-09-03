@@ -161,7 +161,7 @@ export default {
           type: "warning",
         }
       ).then(() => {
-        deleteExistingMaterials({ goodsId: row.goodsId, units: row }).then(
+        deleteExistingMaterials({ goodsId: row.goodsId, unitName: row.units }).then(
           (resp) => {
             if (resp.code == 20000) {
               this.$alert(row.goodsName + "的物资记录删除成功！", "消息", {
