@@ -23,6 +23,7 @@
 
     <br />
     <el-card>
+      <sapn margin-bottom=5px>待隔离人员</sapn>
       <el-table :data="searchData" border style="width: 100%">
         <el-table-column fixed prop="id" label="编号" sortable>
         </el-table-column>
@@ -30,12 +31,14 @@
         <el-table-column prop="gender" label="性别"> <template slot-scope="scope"><span
               v-if="scope.row.gender === 1">男</span><span v-if="scope.row.gender === 0">女</span></template>
         </el-table-column>
+        <el-table-column prop="caseType" label="病例类型"> </el-table-column>
         <el-table-column prop="phoneNumber" label="手机号码"> </el-table-column>
         <el-table-column prop="address" label="当前住址"> </el-table-column>
-        <el-table-column prop="signInDate" label="隔离开始日期">
+        
+        <!-- <el-table-column prop="signInDate" label="隔离开始日期">
         </el-table-column>
         <el-table-column prop="signOutDate" label="隔离结束日期">
-        </el-table-column>
+        </el-table-column> -->
         <el-table-column label="操作">
           <template slot-scope="scope">
             <el-button @click="
@@ -45,6 +48,35 @@
             " type="text" size="medium">分配隔离点</el-button>
           </template>
         </el-table-column>
+      </el-table>
+    </el-card>
+
+    <el-card>
+      <sapn>已隔离人员</sapn>
+      <el-table :data="data1" border style="width: 100%">
+        <el-table-column fixed prop="id" label="编号" sortable>
+        </el-table-column>
+        <el-table-column prop="name" label="姓名"> </el-table-column>
+        <el-table-column prop="gender" label="性别"> <template slot-scope="scope"><span
+              v-if="scope.row.gender === 1">男</span><span v-if="scope.row.gender === 0">女</span></template>
+        </el-table-column>
+        <el-table-column prop="caseType" label="病例类型"> </el-table-column>
+        <el-table-column prop="phoneNumber" label="手机号码"> </el-table-column>
+        <el-table-column prop="address" label="当前住址"> </el-table-column>
+        
+        <el-table-column prop="signindate" label="隔离开始日期">
+        </el-table-column>
+        <el-table-column prop="signoutdate" label="隔离结束日期">
+        </el-table-column>
+        <!-- <el-table-column label="操作">
+          <template slot-scope="scope">
+            <el-button @click="
+              (dialogFormVisible = true),
+              (tempID = scope.row.id),
+              (tempName = scope.row.name)
+            " type="text" size="medium">分配隔离点</el-button>
+          </template>
+        </el-table-column> -->
       </el-table>
     </el-card>
 
@@ -102,6 +134,7 @@ export default {
       getIsolationData().then((res) => {
         this.assignmentData = res.data.assignmentData;
         this.isolatedPointsData = res.data.isolatedPointsData;
+        this.data1 = res.data.data1;
       });
     },
     allocate(row) {
@@ -114,21 +147,9 @@ export default {
           type: "warning",
         }
       ).then(() => {
-        postIsolatedPointsData({ name: row.name }).then((res) => {
+        postIsolatedPointsData({ name: row.name,id:this.tempID }).then((res) => {
           if (res.code == 20000) {
             this.$message("隔离点信息更新成功");
-          }
-        });
-        deleteAssignmentData({
-           id: this.tempID ,
-        }).then((res) => {
-          if (res.code == 20000) {
-            this.$alert(this.tempName + " 的隔离点分配成功！", "消息", {
-              confirmButtonText: "确定",
-              callback: () => {
-                window.location.reload();
-              },
-            });
           }
         });
       });
@@ -138,11 +159,13 @@ export default {
     getIsolationData().then((res) => {
       this.assignmentData = res.data.assignmentData;
       this.isolatedPointsData = res.data.isolatedPointsData;
+      this.data1 = res.data.data1;
     });
   },
   data() {
     return {
       assignmentData: [],
+      data1:[],
       isolatedPointsData: [],
       tempID: "",
       tempName: "",

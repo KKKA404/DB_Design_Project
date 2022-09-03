@@ -121,16 +121,22 @@ const actions = {
   // user logout
   logout({ commit }) {
     return new Promise((resolve, reject) => {
-      logout()
-        .then(() => {
+      // logout()
+      //   .then(() => {
+      //     removeToken(); // must remove token first
+      //     resetRouter();
+      //     commit("RESET_STATE");
+      //     resolve();
+      //   })
+      //   .catch((error) => {
+      //     reject(error);
+      //   });
+
           removeToken(); // must remove token first
           resetRouter();
           commit("RESET_STATE");
           resolve();
-        })
-        .catch((error) => {
-          reject(error);
-        });
+      
     });
   },
 

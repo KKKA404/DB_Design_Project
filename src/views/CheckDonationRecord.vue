@@ -42,13 +42,13 @@
         <el-table-column prop="donateTime" sortable label="捐赠时间">
         </el-table-column>
         <el-table-column
-          prop="donatedOrganizationID"
+          prop="donateOrganizationID"
           sortable
           label="受捐防控单位ID"
         >
         </el-table-column>
         <el-table-column
-          prop="donatedOrganization"
+          prop="donateOrganization"
           sortable
           label="受捐防控单位名称"
         >

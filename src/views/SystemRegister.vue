@@ -18,7 +18,7 @@
             <el-input
               ref="userId"
               prefix-icon="el-icon-user-solid"
-              v-model="registerForm.userId"
+              v-model="registerForm.ID"
               placeholder="请输入用户ID"
               type="text"
               tabindex="1"
@@ -31,6 +31,18 @@
               prefix-icon="el-icon-user-solid"
               v-model="registerForm.userName"
               placeholder="请输入用户名"
+              type="text"
+              tabindex="1"
+              auto-complete="on"
+            />
+          </el-form-item>
+
+          <el-form-item prop="userName">
+            <el-input
+              ref="Name"
+              prefix-icon="el-icon-user-solid"
+              v-model="registerForm.Name"
+              placeholder="请输入真实姓名"
               type="text"
               tabindex="1"
               auto-complete="on"
@@ -195,13 +207,14 @@ export default {
     return {
       repeatPassWord: "",
       registerForm: {
-        userId:"",
+        ID:"",
         userName: "",
         passWord: "",
         gender: -1,
-        userAddress:"",
+        address:"",
         phoneNumber: "",
         age: "",
+        Name:"",
       },
       registerRules: {
         userId: [
