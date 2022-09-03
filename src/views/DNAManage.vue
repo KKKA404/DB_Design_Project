@@ -2,8 +2,12 @@
   <el-main>
     <el-card>
       <!-- 筛选栏 -->
-      <el-input placeholder="请输入内容" v-model="nameInput" class="input-with-select"
-        style="width: 87%; margin-bottom: 20px; margin-left: 2%; float: left">
+      <el-input
+        placeholder="请输入内容"
+        v-model="nameInput"
+        class="input-with-select"
+        style="width: 87%; margin-bottom: 20px; margin-left: 2%; float: left"
+      >
         <el-select v-model="cname" slot="prepend" placeholder="请选择">
           <el-option label="ID" value="personId"></el-option>
           <el-option label="姓名" value="name"></el-option>
@@ -11,20 +15,31 @@
         <el-button slot="append" icon="el-icon-search"></el-button>
       </el-input>
       <!-- 筛选栏 -->
-      <el-button type="primary" style="margin-left: 10px" @click="addDialogFormVisible = true" size="medium">新增记录
+      <el-button
+        type="primary"
+        style="margin-left: 10px"
+        @click="addDialogFormVisible = true"
+        size="medium"
+        >新增记录
       </el-button>
     </el-card>
     <br />
     <el-card>
-      <el-table :data="
-        searchData.slice((currentPage - 1) * pageSize, currentPage * pageSize)
-      " border style="width: 100%">
+      <el-table
+        :data="
+          searchData.slice((currentPage - 1) * pageSize, currentPage * pageSize)
+        "
+        border
+        style="width: 100%"
+      >
         <el-table-column fixed prop="name" label="姓名" width="100">
         </el-table-column>
         <el-table-column prop="personId" label="编号"> </el-table-column>
         <el-table-column prop="gender" label="性别">
-          <template slot-scope="scope"><span v-if="scope.row.gender === 1">男</span><span
-              v-if="scope.row.gender === 0">女</span></template>
+          <template slot-scope="scope"
+            ><span v-if="scope.row.gender === 1">男</span
+            ><span v-if="scope.row.gender === 0">女</span></template
+          >
         </el-table-column>
         <el-table-column prop="IDcard" label="身份证号码"> </el-table-column>
         <el-table-column prop="sampleTime" label="采样时间"> </el-table-column>
@@ -35,60 +50,115 @@
         </el-table-column> -->
         <el-table-column label="操作" fixed="right">
           <template slot-scope="scope">
-            <el-button @click="(dialogFormVisible = true), edit(scope.row)" type="text" size="small">修改</el-button>
-            <el-button type="text" size="small" @click="deleteRecord(scope.row)">删除</el-button>
+            <el-button
+              @click="(dialogFormVisible = true), edit(scope.row)"
+              type="text"
+              size="small"
+              >修改</el-button
+            >
+            <el-button type="text" size="small" @click="deleteRecord(scope.row)"
+              >删除</el-button
+            >
           </template>
         </el-table-column>
       </el-table>
     </el-card>
     <div class="block">
-      <el-pagination @current-change="handleCurrentChange" :page-size="6" layout="total, prev, pager, next"
-        :total="total">
+      <el-pagination
+        @current-change="handleCurrentChange"
+        :page-size="6"
+        layout="total, prev, pager, next"
+        :total="total"
+      >
       </el-pagination>
 
-      <el-dialog title="修改确诊/疑似病例记录" :visible.sync="dialogFormVisible" slot>
+      <el-dialog
+        title="修改确诊/疑似病例记录"
+        :visible.sync="dialogFormVisible"
+        slot
+      >
         <el-form :model="EmpIden" ref="EmpIden">
           <el-form-item label="编号" :label-width="formLabelWidth">
-            <el-input v-model="EmpIden.personId" autocomplete="off" :disabled="true"></el-input>
+            <el-input
+              v-model="EmpIden.personId"
+              autocomplete="off"
+              :disabled="true"
+            ></el-input>
           </el-form-item>
           <el-form-item label="姓名" :label-width="formLabelWidth">
-            <el-input v-model="EmpIden.name" autocomplete="off" :disabled="true"></el-input>
+            <el-input
+              v-model="EmpIden.name"
+              autocomplete="off"
+              :disabled="true"
+            ></el-input>
           </el-form-item>
           <!-- <el-form-item label="性别" :label-width="formLabelWidth">
             <el-radio v-model="EmpIden.gender" label=1 :disabled="true">男</el-radio>
             <el-radio v-model="EmpIden.gender" label=0 :disabled="true">女</el-radio>
           </el-form-item> -->
           <el-form-item label="身份证号" :label-width="formLabelWidth">
-            <el-input v-model="EmpIden.IDcard" autocomplete="off" :disabled="true"></el-input>
+            <el-input
+              v-model="EmpIden.IDcard"
+              autocomplete="off"
+              :disabled="true"
+            ></el-input>
           </el-form-item>
           <el-form-item label="采样时间" :label-width="formLabelWidth">
-            <el-date-picker v-model="EmpIden.sampleTime" align="right" type="date" placeholder="选择日期"
-              :picker-options="pickerOptions">
+            <el-date-picker
+              v-model="EmpIden.sampleTime"
+              align="right"
+              type="date"
+              placeholder="选择日期"
+              :picker-options="pickerOptions"
+            >
             </el-date-picker>
           </el-form-item>
           <el-form-item label="检测机构" :label-width="formLabelWidth">
-            <el-input v-model="EmpIden.place" autocomplete="off" :disabled="true"></el-input>
+            <el-input
+              v-model="EmpIden.place"
+              autocomplete="off"
+              :disabled="true"
+            ></el-input>
           </el-form-item>
           <el-form-item label="检测结果" :label-width="formLabelWidth">
-            <el-select v-model="EmpIden.testResult" clearable placeholder="请选择">
-              <el-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value">
+            <el-select
+              v-model="EmpIden.testResult"
+              clearable
+              placeholder="请选择"
+            >
+              <el-option
+                v-for="item in options2"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              >
               </el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="手机号码" :label-width="formLabelWidth">
-            <el-input v-model="EmpIden.phoneNumber" autocomplete="off"></el-input>
+            <el-input
+              v-model="EmpIden.phoneNumber"
+              autocomplete="off"
+            ></el-input>
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
           <el-button @click="dialogFormVisible = false">取 消</el-button>
-          <el-button type="primary" @click="(dialogFormVisible = false), update()">确 定</el-button>
+          <el-button
+            type="primary"
+            @click="(dialogFormVisible = false), update()"
+            >确 定</el-button
+          >
         </div>
       </el-dialog>
 
       <el-dialog title="核酸信息录入" :visible.sync="addDialogFormVisible" slot>
         <el-form :model="addEmpIden">
           <el-form-item label="编号" :label-width="formLabelWidth">
-            <el-input v-model="addEmpIden.personId" autocomplete="off"></el-input>
+            <el-input
+              v-model="addEmpIden.personId"
+              autocomplete="off"
+            ></el-input>
           </el-form-item>
           <el-form-item label="姓名" :label-width="formLabelWidth">
             <el-input v-model="addEmpIden.name" autocomplete="off"></el-input>
@@ -101,26 +171,62 @@
             <el-input v-model="addEmpIden.IDcard" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item label="采样时间" :label-width="formLabelWidth">
-            <el-date-picker v-model="addEmpIden.sampleTime" align="right" type="date" placeholder="选择日期"
-              :picker-options="pickerOptions">
+            <el-date-picker
+              v-model="addEmpIden.sampleTime"
+              align="right"
+              type="date"
+              placeholder="选择日期"
+              :picker-options="pickerOptions"
+            >
             </el-date-picker>
           </el-form-item>
           <el-form-item label="检测机构" :label-width="formLabelWidth">
-            <el-input v-model="addEmpIden.place" autocomplete="off"></el-input>
+            <!-- <el-input v-model="addEmpIden.place" autocomplete="off"></el-input> -->
+            <el-select
+              v-model="addEmpIden.place"
+              clearable
+              placeholder="请选择"
+              align="left"
+              style="margin-left: 10px"
+            >
+              <el-option
+                v-for="item in agency_options"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              >
+              </el-option>
+            </el-select>
           </el-form-item>
           <el-form-item label="检测结果" :label-width="formLabelWidth">
-            <el-select v-model="addEmpIden.testResult" clearable placeholder="请选择">
-              <el-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value">
+            <el-select
+              v-model="addEmpIden.testResult"
+              clearable
+              placeholder="请选择"
+            >
+              <el-option
+                v-for="item in options2"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              >
               </el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="手机号码" :label-width="formLabelWidth">
-            <el-input v-model="addEmpIden.phoneNumber" autocomplete="off"></el-input>
+            <el-input
+              v-model="addEmpIden.phoneNumber"
+              autocomplete="off"
+            ></el-input>
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
           <el-button @click="addDialogFormVisible = false">取 消</el-button>
-          <el-button type="primary" @click="(addDialogFormVisible = false), submitForm()">确 定</el-button>
+          <el-button
+            type="primary"
+            @click="(addDialogFormVisible = false), submitForm()"
+            >确 定</el-button
+          >
         </div>
       </el-dialog>
     </div>
@@ -203,16 +309,20 @@ export default {
   computed: {
     searchData: function () {
       if (this.cname == "personId") {
-        let SearchResult = this.samplingData.filter(
-          (item) => {
-            if(this.$store.getters.roles.includes("user")){
-              return String(item.personId)==String(this.$store.getters.ID)
-            }
-            else{
-              String(item.personId).indexOf(String(this.nameInput)) > -1
+        let SearchResult = this.samplingData.filter((item) => {
+          if (this.$store.getters.roles.includes("user")) {
+            return String(item.personId) == String(this.$store.getters.ID);
+          } else {
+            if (String(this.nameInput) == "") {
+              return true;
+            } else {
+              return (
+                String(item.personId).trim().indexOf(String(this.nameInput)) >
+                -1
+              );
             }
           }
-        );
+        });
         return SearchResult;
       } else if (this.cname == "name") {
         let SearchResult = this.samplingData.filter(
@@ -231,6 +341,24 @@ export default {
       pageSize: 6,
       samplingData: [],
       cname: "personId",
+      agency_options: [
+        {
+          value: "上海检测机构",
+          label: "上海检测机构",
+        },
+        {
+          value: "稻妻检测机构",
+          label: "稻妻检测机构",
+        },
+        {
+          value: "嘉定检测机构",
+          label: "嘉定检测机构",
+        },
+        {
+          value: "渊下检测机构",
+          label: "渊下检测机构",
+        },
+      ],
       options2: [
         {
           value: "阴性",

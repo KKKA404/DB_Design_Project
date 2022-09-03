@@ -52,7 +52,7 @@
     </el-card>
 
     <el-card>
-      <sapn>已隔离人员</sapn>
+      <span>已隔离人员</span>
       <el-table :data="data1" border style="width: 100%">
         <el-table-column fixed prop="id" label="编号" sortable>
         </el-table-column>

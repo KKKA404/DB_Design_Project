@@ -60,8 +60,8 @@ export default {
     return {
       loginForm: {
         // userId:"123",
-        userName: "admin",
-        passWord: "12345678",
+        userName: "2051563",
+        passWord: "67890",
       },
       loading: false,
       redirect: undefined,
