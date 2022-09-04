@@ -266,7 +266,7 @@ export default {
         },
       ],
       value: "",
-      cname: "",
+      cname: "materialName",
       nameInput: "",
       options: [],
       unitPurchaseData: [],
@@ -326,6 +326,9 @@ export default {
       console.log(tab, event);
     },
     submitUnitPurchaseForm() {
+      if (this.$store.getters.roles.includes("user")) {
+        this.$message.error("不具备此权限")
+      }
       this.dialogUnitPurchaseFormVisible = false;
       if (
         this.unitPurchaseForm.materialID != "" &&
@@ -383,6 +386,9 @@ export default {
   },
   computed: {
     searchUnitPurchaseData: function () {
+      if (this.$store.getters.roles.includes("user"))
+        return [];
+
       if (this.cname == "purchaseTime") {
         let SearchResult = this.unitPurchaseData.filter(
           (item) =>
@@ -403,13 +409,13 @@ export default {
       if (this.cname == "purchaseTime") {
         let SearchResult = this.donorPurchaseData.filter(
           (item) =>
-            String(item.purchaseTime).indexOf(String(this.nameInput)) > -1
+            String(item.purchaseTime).indexOf(String(this.nameInput)) > -1 && this.$store.getters.ID == item.buyerID
         );
         return SearchResult;
       } else if (this.cname == "materialName") {
         let SearchResult = this.donorPurchaseData.filter(
           (item) =>
-            String(item.materialName).indexOf(String(this.nameInput)) > -1
+            String(item.materialName).indexOf(String(this.nameInput)) > -1 && this.$store.getters.ID == item.buyerID
         );
         return SearchResult;
       } else {

@@ -94,19 +94,19 @@ export const asyncRoutes = [
     redirect: "/Index",
     name: "物资捐赠",
     component: () => import("../views/SystemIndex.vue"),
-    meta: { icon: "Material", roles: ["admin"] },
+    meta: { icon: "Material", roles: ["user"] },
     children: [
       {
         path: "/MakeDonation",
         name: "捐赠物资提交",
         component: () => import("../views/MakeDonation.vue"),
-        meta: { roles: ["admin"] },
+        meta: { roles: ["user"] },
       },
       {
         path: "/CheckDonationRecord",
         name: "捐赠记录查询",
         component: () => import("../views/CheckDonationRecord.vue"),
-        meta: { roles: ["admin"] },
+        meta: { roles: ["user"] },
       },
     ],
   },
@@ -135,7 +135,7 @@ export const asyncRoutes = [
     path: "/MaterialPurchase",
     redirect: "/Index",
     name: "物资管理",
-    meta: { icon: "MaterialPurchase", roles: ["admin"] },
+    meta: { icon: "MaterialPurchase", roles: ["admin", "user"] },
     component: () => import("../views/SystemIndex.vue"),
     children: [
       {
@@ -148,7 +148,7 @@ export const asyncRoutes = [
         path: "/CheckPurchRecord",
         name: "物资购买",
         component: () => import("../views/CheckPurchRecord.vue"),
-        meta: { roles: ["admin"] },
+        meta: { roles: ["admin", "user"] },
       },
       {
         path: "/MaterialTransport",

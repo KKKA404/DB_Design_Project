@@ -72,7 +72,7 @@ export default {
     return {
       donateData: [],
       value: "",
-      cname: "",
+      cname: "donateID",
       nameInput: "",
       options: [],
     };
@@ -81,12 +81,12 @@ export default {
     searchData: function () {
       if (this.cname == "donateName") {
         let SearchResult = this.donateData.filter(
-          (item) => String(item.donateName).indexOf(String(this.nameInput)) > -1
+          (item) => String(item.donateName).indexOf(String(this.nameInput)) > -1 && this.$store.getters.ID == item.donateID
         );
         return SearchResult;
       } else if (this.cname == "donateID") {
         let SearchResult = this.donateData.filter(
-          (item) => String(item.donateID).indexOf(String(this.nameInput)) > -1
+          (item) => String(item.donateID).indexOf(String(this.nameInput)) > -1 && this.$store.getters.ID == item.donateID
         );
         return SearchResult;
       } else {
