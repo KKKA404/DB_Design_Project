@@ -48,7 +48,7 @@
         <el-table-column prop="count" label="物资数量"> </el-table-column>
         <!-- <el-table-column prop="type" label="计量单位"> </el-table-column> -->
         <!-- <el-table-column prop="isImp" label="是否为重点物资"> </el-table-column> -->
-        <el-table-column prop="units" label="疫情防控单位"> </el-table-column>
+        <el-table-column prop="units" label="疫情防控单位/捐赠方"> </el-table-column>
         <el-table-column prop="unitsPhone" label="防控单位电话">
         </el-table-column>
 
@@ -96,7 +96,7 @@
               >否</el-radio
             >
           </el-form-item> -->
-          <el-form-item label="疫情防控单位" :label-width="formLabelWidth">
+          <el-form-item label="疫情防控单位/捐赠方" :label-width="formLabelWidth">
             <el-input v-model="Mat.units" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item label="防控单位电话" :label-width="formLabelWidth">

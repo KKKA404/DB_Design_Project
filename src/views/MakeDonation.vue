@@ -18,15 +18,15 @@
             style="margin-left: 10px"
           ></el-input>
         </el-form-item>
-        <el-form-item label="捐赠方名称" prop="name" style="width: 40%">
+        <!-- <el-form-item label="捐赠方名称" prop="name" style="width: 40%">
           <el-input v-model="donateForm.name"></el-input>
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item label="受捐单位ID" prop="unitID" style="width: 40%">
           <el-input v-model="donateForm.unitID"></el-input>
         </el-form-item>
-        <el-form-item label="受捐单位名称" prop="unitName" style="width: 40%">
+        <!-- <el-form-item label="受捐单位名称" prop="unitName" style="width: 40%">
           <el-input v-model="donateForm.unitName"></el-input>
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item label="物资编号" prop="goodsID" style="width: 55%">
           <el-input v-model="donateForm.goodsID"></el-input>
         </el-form-item>
@@ -72,9 +72,9 @@ export default {
       ],
       donateForm: {
         donorID: "",
-        name: "",
+        // name: "",
         unitID: "",
-        unitName: "",
+        // unitName: "",
         goodsID: "",
         // goodsName: "",
         // goodsType: "",
@@ -84,41 +84,41 @@ export default {
       rules: {
         donorID: [
           { required: true, message: "请输入捐赠者ID", trigger: "blur" },
-          { min: 1, max: 5, message: "长度在 1 到 5 个字符", trigger: "blur" },
+          { min: 1, max: 10, message: "长度在 1 到 10 个字符", trigger: "blur" },
         ],
-        name: [
-          { required: true, message: "请输入捐赠者名称", trigger: "blur" },
-          {
-            min: 1,
-            max: 10,
-            message: "长度在 1 到 10 个字符",
-            trigger: "blur",
-          },
-        ],
+        // name: [
+        //   { required: true, message: "请输入捐赠者名称", trigger: "blur" },
+        //   {
+        //     min: 1,
+        //     max: 15,
+        //     message: "长度在 1 到 15 个字符",
+        //     trigger: "blur",
+        //   },
+        // ],
         unitID: [
           { required: true, message: "请输入防控单位ID", trigger: "blur" },
-          { min: 1, max: 5, message: "长度在 1 到 5 个字符", trigger: "blur" },
+          { min: 1, max: 10, message: "长度在 1 到 10 个字符", trigger: "blur" },
         ],
-        unitName: [
-          {
-            required: true,
-            message: "请输入疫情防控单位名称",
-            trigger: "blur",
-          },
-          {
-            min: 1,
-            max: 10,
-            message: "长度在 1 到 10 个字符",
-            trigger: "blur",
-          },
-        ],
+        // unitName: [
+        //   {
+        //     required: true,
+        //     message: "请输入疫情防控单位名称",
+        //     trigger: "blur",
+        //   },
+        //   {
+        //     min: 1,
+        //     max: 10,
+        //     message: "长度在 1 到 10 个字符",
+        //     trigger: "blur",
+        //   },
+        // ],
         goodsID: [
           { required: true, message: "请输入物资ID", trigger: "blur" },
           { min: 1, max: 5, message: "长度在 1 到 5 个字符", trigger: "blur" },
         ],
         goodsName: [
           { required: true, message: "请输入物资名称", trigger: "blur" },
-          { min: 1, max: 5, message: "长度在 1 到 5 个字符", trigger: "blur" },
+          { min: 1, max: 10, message: "长度在 1 到 10 个字符", trigger: "blur" },
         ],
         goodsType: [
           { required: true, message: "请选择物资类型", trigger: "change" },

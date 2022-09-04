@@ -102,8 +102,8 @@
               </el-form-item>
               <el-form-item label="性别" :label-width="formLabelWidth">
                 <el-radio-group v-model="userInfoForm.gender">
-                  <el-radio label="1">男</el-radio>
-                  <el-radio label="0">女</el-radio>
+                  <el-radio label="1 ">男</el-radio>
+                  <el-radio label="0 ">女</el-radio>
                 </el-radio-group>
               </el-form-item>
               <el-form-item
@@ -335,7 +335,7 @@ export default {
       }
     },
     editUserInfo() {
-      editInfo(this.userInfoForm)
+      editInfo({...this.userInfoForm,ID:this.$store.getters.ID})
         .then((res) => {
           if (res.code == 20000) {
             // success
