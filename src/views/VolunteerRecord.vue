@@ -34,8 +34,14 @@
         border
         style="width: 100%"
       >
-        <el-table-column fixed prop="personId" label="人员编号" sortable width="100">
-          </el-table-column>
+        <el-table-column
+          fixed
+          prop="personId"
+          label="人员编号"
+          sortable
+          width="100"
+        >
+        </el-table-column>
         <!-- <el-table-column fixed prop="volunteerID" label="志愿填写编号" sortable width="100">
         </el-table-column> -->
         <el-table-column prop="name" label="姓名"> </el-table-column>
@@ -81,7 +87,7 @@
               <el-radio v-model="Emp.gender" label="男">男</el-radio>
               <el-radio v-model="Emp.gender" label="女">女</el-radio>
             </el-form-item> -->
-          
+
           <el-form-item label="志愿地点" :label-width="formLabelWidth">
             <el-input
               v-model="Emp.volunteerLocation"
@@ -129,8 +135,8 @@
     </div>
   </el-main>
 </template>
-  
-  <script>
+
+<script>
 import {
   getVolunteerRecord,
   deleteVolunteerRecord,
@@ -148,7 +154,7 @@ export default {
           type: "warning",
         }
       ).then(() => {
-        deleteVolunteerRecord({ID: row.personId}).then((res) => {
+        deleteVolunteerRecord({ ID: row.personId }).then((res) => {
           if (res.code == 20000) {
             this.$alert(row.name + "的志愿申请记录删除成功！", "消息", {
               confirmButtonText: "确定",
@@ -197,7 +203,7 @@ export default {
       currentPage: 1,
       volunteerRecord: [],
       value: "",
-      cname: "",
+      cname: "personName",
       contentInput: "",
       options: [],
       list: [],
@@ -223,9 +229,15 @@ export default {
   computed: {
     searchData: function () {
       if (this.cname == "personName") {
-        let SearchResult = this.volunteerRecord.filter(
-          (item) => String(item.name).indexOf(String(this.contentInput)) > -1
-        );
+        let SearchResult = this.volunteerRecord.filter((item) => {
+          if (this.$store.getters.roles.includes("user"))
+            return String(item.personId) == this.$store.getters.ID;
+          else {
+            if (String(this.contentInput) == "") return true;
+            else
+              return String(item.name).indexOf(String(this.contentInput)) > -1;
+          }
+        });
         return SearchResult;
       } else if (this.cname == "address") {
         let SearchResult = this.volunteerRecord.filter(
@@ -240,7 +252,7 @@ export default {
   },
 };
 </script>
-  <style>
+<style>
 .el-select .el-input {
   width: 130px;
 }
@@ -253,4 +265,3 @@ export default {
   color: red;
 }
 </style>
-  
