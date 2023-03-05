@@ -1,5 +1,7 @@
 # covid_prevention_management_system
 
+**相关文档及图片展示均在仓库中文档部分**
+
 ## Project setup
 ```
 npm install
